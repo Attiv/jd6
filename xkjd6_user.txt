@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	730
+#@/tick	735
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -100,7 +100,7 @@ QQ空间	qqkj	21
 郑	qrou	6
 热	re	1
 热热	rere	22
-热热佬	rrl	320
+热热佬	rrl	345
 三	s	11
 搜	sd	1
 俗	sji	1
