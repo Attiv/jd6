@@ -11,7 +11,7 @@ else
 fi
 
 # create the zip file
-zip -r jd6.zip . -x "build/*" -x ".git/*" -x ".gitignore*" -x ".history/*" -x "build.sh" -x "词库转换键道.zip" -x "qui.py"
+zip -r jd6.zip . -x "build/*" -x ".git/*" -x ".gitignore*" -x ".history/*" -x "build.sh" -x "词库转换键道.zip" -x "qui.py" -x ".scripts/*" -x "chongfu.py"
 
 # move xmjd6enre.reverse.bin to build folder
 mv build/xmjd6enre.reverse.bin build/
