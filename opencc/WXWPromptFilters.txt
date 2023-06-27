@@ -8929,14 +8929,14 @@
 东北虎	dbhv
 对号	dbhz
 到北京	dbj
-对襟	dbjb
+对襟	dbjba
 对焦	dbjc
 对角	dbjca
 对接	dbjd
 对戒	dbjda
 对车	dbje
 得不偿失	dbjeu
-对劲	dbjg
+对劲	dbjb
 对决	dbjh
 低不就	dbji
 堆积	dbjk
@@ -52518,8 +52518,8 @@
 开沟	khgd
 凯歌	khge
 揩干	khgf
-开国	khgl
-开过	khglv
+开国	khglv
+开过	khgl
 开锅	khglvi
 开光	khgm
 开杠	khgp
