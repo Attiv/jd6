@@ -117,3 +117,6 @@ split_filter = require("split")
 -- 以词定字
 -- 可在 default.yaml key_binder 下配置快捷键，默认为左右中括号 [ ]
 select_character = require("select_character")
+
+--  | 替换为空格
+add_space = require("add_space")
