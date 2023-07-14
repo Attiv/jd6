@@ -13,7 +13,7 @@ __build_info:
     symbols: 1675621991
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1686309882
+    xkjd6.schema: 1689301966
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -44,6 +44,7 @@ engine:
     - "reverse_lookup_filter@pinyin_simp_lookup"
     - "reverse_lookup_filter@quanpinerfen_lookup"
     - "lua_filter@split_filter"
+    - "lua_filter@add_space"
     - uniquifier
   processors:
     - "lua_processor@select_character"
