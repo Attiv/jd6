@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	735
+#@/tick	785
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -70,17 +70,17 @@ Vitta	avt	31
 立	lko	1
 离	lkov	11
 丽	lkvi	2
-兰兰佬	lll	55
+兰兰佬	lll	60
 柳	lqv	6
 拉	ls	11
 龙	ly	16
-龙湖	lyhj	70
+龙湖	lyhj	75
 铑	lzio	1
 佬	lziuo	51
 妙	mca	18
 灭	mdv	11
-灭尽龙	mjl	101
-猫猫佬	mmlu	410
+灭尽龙	mjl	106
+猫猫佬	mmlu	440
 妙妙妙	mmm	38
 吗	ms	1
 猫佬	mzlz	150
@@ -98,9 +98,10 @@ Vitta	avt	31
 求	qq	6
 QQ空间	qqkj	21
 郑	qrou	6
+如此	rc	1
 热	re	1
 热热	rere	22
-热热佬	rrl	345
+热热佬	rrl	365
 三	s	11
 搜	sd	1
 俗	sji	1
@@ -120,12 +121,14 @@ QQ空间	qqkj	21
 埫	wyvo	1
 王宥	wyvo	21
 而	x	1
+喜欢	xa	2
 新	xb	1
 新	xbovuu	6
 新政	xbqr	1
 新郑	xbqr	75
 硝	xcvu	1
-小石榴	xel	231
+消夏	xcxs	1
+小石榴	xel	236
 现在	xmzh	1
 秀	xqu	1
 彦	yfovu	1
@@ -264,6 +267,8 @@ QQ空间	qqkj	21
 那周口	encnooa	1
 筋斗云	encodoj	1
 筋斗云	encodyj	1
+喜欢喜欢消夏如此	encohoc	1
+喜欢喜欢消夏如此	encohoo	1
 在家办公	encojbg	1
 在家办公	encojbo	1
 三缉毒看似简单	encojdd	1
