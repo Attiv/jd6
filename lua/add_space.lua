@@ -1,6 +1,6 @@
 local function filter(input, env)
     for cand in input:iter() do
-        local hasGun = string.find(cand.text, "|")
+        local hasGun = (string.find(cand.text, "|") or string.find(cand.text, "\\n"))
         if hasGun then
             local str = cand.text
             str = string.gsub(str, "|", " ")
