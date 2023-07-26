@@ -4,6 +4,7 @@ local function filter(input, env)
         if hasGun then
             local str = cand.text
             str = string.gsub(str, "|", " ")
+            str = string.gsub(str, "\\n", "\n")
             yield(Candidate(cand.type, cand.start, cand._end, str, cand:get_genuine().comment))
         else
             yield(cand)

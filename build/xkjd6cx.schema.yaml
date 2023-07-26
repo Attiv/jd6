@@ -8,7 +8,7 @@ __build_info:
     punctuation: 1675621991
     punctuation.custom: 0
     xkjd6cx.custom: 0
-    xkjd6cx.schema: 1675672642
+    xkjd6cx.schema: 1690342173
 engine:
   filters:
     - uniquifier
@@ -50,7 +50,7 @@ speller:
   auto_select_pattern: "^;.$|^\\w{6}$"
   delimiter: " '"
   initials: "abcdefghijklmnopqrstuvwxyz;"
-  max_code_length: 6
+  max_code_length: 10
 switches:
   - name: ascii_mode
     reset: 0

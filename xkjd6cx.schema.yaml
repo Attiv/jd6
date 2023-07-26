@@ -38,7 +38,7 @@ speller:
   alphabet: 'zyxwvutsrqponmlkjihgfedcba;'
   initials: 'abcdefghijklmnopqrstuvwxyz;'
   delimiter: " '"
-  max_code_length: 6
+  max_code_length: 10
   auto_select: true
   auto_select_pattern: ^;.$|^\w{6}$
   algebra:
