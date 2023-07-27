@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	792
+#@/tick	794
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -39,7 +39,7 @@ Vitta	avt	31
 胡伟娜	hj wwiv nsau	1
 湖	hja	1
 胡辣汤	hlt	1
-胡娜	hnua	71
+胡娜	hnua	76
 狠	hnuaav	1
 胡伟娜	hwn	10
 进	jb	1
@@ -125,7 +125,7 @@ QQ空间	qqkj	21
 新	xb	1
 新	xbovuu	6
 新政	xbqr	1
-新郑	xbqr	80
+新郑	xbqr	85
 硝	xcvu	1
 消夏	xcxs	1
 小石榴	xel	241

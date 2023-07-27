@@ -83109,8 +83109,8 @@
 头盔	tdkbo
 偷课	tdke
 偷看	tdkf
-偷快	tdkg
-铁块	tdkgi
+偷快	tdkgi
+铁块	tdkg
 铁铠	tdkh
 天地可鉴	tdkj
 铁矿	tdkm
