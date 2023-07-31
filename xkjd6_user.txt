@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	794
+#@/tick	798
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -42,6 +42,7 @@ Vitta	avt	31
 胡娜	hnua	76
 狠	hnuaav	1
 胡伟娜	hwn	10
+上	i	1
 进	jb	1
 尽	jba	11
 筋斗	jbdd	1
@@ -80,7 +81,7 @@ Vitta	avt	31
 妙	mca	18
 灭	mdv	11
 灭尽龙	mjl	106
-猫猫佬	mmlu	455
+猫猫佬	mmlu	470
 妙妙妙	mmm	38
 吗	ms	1
 猫佬	mzlz	150

@@ -13,7 +13,7 @@ __build_info:
     symbols: 1675621991
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1689301966
+    xkjd6.schema: 1690770363
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -514,7 +514,7 @@ switches:
     states: ["关闭英文翻译", "开启英文翻译"]
 topup:
   auto_clear: true
-  max_length: 6
+  max_length: 10
   min_length: 4
   min_length_danzi: 2
   topup_command: true

@@ -455,7 +455,7 @@ recognizer:
 topup:
   __include: "layout/topup"
   min_length: 4
-  max_length: 6
+  max_length: 10
   auto_clear: true
   min_length_danzi: 2
   topup_command: true
