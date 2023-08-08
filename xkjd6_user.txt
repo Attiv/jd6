@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	798
+#@/tick	808
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -41,8 +41,9 @@ Vitta	avt	31
 胡辣汤	hlt	1
 胡娜	hnua	76
 狠	hnuaav	1
+很多	hu	1
 胡伟娜	hwn	10
-上	i	1
+上	i	11
 进	jb	1
 尽	jba	11
 筋斗	jbdd	1
@@ -81,7 +82,7 @@ Vitta	avt	31
 妙	mca	18
 灭	mdv	11
 灭尽龙	mjl	106
-猫猫佬	mmlu	470
+猫猫佬	mmlu	485
 妙妙妙	mmm	38
 吗	ms	1
 猫佬	mzlz	150
@@ -93,6 +94,7 @@ Vitta	avt	31
 你好	nkhz	7
 娜	nsau	1
 啊	o	6
+冫	ov	1
 配合	pi	1
 旁	pp	6
 品质	pu	1
@@ -102,7 +104,7 @@ QQ空间	qqkj	21
 如此	rc	1
 热	re	1
 热热	rere	22
-热热佬	rrl	365
+热热佬	rrl	375
 三	s	16
 搜	sd	1
 俗	sji	1
@@ -126,7 +128,7 @@ QQ空间	qqkj	21
 新	xb	1
 新	xbovuu	6
 新政	xbqr	1
-新郑	xbqr	85
+新郑	xbqr	90
 硝	xcvu	1
 消夏	xcxs	1
 小石榴	xel	241
