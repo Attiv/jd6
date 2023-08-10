@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	808
+#@/tick	812
 那	a	16
 Vitta	avt	31
 不	b	1
@@ -29,7 +29,7 @@ Vitta	avt	31
 这样加词	fyjc	21
 孤	gjai	1
 孤勇者	gjai yya feu	1
-观澜郡	glja	20
+观澜郡	glja	25
 观	gta	1
 观澜郡	gta lfao jwava	1
 孤勇者	gyfa	15
@@ -42,7 +42,7 @@ Vitta	avt	31
 胡娜	hnua	76
 狠	hnuaav	1
 很多	hu	1
-胡伟娜	hwn	10
+胡伟娜	hwn	15
 上	i	11
 进	jb	1
 尽	jba	11
@@ -76,7 +76,7 @@ Vitta	avt	31
 柳	lqv	6
 拉	ls	11
 龙	ly	16
-龙湖	lyhj	75
+龙湖	lyhj	80
 铑	lzio	1
 佬	lziuo	51
 妙	mca	18
@@ -128,7 +128,7 @@ QQ空间	qqkj	21
 新	xb	1
 新	xbovuu	6
 新政	xbqr	1
-新郑	xbqr	90
+新郑	xbqr	95
 硝	xcvu	1
 消夏	xcxs	1
 小石榴	xel	241
