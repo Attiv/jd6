@@ -6935,8 +6935,8 @@
 才藏	chcp
 猜忖	chcw
 才从	chcy
-猜对	chdb
-才对	chdbv
+猜对	chdbu
+才对	chdb
 裁掉	chdc
 彩蝶	chdd
 菜豆	chddi
@@ -25790,7 +25790,7 @@
 灼基	fljko
 佛具	fljl
 捉奸	fljm
-福利厂	fljo
+福利厂	fljou
 浊酒	fljq
 琢成	fljr
 佛家	fljs
@@ -77438,7 +77438,7 @@
 照面	qzmm
 找门	qzmn
 罩门	qzmni
-找嘛	qzms
+找嘛	qzmsi
 找没	qzmw
 千载难逢	qznf
 招奈	qznh

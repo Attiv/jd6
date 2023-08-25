@@ -13,7 +13,7 @@ __build_info:
     symbols: 1675621991
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1691751236
+    xkjd6.schema: 1692694503
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -474,7 +474,7 @@ schema:
     - pinyin_simp
     - liangfen
     - xmjd6.en
-  name: Attiv
+  name: "星空键道6·自我"
   schema_id: xkjd6
   version: 1
 speller:

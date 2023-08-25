@@ -4,7 +4,8 @@
 schema:
   schema_id: xkjd6
   # name: 键道6
-  name: Attiv
+  # name: Attiv
+  name: 星空键道6·自我
   version: "1"
   dependencies:
     - xkjd6cx
