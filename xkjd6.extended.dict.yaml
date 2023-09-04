@@ -71,6 +71,8 @@ import_tables:
   - xkjd6.jisuanji
   - xkjd6.qiche
   - xkjd6.tangshi
+  # 转的空码的
+  - xkjd6.waigua3
   # 特离谱的词库，重码爆炸
   - xkjd6.waigua2
   # - jdl_Z
