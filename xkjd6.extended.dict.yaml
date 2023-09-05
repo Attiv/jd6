@@ -73,8 +73,9 @@ import_tables:
   - xkjd6.tangshi
   # 转的空码的
   - xkjd6.waigua3
-  # 特离谱的词库，重码爆炸
+  # 特离谱的词库，重码爆炸, 一个太大分开了
   - xkjd6.waigua2
+  - xkjd6.waigua4
   # - jdl_Z
   # 更离谱的诗词
   - xkjd6.wanne
