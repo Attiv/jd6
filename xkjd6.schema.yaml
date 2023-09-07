@@ -41,6 +41,9 @@ switches:
   - name: jffh
     reset: 0
     states: [ 简体, 繁體 ]
+  - name: mars
+    states: [ 地球文, 火星文 ]
+    reset: 0
   - name: EN2en
     reset: 1
 
@@ -193,6 +196,7 @@ engine:
     - reverse_lookup_filter@quanpinerfen_lookup
     - lua_filter@split_filter
     - lua_filter@add_space # | 替换成空格
+    - simplifier@mars
     # - lua_filter@single_char_filter # 单字优先
     - uniquifier
 
@@ -268,6 +272,9 @@ jffh:
 ascii_punct:
   option_name: ascii_punct
   
+mars:
+  option_name: mars
+  opencc_config: mars.json
 
 pinyin_simp_lookup:
   tags: [pinyin_simp]
