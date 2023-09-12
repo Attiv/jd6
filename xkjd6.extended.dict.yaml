@@ -64,8 +64,9 @@ import_tables:
   - xkjd6.gbk
   - xkjd6.zidingyi
   - xkjd6.extra
-  - xmjd6.fjcy
   - xkjd6.hanyu
+  - xmjd6.fjcy
+  - xkjd6.lanlao
   - xkjd6.yinyang
   - xkjd6.yixue
   - xkjd6.jisuanji
@@ -76,7 +77,6 @@ import_tables:
   # 特离谱的词库，重码爆炸, 一个太大分开了
   # - xkjd6.waigua2
   # - xkjd6.waigua1
-  - xkjd6.lanlao
   # - jdl_Z
   # 更离谱的诗词
   - xkjd6.wanne
