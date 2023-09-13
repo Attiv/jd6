@@ -75,6 +75,7 @@ import_tables:
   - xkjd6.jisuanji
   - xkjd6.qiche
   - xkjd6.liangzi
+  - xkjd6.lanlao2
   # - xkjd6.waigua3
   # 特离谱的词库，重码爆炸, 一个太大分开了
   # - xkjd6.waigua2
