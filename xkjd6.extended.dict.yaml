@@ -68,11 +68,12 @@ import_tables:
   - xmjd6.fjcy
   - xkjd6.lanlao
   - xkjd6.yinyang
+  - xkjd6.liuxing
+  - xkjd6.tangshi
+  - xkjd6.kaifa
   - xkjd6.yixue
   - xkjd6.jisuanji
   - xkjd6.qiche
-  - xkjd6.tangshi
-  - xkjd6.kaifa
   # - xkjd6.waigua3
   # 特离谱的词库，重码爆炸, 一个太大分开了
   # - xkjd6.waigua2
