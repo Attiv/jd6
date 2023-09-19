@@ -2,8 +2,8 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	877
-那	a	16
+#@/tick	882
+那	a	31
 Vitta	avt	31
 不	b	1
 办公	bfgy	1
@@ -105,13 +105,14 @@ QQ空间	qqkj	21
 如此	rc	1
 热	re	1
 热热	rere	22
-热热佬	rrl	480
-三	s	16
+热热佬	rrl	485
+三	s	21
 搜	sd	1
 随大溜	sdlav	1
 俗	sji	1
 诉苦	sjkj	1
 四	sk	1
+四度	skdj	2
 四绝	skjh	1
 斯	skvi	1
 撒	ss	1
@@ -152,10 +153,16 @@ QQ空间	qqkj	21
 唑	zloii	1
 郑州	zz	16
 郑州	zzzz	1
+那那三	encaao	1
+那那三	encaas	1
 那周口	encafk	1
 那周口	encafo	1
+那那三	encano	1
+那那三	encans	1
 那周口	encaok	1
 那周口	encaoo	1
+那那三	encaoo	1
+那那三	encaos	1
 不是不	encbeb	1
 不是不	encbebv	1
 不是不	encbef	1
@@ -272,6 +279,10 @@ QQ空间	qqkj	21
 那周口	encnfoa	1
 那周口	encnoka	1
 那周口	encnooa	1
+四度那四度	encodad	1
+四度那四度	encodao	1
+四度那四度	encodnd	1
+四度那四度	encodno	1
 筋斗云	encodoj	1
 筋斗云	encodyj	1
 喜欢喜欢消夏如此	encohoc	1
