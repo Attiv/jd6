@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	882
+#@/tick	883
 那	a	31
 Vitta	avt	31
 不	b	1
@@ -83,7 +83,7 @@ Vitta	avt	31
 妙	mca	18
 灭	mdv	11
 灭尽龙	mjl	106
-猫猫佬	mmlu	595
+猫猫佬	mmlu	600
 妙妙妙	mmm	38
 吗	ms	1
 猫佬	mzlz	155

@@ -46,6 +46,9 @@ switches:
     reset: 0
   - name: EN2en
     reset: 1
+  - name: embeded_cands
+    states: [内嵌正常, 输入框显示候选]
+    reset: 0
 
   - options: [_key_']
     states: [造词]
@@ -196,6 +199,7 @@ engine:
     - reverse_lookup_filter@quanpinerfen_lookup
     - lua_filter@split_filter
     - lua_filter@add_space # | 替换成空格
+    - lua_filter@embeded_cands
     - simplifier@mars
     # - lua_filter@single_char_filter # 单字优先
     - uniquifier

@@ -120,3 +120,5 @@ select_character = require("select_character")
 
 --  | 替换为空格
 add_space = require("add_space")
+-- 输入框显示候选
+embeded_cands = require("embeded_cands")

@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1694496880
+    xkjd6.schema: 1695105514
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -45,6 +45,7 @@ engine:
     - "reverse_lookup_filter@quanpinerfen_lookup"
     - "lua_filter@split_filter"
     - "lua_filter@add_space"
+    - "lua_filter@embeded_cands"
     - "simplifier@mars"
     - uniquifier
   processors:
@@ -432,6 +433,9 @@ switches:
     states: ["地球文", "火星文"]
   - name: EN2en
     reset: 1
+  - name: embeded_cands
+    reset: 0
+    states: ["内嵌正常", "神经病"]
   - options: ["_key_'"]
     states: ["造词"]
   - name: emoji_cn
