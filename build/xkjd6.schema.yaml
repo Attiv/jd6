@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1695105514
+    xkjd6.schema: 1695105646
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -435,7 +435,7 @@ switches:
     reset: 1
   - name: embeded_cands
     reset: 0
-    states: ["内嵌正常", "神经病"]
+    states: ["内嵌正常", "输入框显示候选"]
   - options: ["_key_'"]
     states: ["造词"]
   - name: emoji_cn
