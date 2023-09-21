@@ -34,7 +34,6 @@ function embeded_cands_filter.init(env)
     env.config.separator = core.parse_conf_str(env, "separator", separator)
     env.config.stash_placeholder = core.parse_conf_str(env, "stash_placeholder", stash_placeholder)
     env.config.option_name = core.parse_conf_str(env, "option_name")
-
     -- 是否指定開關
     if env.config.option_name and #env.config.option_name ~= 0 then
         -- 構造回調函數
