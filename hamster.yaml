@@ -557,13 +557,22 @@ swipe:
             - direction: down
               action: shortCommand(#三选上屏)
               display: false
+              label:
+                loadingText: ''
+                text: ''
+        - action: shift
+          swipe:
+            - direction: up
+              action: shortCommand(#RimeSwitcher)
+              processByRIME: true
+              display: false
+              label:
+                loadingText: ''
+                text: ''
         - action: enter
           swipe:
             - direction: up
               action: shortCommand(#换行)
-              display: false
-            - direction: down
-              action: shortCommand(#RimeSwitcher)
               display: false
         - action: backspace
           swipe:
