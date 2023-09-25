@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	886
+#@/tick	887
 那	a	31
 Vitta	avt	31
 不	b	1
@@ -40,7 +40,7 @@ Vitta	avt	31
 胡伟娜	hj wwiv nsau	1
 湖	hja	1
 胡辣汤	hlt	1
-胡娜	hnua	76
+胡娜	hnua	81
 狠	hnuaav	1
 很多	hu	1
 胡伟娜	hwn	60

@@ -22,7 +22,7 @@ toolbar:
   # 对应 rime 候选字的 comment 信息
   candidateCommentFontSize: 12
   # 是否显示候选文字索引
-  displayIndexOfCandidateWord: true
+  displayIndexOfCandidateWord: false
   # 是否显示候选文字 Comment 信息
   displayCommentOfCandidateWord: true
 
@@ -55,7 +55,7 @@ Keyboard:
     - "*"
     - /
   lockShiftState: false
-  enableEmbeddedInputMode: true
+  enableEmbeddedInputMode: false
   widthOfOneHandedKeyboard: 80
   symbolsOfCursorBack:
     - '""'
@@ -359,9 +359,9 @@ rime:
 
 # 划动相关配置
 swipe:
-  xAxleSwipeSensitivity: 20
-  yAxleSwipeSensitivity: 30
-  spaceSwipeSensitivity: 50
+  xAxleSwipeSensitivity: 10
+  yAxleSwipeSensitivity: 10
+  spaceSwipeSensitivity: 17
   keyboardSwipe:
     # 中文 26 键滑动设置
     - keyboardType: chinese
@@ -545,10 +545,15 @@ swipe:
         - action: character(z)
           swipe:
             - direction: up
-              action: shortCommand(#行首)
-            - direction: down
-              action: symbol(‘’)
+              action: character(`)
+              processByRIME: true
               display: true
+              label:
+                loadingText: '`'
+                text: '`'
+            - direction: down
+              action: shortCommand(#行首)
+
         - action: space
           swipe:
             - direction: up
@@ -561,19 +566,37 @@ swipe:
                 loadingText: ''
                 text: ''
         - action: shift
+          width:
+            portrait: inputPercentage(1.5)
+            landscape: inputPercentage(1.5)
+          label:
+            loadingText: ''
+            text: ''
+          processByRIME: false
+          swipe:
+          - direction: up
+            action: "shortCommand(#中英切换)"
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+          - direction: down
+            action: shortCommand(#RimeSwitcher)
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+        - action: enter
           swipe:
             - direction: up
-              action: shortCommand(#RimeSwitcher)
+              action: "shortCommand(#换行)"
               processByRIME: true
               display: false
               label:
                 loadingText: ''
                 text: ''
-        - action: enter
-          swipe:
-            - direction: up
-              action: shortCommand(#换行)
-              display: false
         - action: backspace
           swipe:
             - direction: up
