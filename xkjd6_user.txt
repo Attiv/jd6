@@ -2,7 +2,7 @@
 #@/db_name	xkjd6_user.txt
 #@/db_type	tabledb
 #@/rime_version	1.5.3
-#@/tick	887
+#@/tick	889
 那	a	31
 Vitta	avt	31
 不	b	1
@@ -77,7 +77,7 @@ Vitta	avt	31
 柳	lqv	6
 拉	ls	11
 龙	ly	16
-龙湖	lyhj	80
+龙湖	lyhj	85
 铑	lzio	1
 佬	lziuo	51
 妙	mca	18
@@ -105,7 +105,7 @@ QQ空间	qqkj	21
 如此	rc	1
 热	re	1
 热热	rere	22
-热热佬	rrl	490
+热热佬	rrl	495
 三	s	26
 搜	sd	1
 随大溜	sdlav	1

@@ -359,9 +359,9 @@ rime:
 
 # 划动相关配置
 swipe:
-  xAxleSwipeSensitivity: 10
-  yAxleSwipeSensitivity: 10
-  spaceSwipeSensitivity: 17
+  xAxleSwipeSensitivity: 15
+  yAxleSwipeSensitivity: 15
+  spaceSwipeSensitivity: 30
   keyboardSwipe:
     # 中文 26 键滑动设置
     - keyboardType: chinese
