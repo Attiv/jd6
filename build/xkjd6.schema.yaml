@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1695280842
+    xkjd6.schema: 1695799931
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -488,7 +488,7 @@ translator:
   enable_user_dict: false
   encode_commit_history: true
   initial_quality: 0
-  max_phrase_length: 6
+  max_phrase_length: 100
 xkjd6_user:
   comment_format:
     - "xform/[0-9]//"
