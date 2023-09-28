@@ -12,8 +12,8 @@ __build_info:
     punctuation.custom: 0
     symbols: 1695091962
     symbols.custom: 0
-    xkjd6.custom: 0
-    xkjd6.schema: 1695910754
+    xkcj.custom: 0
+    xkcj.schema: 1695911024
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -425,8 +425,8 @@ schema:
     - pinyin_simp
     - liangfen
     - xmjd6.en
-  name: "星空键道6·自我"
-  schema_id: xkjd6
+  name: "星空键道6·仓颉"
+  schema_id: xkcj
   version: 1
 speller:
   algebra:
@@ -479,7 +479,7 @@ topup:
   topup_with: "avuio;"
 translator:
   comment_format:
-    - "xform/[0-9]//"
+    - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符～|"
   dictionary: xkjd6.extended
   enable_charset_filter: false
   enable_completion: true
@@ -489,6 +489,9 @@ translator:
   encode_commit_history: true
   initial_quality: 0
   max_phrase_length: 100
+  preedit_format:
+    - "xform/^([a-z]*)$/\\U$1\\E/"
+    - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
 xkjd6_user:
   comment_format:
     - "xform/[0-9]//"

@@ -60,12 +60,13 @@ patch:
 
   schema_list:
   - schema: xkjd6
+  - schema: xkcj
   # - schema: double_pinyin_flypy
 __patch:
 # Rx: amorphobia/openfly:: {
-  - patch/+:
-      "switcher/save_options/+":
-        - "openfly_enable_2nd_short"
+  # - patch/+:
+  #     "switcher/save_options/+":
+  #       - "openfly_enable_2nd_short"
 # }
   
 
