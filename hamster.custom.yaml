@@ -5,7 +5,7 @@
     # chinese: 中文26键
     # chineseNineGrid: 中文九宫格
     # custom(name): 自定义键盘，其中 name 对应自定义键盘配置(customizeKeyboards)中的 name。如: custom(中文26键)
-    useKeyboardType: custom(Qiao)
+    useKeyboardType: custom(Attiv)
     # 上划显示到左侧
     upSwipeOnLeft: true
     displayButtonBubbles: true # 是否显示按钮气泡
@@ -26,6 +26,7 @@
       - +
       - "-"
       - "*"
+      - "="
       - /
     lockShiftState: false  # 锁定 Shift 状态
     enableEmbeddedInputMode: true  # 启用嵌入式输入模式
@@ -35,9 +36,6 @@
       - "“”"
       - "[]"
     symbolsOfReturnToMainKeyboard: # 输入后返回主键盘的符号
-      - ","
-      - .
-      - "!"
     symbolsOfChineseNineGridKeyboard: # 中文九宫格键盘的符号
       - "，"
       - "。"
@@ -74,9 +72,9 @@
         # hilited_lable_color: 0x000000
         hilited_comment_text_color: 0x000000
         text_color: 0xffffff
-      - schemaName: qiao
+      - schemaName: Attiv
         name: 测试主题
-        author: qiao
+        author: Attiv
         text_color: 0x606060
         back_color: 0xdd000000
         candidate_text_color: 0xeceeee
@@ -647,7 +645,7 @@
   #
   # display: BOOL 是否显示, 默认值为 true。
   keyboards:
-  - name: Qiao
+  - name: Attiv
     rows:
     - keys:
       - action: character(q)
@@ -661,14 +659,14 @@
         swipe:
         - direction: up
           action: character(1)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
-          action: "character(！)"
-          processByRIME: false
+          action: character(！)
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -684,14 +682,14 @@
         swipe:
         - direction: up
           action: character(2)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(@)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -707,14 +705,14 @@
         swipe:
         - direction: up
           action: character(3)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(#)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -730,14 +728,14 @@
         swipe:
         - direction: up
           action: character(4)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character($)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -753,14 +751,14 @@
         swipe:
         - direction: up
           action: character(5)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(%)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -776,14 +774,14 @@
         swipe:
         - direction: up
           action: character(6)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(^)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -799,14 +797,14 @@
         swipe:
         - direction: up
           action: character(7)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "丿十月"
         - direction: down
           action: character(&)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -822,14 +820,14 @@
         swipe:
         - direction: up
           action: character(8)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "亻艹钅扌"
         - direction: down
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -845,14 +843,14 @@
         swipe:
         - direction: up
           action: character(9)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "丶口日"
         - direction: down
-          action: character(()
-          processByRIME: false
+          action: character(-)
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -868,18 +866,18 @@
         swipe:
         - direction: up
           action: character(0)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
-          action: character())
-          processByRIME: false
-          display: false
+          action: character(=)
+          processByRIME: true
+          display: true
           label:
             loadingText: ''
-            text: ''
+            text: '='
     - keys:
       - action: none
       # - action: characterMargin(a)
@@ -902,10 +900,10 @@
         swipe:
         - direction: up
           action: "shortCommand(#繁简切换)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
-            loadingText: ''
+            loadingText: '简繁'
             text: "乛氵贝  "
         - direction: down
           action: character(=)
@@ -1085,15 +1083,15 @@
         processByRIME: true
         swipe:
         - direction: up
-          action: "character(【)"
-          processByRIME: false
+          action: "character([)"
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
-          action: "character(】)"
-          processByRIME: false
+          action: "character(])"
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1150,8 +1148,8 @@
         processByRIME: true
         swipe:
         - direction: up
-          action: "shortCommand(#行首)"
-          processByRIME: false
+          action: character(`)
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -3356,7 +3354,7 @@
           label:
             loadingText: ''
             text: ''
-      - action: keyboardType(custom(Qiao))
+      - action: keyboardType(custom(Attiv))
         width:
           portrait: percentage(0.13)
           landscape: percentage(0.13)
@@ -4028,7 +4026,7 @@
             loadingText: ''
             text: ''
     - keys:
-      - action: keyboardType(custom(Qiao))
+      - action: keyboardType(custom(Attiv))
         width:
           portrait: percentage(0.195)
           landscape: percentage(0.195)

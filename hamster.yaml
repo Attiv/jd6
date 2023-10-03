@@ -62,9 +62,6 @@ Keyboard:
     - "“”"
     - "[]"
   symbolsOfReturnToMainKeyboard:
-    - ","
-    - .
-    - "!"
   symbolsOfChineseNineGridKeyboard:
     - "，"
     - "。"
