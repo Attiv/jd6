@@ -44,7 +44,7 @@ end
 
 local function filter(input, env)
     local is_danzi = env.engine.context:get_option('danzi_mode')
-    local is_on = env.engine.context:get_option('sbb_hint')
+    local is_on = env.engine.context:get_option('wxw_hint')
     local hint_text = env.engine.schema.config:get_string('hint_text') or '✖'
     local first = true
     local input_text = env.engine.context.input
