@@ -801,7 +801,7 @@
           display: true
           label:
             loadingText: ''
-            text: "丿十月"
+            text: "月o十"
         - direction: down
           action: character(&)
           processByRIME: true
@@ -847,7 +847,7 @@
           display: true
           label:
             loadingText: ''
-            text: "丶口日"
+            text: "口i日"
         - direction: down
           action: character(-)
           processByRIME: true
@@ -904,7 +904,7 @@
           display: true
           label:
             loadingText: '简繁'
-            text: "乛氵贝  "
+            text: "氵o贝  "
         - direction: down
           action: character(=)
           processByRIME: false
@@ -1222,11 +1222,11 @@
           display: true
           label:
             loadingText: ''
-            text: "一木土"
+            text: "一木o土"
         - direction: down
           action: character(>)
           processByRIME: false
-          display: true
+          display: false
           label:
             loadingText: ''
             text: ''
