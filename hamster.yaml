@@ -684,6 +684,3766 @@ swipe:
 #
 # display: BOOL 是否显示, 默认值为 true。
 keyboards:
+  - name: Attiv
+    rows:
+    - keys:
+      - action: character(q)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: Q
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(1)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(！)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(w)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: W
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(2)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(@)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(e)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: E
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(3)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(#)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(r)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: R
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(4)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character($)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(t)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: T
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(5)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(%)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(y)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: Y
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(6)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(^)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(u)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: U
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(7)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: "月o十"
+        - direction: down
+          action: character(&)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(i)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: I
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(8)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: "亻艹钅扌"
+        - direction: down
+          action: character(*)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(o)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: O
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(9)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: "口i日"
+        - direction: down
+          action: character(-)
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(p)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: P
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(0)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(=)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: '='
+    - keys:
+      - action: none
+      # - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(a)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: A
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#繁简切换)"
+          processByRIME: true
+          display: true
+          label:
+            loadingText: '简繁'
+            text: "氵o贝  "
+        - direction: down
+          action: character(=)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(s)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: S
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(-)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(_)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(d)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: D
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(*)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(\xB0)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(f)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: F
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(？)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(/)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(g)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: G
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(")
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(”)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(h)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: H
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(‘)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(’)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(j)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: J
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(；)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(;)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(k)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: K
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character({)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(})
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(l)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: L
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character([)"
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(])"
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: none
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: shift
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+          - direction: up
+            action: "shortCommand(#中英切换)"
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+          - direction: down
+            action: shortCommand(#RimeSwitcher)
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+      - action: none
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(z)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: Z
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(`)
+          processByRIME: true
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(+)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(x)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: X
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(:)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(：)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(c)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: C
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(`)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(~)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(v)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: V
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(<)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: "一木o土"
+        - direction: down
+          action: character(>)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(b)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: B
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(，)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: "，"
+        - direction: down
+          action: character(,)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(n)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: N
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(。)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: "。"
+        - direction: down
+          action: character(.)
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(m)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: M
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(《》)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "shortCommand(#行尾)"
+          processByRIME: false
+          display: true
+          label:
+            loadingText: ''
+            text: ''
+      - action: none
+      # - action: characterMargin(m)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "symbol(‘’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: keyboardType(numericNineGrid)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#上个输入方案)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "keyboardType(custom(#+=键盘))"
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: '#+='
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: shortCommand(#RimeSwitcher)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "键道6·自我"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: shortCommand(#三选上屏)
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(custom(English))
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: "英"
+        processByRIME: true
+        swipe: []
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+  - name: "仿iPhone键盘"
+    rows:
+    - keys:
+      - action: character(q)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: q
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(1)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(！)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(w)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: w
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(2)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(@)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(e)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: e
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(3)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(#)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(r)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: r
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(4)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character($)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(t)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: t
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(5)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(%)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(y)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: y
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(6)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(^)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(u)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: u
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(7)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丿十月"
+        - direction: down
+          action: character(&)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(i)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: i
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(8)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "亻艹钅扌"
+        - direction: down
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(o)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: o
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(9)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丶口日"
+        - direction: down
+          action: character(()
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(p)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: p
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(0)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character())
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(a)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: a
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#繁简切换)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(=)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(s)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: s
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(-)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(_)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(d)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: d
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(\xB0)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(f)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: f
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(？)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(/)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(g)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: g
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(")
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(”)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(h)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: h
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(‘)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(j)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: j
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(；)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(;)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(k)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: k
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character({)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(})
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(l)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: l
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(【)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(】)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: characterMargin(l)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: shift
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+          - direction: up
+            action: "shortCommand(#中英切换)"
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+          - direction: down
+            action: shortCommand(#RimeSwitcher)
+            processByRIME: true
+            display: false
+            label:
+              loadingText: ''
+              text: ''
+      - action: characterMargin(z)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(z)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: z
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#行首)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(+)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(x)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: x
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(:)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(：)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(c)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: c
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(`)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(~)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(v)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: v
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(<)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "一木土"
+        - direction: down
+          action: character(>)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(b)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: b
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(，)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "，"
+        - direction: down
+          action: character(,)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(n)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: n
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(。)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "。"
+        - direction: down
+          action: character(.)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(m)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: m
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(《》)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "shortCommand(#行尾)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: characterMargin(m)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "symbol(‘’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: keyboardType(numericNineGrid)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#上个输入方案)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(symbolic)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: shortCommand(#RimeSwitcher)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "键道6·自我"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: shortCommand(#三选上屏)
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(alphabetic)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: "英"
+        processByRIME: true
+        swipe: []
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+  - name: "实验键盘+数字"
+    rows:
+    - rowHeight: 3.5e+1
+      keys:
+      - action: character(1)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(2)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(3)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(4)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(5)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(6)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(7)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(8)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(9)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(0)
+        width:
+          portrait: percentage(0.1)
+          landscape: percentage(0.1)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - rowHeight: 4.5e+1
+      keys:
+      - action: character(q)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: q
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(1)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(！)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(w)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: w
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(2)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(@)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(e)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: e
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(3)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(#)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(r)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: r
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(4)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character($)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(t)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: t
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(5)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(%)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(y)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: y
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(6)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(^)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(u)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: u
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(7)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丿十月"
+        - direction: down
+          action: character(&)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(i)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: i
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(8)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "亻艹钅扌"
+        - direction: down
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(o)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: o
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(9)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丶口日"
+        - direction: down
+          action: character(()
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(p)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: p
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(0)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character())
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - rowHeight: 4.5e+1
+      keys:
+      - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(a)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: a
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#繁简切换)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(=)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(s)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: s
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(-)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(_)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(d)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: d
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(\xB0)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(f)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: f
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(？)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(/)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(g)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: g
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(")
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(”)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(h)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: h
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(‘)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(j)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: j
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(；)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(;)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(k)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: k
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character({)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(})
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(l)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: l
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(【)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(】)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: characterMargin(l)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - rowHeight: 4.5e+1
+      keys:
+      - action: shift
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: characterMargin(z)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(z)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: z
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#行首)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(+)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(x)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: x
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(:)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(：)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(c)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: c
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(`)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(~)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(v)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: v
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(<)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "一木土"
+        - direction: down
+          action: character(>)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(b)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: b
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(，)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "，"
+        - direction: down
+          action: character(,)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(n)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: n
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(。)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "。"
+        - direction: down
+          action: character(.)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(m)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: m
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(《》)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "shortCommand(#行尾)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: characterMargin(m)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "symbol(‘’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - rowHeight: 4.5e+1
+      keys:
+      - action: keyboardType(numericNineGrid)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#上个输入方案)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(symbolic)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: shortCommand(#RimeSwitcher)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "空格"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(alphabetic)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: "英"
+        processByRIME: true
+        swipe: []
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    buttonInsets: left(1.0),right(1.0),top(1.0),bottom(4.0)
+  - name: English
+    rows:
+    - keys:
+      - action: symbol(q)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: q
+        processByRIME: false
+        swipe: []
+      - action: symbol(w)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: w
+        processByRIME: false
+        swipe: []
+      - action: symbol(e)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: e
+        processByRIME: false
+        swipe: []
+      - action: symbol(r)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: r
+        processByRIME: false
+        swipe: []
+      - action: symbol(t)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: t
+        processByRIME: false
+        swipe: []
+      - action: symbol(y)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: y
+        processByRIME: false
+        swipe: []
+      - action: symbol(u)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: u
+        processByRIME: false
+        swipe: []
+      - action: symbol(i)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: i
+        processByRIME: false
+        swipe: []
+      - action: symbol(o)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: o
+        processByRIME: false
+        swipe: []
+      - action: symbol(p)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: p
+        processByRIME: false
+        swipe: []
+    - keys:
+      - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: symbol(a)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: a
+        processByRIME: false
+        swipe: []
+      - action: symbol(s)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: s
+        processByRIME: false
+        swipe: []
+      - action: symbol(d)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: d
+        processByRIME: false
+        swipe: []
+      - action: symbol(f)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: f
+        processByRIME: false
+        swipe: []
+      - action: symbol(g)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: g
+        processByRIME: false
+        swipe: []
+      - action: symbol(h)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: h
+        processByRIME: false
+        swipe: []
+      - action: symbol(j)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: j
+        processByRIME: false
+        swipe: []
+      - action: symbol(k)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: k
+        processByRIME: false
+        swipe: []
+      - action: symbol(l)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: l
+        processByRIME: false
+        swipe: []
+      - action: characterMargin(l)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: shift
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: characterMargin(z)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: symbol(z)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: z
+        processByRIME: false
+        swipe: []
+      - action: symbol(x)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: x
+        processByRIME: false
+        swipe: []
+      - action: symbol(c)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: c
+        processByRIME: false
+        swipe: []
+      - action: symbol(v)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: v
+        processByRIME: false
+        swipe: []
+      - action: symbol(b)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: b
+        processByRIME: false
+        swipe: []
+      - action: symbol(n)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: n
+        processByRIME: false
+        swipe: []
+      - action: symbol(m)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: m
+        processByRIME: false
+        swipe: []
+      - action: characterMargin(m)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: keyboardType(numericNineGrid)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: keyboardType(symbolic)
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "空格"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: keyboardType(custom(Attiv))
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: "中"
+        processByRIME: true
+        swipe: []
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+  - name: "#+=键盘"
+    rows:
+    - keys:
+      - action: "character(【)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(1)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(！)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(】)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(2)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(@)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(｛)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(3)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(#)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(｝)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(4)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character($)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(#)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(5)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(%)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(%)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(6)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(^)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(^)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(7)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丿十月"
+        - direction: down
+          action: character(&)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(*)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(8)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "亻艹钅扌"
+        - direction: down
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(+)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(9)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "丶口日"
+        - direction: down
+          action: character(()
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(=)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(0)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character())
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(_)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#繁简切换)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(=)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(—)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(-)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(_)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(\)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(*)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(\xB0)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(｜)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(？)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(/)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(～)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(")
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(”)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(《)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(‘)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(’)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(》)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(；)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(;)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character($)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character({)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(})
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(&)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(【)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(】)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: characterMargin(l)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: "keyboardType(custom(123键盘))"
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: '123'
+        processByRIME: true
+        swipe: []
+      - action: "character(\xB7)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#行首)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(+)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(…)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(:)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "character(：)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(，)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(`)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: character(~)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: character(^_^)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: character(<)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "一木土"
+        - direction: down
+          action: character(>)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(？)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(，)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "，"
+        - direction: down
+          action: character(,)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(！)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(。)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: "。"
+        - direction: down
+          action: character(.)
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: "character(‘)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "character(《》)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: down
+          action: "shortCommand(#行尾)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: keyboardType(custom(Attiv))
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#上个输入方案)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "空格"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+  - name: "123键盘"
+    rows:
+    - keys:
+      - action: character(1)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(2)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(3)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(4)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(5)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(6)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(7)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(8)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(9)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(0)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: characterMargin(a)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(-)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(/)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(：)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(；)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(（)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(）)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(\xA5)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(@)
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(“)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(”)"
+        width:
+          portrait: input
+          landscape: input
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: characterMargin(l)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+    - keys:
+      - action: "keyboardType(custom(#+=键盘))"
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: '#+='
+        processByRIME: true
+        swipe: []
+      - action: "character(。)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(，)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(、)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(？)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: "character(！)"
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: character(.)
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe: []
+      - action: backspace
+        width:
+          portrait: percentage(0.13)
+          landscape: percentage(0.13)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#重输)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+    - keys:
+      - action: keyboardType(numericNineGrid)
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#上个输入方案)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: space
+        width:
+          portrait: available
+          landscape: available
+        label:
+          loadingText: "仓输入法"
+          text: "空格"
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#次选上屏)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+      - action: enter
+        width:
+          portrait: percentage(0.195)
+          landscape: percentage(0.195)
+        label:
+          loadingText: ''
+          text: ''
+        processByRIME: true
+        swipe:
+        - direction: up
+          action: "shortCommand(#换行)"
+          processByRIME: false
+          display: false
+          label:
+            loadingText: ''
+            text: ''
   - name: "仓颉"
     rows:
       - keys:
