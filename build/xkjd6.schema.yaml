@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1695910754
+    xkjd6.schema: 1696757015
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -84,7 +84,6 @@ engine:
     - "affix_segmentor@pinyin_simp"
     - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
-    - "affix_segmentor@xkjdWXYZ"
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -96,10 +95,6 @@ engine:
     - table_translator
     - reverse_lookup_translator
     - "table_translator@custom_phrase"
-    - "table_translator@xkjdWXYZ"
-    - "table_translator@xkjdYY"
-    - "table_translator@xkjdZZ"
-    - "table_translator@xkjdWW"
     - "table_translator@xkjd6_user"
     - "lua_translator@number_translator"
     - "history_translator@repeat_history"
@@ -396,7 +391,6 @@ recognizer:
     reverse_lookup: "[a-z`]*`+[a-z`]*"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
-    xkjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
     xmjd6en: "^i[a-z]*?$"
 repeat_history:
   initial_quality: 10000
@@ -453,8 +447,6 @@ switches:
   - name: embeded_cands
     reset: 0
     states: ["内嵌正常", "输入框显示候选"]
-  - options: ["_key_'"]
-    states: ["造词"]
   - name: emoji_cn
     reset: 1
     states: ["关闭emj", "开启emj"]
@@ -489,83 +481,6 @@ translator:
   encode_commit_history: true
   initial_quality: 0
   max_phrase_length: 100
-xkjd6_user:
-  comment_format:
-    - "xform/[0-9]//"
-  db_class: stabledb
-  dictionary: ""
-  enable_completion: true
-  enable_sentence: false
-  initial_quality: "-1"
-  user_dict: xkjd6_user
-xkjdWW:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xkjd_W
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~T"
-  tag: xkjdWW
-  tips: "〔W〕"
-  user_dict: xkjd6_user
-xkjdWXYZ:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xkjd6.extended
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: a
-  tag: xkjdWXYZ
-  tips: "〔造词〕"
-  user_dict: xkjd6_user
-xkjdYY:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xkjd_Y
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~E"
-  tag: xkjdYY
-  tips: "〔Y〕"
-  user_dict: xkjd6_user
-xkjdZZ:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xkjd_Z
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~R"
-  tag: xkjdZZ
-  tips: "〔Z〕"
-  user_dict: xkjd6_user
 xmjd6en:
   comment_format:
     - "xform/.*//"
