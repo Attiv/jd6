@@ -49,13 +49,6 @@ switches:
   - name: embeded_cands
     states: [内嵌正常, 输入框显示候选]
     reset: 0
-
-  - options: [_key_']
-    states: [造词]
-  # - name: emoji_suggestion
-  #   reset: 0
-  #   states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ]
-    
   - name: emoji_cn   #Emoji开关
     reset: 1              # 1为默认开启
     states: [ 关闭emj,开启emj  ]
@@ -162,7 +155,6 @@ engine:
     - affix_segmentor@pinyin_simp
     - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
-    - affix_segmentor@xkjdWXYZ
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -174,10 +166,6 @@ engine:
     - table_translator
     - reverse_lookup_translator
     - table_translator@custom_phrase
-    - table_translator@xkjdWXYZ
-    - table_translator@xkjdYY
-    - table_translator@xkjdZZ
-    - table_translator@xkjdWW
     - table_translator@xkjd6_user
     - lua_translator@number_translator
     - history_translator@repeat_history
@@ -334,54 +322,6 @@ reverse_lookup:
     - xform/$/〕/
     - xform/ /, /
 
-xkjdWXYZ:
-  tag: xkjdWXYZ
-  dictionary: xkjd6.extended
-  user_dict: xkjd6_user
-# ↓ 用户词典格式，tabledb（文本） 或 userdb （二进制）。
-  db_class: tabledb
-#  db_class: userdb
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - xform|1|_|
-  comment_format:
-    - xform|1|_|
-#    - xform|~||
-  prefix: "a"
-  tips: "〔造词〕"
-xkjdYY:
-  __include: /xkjdWXYZ
-  tag: xkjdYY
-  dictionary: xkjd_Y
-  prefix: "~E"
-  tips: "〔Y〕"
-xkjdZZ:
-  __include: /xkjdWXYZ
-  tag: xkjdZZ
-  dictionary: xkjd_Z
-  prefix: "~R"
-  tips: "〔Z〕"
-xkjdWW:
-  __include: /xkjdWXYZ
-  tag: xkjdWW
-  dictionary: xkjd_W
-  prefix: "~T"
-  tips: "〔W〕"
-xkjd6_user:
-  dictionary: ""
-  user_dict: xkjd6_user
-  db_class: stabledb
-  enable_sentence: false
-  enable_completion: true
-  comment_format:
-    - xform/[0-9]//  #无数字
-#    - xform|~||
-  initial_quality: -1
 # 嵌入候選的顯示配置
 # 默認顯示效果爲:
 # 宇[浩¹]iwl ~淍² ~泃³
@@ -471,12 +411,10 @@ recognizer:
   patterns:
     reverse_lookup: "[a-z`]*`+[a-z`]*"
     punct: "^/([0-9]0?|[a-z]+)$"
-    xkjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
     jsq: "^=[^;']+$"
     xmjd6en: "^i[a-z]*?$"
-#        xkjdWXYZ: "^'['/a-z][a-z0-9,./:?!']*'?$"
 
 topup:
   __include: "layout/topup"
