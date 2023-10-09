@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1696757015
+    xkjd6.schema: 1696836073
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -91,6 +91,7 @@ engine:
     - "lua_translator@jisuanqi"
     - "lua_translator@xuanchongjsq"
     - "lua_translator@shijian"
+    - "lua_translator@zimu_translator"
     - punct_translator
     - table_translator
     - reverse_lookup_translator

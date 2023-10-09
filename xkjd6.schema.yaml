@@ -162,6 +162,7 @@ engine:
     - lua_translator@jisuanqi
     - lua_translator@xuanchongjsq
     - lua_translator@shijian
+    - lua_translator@zimu_translator
     - punct_translator
     - table_translator
     - reverse_lookup_translator

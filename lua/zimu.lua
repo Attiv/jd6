@@ -1,0 +1,72 @@
+-- 字母数字转成对应的𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟵, 按 a 开启
+local alphabet = {
+    a = '𝑨',
+    b = '𝑩',
+    c = '𝑪',
+    d = '𝑫',
+    e = '𝑬',
+    f = '𝑭',
+    g = '𝑮',
+    h = '𝑯',
+    i = '𝑰',
+    j = '𝑱',
+    k = '𝑲',
+    l = '𝑳',
+    m = '𝑴',
+    n = '𝑵',
+    o = '𝑶',
+    p = '𝑷',
+    q = '𝑸',
+    r = '𝑹',
+    s = '𝑺',
+    t = '𝑻',
+    u = '𝑼',
+    v = '𝑽',
+    w = '𝑾',
+    x = '𝑿',
+    y = '𝒀',
+    z = '𝒁'
+}
+
+local shuzi = {'𝟎','𝟏', '𝟐', '𝟑', '𝟒', '𝟓', '𝟔', '𝟕', '𝟖', '𝟗'}
+
+local function translator(input, seg, env)
+
+    if string.sub(input, 1, 1) == "a" then
+        -- 截取输入的后面部分 
+        local input2 = string.sub(input, 2)
+
+        -- 逐字母替换
+        local output = ""
+        for i = 1, string.len(input2) do
+            local char = string.sub(input2, i, i)
+            if alphabet[char] then
+                output = output .. alphabet[char]
+            else
+                output = output .. char
+            end
+        end
+
+        -- 返回结果
+        return yield(Candidate("text", seg.start, seg._end, output, ""))
+    end
+
+    
+
+    -- if string.sub(input, 1, 1) == "-" then
+    --     local input2 = string.sub(input, 2)
+
+    --     local output = ""
+    --     for i = 1, string.len(input2) do
+    --       local n = tonumber(string.sub(input2, i, i))
+    --       output = output .. shuzi[n+1] 
+    --     end
+    --     -- 返回结果
+    --     return yield(Candidate("text", seg.start, seg._end, output, "转"))
+    -- end
+
+    -- 默认返回原输入
+    -- return yield(Candidate("text", seg.start, seg._end, input, ""))
+end
+
+return translator
