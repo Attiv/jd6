@@ -1357,7 +1357,14 @@
           text: ''
         processByRIME: true
         swipe:
-        - direction: up
+        - direction: left
+          action: "shortCommand(#重输)"
+          processByRIME: true
+          display: false
+          label:
+            loadingText: ''
+            text: ''
+        - direction: right
           action: "shortCommand(#重输)"
           processByRIME: true
           display: false
@@ -1426,6 +1433,7 @@
           label:
             loadingText: ''
             text: ''
+        - longPressDelay: 0.2
       - action: keyboardType(custom(English))
         width:
           portrait: percentage(0.13)
