@@ -21,13 +21,14 @@
     displayChineseEnglishSwitchButton: true  # 显示中文英文切换按钮
     chineseEnglishSwitchButtonIsOnLeftOfSpaceButton: true  # 中文英文切换按钮在空格键左侧
     enableNineGridOfNumericKeyboard: true  # 启用九宫格数字键盘
-    enterDirectlyOnScreenByNineGridOfNumericKeyboard: true  # 通过九宫格数字键盘直接在屏幕上输入
+    enterDirectlyOnScreenByNineGridOfNumericKeyboard: false  # 通过九宫格数字键盘直接在屏幕上输入
     symbolsOfGridOfNumericKeyboard: # 数字网格符号键盘
       - +
       - "-"
       - "*"
       - "="
       - /
+      - ":"
     lockShiftState: false  # 锁定 Shift 状态
     enableEmbeddedInputMode: true  # 启用嵌入式输入模式
     widthOfOneHandedKeyboard: 80  # 单手键盘宽度
@@ -60,29 +61,67 @@
       - schemaName: PornHub
         name: PornHub
         author: 周庸生
-        back_color: 0x606060
-        label_color: 0xffffff
-        # border_color: 0x000000
-        hilited_text_color: 0x000000
-        hilited_back_color: 0x009bff
-        candidate_text_color: 0xffffff
-        hilited_candidate_text_color: 0x000000
-        hilited_candidate_back_color: 0x009bff
-        comment_text_color: 0xffffff
-        # hilited_lable_color: 0x000000
-        hilited_comment_text_color: 0x000000
-        text_color: 0xffffff
-      - schemaName: Attiv
-        name: 测试主题
-        author: Attiv
-        text_color: 0x606060
-        back_color: 0xdd000000
-        candidate_text_color: 0xeceeee
-        hilited_text_color: 0x7fffff
-        hilited_candidate_text_color: 0x7fffff
-        hilited_candidate_back_color: 0x40000000
-        comment_text_color: 0xa5a5a5
-        hilited_comment_text_color: 0x449c9d
+        back_color: '0x55010101'                    # 底色
+        label_color: '0x49F56B'                     # 预选栏编号颜色
+        hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
+        hilited_back_color: '0x009bff'              # 选中底色
+        candidate_text_color: '0xffffff'            # 文字颜色。键盘字符颜色
+        hilited_candidate_text_color: '0x000000'    # 选中文字颜色，即000为黑。FFF为白
+        hilited_candidate_back_color: '0x009bff'    # 选中底色
+        hilited_candidate_label_color: '0x49F56B'   # 第一候选项编号颜色 ➡高亮（選中）候選詞序號字色
+        comment_text_color: '0x000000'              # 注颜色
+        hilited_lable_color: '0x000000'
+        hilited_comment_text_color: '0x000000'      # 选中注颜色
+        text_color: '0x000000'                      # 拼音颜色 （inline_preedit: false）
+      - schemaName: golden
+        name: "黄金九／golden nine"
+        author: "YG777"                             # 作者
+        back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
+        candidate_text_color: '0xEEEEEE'            # 文字颜色。键盘字符颜色
+        label_color: '0x88BFD0'                     # 序号颜色
+        text_color: '0x52A3FF'                      # 拼音颜色 （inline_preedit: false） 
+        hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
+        hilited_candidate_text_color: '0x000000'    # 选中文字颜色
+        hilited_candidate_back_color: '0x038EE0'    # 选中底色
+        comment_text_color: '0x000000'              # 注颜色
+
+      - schemaName: Wechat
+        name: 微信_黑／Wechat
+        author: yg777
+        back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
+        label_color: '0xBBBBBB'                     # 序号颜色
+        hilited_text_color: '0xEEEEEE'              # 选中拼音颜色 （inline_preedit: false）
+        hilited_back_color: '0x009bff' 
+        candidate_text_color: '0xEEEEEE'            # 文字颜色
+        hilited_candidate_text_color: '0x000000'    # 选中文字颜色
+        hilited_candidate_back_color: '0x77B107'    # 选中底色
+        comment_text_color: '0x808080'              # 注颜色
+        hilited_comment_text_color: '0x808080'      # 选中注颜色
+        text_color: '0x808080'                      # 拼音颜色 （inline_preedit: false）
+
+      - schemaName: trendy
+        name: 潮男桔／trendy man orange
+        author: yg777
+        back_color: '0x55010101'                     # 底色，键盘整个底色。黑灰。RGB
+        candidate_text_color: '0x52A3FF'             # 文字颜色，键盘字符颜色，此为桔色
+        hilited_candidate_back_color: '0x77B107'     # 选中底色 ➡高亮（選中）候選詞底色
+        hilited_candidate_text_color: '0x000000'     # 选中文字颜色，第一侯选字➡高亮（選中）候選字字体
+      #  label_color: '0x88BFD0'                      # 序号颜色
+      #  border_color: '0x88BFD0'                     # 边框色      
+      #  hilited_candidate_back_color: '0xEEEEEE'    # 选中底色
+      #  comment_text_color: '0xEEEEEE'              # 注颜色
+      #  hilited_comment_text_color: '0xEEEEEE'      # 选中注颜色
+      #  text_color: '0x77B107'                      # 拼音颜色 （inline_preedit: false）
+      #  hilited_text_color: '0x000000'              # 选中拼音颜色 （inline_preedit: false）
+      #  hilited_back_color: '0x000000'              # 第一候选项背景背景色            
+
+      - schemaName: orange
+        name: 橙心／orange
+        author: yg777
+        back_color: '0x6d000000'                     # 底色，键盘整个底色。黑灰。RGB
+        candidate_text_color: '0xD68381'             # 文字颜色，键盘字符颜色，此为墨绿
+        hilited_candidate_text_color: '0x000000'     # 选中文字颜色，第一侯选字➡高亮（選中）候選字字体
+        hilited_candidate_back_color: '0x52A3FF' 
       - schemaName: aqua
         name: 碧水／Aqua
         author: 佛振 <chen.sst@gmail.com>
@@ -907,7 +946,7 @@
             text: "氵o贝  "
         - direction: down
           action: character(=)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -923,14 +962,14 @@
         swipe:
         - direction: up
           action: character(-)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(_)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -946,14 +985,14 @@
         swipe:
         - direction: up
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(\xB0)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -969,14 +1008,14 @@
         swipe:
         - direction: up
           action: "character(？)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(/)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -992,14 +1031,14 @@
         swipe:
         - direction: up
           action: character(")
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(”)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1015,14 +1054,14 @@
         swipe:
         - direction: up
           action: "character(‘)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(’)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1038,14 +1077,14 @@
         swipe:
         - direction: up
           action: "character(；)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(;)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1061,14 +1100,14 @@
         swipe:
         - direction: up
           action: character({)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(})
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1156,7 +1195,7 @@
             text: ''
         - direction: down
           action: character(+)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1172,14 +1211,14 @@
         swipe:
         - direction: up
           action: character(:)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(：)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1195,14 +1234,14 @@
         swipe:
         - direction: up
           action: character(`)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(~)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1218,14 +1257,14 @@
         swipe:
         - direction: up
           action: character(<)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "一木o土"
         - direction: down
           action: character(>)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1241,14 +1280,14 @@
         swipe:
         - direction: up
           action: "character(，)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "，"
         - direction: down
           action: character(,)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1264,14 +1303,14 @@
         swipe:
         - direction: up
           action: "character(。)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: "。"
         - direction: down
           action: character(.)
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1287,14 +1326,14 @@
         swipe:
         - direction: up
           action: "character(《》)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "shortCommand(#行尾)"
-          processByRIME: false
+          processByRIME: true
           display: true
           label:
             loadingText: ''
@@ -1320,14 +1359,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "symbol(‘’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1344,7 +1383,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#上个输入方案)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1360,7 +1399,7 @@
         swipe:
         - direction: up
           action: shortCommand(#RimeSwitcher)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1376,7 +1415,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1407,7 +1446,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1426,14 +1465,14 @@
         swipe:
         - direction: up
           action: character(1)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(！)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1449,14 +1488,14 @@
         swipe:
         - direction: up
           action: character(2)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(@)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1472,14 +1511,14 @@
         swipe:
         - direction: up
           action: character(3)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(#)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1495,14 +1534,14 @@
         swipe:
         - direction: up
           action: character(4)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character($)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1518,14 +1557,14 @@
         swipe:
         - direction: up
           action: character(5)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(%)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1541,14 +1580,14 @@
         swipe:
         - direction: up
           action: character(6)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(^)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1564,14 +1603,14 @@
         swipe:
         - direction: up
           action: character(7)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丿十月"
         - direction: down
           action: character(&)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1587,14 +1626,14 @@
         swipe:
         - direction: up
           action: character(8)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "亻艹钅扌"
         - direction: down
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1610,14 +1649,14 @@
         swipe:
         - direction: up
           action: character(9)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丶口日"
         - direction: down
           action: character(()
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1633,14 +1672,14 @@
         swipe:
         - direction: up
           action: character(0)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character())
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1666,14 +1705,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#繁简切换)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(=)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1689,14 +1728,14 @@
         swipe:
         - direction: up
           action: character(-)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(_)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1712,14 +1751,14 @@
         swipe:
         - direction: up
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(\xB0)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1735,14 +1774,14 @@
         swipe:
         - direction: up
           action: "character(？)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(/)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1758,14 +1797,14 @@
         swipe:
         - direction: up
           action: character(")
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(”)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1781,14 +1820,14 @@
         swipe:
         - direction: up
           action: "character(‘)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1804,14 +1843,14 @@
         swipe:
         - direction: up
           action: "character(；)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(;)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1827,14 +1866,14 @@
         swipe:
         - direction: up
           action: character({)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(})
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1850,14 +1889,14 @@
         swipe:
         - direction: up
           action: "character(【)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(】)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1915,14 +1954,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#行首)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(+)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1938,14 +1977,14 @@
         swipe:
         - direction: up
           action: character(:)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(：)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1961,14 +2000,14 @@
         swipe:
         - direction: up
           action: character(`)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(~)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -1984,14 +2023,14 @@
         swipe:
         - direction: up
           action: character(<)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "一木土"
         - direction: down
           action: character(>)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2007,14 +2046,14 @@
         swipe:
         - direction: up
           action: "character(，)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "，"
         - direction: down
           action: character(,)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2030,14 +2069,14 @@
         swipe:
         - direction: up
           action: "character(。)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "。"
         - direction: down
           action: character(.)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2053,14 +2092,14 @@
         swipe:
         - direction: up
           action: "character(《》)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "shortCommand(#行尾)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2085,14 +2124,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "symbol(‘’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2109,7 +2148,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#上个输入方案)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2125,7 +2164,7 @@
         swipe:
         - direction: up
           action: shortCommand(#RimeSwitcher)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2141,7 +2180,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2172,7 +2211,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2284,14 +2323,14 @@
         swipe:
         - direction: up
           action: character(1)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(！)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2307,14 +2346,14 @@
         swipe:
         - direction: up
           action: character(2)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(@)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2330,14 +2369,14 @@
         swipe:
         - direction: up
           action: character(3)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(#)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2353,14 +2392,14 @@
         swipe:
         - direction: up
           action: character(4)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character($)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2376,14 +2415,14 @@
         swipe:
         - direction: up
           action: character(5)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(%)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2399,14 +2438,14 @@
         swipe:
         - direction: up
           action: character(6)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(^)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2422,14 +2461,14 @@
         swipe:
         - direction: up
           action: character(7)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丿十月"
         - direction: down
           action: character(&)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2445,14 +2484,14 @@
         swipe:
         - direction: up
           action: character(8)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "亻艹钅扌"
         - direction: down
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2468,14 +2507,14 @@
         swipe:
         - direction: up
           action: character(9)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丶口日"
         - direction: down
           action: character(()
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2491,14 +2530,14 @@
         swipe:
         - direction: up
           action: character(0)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character())
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2525,14 +2564,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#繁简切换)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(=)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2548,14 +2587,14 @@
         swipe:
         - direction: up
           action: character(-)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(_)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2571,14 +2610,14 @@
         swipe:
         - direction: up
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(\xB0)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2594,14 +2633,14 @@
         swipe:
         - direction: up
           action: "character(？)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(/)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2617,14 +2656,14 @@
         swipe:
         - direction: up
           action: character(")
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(”)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2640,14 +2679,14 @@
         swipe:
         - direction: up
           action: "character(‘)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2663,14 +2702,14 @@
         swipe:
         - direction: up
           action: "character(；)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(;)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2686,14 +2725,14 @@
         swipe:
         - direction: up
           action: character({)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(})
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2709,14 +2748,14 @@
         swipe:
         - direction: up
           action: "character(【)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(】)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2761,14 +2800,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#行首)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(+)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2784,14 +2823,14 @@
         swipe:
         - direction: up
           action: character(:)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(：)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2807,14 +2846,14 @@
         swipe:
         - direction: up
           action: character(`)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(~)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2830,14 +2869,14 @@
         swipe:
         - direction: up
           action: character(<)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "一木土"
         - direction: down
           action: character(>)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2853,14 +2892,14 @@
         swipe:
         - direction: up
           action: "character(，)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "，"
         - direction: down
           action: character(,)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2876,14 +2915,14 @@
         swipe:
         - direction: up
           action: "character(。)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "。"
         - direction: down
           action: character(.)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2899,14 +2938,14 @@
         swipe:
         - direction: up
           action: "character(《》)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "shortCommand(#行尾)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2931,14 +2970,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "symbol(‘’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2956,7 +2995,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#上个输入方案)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2972,7 +3011,7 @@
         swipe:
         - direction: up
           action: shortCommand(#RimeSwitcher)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -2988,7 +3027,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3013,7 +3052,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3029,7 +3068,7 @@
         label:
           loadingText: ''
           text: q
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(w)
         width:
@@ -3038,7 +3077,7 @@
         label:
           loadingText: ''
           text: w
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(e)
         width:
@@ -3047,7 +3086,7 @@
         label:
           loadingText: ''
           text: e
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(r)
         width:
@@ -3056,7 +3095,7 @@
         label:
           loadingText: ''
           text: r
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(t)
         width:
@@ -3065,7 +3104,7 @@
         label:
           loadingText: ''
           text: t
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(y)
         width:
@@ -3074,7 +3113,7 @@
         label:
           loadingText: ''
           text: y
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(u)
         width:
@@ -3083,7 +3122,7 @@
         label:
           loadingText: ''
           text: u
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(i)
         width:
@@ -3092,7 +3131,7 @@
         label:
           loadingText: ''
           text: i
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(o)
         width:
@@ -3101,7 +3140,7 @@
         label:
           loadingText: ''
           text: o
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(p)
         width:
@@ -3110,7 +3149,7 @@
         label:
           loadingText: ''
           text: p
-        processByRIME: false
+        processByRIME: true
         swipe: []
     - keys:
       - action: characterMargin(a)
@@ -3129,7 +3168,7 @@
         label:
           loadingText: ''
           text: a
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(s)
         width:
@@ -3138,7 +3177,7 @@
         label:
           loadingText: ''
           text: s
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(d)
         width:
@@ -3147,7 +3186,7 @@
         label:
           loadingText: ''
           text: d
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(f)
         width:
@@ -3156,7 +3195,7 @@
         label:
           loadingText: ''
           text: f
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(g)
         width:
@@ -3165,7 +3204,7 @@
         label:
           loadingText: ''
           text: g
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(h)
         width:
@@ -3174,7 +3213,7 @@
         label:
           loadingText: ''
           text: h
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(j)
         width:
@@ -3183,7 +3222,7 @@
         label:
           loadingText: ''
           text: j
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(k)
         width:
@@ -3192,7 +3231,7 @@
         label:
           loadingText: ''
           text: k
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(l)
         width:
@@ -3201,7 +3240,7 @@
         label:
           loadingText: ''
           text: l
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: characterMargin(l)
         width:
@@ -3238,7 +3277,7 @@
         label:
           loadingText: ''
           text: z
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(x)
         width:
@@ -3247,7 +3286,7 @@
         label:
           loadingText: ''
           text: x
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(c)
         width:
@@ -3256,7 +3295,7 @@
         label:
           loadingText: ''
           text: c
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(v)
         width:
@@ -3265,7 +3304,7 @@
         label:
           loadingText: ''
           text: v
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(b)
         width:
@@ -3274,7 +3313,7 @@
         label:
           loadingText: ''
           text: b
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(n)
         width:
@@ -3283,7 +3322,7 @@
         label:
           loadingText: ''
           text: n
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: symbol(m)
         width:
@@ -3292,7 +3331,7 @@
         label:
           loadingText: ''
           text: m
-        processByRIME: false
+        processByRIME: true
         swipe: []
       - action: characterMargin(m)
         width:
@@ -3314,7 +3353,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3349,7 +3388,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3374,7 +3413,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3393,14 +3432,14 @@
         swipe:
         - direction: up
           action: character(1)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(！)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3416,14 +3455,14 @@
         swipe:
         - direction: up
           action: character(2)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(@)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3439,14 +3478,14 @@
         swipe:
         - direction: up
           action: character(3)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(#)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3462,14 +3501,14 @@
         swipe:
         - direction: up
           action: character(4)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character($)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3485,14 +3524,14 @@
         swipe:
         - direction: up
           action: character(5)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(%)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3508,14 +3547,14 @@
         swipe:
         - direction: up
           action: character(6)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(^)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3531,14 +3570,14 @@
         swipe:
         - direction: up
           action: character(7)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丿十月"
         - direction: down
           action: character(&)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3554,14 +3593,14 @@
         swipe:
         - direction: up
           action: character(8)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "亻艹钅扌"
         - direction: down
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3577,14 +3616,14 @@
         swipe:
         - direction: up
           action: character(9)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "丶口日"
         - direction: down
           action: character(()
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3600,14 +3639,14 @@
         swipe:
         - direction: up
           action: character(0)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character())
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3633,14 +3672,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#繁简切换)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(=)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3656,14 +3695,14 @@
         swipe:
         - direction: up
           action: character(-)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(_)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3679,14 +3718,14 @@
         swipe:
         - direction: up
           action: character(*)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(\xB0)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3702,14 +3741,14 @@
         swipe:
         - direction: up
           action: "character(？)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(/)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3725,14 +3764,14 @@
         swipe:
         - direction: up
           action: character(")
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(”)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3748,14 +3787,14 @@
         swipe:
         - direction: up
           action: "character(‘)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(’)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3771,14 +3810,14 @@
         swipe:
         - direction: up
           action: "character(；)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(;)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3794,14 +3833,14 @@
         swipe:
         - direction: up
           action: character({)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(})
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3817,14 +3856,14 @@
         swipe:
         - direction: up
           action: "character(【)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(】)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3859,14 +3898,14 @@
         swipe:
         - direction: up
           action: "shortCommand(#行首)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(+)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3882,14 +3921,14 @@
         swipe:
         - direction: up
           action: character(:)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "character(：)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3905,14 +3944,14 @@
         swipe:
         - direction: up
           action: character(`)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: character(~)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3928,14 +3967,14 @@
         swipe:
         - direction: up
           action: character(<)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "一木土"
         - direction: down
           action: character(>)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3951,14 +3990,14 @@
         swipe:
         - direction: up
           action: "character(，)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "，"
         - direction: down
           action: character(,)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3974,14 +4013,14 @@
         swipe:
         - direction: up
           action: "character(。)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: "。"
         - direction: down
           action: character(.)
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -3997,14 +4036,14 @@
         swipe:
         - direction: up
           action: "character(《》)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
             text: ''
         - direction: down
           action: "shortCommand(#行尾)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4020,7 +4059,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4037,7 +4076,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#上个输入方案)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4053,7 +4092,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4069,7 +4108,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4351,7 +4390,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#重输)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4368,7 +4407,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#上个输入方案)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4384,7 +4423,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#次选上屏)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''
@@ -4400,7 +4439,7 @@
         swipe:
         - direction: up
           action: "shortCommand(#换行)"
-          processByRIME: false
+          processByRIME: true
           display: false
           label:
             loadingText: ''

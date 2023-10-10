@@ -48,12 +48,14 @@ Keyboard:
   displayChineseEnglishSwitchButton: true
   chineseEnglishSwitchButtonIsOnLeftOfSpaceButton: true
   enableNineGridOfNumericKeyboard: true
-  enterDirectlyOnScreenByNineGridOfNumericKeyboard: true
+  enterDirectlyOnScreenByNineGridOfNumericKeyboard: false
   symbolsOfGridOfNumericKeyboard:
     - +
     - "-"
     - "*"
     - /
+    - "="
+    - ":"
   lockShiftState: false
   enableEmbeddedInputMode: true
   widthOfOneHandedKeyboard: 80
@@ -84,6 +86,70 @@ Keyboard:
   # 配色方案
   # 来源: https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
   colorSchemas:
+    - schemaName: PornHub
+      name: PornHub
+      author: 周庸生
+      back_color: '0x55010101'                    # 底色
+      label_color: '0x49F56B'                     # 预选栏编号颜色
+      hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
+      hilited_back_color: '0x009bff'              # 选中底色
+      candidate_text_color: '0xffffff'            # 文字颜色。键盘字符颜色
+      hilited_candidate_text_color: '0x000000'    # 选中文字颜色，即000为黑。FFF为白
+      hilited_candidate_back_color: '0x009bff'    # 选中底色
+      hilited_candidate_label_color: '0x49F56B'   # 第一候选项编号颜色 ➡高亮（選中）候選詞序號字色
+      comment_text_color: '0x000000'              # 注颜色
+      hilited_lable_color: '0x000000'
+      hilited_comment_text_color: '0x000000'      # 选中注颜色
+      text_color: '0x000000'                      # 拼音颜色 （inline_preedit: false）
+    - schemaName: golden
+      name: "黄金九／golden nine"
+      author: "YG777"                             # 作者
+      back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
+      candidate_text_color: '0xEEEEEE'            # 文字颜色。键盘字符颜色
+      label_color: '0x88BFD0'                     # 序号颜色
+      text_color: '0x52A3FF'                      # 拼音颜色 （inline_preedit: false） 
+      hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
+      hilited_candidate_text_color: '0x000000'    # 选中文字颜色
+      hilited_candidate_back_color: '0x038EE0'    # 选中底色
+      comment_text_color: '0x000000'              # 注颜色
+
+    - schemaName: Wechat
+      name: 微信_黑／Wechat
+      author: yg777
+      back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
+      label_color: '0xBBBBBB'                     # 序号颜色
+      hilited_text_color: '0xEEEEEE'              # 选中拼音颜色 （inline_preedit: false）
+      hilited_back_color: '0x009bff' 
+      candidate_text_color: '0xEEEEEE'            # 文字颜色
+      hilited_candidate_text_color: '0x000000'    # 选中文字颜色
+      hilited_candidate_back_color: '0x77B107'    # 选中底色
+      comment_text_color: '0x808080'              # 注颜色
+      hilited_comment_text_color: '0x808080'      # 选中注颜色
+      text_color: '0x808080'                      # 拼音颜色 （inline_preedit: false）
+
+    - schemaName: trendy
+      name: 潮男桔／trendy man orange
+      author: yg777
+      back_color: '0x55010101'                     # 底色，键盘整个底色。黑灰。RGB
+      candidate_text_color: '0x52A3FF'             # 文字颜色，键盘字符颜色，此为桔色
+      hilited_candidate_back_color: '0x77B107'     # 选中底色 ➡高亮（選中）候選詞底色
+      hilited_candidate_text_color: '0x000000'     # 选中文字颜色，第一侯选字➡高亮（選中）候選字字体
+    #  label_color: '0x88BFD0'                      # 序号颜色
+    #  border_color: '0x88BFD0'                     # 边框色      
+    #  hilited_candidate_back_color: '0xEEEEEE'    # 选中底色
+    #  comment_text_color: '0xEEEEEE'              # 注颜色
+    #  hilited_comment_text_color: '0xEEEEEE'      # 选中注颜色
+    #  text_color: '0x77B107'                      # 拼音颜色 （inline_preedit: false）
+    #  hilited_text_color: '0x000000'              # 选中拼音颜色 （inline_preedit: false）
+    #  hilited_back_color: '0x000000'              # 第一候选项背景背景色            
+
+    - schemaName: orange
+      name: 橙心／orange
+      author: yg777
+      back_color: '0x6d000000'                     # 底色，键盘整个底色。黑灰。RGB
+      candidate_text_color: '0xD68381'             # 文字颜色，键盘字符颜色，此为墨绿
+      hilited_candidate_text_color: '0x000000'     # 选中文字颜色，第一侯选字➡高亮（選中）候選字字体
+      hilited_candidate_back_color: '0x52A3FF'     # 选中底色 ➡高亮（選中）候選詞底色
     - schemaName: aqua
       name: 碧水／Aqua
       author: 佛振 <chen.sst@gmail.com>
