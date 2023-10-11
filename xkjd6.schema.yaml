@@ -415,6 +415,7 @@ recognizer:
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
     jsq: "^=[^;']+$"
+    zhuan: "^-.*$" # 不加这句后面不能跟数字
     xmjd6en: "^i[a-z]*?$"
 
 topup:

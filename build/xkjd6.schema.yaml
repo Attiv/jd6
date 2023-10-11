@@ -13,7 +13,7 @@ __build_info:
     symbols: 1695091962
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1696836073
+    xkjd6.schema: 1697039839
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -393,6 +393,7 @@ recognizer:
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
     xmjd6en: "^i[a-z]*?$"
+    zhuan: "^-.*$"
 repeat_history:
   initial_quality: 10000
   input: i

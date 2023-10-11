@@ -26,9 +26,9 @@ local alphabet = {
     x = '𝑿',
     y = '𝒀',
     z = '𝒁'
-}
 
-local shuzi = {'𝟎','𝟏', '𝟐', '𝟑', '𝟒', '𝟓', '𝟔', '𝟕', '𝟖', '𝟗'}
+}
+local shuzi = {'𝟎', '𝟏', '𝟐', '𝟑', '𝟒', '𝟓', '𝟔', '𝟕', '𝟖', '𝟗'}
 
 local function translator(input, seg, env)
 
@@ -47,26 +47,23 @@ local function translator(input, seg, env)
             end
         end
 
+    elseif string.sub(input, 1, 1) == "-" then
+        local input2 = string.sub(input, 2)
+        -- 这样可以调试
+        -- local file = io.open('/Users/xxx/Downloads/test.txt', 'a') 
+        -- io.output(file)
+        -- io.write(input2 .. '\n')
+        -- io.close()
+        local output = ""
+        for i = 1, string.len(input2) do
+            local n = tonumber(string.sub(input2, i, i))
+            output = output .. shuzi[n + 1]
+        end
         -- 返回结果
-        return yield(Candidate("text", seg.start, seg._end, output, ""))
+        return yield(Candidate("text", seg.start, seg._end, output, "转"))
+
     end
 
-    
-
-    -- if string.sub(input, 1, 1) == "-" then
-    --     local input2 = string.sub(input, 2)
-
-    --     local output = ""
-    --     for i = 1, string.len(input2) do
-    --       local n = tonumber(string.sub(input2, i, i))
-    --       output = output .. shuzi[n+1] 
-    --     end
-    --     -- 返回结果
-    --     return yield(Candidate("text", seg.start, seg._end, output, "转"))
-    -- end
-
-    -- 默认返回原输入
-    -- return yield(Candidate("text", seg.start, seg._end, input, ""))
 end
 
 return translator
