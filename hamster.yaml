@@ -425,6 +425,7 @@ swipe:
   xAxleSwipeSensitivity: 15
   yAxleSwipeSensitivity: 15
   spaceSwipeSensitivity: 30
+  longPressDelay: 0.1
   keyboardSwipe:
     # 中文 26 键滑动设置
     - keyboardType: chinese

@@ -397,6 +397,7 @@
     xAxleSwipeSensitivity: 15
     yAxleSwipeSensitivity: 15
     spaceSwipeSensitivity: 30
+    longPressDelay: 0.1 # 空格长按时间
     keyboardSwipe:
       # 中文 26 键滑动设置
       - keyboardType: chinese
@@ -1433,7 +1434,6 @@
           label:
             loadingText: ''
             text: ''
-        - longPressDelay: 0.2
       - action: keyboardType(custom(English))
         width:
           portrait: percentage(0.13)
