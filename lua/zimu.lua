@@ -46,7 +46,7 @@ local function translator(input, seg, env)
                 output = output .. char
             end
         end
-
+        return yield(Candidate("text", seg.start, seg._end, output, "转"))
     elseif string.sub(input, 1, 1) == "-" then
         local input2 = string.sub(input, 2)
         -- 这样可以调试
