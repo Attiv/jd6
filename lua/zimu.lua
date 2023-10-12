@@ -25,14 +25,24 @@ local alphabet = {
     w = '𝑾',
     x = '𝑿',
     y = '𝒀',
-    z = '𝒁'
-
+    z = '𝒁',
+    ['0'] = '𝟬',
+    ['1'] = '𝟭',
+    ['2'] = '𝟮',
+    ['3'] = '𝟯',
+    ['4'] = '𝟰',
+    ['5'] = '𝟱',
+    ['6'] = '𝟲',
+    ['7'] = '𝟳',
+    ['8'] = '𝟴',
+    ['9'] = '𝟵'
 }
+
 local shuzi = {'𝟎', '𝟏', '𝟐', '𝟑', '𝟒', '𝟓', '𝟔', '𝟕', '𝟖', '𝟗'}
 
 local function translator(input, seg, env)
 
-    if string.sub(input, 1, 1) == "a" then
+    if string.sub(input, 1, 1) == "-" then
         -- 截取输入的后面部分 
         local input2 = string.sub(input, 2)
 
@@ -47,20 +57,20 @@ local function translator(input, seg, env)
             end
         end
         return yield(Candidate("text", seg.start, seg._end, output, "转"))
-    elseif string.sub(input, 1, 1) == "-" then
-        local input2 = string.sub(input, 2)
-        -- 这样可以调试
-        -- local file = io.open('/Users/xxx/Downloads/test.txt', 'a') 
-        -- io.output(file)
-        -- io.write(input2 .. '\n')
-        -- io.close()
-        local output = ""
-        for i = 1, string.len(input2) do
-            local n = tonumber(string.sub(input2, i, i))
-            output = output .. shuzi[n + 1]
-        end
-        -- 返回结果
-        return yield(Candidate("text", seg.start, seg._end, output, "转"))
+    -- elseif string.sub(input, 1, 1) == "-" then
+    --     local input2 = string.sub(input, 2)
+    --     -- 这样可以调试
+    --     -- local file = io.open('/Users/xxx/Downloads/test.txt', 'a') 
+    --     -- io.output(file)
+    --     -- io.write(input2 .. '\n')
+    --     -- io.close()
+    --     local output = ""
+    --     for i = 1, string.len(input2) do
+    --         local n = tonumber(string.sub(input2, i, i))
+    --         output = output .. shuzi[n + 1]
+    --     end
+    --     -- 返回结果
+    --     return yield(Candidate("text", seg.start, seg._end, output, "转"))
 
     end
 
