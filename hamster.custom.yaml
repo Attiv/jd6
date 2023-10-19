@@ -1417,8 +1417,8 @@
           portrait: available
           landscape: available
         label:
-          loadingText: "仓输入法"
-          text: "键道6·自我"
+          loadingText: "𝑨𝒕𝒕𝒊𝒗"
+          text: "𝑨𝒕𝒕𝒊𝒗"
         processByRIME: true
         swipe:
         - direction: up
@@ -2182,8 +2182,8 @@
           portrait: available
           landscape: available
         label:
-          loadingText: "仓输入法"
-          text: "键道6·自我"
+          loadingText: "𝑨𝒕𝒕𝒊𝒗"
+          text: "𝑨𝒕𝒕𝒊𝒗"
         processByRIME: true
         swipe:
         - direction: up
