@@ -38,6 +38,14 @@ local alphabet = {
     ['9'] = '𝟵'
 }
 
+local alphabet2 = {
+    a = '𝒂', b = '𝒃', c = '𝒄', d = '𝒅', e = '𝒆', f = '𝒇', g = '𝒈', h = '𝒉',
+    i = '𝒊', j = '𝒋', k = '𝒌', l = '𝒍', m = '𝒎', n = '𝒏', o = '𝒐', p = '𝒑',
+    q = '𝒒', r = '𝒓', s = '𝒔', t = '𝒕', u = '𝒖', v = '𝒗', w = '𝒘', x = '𝒙',
+    y = '𝒚', z = '𝒛'
+}
+
+
 local shuzi = {'𝟎', '𝟏', '𝟐', '𝟑', '𝟒', '𝟓', '𝟔', '𝟕', '𝟖', '𝟗'}
 
 local function translator(input, seg, env)
@@ -56,22 +64,23 @@ local function translator(input, seg, env)
                 output = output .. char
             end
         end
-        return yield(Candidate("text", seg.start, seg._end, output, "转"))
-    -- elseif string.sub(input, 1, 1) == "-" then
-    --     local input2 = string.sub(input, 2)
-    --     -- 这样可以调试
-    --     -- local file = io.open('/Users/xxx/Downloads/test.txt', 'a') 
-    --     -- io.output(file)
-    --     -- io.write(input2 .. '\n')
-    --     -- io.close()
-    --     local output = ""
-    --     for i = 1, string.len(input2) do
-    --         local n = tonumber(string.sub(input2, i, i))
-    --         output = output .. shuzi[n + 1]
-    --     end
-    --     -- 返回结果
-    --     return yield(Candidate("text", seg.start, seg._end, output, "转"))
+        return yield(Candidate("text", seg.start, seg._end, output, "大"))
+    end
+    if string.sub(input, 1, 1) == "+" then
+        -- 截取输入的后面部分 
+        local input2 = string.sub(input, 2)
 
+        -- 逐字母替换
+        local output = ""
+        for i = 1, string.len(input2) do
+            local char = string.sub(input2, i, i)
+            if alphabet2[char] then
+                output = output .. alphabet2[char]
+            else
+                output = output .. char
+            end
+        end
+        return yield(Candidate("text", seg.start, seg._end, output, "小"))
     end
 
 end
