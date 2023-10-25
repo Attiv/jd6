@@ -153,7 +153,8 @@ local function english()
 
 		if context:get_option("ascii_mode") then
 			local separator = fold_comments and "  " or "|"
-			local prompt = "♥" .. (wildcard.t==""and""or"通配符"..wildcard.t.." ") .. "左Ctrl" .. (num_selection and"關"or"開") .. "數字選詞 右Ctrl" .. (fold_comments and"展開"or"疊起")
+			-- local prompt = "♥" .. (wildcard.t==""and""or"通配符"..wildcard.t.." ") .. "左Ctrl" .. (num_selection and"關"or"開") .. "數字選詞 右Ctrl" .. (fold_comments and"展開"or"疊起")
+			local prompt = ""
 			local prevcand = {text = preedit.t, comment = " "}
 			local newcand = {start = context:get_preedit().sel_start, _end = context:get_preedit().sel_end}
 			local candcount = 0
@@ -205,7 +206,8 @@ local function english()
 
 		if context:get_option("ascii_mode") then
 			local separator = fold_comments and "  " or "|"
-			local prompt = "♥" .. (wildcard.t==""and""or"通配符"..wildcard.t.." ") .. "左Ctrl" .. (num_selection and"關"or"開") .. "數字選詞 右Ctrl" .. (fold_comments and"展開"or"疊起")
+			-- local prompt = "♥" .. (wildcard.t==""and""or"通配符"..wildcard.t.." ") .. "左Ctrl" .. (num_selection and"關"or"開") .. "數字選詞 右Ctrl" .. (fold_comments and"展開"or"疊起")
+			local prompt = ""
 			local prevcand = {text = preedit.t, comment = " "}
 			local newcand = {start = context:get_preedit().sel_start, _end = context:get_preedit().sel_end}
 			local candcount = 0
