@@ -123,3 +123,9 @@ add_space = require("add_space")
 -- 输入框显示候选
 embeded_cands = require("embeded_cands")
 zimu_translator = require("zimu")
+local english = require("english")()
+english_processor = english.processor
+english_segmentor = english.segmentor
+english_translator = english.translator
+english_filter = english.filter
+english_filter0 = english.filter0

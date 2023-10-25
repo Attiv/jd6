@@ -1,78 +1,35 @@
-EN2en:
-  opencc_config: EN2en.json
-  option_name: EN2en
 __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
     default.custom: 1698228632
+    grammar: 1675671673
+    grammar.custom: 0
     key_bindings: 1677768981
     key_bindings.custom: 0
+    luna_pinyin.custom: 0
+    luna_pinyin.schema: 1675621991
+    pinyin: 1675621991
+    pinyin.custom: 0
     punctuation: 1675621991
     punctuation.custom: 0
     symbols: 1697619747
     symbols.custom: 0
-    xkjd6.custom: 0
-    xkjd6.schema: 1698205585
-ascii_punct:
-  option_name: ascii_punct
 custom_phrase:
   db_class: stabledb
   dictionary: ""
+  enable_completion: false
   enable_sentence: false
+  initial_quality: 1
   user_dict: custom_phrase
-embeded_cands:
-  first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}"
-  index_indicators:
-    - "¹"
-    - "²"
-    - "³"
-    - "⁴"
-    - "⁵"
-    - "⁶"
-    - "⁷"
-    - "⁸"
-    - "⁹"
-    - "⁰"
-  next_format: "${Stash}${候選}${Seq}${Comment}"
-  option_name: embeded_cands
-  separator: " "
-  stash_placeholder: "~"
-emoji_cn:
-  comment_format:
-    - "xform/.*/ /"
-  opencc_config: emoji.json
-  option_name: emoji_cn
-  tips: all
-emoji_suggestion:
-  opencc_config: emoji.json
-  option_name: emoji_suggestion
-  tips: all
 engine:
   filters:
     - simplifier
-    - "simplifier@emoji_cn"
-    - "simplifier@jffh"
-    - "simplifier@EN2en"
-    - "simplifier@ascii_punct"
-    - "lua_filter@xkjd6_filter"
-    - "lua_filter@preedit_filter"
-    - "lua_filter@xmjd6en_filter"
-    - "reverse_lookup_filter@pinyin_simp_lookup"
-    - "reverse_lookup_filter@quanpinerfen_lookup"
-    - "lua_filter@split_filter"
-    - "lua_filter@add_space"
-    - "lua_filter@embeded_cands"
-    - "simplifier@mars"
     - uniquifier
   processors:
-    - "lua_processor@select_character"
-    - "lua_processor@xuanchongjsq"
     - ascii_composer
     - recognizer
     - key_binder
-    - "lua_processor@topup_processor"
-    - "lua_processor@smart_2"
     - speller
     - punctuator
     - selector
@@ -81,100 +38,62 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
-    - "affix_segmentor@pinyin_simp"
-    - "affix_segmentor@xmjd6en"
-    - "affix_segmentor@quanpinerfen"
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
-    - "lua_translator@jisuanqi"
-    - "lua_translator@xuanchongjsq"
-    - "lua_translator@shijian"
-    - "lua_translator@zimu_translator"
     - punct_translator
-    - table_translator
-    - reverse_lookup_translator
     - "table_translator@custom_phrase"
-    - "table_translator@xkjd6_user"
-    - "lua_translator@number_translator"
-    - "history_translator@repeat_history"
-    - "history_translator@repeat_history2"
-    - "script_translator@quanpinerfen"
-    - "script_translator@pinyin_simp"
-    - "table_translator@xmjd6en"
-jffh:
-  opencc_config: s2g.json
-  option_name: jffh
+    - reverse_lookup_translator
+    - script_translator
+grammar:
+  language: "zh-hant-t-essay-bgw"
 key_binder:
   bindings:
-    - {accept: "Shift+space", send: space, when: composing}
-    - {accept: semicolon, send: 2, when: has_menu}
-    - {accept: apostrophe, send: 3, when: has_menu}
+    - {accept: bracketleft, send: Page_Up, when: has_menu}
+    - {accept: bracketright, send: Page_Down, when: has_menu}
+    - {accept: ";", send: 2, when: composing}
+    - {accept: comma, send: 3, when: composing}
+    - {accept: Tab, send: Escape, when: composing}
+    - {accept: "Release+semicolon", send: semicolon, when: composing}
+    - {accept: "Release+comma", send: comma, when: composing}
+    - {accept: "Control+p", send: Up, when: composing}
+    - {accept: "Control+n", send: Down, when: composing}
+    - {accept: "Control+b", send: Left, when: composing}
+    - {accept: "Control+f", send: Right, when: composing}
+    - {accept: "Control+a", send: Home, when: composing}
+    - {accept: "Control+e", send: End, when: composing}
+    - {accept: "Control+d", send: Delete, when: composing}
+    - {accept: "Control+k", send: "Shift+Delete", when: composing}
+    - {accept: "Control+h", send: BackSpace, when: composing}
+    - {accept: "Control+g", send: Escape, when: composing}
+    - {accept: "Control+bracketleft", send: Escape, when: composing}
+    - {accept: "Alt+v", send: Page_Up, when: composing}
+    - {accept: "Control+v", send: Page_Down, when: composing}
+    - {accept: ISO_Left_Tab, send: Page_Up, when: composing}
+    - {accept: "Shift+Tab", send: Page_Up, when: composing}
+    - {accept: "Control+Shift+1", select: .next, when: always}
+    - {accept: "Control+Shift+2", toggle: ascii_mode, when: always}
+    - {accept: "Control+Shift+3", toggle: full_shape, when: always}
+    - {accept: "Control+Shift+4", toggle: simplification, when: always}
+    - {accept: "Control+Shift+5", toggle: extended_charset, when: always}
+    - {accept: "Control+Shift+exclam", select: .next, when: always}
+    - {accept: "Control+Shift+at", toggle: ascii_mode, when: always}
+    - {accept: "Control+Shift+numbersign", toggle: full_shape, when: always}
+    - {accept: "Control+Shift+dollar", toggle: simplification, when: always}
+    - {accept: "Control+Shift+percent", toggle: extended_charset, when: always}
+    - {accept: "Shift+space", toggle: full_shape, when: always}
     - {accept: "Control+period", toggle: ascii_punct, when: always}
-    - {accept: minus, send: Page_Up, when: has_menu}
-    - {accept: equal, send: Page_Down, when: has_menu}
-    - {accept: F6, select: .next, when: always}
-    - {accept: F8, toggle: en_tran, when: composing}
-    - {accept: F7, toggle: jffh, when: always}
-    - {accept: KP_0, send: 0, when: composing}
-    - {accept: KP_1, send: 1, when: composing}
-    - {accept: KP_2, send: 2, when: composing}
-    - {accept: KP_3, send: 3, when: composing}
-    - {accept: KP_4, send: 4, when: composing}
-    - {accept: KP_5, send: 5, when: composing}
-    - {accept: KP_6, send: 6, when: composing}
-    - {accept: KP_7, send: 7, when: composing}
-    - {accept: KP_8, send: 8, when: composing}
-    - {accept: KP_9, send: 9, when: composing}
-    - {accept: KP_Subtract, send: "-", when: has_menu}
-    - {accept: KP_Divide, send: "/", when: has_menu}
-    - {accept: KP_Multiply, send: "*", when: has_menu}
-    - {accept: KP_Add, send: "+", when: has_menu}
-    - {accept: KP_Decimal, send: ., when: has_menu}
-  select_first_character: bracketleft
-  select_last_character: bracketright
-layout:
-  algebra:
-    - "derive/^[bcdefghjklmnpqrstwxyz;]([bcdefghjklmnpqrstwxyz;][avuio].*)$/`$1/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;])[bcdefghjklmnpqrstwxyz;]([avuio].*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2})[avuio](.*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2}[avuio`]).(.*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2}[avuio`]{2}).(.*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2}[avuio`]{3}).(.*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2}[avuio`]{4}).(.*)$/$1`$2/"
-    - "derive/^([bcdefghjklmnpqrstwxyz;`]{2}[avuio`]{5}).$/$1`/"
-    - "derive/^[bcdefghjklmnpqrstwxyz;]{2}([avuio`]*)$/``$1/"
-  patterns:
-    special: "^(?:;?[avuio])[a-z]{0,}"
-  topup:
-    topup_this: bcdefghjklmnpqrstwxyz
-    topup_with: "avuio;"
-mars:
-  opencc_config: mars.json
-  option_name: mars
+  import_preset: default
 menu:
   page_size: 6
-pinyin_simp:
-  dictionary: pinyin_simp
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: u
-  tag: pinyin_simp
-  tips: "〔全拼〕"
-pinyin_simp_lookup:
-  dictionary: xkjd6cx
-  overwrite_comment: true
-  tags:
-    - pinyin_simp
 punctuator:
   full_shape:
     " ": {commit: "　"}
     "!": {commit: "！"}
     "\"": {pair: ["“", "”"]}
     "#": ["＃", "⌘"]
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
+    "$": ["￥", "$", "€", "£", "¥", "¢", "¤", "₩"]
     "%": ["％", "°", "℃"]
     "&": "＆"
     "'": {pair: ["‘", "’"]}
@@ -189,13 +108,13 @@ punctuator:
     ":": {commit: "："}
     ";": {commit: "；"}
     "<": ["《", "〈", "«", "‹"]
-    "=": ["="]
+    "=": ["＝", "々", "〃"]
     ">": ["》", "〉", "»", "›"]
     "?": {commit: "？"}
     "@": ["＠", "☯"]
-    "[": ["「", "【", "〔", "［"]
+    "[": ["「", "【", "〔", "［", "〚", "〘"]
     "\\": ["、", "＼"]
-    "]": ["」", "】", "〕", "］"]
+    "]": ["」", "】", "〕", "］", "〛", "〙"]
     "^": {commit: "……"}
     _: "——"
     "`": "｀"
@@ -206,14 +125,14 @@ punctuator:
   half_shape:
     "!": {commit: "！"}
     "\"": {pair: ["“", "”"]}
-    "#": "#"
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": "%"
+    "#": ["#", "№"]
+    "$": ["￥", "$", "€", "£", "¥", "¢", "¤", "₩"]
+    "%": ["%", "％", "°", "℃", "‰", "‱", "℉", "℅", "℆", "℀", "℁", "⅍"]
     "&": "&"
     "'": {pair: ["‘", "’"]}
     "(": "（"
     ")": "）"
-    "*": ["*", "＊", "·", "・", "×", "※", "❂"]
+    "*": ["*", "＊", "·", "・", "×", "※", "❂", "⁂", "☮", "☯", "☣"]
     "+": "+"
     ",": {commit: "，"}
     "-": "-"
@@ -221,21 +140,21 @@ punctuator:
     "/": ["、", "､", "/", "／", "÷"]
     ":": {commit: "："}
     ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
-    "=": "="
-    ">": ["》", "〉", "»", "›"]
+    "<": ["《", "〈", "«", "‹", "˂", "˱"]
+    "=": ["=", "々", "〃"]
+    ">": ["》", "〉", "»", "›", "˃", "˲"]
     "?": {commit: "？"}
-    "@": "@"
+    "@": ["@", "©", "®", "℗"]
     "[": ["「", "【", "〔", "［"]
     "\\": ["、", "\\", "＼"]
     "]": ["」", "】", "〕", "］"]
     "^": {commit: "……"}
     _: "——"
-    "`": "`"
+    "`": ["`", "‵", "‶", "‷", "′", "″", "‴", "⁗"]
     "{": ["『", "〖", "｛"]
-    "|": ["·", "|", "｜", "§", "¦"]
+    "|": ["·", "・", "|", "｜", "§", "¦", "‖"]
     "}": ["』", "〗", "｝"]
-    "~": ["~", "～"]
+    "~": ["~", "～", "˜", "˷", "ⸯ", "≈", "≋", "≃", "≅", "≇", "∽", "⋍", "≌", "﹏", "﹋", "﹌"]
   import_preset: symbols
   symbols:
     "/0": ["〇", "零", "₀", "⁰", "⓪", "⓿", "０"]
@@ -368,129 +287,72 @@ punctuator:
     "/zmh": ["⒜", "⒝", "⒞", "⒟", "⒠", "⒡", "⒢", "⒣", "⒤", "⒥", "⒦", "⒧", "⒨", "⒩", "⒪", "⒫", "⒬", "⒭", "⒮", "⒯", "⒰", "⒱", "⒲", "⒳", "⒴", "⒵"]
     "/zmq": ["ⓐ", "Ⓐ", "ⓑ", "Ⓑ", "ⓒ", "Ⓒ", "ⓓ", "Ⓓ", "ⓔ", "Ⓔ", "ⓕ", "Ⓕ", "ⓖ", "Ⓖ", "ⓗ", "Ⓗ", "ⓘ", "Ⓘ", "ⓙ", "Ⓙ", "ⓚ", "Ⓚ", "ⓛ", "Ⓛ", "ⓜ", "Ⓜ", "ⓝ", "Ⓝ", "ⓞ", "Ⓞ", "ⓟ", "Ⓟ", "ⓠ", "Ⓠ", "ⓡ", "Ⓡ", "ⓢ", "Ⓢ", "ⓣ", "Ⓣ", "ⓤ", "Ⓤ", "ⓥ", "Ⓥ", "ⓦ", "Ⓦ", "ⓧ", "Ⓧ", "ⓨ", "Ⓨ", "ⓩ", "Ⓩ"]
     "/zy": ["ㄅ", "ㄆ", "ㄇ", "ㄈ", "ㄉ", "ㄊ", "ㄋ", "ㄌ", "ㄍ", "ㄎ", "ㄏ", "ㄐ", "ㄑ", "ㄒ", "ㄓ", "ㄔ", "ㄕ", "ㄖ", "ㄗ", "ㄘ", "ㄙ", "ㄧ", "ㄨ", "ㄩ", "ㄚ", "ㄛ", "ㄜ", "ㄝ", "ㄞ", "ㄟ", "ㄠ", "ㄡ", "ㄢ", "ㄣ", "ㄤ", "ㄥ", "ㄦ", "ㄪ", "ㄫ", "ㄬ", "ㄭ", "ㆠ", "ㆡ", "ㆢ", "ㆣ", "ㆤ", "ㆥ", "ㆦ", "ㆧ", "ㆨ", "ㆩ", "ㆪ", "ㆫ", "ㆬ", "ㆭ", "ㆮ", "ㆯ", "ㆰ", "ㆱ", "ㆲ", "ㆳ", "ㆴ", "ㆵ", "ㆶ", "ㆷ"]
-quanpinerfen:
-  dictionary: liangfen
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: v
-  tag: quanpinerfen
-  tips: "〔二分〕"
-quanpinerfen_lookup:
-  dictionary: xkjd6cx
-  overwrite_comment: true
-  tags:
-    - quanpinerfen
 recognizer:
   import_preset: default
   patterns:
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
-    jsq: "^=[^;']+$"
-    pinyin_simp: "^u[a-z']*'?$"
-    punct: "^/([0-9]0?|[a-z]+)$"
-    quanpinerfen: "^v[a-z']*'?$"
-    reverse_lookup: "[a-z`]*`+[a-z`]*"
+    punct: "^/([0-9]0?|[A-Za-z]+)$"
+    reverse_lookup: "`[a-z]*'?$"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
-    xmjd6en: "^i[a-z]*?$"
-    zhuan: "^-.*$"
-    zhuanxiao: "^\\+.*$"
-repeat_history:
-  initial_quality: 10000
-  input: i
-  size: 1
-repeat_history2:
-  initial_quality: 10000
-  input: ";f"
-  size: 1
 reverse_lookup:
   comment_format:
-    - "xform/^/〔/"
-    - "xform/$/〕/"
-    - "xform/ /, /"
-  dictionary: xkjd6cx
-  enable_charset_filter: false
+    - "xform/([nl])v/$1ü/"
+  dictionary: stroke
   enable_completion: true
-  enable_encoder: false
-  enable_sentence: false
-  enable_user_dict: false
-  encode_commit_history: false
-  overwrite_comment: true
+  preedit_format:
+    - "xlit/hspnz/一丨丿丶乙/"
+  prefix: "`"
+  suffix: "'"
+  tips: "〔筆畫〕"
 schema:
+  author:
+    - "佛振 <chen.sst@gmail.com>"
   dependencies:
-    - xkjd6cx
-    - pinyin_simp
-    - liangfen
-    - xmjd6.en
-  name: "星空键道6·自我"
-  schema_id: xkjd6
-  version: 1
+    - stroke
+  description: |
+    Rime 預設的拼音輸入方案。
+    參考以下作品而創作：
+      * CC-CEDICT
+      * Android open source project
+      * Chewing - 新酷音
+      * opencc - 開放中文轉換
+
+  name: "朙月拼音"
+  schema_id: luna_pinyin
+  version: 0.26
 speller:
   algebra:
-    - "derive/[0-9]$//"
-    - "derive|^;|/|"
-  alphabet: "zyxwvutsrqponmlkjihgfedcba;"
-  auto_select: false
+    - "abbrev/^([a-z]).+$/$1/"
+    - "abbrev/^([zcs]h).+$/$1/"
+    - "derive/^([nl])ve$/$1ue/"
+    - "derive/^([jqxy])u/$1v/"
+    - "derive/un$/uen/"
+    - "derive/ui$/uei/"
+    - "derive/iu$/iou/"
+    - "derive/([aeiou])ng$/$1gn/"
+    - "derive/([dtngkhrzcs])o(u|ng)$/$1o/"
+    - "derive/ong$/on/"
+    - "derive/ao$/oa/"
+    - "derive/([iu])a(o|ng?)$/a$1$2/"
+  alphabet: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
-  initials: "abcdefghijklmnopqrstuvwxyz;"
 switches:
   - name: ascii_mode
     reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
-  - name: jffh
-    reset: 0
-    states: ["简体", "繁體"]
-  - name: mars
-    reset: 0
-    states: ["地球文", "火星文"]
-  - name: EN2en
-    reset: 1
-  - name: embeded_cands
-    reset: 0
-    states: ["内嵌正常", "输入框显示候选"]
-  - name: emoji_cn
-    reset: 1
-    states: ["关闭emj", "开启emj"]
+  - name: simplification
+    states: ["漢字", "汉字"]
   - name: ascii_punct
     states: ["。，", "．，"]
-  - name: wxw_hint
-    reset: 1
-    states: ["关₆₃₀", "开₆₃₀"]
-  - name: completion
-    reset: 1
-    states: ["逐码关", "逐码开"]
-  - name: en_tran
-    reset: 1
-    states: ["关闭英文翻译", "开启英文翻译"]
-topup:
-  auto_clear: true
-  max_length: 10
-  min_length: 4
-  min_length_danzi: 2
-  topup_command: true
-  topup_this: bcdefghjklmnpqrstwxyz
-  topup_with: "avuio;"
 translator:
-  comment_format:
-    - "xform/[0-9]//"
-  dictionary: xkjd6.extended
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: false
-  enable_user_dict: false
-  encode_commit_history: true
-  initial_quality: 0
-  max_phrase_length: 100
-xmjd6en:
-  comment_format:
-    - "xform/.*//"
-  dictionary: xmjd6.en
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: i
-  tag: xmjd6en
-  tips: "〔单词〕"
+  contextual_suggestions: false
+  dictionary: luna_pinyin
+  max_homographs: 7
+  max_homophones: 7
+  preedit_format:
+    - "xform/([nl])v/$1ü/"
+    - "xform/([nl])ue/$1üe/"
+    - "xform/([jqxy])v/$1u/"
