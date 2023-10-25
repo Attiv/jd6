@@ -416,7 +416,7 @@ recognizer:
     quanpinerfen: "^v[a-z']*'?$"
     jsq: "^=[^;']+$"
     zhuan: "^-.*$" # 不加这句后面不能跟数字
-    zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
+    # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
     xmjd6en: "^i[a-z]*?$"
 
 topup:
