@@ -78,7 +78,7 @@ local alphabet2 = {
 local function translator(input, seg, env)
     local trans_table = alphabet2
     local start_pos = 0
-    if string.sub(input, 1, 2) == "-+" then
+    if string.sub(input, 1, 2) == "--" then
         trans_table = alphabet
         start_pos = 3
     else
