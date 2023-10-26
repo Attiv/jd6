@@ -171,7 +171,8 @@ local function english()
 					prevcand.comment = cands[1].text:lower() ~= preedit.l and " " or ""
 				end
 			end
-			segment.prompt = context.caret_pos == context.input:len() and "                " .. prompt or ""
+			-- segment.prompt = context.caret_pos == context.input:len() and "                " .. prompt or ""
+			segment.prompt = context.caret_pos == context.input:len() and "" .. prompt or ""
 			for _, cand in pairs(cands) do
 				local text = ""
 				cand.text:lower():gsub(preedit.p, function(...) for a, b in ipairs({...}) do text = text .. preedit.a[a][1] .. preedit.a[a][2](b) end return text end)
@@ -235,7 +236,8 @@ local function english()
 					prevcand.comment = cands[1].text:lower() ~= preedit.l and " " or ""
 				end
 			end
-			segment.prompt = context.caret_pos == context.input:len() and "                " .. prompt or ""
+			-- segment.prompt = context.caret_pos == context.input:len() and "                " .. prompt or ""
+			segment.prompt = context.caret_pos == context.input:len() and "" .. prompt or ""
 			for _, cand in pairs(cands) do
 				local text = ""
 				cand.text:lower():gsub(preedit.p, function(...) for a, b in ipairs({...}) do text = text .. preedit.a[a][1] .. preedit.a[a][2](b) end return text end)
