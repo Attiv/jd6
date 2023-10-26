@@ -1,10 +1,12 @@
 var:
-  last_build_time: 1698285811
+  last_build_time: 1698303681
+  option:
+    emoji_cn: true
   previously_selected_schema: xkjd6
   schema_access_time:
-    english: 1698245296
+    english: 1698296185
     openfly: 1661410505
     wubi86_jidian_trad: 1669863161
     xhup: 1661410509
     xkcj: 1695913797
-    xkjd6: 1698245310
+    xkjd6: 1698296191

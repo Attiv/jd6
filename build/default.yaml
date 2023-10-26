@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1698228632
+    default.custom: 1698303635
     key_bindings: 1677768981
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -13,13 +13,6 @@ ascii_composer:
     Control_L: noop
     Control_R: noop
 config_version: 0.40
-emoji_cn:
-  opencc_config: emoji.json
-  option_name: emoji_cn
-  tips: all
-engine:
-  filters:
-    - "simplifier@emoji_cn"
 key_binder:
   bindings:
     - {accept: bracketleft, send: Page_Up, when: has_menu}
@@ -152,7 +145,13 @@ switcher:
     - zh_hant
     - zh_hans
     - zh_hant_tw
-switches:
-  - name: emoji_cn
-    reset: 1
-    states: ["关闭emj", "开启emj"]
+    - ascii_mode
+    - full_shape
+    - jffh
+    - EN2en
+    - embeded_cands
+    - emoji_cn
+    - ascii_punct
+    - wxw_hint
+    - completion
+    - en_tran

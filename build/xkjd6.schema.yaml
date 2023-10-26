@@ -5,7 +5,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1698228632
+    default.custom: 1698303635
     key_bindings: 1677768981
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -13,7 +13,7 @@ __build_info:
     symbols: 1697619747
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1698248986
+    xkjd6.schema: 1698303654
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -434,34 +434,26 @@ speller:
   initials: "abcdefghijklmnopqrstuvwxyz;"
 switches:
   - name: ascii_mode
-    reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
   - name: jffh
-    reset: 0
     states: ["简体", "繁體"]
   - name: mars
     reset: 0
     states: ["地球文", "火星文"]
   - name: EN2en
-    reset: 1
   - name: embeded_cands
-    reset: 0
     states: ["内嵌正常", "输入框显示候选"]
   - name: emoji_cn
-    reset: 1
     states: ["关闭emj", "开启emj"]
   - name: ascii_punct
     states: ["。，", "．，"]
   - name: wxw_hint
-    reset: 1
     states: ["关₆₃₀", "开₆₃₀"]
   - name: completion
-    reset: 1
     states: ["逐码关", "逐码开"]
   - name: en_tran
-    reset: 1
     states: ["关闭英文翻译", "开启英文翻译"]
 topup:
   auto_clear: true
