@@ -9,19 +9,19 @@ patch:
     # 上划显示到左侧
     upSwipeOnLeft: true
     displayButtonBubbles: true # 是否显示按钮气泡
-    enableKeySounds: true  # 是否启用键盘声音
-    enableHapticFeedback: true  # 震动触觉反馈
+    enableKeySounds: true # 是否启用键盘声音
+    enableHapticFeedback: true # 震动触觉反馈
     hapticFeedbackIntensity: 1 # 震动反馈强度
-    displaySemicolonButton: false  # 显示分号按钮
-    displayClassifySymbolButton: true  # 显示分类符号按钮
-    displaySpaceLeftButton: true  # 显示空格左边按钮
-    keyValueOfSpaceLeftButton: ","  # 空格左键的键值
-    displaySpaceRightButton: false  # 显示空格右边按钮
-    keyValueOfSpaceRightButton: "."  # 空格右边按钮的键值
-    displayChineseEnglishSwitchButton: true  # 显示中文英文切换按钮
-    chineseEnglishSwitchButtonIsOnLeftOfSpaceButton: true  # 中文英文切换按钮在空格键左侧
-    enableNineGridOfNumericKeyboard: true  # 启用九宫格数字键盘
-    enterDirectlyOnScreenByNineGridOfNumericKeyboard: false  # 通过九宫格数字键盘直接在屏幕上输入
+    displaySemicolonButton: false # 显示分号按钮
+    displayClassifySymbolButton: true # 显示分类符号按钮
+    displaySpaceLeftButton: true # 显示空格左边按钮
+    keyValueOfSpaceLeftButton: "," # 空格左键的键值
+    displaySpaceRightButton: false # 显示空格右边按钮
+    keyValueOfSpaceRightButton: "." # 空格右边按钮的键值
+    displayChineseEnglishSwitchButton: true # 显示中文英文切换按钮
+    chineseEnglishSwitchButtonIsOnLeftOfSpaceButton: true # 中文英文切换按钮在空格键左侧
+    enableNineGridOfNumericKeyboard: true # 启用九宫格数字键盘
+    enterDirectlyOnScreenByNineGridOfNumericKeyboard: false # 通过九宫格数字键盘直接在屏幕上输入
     symbolsOfGridOfNumericKeyboard: # 数字网格符号键盘
       - +
       - "-"
@@ -29,9 +29,9 @@ patch:
       - "="
       - /
       - ":"
-    lockShiftState: false  # 锁定 Shift 状态
-    enableEmbeddedInputMode: true  # 启用嵌入式输入模式
-    widthOfOneHandedKeyboard: 80  # 单手键盘宽度
+    lockShiftState: false # 锁定 Shift 状态
+    enableEmbeddedInputMode: true # 启用嵌入式输入模式
+    widthOfOneHandedKeyboard: 80 # 单手键盘宽度
     symbolsOfCursorBack: # 光标返回符号
       - '""'
       - "“”"
@@ -50,71 +50,71 @@ patch:
       - "[]"
       - ()
       - "“”"
-    enableSymbolKeyboard: true  # 启用符号键盘
-    lockForSymbolKeyboard: false  # 符号键盘锁
-    enableColorSchema: false  # 主题配色开关
-    useColorSchema: ""  # 启用的颜色主题
+    enableSymbolKeyboard: true # 启用符号键盘
+    lockForSymbolKeyboard: false # 符号键盘锁
+    enableColorSchema: false # 主题配色开关
+    useColorSchema: "" # 启用的颜色主题
 
     # 配色方案
     # 来源: https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
     colorSchemas:
-    - name: PornHub
-      schemaName: PornHub
-      author: 周庸生
-      back_color: '0x55010101'                    # 底色
-      label_color: '0x49F56B'                     # 预选栏编号颜色
-      hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
-      hilited_back_color: '0x009bff'              # 选中底色
-      candidate_text_color: '0xffffff'            # 文字颜色。键盘字符颜色
-      hilited_candidate_text_color: '0x000000'    # 选中文字颜色，即000为黑。FFF为白
-      hilited_candidate_back_color: '0x009bff'    # 选中底色
-      hilited_candidate_label_color: '0x49F56B'   # 第一候选项编号颜色 ➡高亮（選中）候選詞序號字色
-      comment_text_color: '0x000000'              # 注颜色
-      hilited_lable_color: '0x000000'
-      hilited_comment_text_color: '0x000000'      # 选中注颜色
-      text_color: '0x000000'                      # 拼音颜色 （inline_preedit: false）
-    
-    - name: "黄金九／golden nine"
-      schemaName: golden
-      author: "YG777"                             # 作者
-      back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
-      candidate_text_color: '0xEEEEEE'            # 文字颜色。键盘字符颜色
-      label_color: '0x88BFD0'                     # 序号颜色
-      text_color: '0x52A3FF'                      # 拼音颜色 （inline_preedit: false） 
-      hilited_text_color: '0x49F56B'              # 选中拼音颜色 （inline_preedit: false）
-      hilited_candidate_text_color: '0x000000'    # 选中文字颜色
-      hilited_candidate_back_color: '0x038EE0'    # 选中底色
-      comment_text_color: '0x000000'              # 注颜色
+      - name: PornHub
+        schemaName: PornHub
+        author: 周庸生
+        back_color: "0x55010101" # 底色
+        label_color: "0x49F56B" # 预选栏编号颜色
+        hilited_text_color: "0x49F56B" # 选中拼音颜色 （inline_preedit: false）
+        hilited_back_color: "0x009bff" # 选中底色
+        candidate_text_color: "0xffffff" # 文字颜色。键盘字符颜色
+        hilited_candidate_text_color: "0x000000" # 选中文字颜色，即000为黑。FFF为白
+        hilited_candidate_back_color: "0x009bff" # 选中底色
+        hilited_candidate_label_color: "0x49F56B" # 第一候选项编号颜色 ➡高亮（選中）候選詞序號字色
+        comment_text_color: "0x000000" # 注颜色
+        hilited_lable_color: "0x000000"
+        hilited_comment_text_color: "0x000000" # 选中注颜色
+        text_color: "0x000000" # 拼音颜色 （inline_preedit: false）
 
-    - name: 微信_黑／Wechat
-      schemaName: Wechat
-      author: yg777
-      back_color: '0x55010101'                    # 底色，键盘整个底色。黑灰。RGB
-      label_color: '0xBBBBBB'                     # 序号颜色
-      hilited_text_color: '0xEEEEEE'              # 选中拼音颜色 （inline_preedit: false）
-      hilited_back_color: '0x009bff' 
-      candidate_text_color: '0xEEEEEE'            # 文字颜色
-      hilited_candidate_text_color: '0x000000'    # 选中文字颜色
-      hilited_candidate_back_color: '0x77B107'    # 选中底色
-      comment_text_color: '0x808080'              # 注颜色
-      hilited_comment_text_color: '0x808080'      # 选中注颜色
-      text_color: '0x808080'                      # 拼音颜色 （inline_preedit: false）
-    - name: "微信_浅色"
-      author: Jermaine
-      schemaName: Wechat_light
-      hilited_text_color: '0x91c823'
-      hilited_candidate_text_color: '0x91c823'  
-      hilited_candidate_back_color: '0xffffff'
-      hilited_comment_text_color: '0x91c823'
-    - name: 系統配色
-      schemaName: xitong
-      hilited_candidate_back_color: 0xFFFFFF  # 选中候选底色
-      hilited_candidate_text_color: 0x000000 # 文本颜色
-      comment_font_point: 11
-    
-    - name: 系統暗色
-      schemaName: native_dark
-      hilited_candidate_back_color: 0x434246  # 选中候选底色
+      - name: "黄金九／golden nine"
+        schemaName: golden
+        author: "YG777" # 作者
+        back_color: "0x55010101" # 底色，键盘整个底色。黑灰。RGB
+        candidate_text_color: "0xEEEEEE" # 文字颜色。键盘字符颜色
+        label_color: "0x88BFD0" # 序号颜色
+        text_color: "0x52A3FF" # 拼音颜色 （inline_preedit: false）
+        hilited_text_color: "0x49F56B" # 选中拼音颜色 （inline_preedit: false）
+        hilited_candidate_text_color: "0x000000" # 选中文字颜色
+        hilited_candidate_back_color: "0x038EE0" # 选中底色
+        comment_text_color: "0x000000" # 注颜色
+
+      - name: 微信_黑／Wechat
+        schemaName: Wechat
+        author: yg777
+        back_color: "0x55010101" # 底色，键盘整个底色。黑灰。RGB
+        label_color: "0xBBBBBB" # 序号颜色
+        hilited_text_color: "0xEEEEEE" # 选中拼音颜色 （inline_preedit: false）
+        hilited_back_color: "0x009bff"
+        candidate_text_color: "0xEEEEEE" # 文字颜色
+        hilited_candidate_text_color: "0x000000" # 选中文字颜色
+        hilited_candidate_back_color: "0x77B107" # 选中底色
+        comment_text_color: "0x808080" # 注颜色
+        hilited_comment_text_color: "0x808080" # 选中注颜色
+        text_color: "0x808080" # 拼音颜色 （inline_preedit: false）
+      - name: "微信_浅色"
+        author: Jermaine
+        schemaName: Wechat_light
+        hilited_text_color: "0x91c823"
+        hilited_candidate_text_color: "0x91c823"
+        hilited_candidate_back_color: "0xffffff"
+        hilited_comment_text_color: "0x91c823"
+      - name: 系統配色
+        schemaName: xitong
+        hilited_candidate_back_color: 0xFFFFFF # 选中候选底色
+        hilited_candidate_text_color: 0x000000 # 文本颜色
+        comment_font_point: 11
+
+      - name: 系統暗色
+        schemaName: native_dark
+        hilited_candidate_back_color: 0x434246 # 选中候选底色
 
   # RIME 引擎相关配置
   rime:
@@ -655,8 +655,7 @@ patch:
             loadingText: ''
             text: '='
     - keys:
-      - action: none
-      # - action: characterMargin(a)
+      - action: characterMargin(a)
         width:
           portrait: available
           landscape: available
@@ -872,7 +871,7 @@ patch:
           label:
             loadingText: ''
             text: ''
-      - action: none
+      - action: characterMargin(l)
         width:
           portrait: available
           landscape: available
@@ -905,7 +904,7 @@ patch:
             label:
               loadingText: ''
               text: ''
-      - action: none
+      - action: characterMargin(z)
         width:
           portrait: available
           landscape: available
@@ -1075,8 +1074,7 @@ patch:
           label:
             loadingText: ''
             text: ''
-      - action: none
-      # - action: characterMargin(m)
+      - action: characterMargin(m)
         width:
           portrait: available
           landscape: available
@@ -1433,9 +1431,6 @@ patch:
         width:
           portrait: available
           landscape: available
-        label:
-          loadingText: ''
-          text: ''
         processByRIME: true
         swipe: []
       - action: character(a)
