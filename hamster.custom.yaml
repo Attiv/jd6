@@ -1068,7 +1068,7 @@ patch:
             loadingText: ''
             text: ''
         - direction: down
-          action: "shortCommand(#行尾)"
+          action: "character(\\)"
           processByRIME: true
           display: true
           label:

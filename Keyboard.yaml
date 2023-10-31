@@ -628,7 +628,7 @@
           display: true
           label:
             loadingText: ''
-            text: ''
+            text: '.'
       - action: character(m)
         width:
           portrait: input
@@ -646,12 +646,12 @@
             loadingText: ''
             text: ''
         - direction: down
-          action: "shortCommand(#行尾)"
+          action: "character(\\)"
           processByRIME: true
           display: true
           label:
             loadingText: ''
-            text: ''
+            text: '\'
       - action: characterMargin(m)
         width:
           portrait: available
