@@ -328,7 +328,7 @@
             loadingText: ''
             text: ''
         - direction: down
-          action: character(/)
+          action: character(《》)
           processByRIME: true
           display: true
           label:
@@ -600,7 +600,7 @@
             loadingText: ''
             text: "，"
         - direction: down
-          action: character(,)
+          action: symbol(,)
           processByRIME: true
           display: true
           label:
@@ -623,7 +623,7 @@
             loadingText: ''
             text: "。"
         - direction: down
-          action: character(.)
+          action: symbol(.)
           processByRIME: true
           display: true
           label:
@@ -639,7 +639,7 @@
         processByRIME: true
         swipe:
         - direction: up
-          action: "character(《》)"
+          action: "character(/)"
           processByRIME: true
           display: true
           label:
