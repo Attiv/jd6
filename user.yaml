@@ -1,9 +1,10 @@
 var:
-  last_build_time: 1699327674
+  last_build_time: 1699366806
   option:
     completion: true
     emoji_cn: true
     en_tran: true
+    jffh: false
     simplification: false
     wxw_hint: true
   previously_selected_schema: xkjd6

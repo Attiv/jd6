@@ -151,6 +151,7 @@ patch:
     yAxleSwipeSensitivity: 15
     spaceSwipeSensitivity: 30
     longPressDelay: 0.2 # 空格长按时间
+    tangentThreshold: 1 # 滑动判定范围
     keyboardSwipe:
       # 中文 26 键滑动设置
       - keyboardType: chinese
