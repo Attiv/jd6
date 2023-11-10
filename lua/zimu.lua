@@ -75,16 +75,56 @@ local alphabet2 = {
     ['8'] = '𝟾',
     ['9'] = '𝟿'
 }
+
+local alphabet3 = {
+    a = '𝗔',
+    b = '𝗕',
+    c = '𝗖',
+    d = '𝗗',
+    e = '𝗘',
+    f = '𝗙',
+    g = '𝗚',
+    h = '𝗛',
+    i = '𝗜',
+    j = '𝗝',
+    k = '𝗞',
+    l = '𝗟',
+    m = '𝗠',
+    n = '𝗡',
+    o = '𝗢',
+    p = '𝗣',
+    q = '𝗤',
+    r = '𝗥',
+    s = '𝗦',
+    t = '𝗧',
+    u = '𝗨',
+    v = '𝗩',
+    w = '𝗪',
+    x = '𝗫',
+    y = '𝗬',
+    z = '𝗭',
+    ['0'] = '𝟬',
+    ['1'] = '𝟭',
+    ['2'] = '𝟮',
+    ['3'] = '𝟯',
+    ['4'] = '𝟰',
+    ['5'] = '𝟱',
+    ['6'] = '𝟲',
+    ['7'] = '𝟳',
+    ['8'] = '𝟴',
+    ['9'] = '𝟵'
+}
 local function translator(input, seg, env)
     local trans_table = alphabet2
     local start_pos = 0
-    if string.sub(input, 1, 2) == "\\\\" then
+    if string.sub(input, 1, 3) == "\\\\\\" then
+        start_pos = 4
+        trans_table = alphabet3
+    elseif string.sub(input, 1, 2) == "\\\\" then
         trans_table = alphabet
         start_pos = 3
-    else
-        if string.sub(input, 1, 1) == "\\" then
-            start_pos = 2
-        end
+    elseif string.sub(input, 1, 1) == "\\" then
+        start_pos = 2
     end
     if start_pos ~= 0 then
         local input2 = string.sub(input, start_pos)
