@@ -58,6 +58,31 @@ patch:
     # 配色方案
     # 来源: https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
     colorSchemas:
+    - schemaName: wexin
+      name: wexin
+      author: attiv
+      back_color: "0xDAD3D0"
+      button_back_color: "0xFFFDFE"
+      button_pressed_back_color: "0xD0D0D0"
+      button_front_color: "0x000000"
+      button_pressed_front_color: "0x000000"
+      button_swipe_front_color: "0x000000"
+      corner_radius: 6
+      border_color: "0x01000000"
+      text_color: "0x000000"
+      hilited_candidate_back_color: "0xFFFDFE"
+      hilited_candidate_text_color: "0x60C107"
+      hilited_comment_text_color: "0x000000"
+      candidate_text_color: "0x000000"
+      comment_text_color: "0x000000"
+      
+    - schemaName: wexin_dark
+      name: wexin_dark
+      author: attiv
+      hilited_candidate_back_color: "#FEFDFF"
+      hilited_candidate_text_color: "0x60C107"
+      hilited_comment_text_color: "0x60C107"
+
     - name: 配色方案
       schemaName: 不知道
       author: 佚名
