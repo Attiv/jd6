@@ -203,7 +203,7 @@ emoji_suggestion:
 translator:
   dictionary: xkjd6.extended
   enable_charset_filter: false
-  enable_completion: true
+  enable_completion: true #提示词开关
   enable_encoder: true
   enable_sentence: false
   enable_user_dict: false
