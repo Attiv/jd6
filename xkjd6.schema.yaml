@@ -167,13 +167,14 @@ engine:
     - script_translator@pinyin_simp
     - table_translator@xmjd6en
   filters:
+    - lua_filter@hint_filter
     # - lua_filter@hint_filter # 頂功提示過濾 switches/completion = 1
     - simplifier
     - simplifier@emoji_cn
     - simplifier@jffh
     - simplifier@EN2en
     - simplifier@ascii_punct
-    - lua_filter@xkjd6_filter
+    # - lua_filter@xkjd6_filter
     - lua_filter@preedit_filter
     - lua_filter@xmjd6en_filter
     - reverse_lookup_filter@pinyin_simp_lookup

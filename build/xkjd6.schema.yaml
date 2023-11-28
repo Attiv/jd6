@@ -13,7 +13,7 @@ __build_info:
     symbols: 1699509644
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1700621342
+    xkjd6.schema: 1701169298
 ascii_punct:
   option_name: ascii_punct
 custom_phrase:
@@ -50,12 +50,12 @@ emoji_suggestion:
   tips: all
 engine:
   filters:
+    - "lua_filter@hint_filter"
     - simplifier
     - "simplifier@emoji_cn"
     - "simplifier@jffh"
     - "simplifier@EN2en"
     - "simplifier@ascii_punct"
-    - "lua_filter@xkjd6_filter"
     - "lua_filter@preedit_filter"
     - "lua_filter@xmjd6en_filter"
     - "reverse_lookup_filter@pinyin_simp_lookup"
