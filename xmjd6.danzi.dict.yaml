@@ -1,9 +1,8 @@
 ---
-name: xkjd6.danzi
+name: xmjd6.danzi
 version: "Q1"
 sort: original
 ...
-不	b
 宾	bb
 滨	bba
 缤	bbaa
@@ -585,7 +584,7 @@ sort: original
 𠳐	bpovvu
 膀	bpu
 膀	bpuovo
-邦	bpvv
+邦	bpv
 榜	bpvo
 塝	bpvoo
 塝	bpvoov
@@ -596,7 +595,7 @@ sort: original
 棓	bpvovo
 磅	bpvu
 磅	bpvuov
-棒	bpv
+棒	bpvv
 邦	bpvvai
 帮	bpvvia
 梆	bpvvv
@@ -10696,7 +10695,7 @@ sort: original
 砌	qdvuva
 挈	qdvv
 挈	qdvviu
-# 着	qe
+着	qe
 浙	qea
 浙	qeaiuu
 折	qei
@@ -15265,11 +15264,11 @@ sort: original
 逊	xwaioa
 欸	xwao
 欸	xwaoua
-洵	xwau
+洵	xwaua
 洵	xwauao
-迅	xwav
-迅	xwavoa
-巽	xwavv
+迅	xwau
+迅	xwauoa
+巽	xwav
 寻	xwavvi
 巽	xwavvi
 薰	xwi
@@ -15458,7 +15457,6 @@ sort: original
 聱	xzvvvi
 獒	xzvvvu
 璈	xzvvvv
-一	y
 因	yb
 引	yba
 骃	ybaa
@@ -16151,8 +16149,8 @@ sort: original
 刈	ykuoi
 刈	ykuoii
 乂	ykuoo
-鹢	ykouv
-鹢	ykouvu
+鹢	ykuou
+鹢	ykuoua
 臆	ykuovo
 役	ykuu
 舣	ykuuo
@@ -17088,6 +17086,8 @@ sort: original
 佐	zliv
 佐	zlivuv
 座	zlo
+咗	zlov
+咗	zlovuv
 祚	zloa
 祚	zloauv
 昨	zloi

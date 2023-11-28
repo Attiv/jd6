@@ -147,6 +147,7 @@ engine:
     - affix_segmentor@pinyin_simp
     - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
+    - affix_segmentor@xmjd6gbk
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -166,6 +167,7 @@ engine:
     - script_translator@quanpinerfen
     - script_translator@pinyin_simp
     - table_translator@xmjd6en
+    - script_translator@xmjd6gbk
   filters:
     # - lua_filter@binggan_completion # 饼干大佬的逐码lua
     - lua_filter@hint_filter # 頂功提示過濾 switches/completion = 1
@@ -222,7 +224,7 @@ translator:
 
 repeat_history:
   input: i #重复上次上屏内容
-  size: 1
+  size: 6
   initial_quality: 10000
 
 xmjd6en:
@@ -238,7 +240,7 @@ xmjd6en:
 
 repeat_history2:
   input: ;f #重复上次上屏内容
-  size: 1
+  size: 6
   initial_quality: 10000
 
 
@@ -268,8 +270,7 @@ mars:
 
 pinyin_simp_lookup:
   tags: [pinyin_simp]
-  dictionary: xkjd6cx #反查其码
-
+  dictionary: xmjd6.cx #反查其码
   overwrite_comment: true
 
 pinyin_simp:
@@ -278,13 +279,36 @@ pinyin_simp:
   enable_sentence: true
   enable_completion: true
   enable_user_dict: false
+  preedit_format:
+    - xform/^u(.+)/$1/
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
   prefix: "u"
   tips: "〔全拼〕"
+  
+
+xmjd6gbk:
+  tag: xmjd6gbk
+  dictionary: xmjd6.gbk
+  enable_sentence: true
+  enable_completion: true
+  enable_user_dict: false
+  comment_format:
+    - xform/.*//
+  prefix: "o"
+  tips: "〔GBK字集〕"
+
+#↓gbk反查方案
+gbk_lookup:
+  tags: [gbk]
+  dictionary: xmjd6.cx #反查其码
+  overwrite_comment: true
 
 #↓二分反查方案
 quanpinerfen_lookup:
   tags: [quanpinerfen]
-  dictionary: xkjd6cx #反查其码
+  dictionary: xmjd6.cx #反查其码
   overwrite_comment: true
 
 quanpinerfen:
@@ -296,25 +320,28 @@ quanpinerfen:
   prefix: "v"
   tips: "〔二分〕"
 
-custom_phrase:
-  dictionary: ""
-  user_dict: custom_phrase
-  db_class: stabledb
-  enable_sentence: false
-
 reverse_lookup:
-  dictionary: xkjd6cx
-  overwrite_comment: true # 是否覆蓋其他提示
-  enable_charset_filter: false # 是否開啓字符集過濾
+  dictionary: xmjd6.cx
   enable_completion: true # 逐鍵顯示
-  enable_encoder: false # 是否開啓自動造詞
-  enable_sentence: false # 是否開啓自動造句
-  enable_user_dict: false # 是否開啓用戶詞典
-  encode_commit_history: false # 是否對已上屛詞自動成詞
   comment_format:
     - xform/^/〔/
     - xform/$/〕/
     - xform/ /, /
+
+
+# reverse_lookup:
+#   dictionary: xkjd6cx
+#   overwrite_comment: true # 是否覆蓋其他提示
+#   enable_charset_filter: false # 是否開啓字符集過濾
+#   enable_completion: true # 逐鍵顯示
+#   enable_encoder: false # 是否開啓自動造詞
+#   enable_sentence: false # 是否開啓自動造句
+#   enable_user_dict: false # 是否開啓用戶詞典
+#   encode_commit_history: false # 是否對已上屛詞自動成詞
+#   comment_format:
+#     - xform/^/〔/
+#     - xform/$/〕/
+#     - xform/ /, /
 
 # 嵌入候選的顯示配置
 # 默認顯示效果爲:

@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     squirrel: 1682327151
-    squirrel.custom: 1695293237
+    squirrel.custom: 1701188701
 app_options:
   co.zeit.hyper:
     ascii_mode: true
@@ -525,7 +525,43 @@ preset_color_schemes:
     label_font_point: 12
     name: "微信键盘 / WeChat-keyboard"
     text_color: 0x424242
+  wechat_dark:
+    back_color: 0x2e2925
+    border_height: 0
+    border_width: 8
+    candidate_format: "%c %@ "
+    candidate_text_color: 0xe9e9ea
+    comment_text_color: 0xFFFFFF
+    corner_radius: 5
+    font_face: "HYZhengYuan-EEW"
+    font_point: 16
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_corner_radius: 5
+    horizontal: true
+    inline_preedit: true
+    label_color: 0x999999
+    label_font_point: 12
+    name: "微信键盘深色"
+    text_color: 0x424242
+  wechat_light:
+    back_color: 0xFFFFFF
+    border_height: 0
+    border_width: 8
+    candidate_format: "%c %@ "
+    comment_text_color: 0x999999
+    corner_radius: 5
+    font_face: PingFangSC
+    font_point: 16
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_corner_radius: 5
+    horizontal: true
+    inline_preedit: true
+    label_font_point: 12
+    name: "微信键盘浅色"
+    text_color: 0x424242
 show_notifications_when: appropriate
 style:
   color_scheme: mac
-  color_scheme_dark: mac_dark
+  color_scheme_dark: wechat_dark

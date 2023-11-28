@@ -13,14 +13,9 @@ __build_info:
     symbols: 1699509644
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1701170035
+    xkjd6.schema: 1701189008
 ascii_punct:
   option_name: ascii_punct
-custom_phrase:
-  db_class: stabledb
-  dictionary: ""
-  enable_sentence: false
-  user_dict: custom_phrase
 embeded_cands:
   first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}"
   index_indicators:
@@ -84,6 +79,7 @@ engine:
     - "affix_segmentor@pinyin_simp"
     - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
+    - "affix_segmentor@xmjd6gbk"
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -103,6 +99,12 @@ engine:
     - "script_translator@quanpinerfen"
     - "script_translator@pinyin_simp"
     - "table_translator@xmjd6en"
+    - "script_translator@xmjd6gbk"
+gbk_lookup:
+  dictionary: xmjd6.cx
+  overwrite_comment: true
+  tags:
+    - gbk
 jffh:
   opencc_config: s2g.json
   option_name: jffh
@@ -160,11 +162,16 @@ pinyin_simp:
   enable_completion: true
   enable_sentence: true
   enable_user_dict: false
+  preedit_format:
+    - "xform/^u(.+)/$1/"
+    - "xform/([nl])v/$1ü/"
+    - "xform/([nl])ue/$1üe/"
+    - "xform/([jqxy])v/$1u/"
   prefix: u
   tag: pinyin_simp
   tips: "〔全拼〕"
 pinyin_simp_lookup:
-  dictionary: xkjd6cx
+  dictionary: xmjd6.cx
   overwrite_comment: true
   tags:
     - pinyin_simp
@@ -379,7 +386,7 @@ quanpinerfen:
   tag: quanpinerfen
   tips: "〔二分〕"
 quanpinerfen_lookup:
-  dictionary: xkjd6cx
+  dictionary: xmjd6.cx
   overwrite_comment: true
   tags:
     - quanpinerfen
@@ -399,24 +406,18 @@ recognizer:
 repeat_history:
   initial_quality: 10000
   input: i
-  size: 1
+  size: 6
 repeat_history2:
   initial_quality: 10000
   input: ";f"
-  size: 1
+  size: 6
 reverse_lookup:
   comment_format:
     - "xform/^/〔/"
     - "xform/$/〕/"
     - "xform/ /, /"
-  dictionary: xkjd6cx
-  enable_charset_filter: false
+  dictionary: xmjd6.cx
   enable_completion: true
-  enable_encoder: false
-  enable_sentence: false
-  enable_user_dict: false
-  encode_commit_history: false
-  overwrite_comment: true
 schema:
   dependencies:
     - xkjd6cx
@@ -487,3 +488,13 @@ xmjd6en:
   prefix: i
   tag: xmjd6en
   tips: "〔单词〕"
+xmjd6gbk:
+  comment_format:
+    - "xform/.*//"
+  dictionary: xmjd6.gbk
+  enable_completion: true
+  enable_sentence: true
+  enable_user_dict: false
+  prefix: o
+  tag: xmjd6gbk
+  tips: "〔GBK字集〕"
