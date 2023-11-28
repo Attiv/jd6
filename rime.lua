@@ -129,3 +129,4 @@ english_segmentor = english.segmentor
 english_translator = english.translator
 english_filter = english.filter
 english_filter0 = english.filter0
+binggan_completion = require("completion")
