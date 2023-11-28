@@ -1,7 +1,7 @@
 var:
-  last_build_time: 1701096881
+  last_build_time: 1701166154
   option:
-    completion: true
+    completion: false
     emoji_cn: true
     en_tran: true
     jffh: false
