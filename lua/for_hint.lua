@@ -21,7 +21,8 @@ local function hint(cand, input, env)
     local lookup = " " .. reverse:lookup(cand.text) .. " "
     local sbb = string.match(lookup, " (["..s.."]["..b.."]+) ")
     local short = string.match(lookup, " (["..s.."]["..s.."]) ")
-    
+    local ssb = string.match(lookup, " (["..s.."]["..s.."]["..b.."]+) ")
+
     if string.len(input) > 1 then
         if sbb and not startswith(sbb, input) then
             cand:get_genuine().comment = cand.comment .. "〔" .. sbb .. "〕"
@@ -31,8 +32,12 @@ local function hint(cand, input, env)
 
         if short and not startswith(short, input) then
             cand:get_genuine().comment = cand.comment .. "〔" .. short .. "" .. "〕"
-            -- cand:get_genuine().comment = cand.comment .. "≈" .. short .. ""
             return 2
+        end
+
+        if ssb and not startswith(ssb, input) then
+            cand:get_genuine().comment = cand.comment .. "〔" .. ssb .. "〕"
+            return 3
         end
     end
 
