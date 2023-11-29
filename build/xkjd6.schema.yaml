@@ -13,7 +13,7 @@ __build_info:
     symbols: 1699509644
     symbols.custom: 0
     xkjd6.custom: 0
-    xkjd6.schema: 1701228411
+    xkjd6.schema: 1701234051
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -79,7 +79,6 @@ engine:
     - "affix_segmentor@pinyin_simp"
     - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
-    - "affix_segmentor@xmjd6gbk"
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -98,12 +97,6 @@ engine:
     - "script_translator@quanpinerfen"
     - "script_translator@pinyin_simp"
     - "table_translator@xmjd6en"
-    - "script_translator@xmjd6gbk"
-gbk_lookup:
-  dictionary: xmjd6.cx
-  overwrite_comment: true
-  tags:
-    - gbk
 jffh:
   opencc_config: s2g.json
   option_name: jffh
@@ -401,7 +394,6 @@ recognizer:
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
     xmjd6en: "^i[a-z]*?$"
-    xmjd6gbk: "^o[a-z]*?$"
     zhuan: "^\\\\.*$"
 repeat_history:
   initial_quality: 10000
@@ -417,14 +409,19 @@ reverse_lookup:
     - "xform/$/〕/"
     - "xform/ /, /"
   dictionary: xmjd6.cx
+  enable_charset_filter: false
   enable_completion: true
+  enable_encoder: false
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: false
+  overwrite_comment: true
 schema:
   dependencies:
-    - xkjd6cx
+    - xmjd6.cx
     - pinyin_simp
     - liangfen
     - xmjd6.en
-    - xmjd6.gbk
   name: "星空键道6·自我"
   schema_id: xkjd6
   version: 1
@@ -489,13 +486,3 @@ xmjd6en:
   prefix: i
   tag: xmjd6en
   tips: "〔单词〕"
-xmjd6gbk:
-  comment_format:
-    - "xform/.*//"
-  dictionary: xmjd6.gbk
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: o
-  tag: xmjd6gbk
-  tips: "〔GBK字集〕"
