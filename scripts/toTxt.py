@@ -5,10 +5,12 @@ import glob
 yaml_files = glob.glob('./*.dict.yaml')
 
 # 排除的文件列表
-exclude_files = ['xkjd6.gbk.dict.yaml', 'xkjd6cx.dict.yaml', 'xkjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml']
+exclude_files = ['xmjd6.gbk.dict.yaml', 'xmjd6cx.dict.yaml',
+                 'xkjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml']
 
 # 从所有的*.dict.yaml文件中移除排除的文件
-yaml_files = [file for file in yaml_files if os.path.basename(file) not in exclude_files]
+yaml_files = [file for file in yaml_files if os.path.basename(
+    file) not in exclude_files]
 
 # 打开两个新的txt文件，用于写入结果
 with open('duanyu.txt', 'w', encoding='utf-8') as duanyu_file, open('wenzi.txt', 'w', encoding='utf-8') as wenzi_file:

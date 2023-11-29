@@ -43,13 +43,14 @@
 
 import os
 
+
 def check_duplicate_codes():
     files = []
     duplicate_codes = {}
 
     # 获取当前目录下的所有 *.dict.yaml 文件
     for file in os.listdir('.'):
-        if file.endswith('.dict.yaml') and file not in ['xkjd6.gbk.dict.yaml', 'xkjd6cx.dict.yaml', 'xkjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml', 'liangfen.dict.yaml', 'xkjd6.yixue.dict.yaml']:
+        if file.endswith('.dict.yaml') and file not in ['xmjd6.gbk.dict.yaml', 'xmjd6cx.dict.yaml', 'xmjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml', 'liangfen.dict.yaml', 'xkjd6.yixue.dict.yaml']:
             files.append(file)
 
     # 检查编码是否完全重复
@@ -73,6 +74,7 @@ def check_duplicate_codes():
                 for occurrence in occurrences:
                     f.write(f'File: {occurrence[1]}, Line: {occurrence[0]}\n')
                 f.write('\n')
+
 
 # 执行检查
 check_duplicate_codes()

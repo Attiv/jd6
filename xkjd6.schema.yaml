@@ -12,6 +12,7 @@ schema:
     - pinyin_simp
     - liangfen
     - xmjd6.en
+    - xmjd6.gbk
 
 
 # Layout config
@@ -160,7 +161,6 @@ engine:
     - table_translator
     - reverse_lookup_translator
     - table_translator@custom_phrase
-    - table_translator@xkjd6_user
     - lua_translator@number_translator
     - history_translator@repeat_history
     - history_translator@repeat_history2
@@ -434,6 +434,7 @@ recognizer:
     punct: "^/([0-9]0?|[a-z]+)$"
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
+    xmjd6gbk: "^o[a-z]*?$"
     jsq: "^=[^;']+$"
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
     # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
