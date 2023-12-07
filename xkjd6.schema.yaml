@@ -42,6 +42,8 @@ switches:
   - name: mars
     states: [ 地球文, 火星文 ]
     reset: 0
+  - name: tofu
+    states: [ 不替换空字, 替换显示 ]
   - name: EN2en
   - name: embeded_cands
     states: [内嵌正常, 输入框显示候选]
@@ -182,6 +184,7 @@ engine:
     - lua_filter@add_space # | 替换成空格
     - lua_filter@embeded_cands
     - simplifier@mars
+    - simplifier@tofu
     # - lua_filter@single_char_filter # 单字优先
     - uniquifier
 
@@ -264,6 +267,10 @@ ascii_punct:
 mars:
   option_name: mars
   opencc_config: mars.json
+
+tofu:
+  option_name: tofu
+  opencc_config: tofu.json
 
 pinyin_simp_lookup:
   tags: [pinyin_simp]
