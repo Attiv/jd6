@@ -44,9 +44,9 @@ local function hint(cand, input, env)
     return 0
 end
 
-local function commit_hint(cand)
+local function commit_hint(cand, hint_text)
     -- 顶功提示
-    cand:get_genuine().comment = '' .. cand.comment
+    cand:get_genuine().comment = hint_text .. cand.comment
 end
 
 local function is_danzi(cand)
@@ -55,17 +55,18 @@ end
 
 local function filter(input, env)
     local context = env.engine.context
-    local is_hint_on = context:get_option('wxw_hint') or context:get_option('sbb_hint')
+    local is_hint_on = context:get_option('wxw_hint')
     local is_completion_on = context:get_option('completion')
     local is_danzi_on = context:get_option('danzi_mode')
     local input_text = context.input
-    local no_commit = string.len(input_text) < 4 and string.match(input_text, "^["..env.s.."]+$")
+    local no_commit = (input_text:len() < 4 and input_text:match("^[bcdefghjklmnpqrstwxyz]+$")) or (input_text:match("^[avuio]+$"))
     local has_table = false
     local first = true
+    local hint_text = env.engine.schema.config:get_string('hint_text') or '✖'
 
     for cand in input:iter() do
         if no_commit and first then
-            commit_hint(cand)
+            commit_hint(cand, hint_text)
         end
         first = false
         if cand.type == 'table' then

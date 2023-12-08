@@ -39,16 +39,14 @@ time_translator = require("time")
 -- single_char_filter = require("single_char")
 
 
--- xkjd6_filter: 单字模式 & 630 即 ss 词组提示
---- 修改自 @懒散 TsFreddie https://github.com/TsFreddie/jdc_lambda/blob/master/rime/lua/xkjdc_sbb_hint.lua
--- 可由 schema 的 danzi_mode 与 wxw_hint 开关控制
--- 详见 `lua/xkjd6_filter.lua`
-xkjd6_filter = require("xkjd6_filter")
 
 -- 顶功处理器
 topup_processor = require("for_topup")
 
 -- 声笔笔简码提示 | 顶功提示 | 补全处理
+-- for_hint: 单字模式 & 630 即 ss 词组提示
+--- 修改自 @懒散 TsFreddie https://github.com/TsFreddie/jdc_lambda/blob/master/rime/lua/xkjdc_sbb_hint.lua
+-- 可由 schema 的 danzi_mode 与 wxw_hint 开关控制
 hint_filter = require("for_hint")
 
 -- number_translator: 将 `=` + 阿拉伯数字 翻译为大小写汉字
