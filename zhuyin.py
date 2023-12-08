@@ -7,7 +7,7 @@ import pypinyin
 
 def main():
     # 获取用户输入的文件路径
-    yaml_path = sys.argv[1]
+    yaml_path = input("请输入指令文件路径：")
 
     # 获取脚本所在目录
     script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -29,7 +29,7 @@ def main():
             continue
 
         # 获取汉字
-        hanzi = line.split("\t")[0]
+        hanzi = line.split("/t")[0]
 
         # 获取注音
         pinyin_result = pypinyin.lazy_pinyin(hanzi, style="tone3")[0]
