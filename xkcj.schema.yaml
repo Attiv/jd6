@@ -220,7 +220,7 @@ emoji_suggestion:
 
 
 translator:
-  dictionary: xkjd6.extended
+  dictionary: xmjd6.extended
   enable_charset_filter: false
   enable_completion: true
   enable_encoder: true
@@ -336,7 +336,7 @@ reverse_lookup:
 
 xkjdWXYZ:
   tag: xkjdWXYZ
-  dictionary: xkjd6.extended
+  dictionary: xmjd6.extended
   user_dict: xkjd6_user
 # ↓ 用户词典格式，tabledb（文本） 或 userdb （二进制）。
   db_class: tabledb

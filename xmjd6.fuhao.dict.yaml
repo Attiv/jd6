@@ -1,0 +1,178 @@
+﻿---
+name: xmjd6.fuhao
+version: "Q1"
+sort: original
+...
+# 特殊
+*#06#	xjlji
+# 标点
+;	;
+:	;;
+!	;a
+%	;b
+←	;c
+↑	;ce
+↓	;cx
+、	;d
+[	;e
+#;f被用做了重复，i键也是
+<	;g
+>	;h
+《	;i
+“	;t
+(	;k
+)	;l
+{	;m
+}	;n
+》	;o
+——	;p
+~	;q
+]	;r
+……	;s
+ctrl+z	;u
+=	;v
+?	;w
+→	;x
+”	;y
+`	;z
+```	;z
+!	oa
+?	oW
+……	os
+、	od
+(	ok
+)	ol
+``	of
+<	og
+>	oh
+[	oe
+]	or
+“	ot
+”	oy
+《	oi
+》	oo
+→	ox 
+←	oc
+↑	oce
+↓	ocx
+%	ob
+{	on 
+}	om
+
+# windows QQ表情
+# /am	oqam
+# /aiq	oqaq
+# /bq	oqbq
+# /bs	oqbu
+# /bb	oqbb
+# /baiy	oqby
+# /bz	oqbz
+# /cy	oqcy
+# /ch	oqch
+# /cd	oqcd
+# /db	oqdb
+# /dg	oqdg
+# /dk	oqdk
+# /dx	oqdx
+# /dy	oqdy
+# /fw	oqfw
+# /fd	oqfd
+# /fendou	oqfd
+# /fan	oqfj
+# /fn	oqfn
+# /gg	oqgg
+# /gz	oqgv
+# /gy	oqgy
+# /hanx	oqhx
+# /huaix	oqhx
+# /hq	oqhq
+# /hx	oqhx
+# /ht	oqht
+# /hsh	oqhu
+# /zhh	oqhh
+# /yhh	oqhh
+# /cj	oqij
+# /jie	oqje
+# /xjj	oqjj
+# /jk	oqjk
+# /jy	oqjy
+# /jd	oqjd
+# /jw	oqjw
+# /kb	oqkb
+# /ka	oqka
+# /kf	oqkf
+# /kt	oqkt
+# /kel	oqkl
+# /kl	oqkl
+# /kuk	oqku
+# /kun	oqky
+# /lh	oqlh
+# /lengh	oqlh
+# /ll	oqll
+# /lw	oqlw
+# /mg	oqmg
+# /no	oqno
+# /ng	oqng
+# /ok	oqok
+# /oh	oqoh
+# /tuu	oqot
+# /pz	oqpz
+# /qiang	oqql
+# /qt	oqqt
+# /qq	oqqb
+# /qiao	oqqd
+# /qd	oqqq
+# /ruo	oqro
+# /se	oqse
+# /tx	oqtx
+# /tiao	oqtn
+# /tp	oqtp
+# /ts	oqts
+# /ty	oqty
+# /shl	oqul
+# /shuai	oquk
+# /shui	oquv
+# /zk	oqvk
+# /zhem	oqvm
+# /zhm	oqvm
+# /zhq	oqvq
+# /zhd	oqvd
+# /zt	oqvt
+# /wx	oqwx
+# /ws	oqwu
+# /wq	oqwq
+# /xk	oqxk
+# /xs	oqxs
+# /xia	oqxx
+# /xig	oqxg
+# /xu...	oqxu
+# /xyx	oqxy
+# /xw	oqxw
+# /yiw	oqyw
+# /yx	oqyx
+# /yb	oqyb
+# /youl	oqyl
+# /yun	oqyy
+# /zj	oqzj
+# /wzm	oqzm
+# /sr	oqsr
+# /jx	oqjx
+# /px	oqpx
+# /mm	oqmm
+# /wn	oqwn
+# /lb	oqlb
+# /zyj	oqvy
+# /kk	oqkk
+# /aini	oqan
+# /bp	oqbp
+# /bt	oqbt
+# /tl	oqtl
+# /dz	oqdz
+# /wl	oqwl
+# /chi	oqii
+# /kg	oqkg
+# /cp	oqip
+# /hb	oqhb
+# /yao	oqyc
+# /hn	oqhn
+# /ww	oqww
