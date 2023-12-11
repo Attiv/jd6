@@ -216,7 +216,7 @@ xmjd6gbk:
   # comment_format:
   #   - xform/.*//
   prefix: "o"
-  tips: "〔GBK字集〕"
+  # tips: "〔GBK字集〕"
 
 pinyin_simp_lookup:
   tags: [pinyin_simp]
