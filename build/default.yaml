@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1702287943
+    default.custom: 1702310077
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -142,7 +142,6 @@ switcher:
     - zh_hant
     - zh_hans
     - zh_hant_tw
-    - ascii_mode
     - full_shape
     - jffh
     - tofu

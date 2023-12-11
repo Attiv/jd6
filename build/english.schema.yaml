@@ -2,9 +2,9 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1702287943
+    default.custom: 1702310077
     english.custom: 0
-    english.schema: 1702291628
+    english.schema: 1702311034
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -13,9 +13,9 @@ engine:
   filters:
     - simplifier
     - uniquifier
-    - "lua_filter@*xmjd6/english.filter"
+    - "lua_filter@english_filter"
   processors:
-    - "lua_processor@*xmjd6/english.processor"
+    - "lua_processor@english_processor"
     - ascii_composer
     - recognizer
     - key_binder
@@ -25,7 +25,7 @@ engine:
     - navigator
     - fluency_editor
   segmentors:
-    - "lua_segmentor@*xmjd6english.segmentor"
+    - "lua_segmentor@english_segmentor"
     - ascii_segmentor
     - matcher
     - abc_segmentor

@@ -36,7 +36,8 @@ switches:
     
 engine:
   processors:
-    - lua_processor@*xmjd6/english.processor       # 本輸入法需要用到，需保留
+    # - lua_processor@*xmjd6/english.processor       # 本輸入法需要用到，需保留
+    - lua_processor@english_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -46,7 +47,8 @@ engine:
     - navigator
     - fluency_editor                        # 按中文輸入法要求設置
   segmentors:
-    - lua_segmentor@*xmjd6english.segmentor       # 本輸入法需要用到，需保留
+    # - lua_segmentor@*xmjd6english.segmentor       # 本輸入法需要用到，需保留
+    - lua_segmentor@english_segmentor
     - ascii_segmentor
     - matcher
     - abc_segmentor
@@ -61,7 +63,8 @@ engine:
     - simplifier
     - uniquifier
     # 以下兩個二選一
-    - lua_filter@*xmjd6/english.filter            # 速度快，但詞議相同拼寫相近單詞可能會被Rime略去
+    # - lua_filter@*xmjd6/english.filter            # 速度快，但詞議相同拼寫相近單詞可能會被Rime略去
+    - lua_filter@english_filter    
     #- lua_filter@english_filter0           # 速度稍慢，但詞典中允許出現拼寫或詞義相同單詞
     
 speller:
