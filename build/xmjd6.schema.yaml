@@ -10,7 +10,7 @@ __build_info:
     symbols: 1701944950
     symbols.custom: 0
     xmjd6.custom: 1702291746
-    xmjd6.schema: 1702291118
+    xmjd6.schema: 1702308306
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -466,7 +466,7 @@ tofu:
   option_name: tofu
 topup:
   auto_clear: true
-  max_length: 6
+  max_length: 10
   min_length: 4
   min_length_danzi: 2
   topup_command: true
