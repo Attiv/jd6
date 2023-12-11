@@ -14,7 +14,6 @@ patch:
     Shift_R: null
   
   "switcher/save_options/+":
-    - ascii_mode
     - full_shape
     - jffh
     - tofu
