@@ -1,6 +1,3 @@
-EN2en:
-  opencc_config: EN2en.json
-  option_name: EN2en
 __build_info:
   rime_version: 1.8.5
   timestamps:
@@ -13,14 +10,9 @@ __build_info:
     symbols: 1701944950
     symbols.custom: 0
     xkcj.custom: 0
-    xkcj.schema: 1702288131
+    xkcj.schema: 1702292216
 ascii_punct:
   option_name: ascii_punct
-custom_phrase:
-  db_class: stabledb
-  dictionary: ""
-  enable_sentence: false
-  user_dict: custom_phrase
 embeded_cands:
   first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}"
   index_indicators:
@@ -43,36 +35,29 @@ emoji_cn:
     - "xform/.*/ /"
   opencc_config: emoji.json
   option_name: emoji_cn
-  tips: all
-emoji_suggestion:
-  opencc_config: emoji.json
-  option_name: emoji_suggestion
-  tips: all
 engine:
   filters:
+    - "lua_filter@*xmjd6/for_hint"
     - simplifier
-    - "simplifier@emoji_cn"
-    - "simplifier@jffh"
-    - "simplifier@EN2en"
-    - "simplifier@ascii_punct"
-    - "lua_filter@xkjd6_filter"
-    - "lua_filter@preedit_filter"
-    - "lua_filter@xmjd6en_filter"
     - "reverse_lookup_filter@pinyin_simp_lookup"
     - "reverse_lookup_filter@quanpinerfen_lookup"
-    - "lua_filter@split_filter"
-    - "lua_filter@add_space"
-    - "lua_filter@embeded_cands"
+    - "reverse_lookup_filter@gbk_lookup"
+    - "lua_filter@*xmjd6/xmjd6_single_char"
+    - "simplifier@emoji_cn"
+    - "simplifier@jffh"
+    - "simplifier@ascii_punct"
     - "simplifier@mars"
+    - "simplifier@tofu"
+    - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
+    - "lua_filter@*xmjd6/add_space"
     - uniquifier
   processors:
-    - "lua_processor@select_character"
-    - "lua_processor@xuanchongjsq"
+    - "lua_processor@*xmjd6/xmjd6_select_character"
     - ascii_composer
     - recognizer
     - key_binder
-    - "lua_processor@topup_processor"
-    - "lua_processor@smart_2"
+    - "lua_processor@*xmjd6/xmjd6_smart_2"
+    - "lua_processor@*xmjd6/xmjd6_topup_processor"
     - speller
     - punctuator
     - selector
@@ -84,43 +69,51 @@ engine:
     - "affix_segmentor@pinyin_simp"
     - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
-    - "affix_segmentor@xkjdWXYZ"
+    - "affix_segmentor@xmjdWXYZ"
+    - "affix_segmentor@xmjd6gbk"
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
-    - "lua_translator@jisuanqi"
-    - "lua_translator@xuanchongjsq"
-    - "lua_translator@shijian"
+    - "lua_translator@*xmjd6/xmjd6_jisuanqi"
+    - "lua_translator@*xmjd6/xmjd6_shijian"
+    - "lua_translator@*xmjd6/zimu"
+    - "lua_translator@*xmjd6/xmjd6_shuzi"
     - punct_translator
     - table_translator
     - reverse_lookup_translator
-    - "table_translator@custom_phrase"
-    - "table_translator@xkjdWXYZ"
-    - "table_translator@xkjdYY"
-    - "table_translator@xkjdZZ"
-    - "table_translator@xkjdWW"
-    - "table_translator@xkjd6_user"
-    - "lua_translator@number_translator"
+    - "table_translator@xmjdWXYZ"
+    - "table_translator@xmjdYY"
+    - "table_translator@xmjdZZ"
+    - "table_translator@xmjdWW"
+    - "table_translator@xmjd6_user"
     - "history_translator@repeat_history"
     - "history_translator@repeat_history2"
     - "script_translator@quanpinerfen"
     - "script_translator@pinyin_simp"
     - "table_translator@xmjd6en"
+    - "script_translator@xmjd6gbk"
+gbk_lookup:
+  dictionary: xmjd6.cx
+  overwrite_comment: true
+  tags:
+    - xmjd6gbk
 jffh:
-  opencc_config: s2g.json
+  opencc_config: s2tw.json
   option_name: jffh
 key_binder:
   bindings:
-    - {accept: "Shift+space", send: space, when: composing}
-    - {accept: semicolon, send: 2, when: has_menu}
-    - {accept: apostrophe, send: 3, when: has_menu}
     - {accept: "Control+period", toggle: ascii_punct, when: always}
     - {accept: minus, send: Page_Up, when: has_menu}
     - {accept: equal, send: Page_Down, when: has_menu}
+    - {accept: semicolon, send: 2, when: has_menu}
+    - {accept: apostrophe, send: 3, when: has_menu}
     - {accept: F6, select: .next, when: always}
-    - {accept: F8, toggle: en_tran, when: composing}
     - {accept: F7, toggle: jffh, when: always}
+    - {accept: "Control+backslash", toggle: emoji_cn, when: always}
+    - {accept: "&", toggle: emoji_cn, when: has_menu}
+    - {accept: "%", toggle: mars, when: has_menu}
+    - {accept: "*", toggle: jffh, when: has_menu}
     - {accept: KP_0, send: 0, when: composing}
     - {accept: KP_1, send: 1, when: composing}
     - {accept: KP_2, send: 2, when: composing}
@@ -131,8 +124,8 @@ key_binder:
     - {accept: KP_7, send: 7, when: composing}
     - {accept: KP_8, send: 8, when: composing}
     - {accept: KP_9, send: 9, when: composing}
-    - {accept: KP_Subtract, send: "-", when: has_menu}
-    - {accept: KP_Divide, send: "/", when: has_menu}
+    - {accept: KP_Subtract, send: "-", when: composing}
+    - {accept: KP_Divide, send: "/", when: composing}
     - {accept: KP_Multiply, send: "*", when: has_menu}
     - {accept: KP_Add, send: "+", when: has_menu}
     - {accept: KP_Decimal, send: ., when: has_menu}
@@ -164,11 +157,16 @@ pinyin_simp:
   enable_completion: true
   enable_sentence: true
   enable_user_dict: false
+  preedit_format:
+    - "xform/^u(.+)/$1/"
+    - "xform/([nl])v/$1ü/"
+    - "xform/([nl])ue/$1üe/"
+    - "xform/([jqxy])v/$1u/"
   prefix: u
   tag: pinyin_simp
   tips: "〔全拼〕"
 pinyin_simp_lookup:
-  dictionary: xkjd6cx
+  dictionary: xmjd6.cx
   overwrite_comment: true
   tags:
     - pinyin_simp
@@ -178,7 +176,7 @@ punctuator:
     "!": {commit: "！"}
     "\"": {pair: ["“", "”"]}
     "#": ["＃", "⌘"]
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
+    "$": ["￥", "$", "€", "£", "¥", "¢", "¤", "₩"]
     "%": ["％", "°", "℃"]
     "&": "＆"
     "'": {pair: ["‘", "’"]}
@@ -193,13 +191,13 @@ punctuator:
     ":": {commit: "："}
     ";": {commit: "；"}
     "<": ["《", "〈", "«", "‹"]
-    "=": ["="]
+    "=": ["＝", "々", "〃"]
     ">": ["》", "〉", "»", "›"]
     "?": {commit: "？"}
     "@": ["＠", "☯"]
-    "[": ["「", "【", "〔", "［"]
+    "[": ["「", "【", "〔", "［", "〚", "〘"]
     "\\": ["、", "＼"]
-    "]": ["」", "】", "〕", "］"]
+    "]": ["」", "】", "〕", "］", "〛", "〙"]
     "^": {commit: "……"}
     _: "——"
     "`": "｀"
@@ -210,14 +208,14 @@ punctuator:
   half_shape:
     "!": {commit: "！"}
     "\"": {pair: ["“", "”"]}
-    "#": "#"
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": "%"
+    "#": ["#", "№"]
+    "$": ["￥", "$", "€", "£", "¥", "¢", "¤", "₩"]
+    "%": ["%", "％", "°", "℃", "‰", "‱", "℉", "℅", "℆", "℀", "℁", "⅍"]
     "&": "&"
     "'": {pair: ["‘", "’"]}
     "(": "（"
     ")": "）"
-    "*": ["*", "＊", "·", "・", "×", "※", "❂"]
+    "*": ["*", "＊", "·", "・", "×", "※", "❂", "⁂", "☮", "☯", "☣"]
     "+": "+"
     ",": {commit: "，"}
     "-": "-"
@@ -225,21 +223,21 @@ punctuator:
     "/": ["、", "､", "/", "／", "÷"]
     ":": {commit: "："}
     ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
-    "=": "="
-    ">": ["》", "〉", "»", "›"]
+    "<": ["《", "〈", "«", "‹", "˂", "˱"]
+    "=": ["=", "々", "〃"]
+    ">": ["》", "〉", "»", "›", "˃", "˲"]
     "?": {commit: "？"}
-    "@": "@"
+    "@": ["@", "©", "®", "℗"]
     "[": ["「", "【", "〔", "［"]
     "\\": ["、", "\\", "＼"]
     "]": ["」", "】", "〕", "］"]
     "^": {commit: "……"}
     _: "——"
-    "`": "`"
+    "`": ["`", "‵", "‶", "‷", "′", "″", "‴", "⁗"]
     "{": ["『", "〖", "｛"]
-    "|": ["·", "|", "｜", "§", "¦"]
+    "|": ["·", "・", "|", "｜", "§", "¦", "‖"]
     "}": ["』", "〗", "｝"]
-    "~": ["~", "～"]
+    "~": ["~", "～", "˜", "˷", "ⸯ", "≈", "≋", "≃", "≅", "≇", "∽", "⋍", "≌", "﹏", "﹋", "﹌"]
   import_preset: symbols
   symbols:
     "/0": ["〇", "零", "₀", "⁰", "⓪", "⓿", "０"]
@@ -384,12 +382,11 @@ quanpinerfen:
   tag: quanpinerfen
   tips: "〔二分〕"
 quanpinerfen_lookup:
-  dictionary: xkjd6cx
+  dictionary: xmjd6.cx
   overwrite_comment: true
   tags:
     - quanpinerfen
 recognizer:
-  import_preset: default
   patterns:
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
     jsq: "^=[^;']+$"
@@ -399,35 +396,32 @@ recognizer:
     reverse_lookup: "[a-z`]*`+[a-z`]*"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
-    xkjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
     xmjd6en: "^i[a-z]*?$"
+    xmjd6gbk: "^o[a-z]*?$"
+    xmjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
+    zhuan: "^\\\\.*$"
 repeat_history:
   initial_quality: 10000
   input: i
-  size: 1
+  size: 6
 repeat_history2:
   initial_quality: 10000
   input: ";f"
-  size: 1
+  size: 6
 reverse_lookup:
   comment_format:
     - "xform/^/〔/"
     - "xform/$/〕/"
     - "xform/ /, /"
-  dictionary: xkjd6cx
-  enable_charset_filter: false
+  dictionary: xmjd6.cx
   enable_completion: true
-  enable_encoder: false
-  enable_sentence: false
-  enable_user_dict: false
-  encode_commit_history: false
-  overwrite_comment: true
 schema:
   dependencies:
-    - xkjd6cx
+    - xmjd6.cx
     - pinyin_simp
     - liangfen
     - xmjd6.en
+    - xmjd6.gbk
   name: "星空键道6·仓颉"
   schema_id: xkcj
   version: 1
@@ -435,46 +429,43 @@ speller:
   algebra:
     - "derive/[0-9]$//"
     - "derive|^;|/|"
-  alphabet: "zyxwvutsrqponmlkjihgfedcba;"
+  alphabet: "zyxwvutsrqponmlkjihgfedcba;'"
   auto_select: false
   delimiter: " '"
-  initials: "abcdefghijklmnopqrstuvwxyz;"
+  initials: "abcdefghijklmnopqrstuvwxyz;'"
+style:
+  horizontal: true
 switches:
   - name: ascii_mode
-    reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
   - name: jffh
-    reset: 0
     states: ["简体", "繁體"]
   - name: mars
     reset: 0
     states: ["地球文", "火星文"]
+  - name: tofu
+    states: ["不替换空字", "替换显示"]
   - name: EN2en
-    reset: 1
   - name: embeded_cands
-    reset: 0
     states: ["内嵌正常", "输入框显示候选"]
-  - options: ["_key_'"]
-    states: ["造词"]
   - name: emoji_cn
-    reset: 1
     states: ["关闭emj", "开启emj"]
   - name: ascii_punct
     states: ["。，", "．，"]
   - name: wxw_hint
-    reset: 1
     states: ["关₆₃₀", "开₆₃₀"]
   - name: completion
-    reset: 1
     states: ["逐码关", "逐码开"]
   - name: en_tran
-    reset: 1
     states: ["关闭英文翻译", "开启英文翻译"]
+tofu:
+  opencc_config: tofu.json
+  option_name: tofu
 topup:
   auto_clear: true
-  max_length: 10
+  max_length: 6
   min_length: 4
   min_length_danzi: 2
   topup_command: true
@@ -495,7 +486,7 @@ translator:
   preedit_format:
     - "xform/^([a-z]*)$/\\U$1\\E/"
     - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
-xkjd6_user:
+xmjd6_user:
   comment_format:
     - "xform/[0-9]//"
   db_class: stabledb
@@ -503,12 +494,30 @@ xkjd6_user:
   enable_completion: true
   enable_sentence: false
   initial_quality: "-1"
-  user_dict: xkjd6_user
-xkjdWW:
+  user_dict: xmjd6_user
+xmjd6en:
+  comment_format:
+    - "xform/.*//"
+  dictionary: xmjd6.en
+  enable_completion: true
+  enable_sentence: true
+  enable_user_dict: false
+  prefix: i
+  tag: xmjd6en
+  tips: "〔单词〕"
+xmjd6gbk:
+  dictionary: xmjd6.gbk
+  enable_completion: true
+  enable_sentence: true
+  enable_user_dict: false
+  prefix: o
+  tag: xmjd6gbk
+  tips: "〔GBK字集〕"
+xmjdWW:
   comment_format:
     - "xform|1|_|"
   db_class: tabledb
-  dictionary: xkjd_W
+  dictionary: xmjd6.W
   enable_charset_filter: false
   enable_completion: true
   enable_encoder: true
@@ -518,10 +527,10 @@ xkjdWW:
   preedit_format:
     - "xform|1|_|"
   prefix: "~T"
-  tag: xkjdWW
+  tag: xmjdWW
   tips: "〔W〕"
-  user_dict: xkjd6_user
-xkjdWXYZ:
+  user_dict: xmjd6_user
+xmjdWXYZ:
   comment_format:
     - "xform|1|_|"
   db_class: tabledb
@@ -535,14 +544,14 @@ xkjdWXYZ:
   preedit_format:
     - "xform|1|_|"
   prefix: a
-  tag: xkjdWXYZ
+  tag: xmjdWXYZ
   tips: "〔造词〕"
-  user_dict: xkjd6_user
-xkjdYY:
+  user_dict: xmjd6_user
+xmjdYY:
   comment_format:
     - "xform|1|_|"
   db_class: tabledb
-  dictionary: xkjd_Y
+  dictionary: xmjd6.Y
   enable_charset_filter: false
   enable_completion: true
   enable_encoder: true
@@ -552,14 +561,14 @@ xkjdYY:
   preedit_format:
     - "xform|1|_|"
   prefix: "~E"
-  tag: xkjdYY
+  tag: xmjdYY
   tips: "〔Y〕"
-  user_dict: xkjd6_user
-xkjdZZ:
+  user_dict: xmjd6_user
+xmjdZZ:
   comment_format:
     - "xform|1|_|"
   db_class: tabledb
-  dictionary: xkjd_Z
+  dictionary: xmjd6.Z
   enable_charset_filter: false
   enable_completion: true
   enable_encoder: true
@@ -569,16 +578,6 @@ xkjdZZ:
   preedit_format:
     - "xform|1|_|"
   prefix: "~R"
-  tag: xkjdZZ
+  tag: xmjdZZ
   tips: "〔Z〕"
-  user_dict: xkjd6_user
-xmjd6en:
-  comment_format:
-    - "xform/.*//"
-  dictionary: xmjd6.en
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: i
-  tag: xmjd6en
-  tips: "〔单词〕"
+  user_dict: xmjd6_user

@@ -1,5 +1,5 @@
 var:
-  last_build_time: 1702291209
+  last_build_time: 1702292246
   option:
     completion: true
     emoji_cn: true
@@ -8,11 +8,12 @@ var:
     simplification: false
     tofu: false
     wxw_hint: true
-  previously_selected_schema: xkjd6
+  previously_selected_schema: xkcj
   schema_access_time:
-    english: 1698397246
+    english: 1702291712
     openfly: 1661410505
     wubi86_jidian_trad: 1669863161
     xhup: 1661410509
-    xkcj: 1695913797
+    xkcj: 1702292003
     xkjd6: 1702048545
+    xmjd6: 1702291730

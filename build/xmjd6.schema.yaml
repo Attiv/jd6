@@ -9,7 +9,7 @@ __build_info:
     punctuation.custom: 0
     symbols: 1701944950
     symbols.custom: 0
-    xmjd6.custom: 1702291171
+    xmjd6.custom: 1702291746
     xmjd6.schema: 1702291118
 ascii_punct:
   option_name: ascii_punct
@@ -423,7 +423,7 @@ schema:
     - liangfen
     - xmjd6.en
     - xmjd6.gbk
-  name: "键道6键道6·仰望星空"
+  name: "键道6·仰望星空"
   schema_id: xmjd6
   version: 1
 speller:

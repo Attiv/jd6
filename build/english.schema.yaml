@@ -4,7 +4,7 @@ __build_info:
     default: 1675621991
     default.custom: 1702287943
     english.custom: 0
-    english.schema: 1601889933
+    english.schema: 1702291628
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -13,9 +13,9 @@ engine:
   filters:
     - simplifier
     - uniquifier
-    - "lua_filter@english_filter"
+    - "lua_filter@*xmjd6/english.filter"
   processors:
-    - "lua_processor@english_processor"
+    - "lua_processor@*xmjd6/english.processor"
     - ascii_composer
     - recognizer
     - key_binder
@@ -25,7 +25,7 @@ engine:
     - navigator
     - fluency_editor
   segmentors:
-    - "lua_segmentor@english_segmentor"
+    - "lua_segmentor@*xmjd6english.segmentor"
     - ascii_segmentor
     - matcher
     - abc_segmentor
