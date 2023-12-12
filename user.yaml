@@ -1,5 +1,5 @@
 var:
-  last_build_time: 1702311066
+  last_build_time: 1702356898
   option:
     ascii_mode: false
     completion: true
@@ -11,10 +11,10 @@ var:
     wxw_hint: true
   previously_selected_schema: xmjd6
   schema_access_time:
-    english: 1702310713
+    english: 1702311337
     openfly: 1661410505
     wubi86_jidian_trad: 1669863161
     xhup: 1661410509
     xkcj: 1702292003
     xkjd6: 1702048545
-    xmjd6: 1702310782
+    xmjd6: 1702311368

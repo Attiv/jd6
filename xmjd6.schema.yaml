@@ -121,7 +121,6 @@ engine:
     - table_translator@xmjd6en
     - script_translator@xmjd6gbk
   filters:
-    - lua_filter@*xmjd6/for_hint
     # - lua_filter@*xmjd6/xmjd6_filter
     - simplifier
     - reverse_lookup_filter@pinyin_simp_lookup
@@ -135,6 +134,7 @@ engine:
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@*xmjd6/add_space # | 替换成空格
+    - lua_filter@*xmjd6/for_hint
     - uniquifier
 
 #导入符号

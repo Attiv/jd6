@@ -10,7 +10,7 @@ __build_info:
     symbols: 1701944950
     symbols.custom: 0
     xmjd6.custom: 1702291746
-    xmjd6.schema: 1702310488
+    xmjd6.schema: 1702356878
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -37,7 +37,6 @@ emoji_cn:
   option_name: emoji_cn
 engine:
   filters:
-    - "lua_filter@*xmjd6/for_hint"
     - simplifier
     - "reverse_lookup_filter@pinyin_simp_lookup"
     - "reverse_lookup_filter@quanpinerfen_lookup"
@@ -50,6 +49,7 @@ engine:
     - "simplifier@tofu"
     - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
     - "lua_filter@*xmjd6/add_space"
+    - "lua_filter@*xmjd6/for_hint"
     - uniquifier
   processors:
     - "lua_processor@*xmjd6/xmjd6_select_character"
