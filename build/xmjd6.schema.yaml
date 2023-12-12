@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1702310077
+    default.custom: 1702363063
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -10,7 +10,7 @@ __build_info:
     symbols: 1701944950
     symbols.custom: 0
     xmjd6.custom: 1702291746
-    xmjd6.schema: 1702356878
+    xmjd6.schema: 1702362915
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -460,8 +460,6 @@ switches:
     states: ["关₆₃₀", "开₆₃₀"]
   - name: completion
     states: ["逐码关", "逐码开"]
-  - name: en_tran
-    states: ["关闭英文翻译", "开启英文翻译"]
 tofu:
   opencc_config: tofu.json
   option_name: tofu

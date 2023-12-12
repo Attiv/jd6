@@ -23,4 +23,3 @@ patch:
     - ascii_punct
     - wxw_hint
     - completion
-    - en_tran

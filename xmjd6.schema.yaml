@@ -67,9 +67,6 @@ switches:
     states: [ "关₆₃₀", "开₆₃₀" ]
   - name: completion
     states: [ 逐码关, 逐码开 ]
-  - name: en_tran
-    states: [ 关闭英文翻译,开启英文翻译  ]
-
 
 
 
