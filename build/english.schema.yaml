@@ -4,7 +4,7 @@ __build_info:
     default: 1675621991
     default.custom: 1702363063
     english.custom: 0
-    english.schema: 1702311034
+    english.schema: 1702462720
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -13,9 +13,9 @@ engine:
   filters:
     - simplifier
     - uniquifier
-    - "lua_filter@english_filter"
+    - "lua_filter@*eng/eng_filter"
   processors:
-    - "lua_processor@english_processor"
+    - "lua_processor@*eng/eng_processor"
     - ascii_composer
     - recognizer
     - key_binder
@@ -25,7 +25,7 @@ engine:
     - navigator
     - fluency_editor
   segmentors:
-    - "lua_segmentor@english_segmentor"
+    - "lua_segmentor@*eng/eng_segmentor"
     - ascii_segmentor
     - matcher
     - abc_segmentor
@@ -34,7 +34,7 @@ engine:
   translators:
     - punct_translator
     - table_translator
-    - "script_translator@luna_pinyin"
+    - "script_translator@xmjd6"
 key_binder:
   bindings:
     - {accept: "Control+p", send: Up, when: composing}
@@ -69,12 +69,6 @@ key_binder:
     - {accept: "Control+Shift+dollar", toggle: simplification, when: always}
     - {accept: "Control+Shift+percent", toggle: extended_charset, when: always}
   import_preset: default
-luna_pinyin:
-  dictionary: luna_pinyin
-  preedit_format:
-    - "xform/([nl])v/$1ü/"
-    - "xform/([nl])ue/$1üe/"
-    - "xform/([jqxy])v/$1u/"
 menu:
   alternative_select_keys: 1234567890
   page_size: 8
@@ -157,7 +151,7 @@ schema:
   author:
     - "Dicky Cheng <onkey@hotmail.com>"
   dependencies:
-    - luna_pinyin
+    - xmjd6
   description: |
     功能說明：
       * 西文模式下不論大寫狀態與否均可輸入英文單詞，獨立於中文模式
@@ -203,3 +197,15 @@ translator:
   tag: raw
   used_punct: "-.'"
   wildcard: "`~"
+xmjd6:
+  comment_format:
+    - "xform/[0-9]//"
+  dictionary: xmjd6.extended
+  enable_charset_filter: false
+  enable_completion: true
+  enable_encoder: true
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: true
+  initial_quality: 0
+  max_phrase_length: 10

@@ -16,7 +16,7 @@ schema:
       * 可以將單詞註釋展開成多行或疊起爲一行
       * 中文輸入法使用"朙月拼音"，請自行更改
   dependencies:
-    - luna_pinyin
+    - xmjd6
 
 switches:
   - name: ascii_mode
@@ -36,8 +36,7 @@ switches:
     
 engine:
   processors:
-    # - lua_processor@*xmjd6/english.processor       # 本輸入法需要用到，需保留
-    - lua_processor@english_processor
+    - lua_processor@*eng/eng_processor       # 本輸入法需要用到，需保留
     - ascii_composer
     - recognizer
     - key_binder
@@ -47,25 +46,23 @@ engine:
     - navigator
     - fluency_editor                        # 按中文輸入法要求設置
   segmentors:
-    # - lua_segmentor@*xmjd6english.segmentor       # 本輸入法需要用到，需保留
-    - lua_segmentor@english_segmentor
+    - lua_segmentor@*eng/eng_segmentor       # 本輸入法需要用到，需保留
     - ascii_segmentor
     - matcher
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
-    #- lua_translator@english_translator    # 暫時未使用
+    #- lua_translator@*eng/eng_translator    # 暫時未使用
     - punct_translator
     - table_translator
-    - script_translator@luna_pinyin
+    - script_translator@xmjd6
   filters:
     - simplifier
     - uniquifier
     # 以下兩個二選一
-    # - lua_filter@*xmjd6/english.filter            # 速度快，但詞議相同拼寫相近單詞可能會被Rime略去
-    - lua_filter@english_filter    
-    #- lua_filter@english_filter0           # 速度稍慢，但詞典中允許出現拼寫或詞義相同單詞
+    - lua_filter@*eng/eng_filter             # 速度快，但詞議相同拼寫相近單詞可能會被Rime略去
+    #- lua_filter@*eng/eng_filter0           # 速度稍慢，但詞典中允許出現拼寫或詞義相同單詞
     
 speller:
   algebra:                                  # 本輸入法需要用到，不能增刪改
@@ -82,12 +79,21 @@ translator:                                 # 以下爲本輸入法方案配置
   used_punct: "-.'"                         # 單詞中會用到的特殊符號
   wildcard: "`~"                            # 第一個符號匹配0到多個字符，第二個符號匹配0或1個
 
-luna_pinyin:                                # 以下爲朙月拼音方案配置
-  dictionary: luna_pinyin
-  preedit_format:
-    - xform/([nl])v/$1ü/
-    - xform/([nl])ue/$1üe/
-    - xform/([jqxy])v/$1u/
+
+xmjd6:
+  dictionary: xmjd6.extended
+  enable_charset_filter: false
+  enable_completion: true   #提示码开关，不需要候选词提示请改false
+  enable_encoder: true
+  enable_sentence: false    
+  enable_user_dict: false   
+  encode_commit_history: true
+  max_phrase_length: 10
+  initial_quality: 0
+  comment_format:
+#    - xform|~||
+    - xform/[0-9]//  #无数字
+
 
 key_binder:
   import_preset: default
