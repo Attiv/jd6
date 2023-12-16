@@ -48,7 +48,7 @@ import_tables:
   - xmjd6.lianjie
 # ---------------------------------------
 # 扩展：英文词库
-  - xmjd6.yingwen
+  - xkjd6.yingwen
 # ---------------------------------------
 # 扩展：超级字词
   - xmjd6.chaojizici
