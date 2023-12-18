@@ -1,5 +1,5 @@
 var:
-  last_build_time: 1702799723
+  last_build_time: 1702892587
   option:
     ascii_mode: false
     completion: true
@@ -7,7 +7,7 @@ var:
     en_tran: true
     jffh: false
     simplification: false
-    tofu:	true
+    tofu: false
     wxw_hint: true
   previously_selected_schema: xmjd6
   schema_access_time:
