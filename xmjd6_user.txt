@@ -2,4 +2,20 @@
 #@/db_name	xmjd6_user
 #@/db_type	tabledb
 #@/rime_version	1.8.5
-#@/tick	0
+#@/tick	1
+那	a	1
+是	e	1
+冂	ia	6
+啊	o	1
+《	oi	6
+有	v	1
+为了	wa	1
+一	y	1
+有一	encvv	1
+有一	encvy	1
+有一	encvyk	1
+为了是	encwle	1
+为了是	encwleo	1
+有一	encydv	1
+有一	encydy	1
+有一	encydyk	1
