@@ -225,6 +225,13 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: left
+            callout:
+              - action:
+                  shortcutCommand: "#左移"
+                label: 左移
+              - action:
+                  shortcutCommand: "#行首"
+                label: 行首
           - action:
               character:
                 char: s
@@ -263,6 +270,13 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  shortcutCommand: "#右移"
+                label: 右移
+              - action:
+                  shortcutCommand: "#行尾"
+                label: 行末
           - action:
               character:
                 char: f
@@ -419,6 +433,10 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  shortcutCommand: "#剪切"
+                label: 剪切
           - action:
               character:
                 char: x
@@ -457,6 +475,10 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  shortcutCommand: "#复制"
+                label: 复制
           - action:
               character:
                 char: v
@@ -477,6 +499,10 @@ keyboards:
                 display: false
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  shortcutCommand: "#粘贴"
+                label: 粘贴
           - action:
               character:
                 char: b
