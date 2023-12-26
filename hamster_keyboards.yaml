@@ -353,6 +353,15 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  symbol:
+                    char: 𠙣
+                label: 𠙣
+              - action:
+                  symbol:
+                    char: 𠙣䖁
+                label: 𠙣䖁
           - action:
               character:
                 char: k
@@ -564,6 +573,11 @@ keyboards:
                 display: true
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  symbol:
+                    char: 弔毛
+                label: 弔毛
           - action:
               characterMargin:
                 char: m

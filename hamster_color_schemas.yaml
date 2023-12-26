@@ -24,9 +24,22 @@ colorSchemas:
     corner_radius: 5
     text_color: "0xFFFFFF"
     hilited_candidate_back_color: "0x000000"
+    hilited_candidate_text_color: "0x60C107"
+    hilited_candidate_label_color: "0x60C107"
+    hilited_comment_text_color: "0x60C107"
+    candidate_text_color: "0xFFFFFF"
+    comment_text_color: "0xFFFFFF"
+    label_color: "0xFFFFFF"
+  - schemaName: dark_white_text
+    name: dark_white_text
+    author: attiv
+    corner_radius: 5
+    text_color: "0xFFFFFF"
+    hilited_candidate_back_color: "0x000000"
     hilited_candidate_text_color: "0xFFFFFF"
     hilited_candidate_label_color: "0xFFFFFF"
     hilited_comment_text_color: "0xFFFFFF"
     candidate_text_color: "0xFFFFFF"
     comment_text_color: "0xFFFFFF"
     label_color: "0xFFFFFF"
+
