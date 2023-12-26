@@ -60,6 +60,19 @@ keyboards:
                 display: false
                 processByRIME: true
                 direction: down
+            callout:
+              - action:
+                  symbol:
+                    char: "@qq.com"
+                label: "@qq.com"
+              - action:
+                  symbol:
+                    char: "@163.com"
+                label: "@163.com"
+              - action:
+                  symbol:
+                    char: "@gmail.com"
+                label: "@gmail.com"
           - action:
               character:
                 char: r
@@ -645,7 +658,31 @@ keyboards:
             width:
               percentage: 0.13
             label: 英
-          - action: enter
+          - action:
+              enter
+              # 按键级别样式，可覆盖键盘级别统一设置的按键样式
+              # 浅色模式下样式
+            lightModeStyle:
+              # 按键背景色
+              buttonBackgroundColor: "0x60C107"
+              #  按键按下时背景色
+              pressedButtonBackgroundColor:
+                "0x00D391"
+                # 按键文字颜色
+              buttonForegroundColor: "0xFFFFFF"
+              # 底部阴影颜色
+              lowerEdgeColor: "0x60C107"
+
+              # 暗色模式下样式，与 `lightModeStyle` 模式下参数相同
+            darkModeStyle:
+              buttonBackgroundColor: "0x60C107"
+              #  按键按下时背景色
+              pressedButtonBackgroundColor:
+                "0x00D391"
+                # 按键文字颜色
+              buttonForegroundColor: "0xFFFFFF"
+              # 底部阴影颜色
+              lowerEdgeColor: "0x60C107"
             width:
               percentage: 0.195
             swipe:
@@ -1927,6 +1964,19 @@ keyboards:
             width:
               percentage: 0.1
             label: e
+            callout:
+              - action:
+                  symbol:
+                    char: "@qq.com"
+                label: "@qq.com"
+              - action:
+                  symbol:
+                    char: "@gmail.com"
+                label: "@gmail.com"
+              - action:
+                  symbol:
+                    char: "@163.com"
+                label: "@163.com"
           - action:
               symbol:
                 char: r
@@ -2120,6 +2170,28 @@ keyboards:
               percentage: 0.13
             label: 中
           - action: enter
+            lightModeStyle:
+              # 按键背景色
+              buttonBackgroundColor: "0x60C107"
+              #  按键按下时背景色
+              pressedButtonBackgroundColor:
+                "0x00D391"
+                # 按键文字颜色
+              buttonForegroundColor: "0xFFFFFF"
+              # 底部阴影颜色
+              lowerEdgeColor:
+                "0x60C107"
+
+                # 暗色模式下样式，与 `lightModeStyle` 模式下参数相同
+            darkModeStyle:
+              buttonBackgroundColor: "0x60C107"
+              #  按键按下时背景色
+              pressedButtonBackgroundColor:
+                "0x00D391"
+                # 按键文字颜色
+              buttonForegroundColor: "0xFFFFFF"
+              # 底部阴影颜色
+              lowerEdgeColor: "0x60C107"
             width:
               percentage: 0.195
             swipe:
