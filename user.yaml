@@ -1,20 +1,7 @@
 var:
-  last_build_time: 1704190914
+  last_build_time: 1704259393
   option:
-    ascii_mode: false
     completion: true
     emoji_cn: true
-    en_tran: true
-    jffh: false
-    simplification: false
-    tofu: false
+    simplification: true
     wxw_hint: true
-  previously_selected_schema: xmjd6
-  schema_access_time:
-    english: 1702462801
-    openfly: 1661410505
-    wubi86_jidian_trad: 1669863161
-    xhup: 1661410509
-    xkcj: 1702292003
-    xkjd6: 1702048545
-    xmjd6: 1702462841
