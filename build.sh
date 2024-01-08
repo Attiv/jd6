@@ -31,5 +31,5 @@ fi
 # zip -ur jd6.zip build/xmjd6enre.reverse.bin
 
 
-cp jd6.zip /Users/wanglikun/Library/Mobile\ Documents/com~apple~CloudDocs/jd6.zip
+cp jd6.zip /Users/wanglikun/Library/Mobile\ Documents/com~apple~CloudDocs/jd6_cang.zip
   echo "已创建 build.zip 压缩包。"
