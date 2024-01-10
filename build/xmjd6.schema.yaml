@@ -2,15 +2,15 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1702363063
+    default.custom: 1704727501
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
     punctuation.custom: 0
-    symbols: 1703228805
+    symbols: 1704727501
     symbols.custom: 0
-    xmjd6.custom: 1702291746
-    xmjd6.schema: 1702892558
+    xmjd6.custom: 1704727501
+    xmjd6.schema: 1704727501
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
