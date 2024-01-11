@@ -2,13 +2,13 @@
 #@/db_name	xmjd6_user
 #@/db_type	tabledb
 #@/rime_version	1.8.5
-#@/tick	3
+#@/tick	4
 那	a	1
 是	e	1
 冂	ia	6
 啊	o	1
 《	oi	6
-旁	pp	1
+旁	pp	6
 有	v	1
 匚	va	1
 为了	wa	1
