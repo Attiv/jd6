@@ -1,6 +1,6 @@
 keyboards:
   - name: Attiv
-    isPrimary: false
+    isPrimary: true
     rows:
       - keys:
           - action:
@@ -705,7 +705,7 @@ keyboards:
       top: 8
       right: 3
   - name: 仿iPhone键盘
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -1308,7 +1308,7 @@ keyboards:
       top: 8
       right: 3
   - name: 实验键盘+数字
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -1951,7 +1951,7 @@ keyboards:
       top: 1
       right: 1
   - name: English
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -2215,7 +2215,7 @@ keyboards:
       top: 8
       right: 3
   - name: "#+=键盘"
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -2743,7 +2743,7 @@ keyboards:
       top: 8
       right: 3
   - name: 123键盘
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -2934,7 +2934,7 @@ keyboards:
       top: 8
       right: 3
   - name: 仓颉
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
@@ -3308,7 +3308,7 @@ keyboards:
       top: 8
       right: 3
   - name: 大千注音
-    isPrimary: true
+    isPrimary: false
     rows:
       - keys:
           - action:
