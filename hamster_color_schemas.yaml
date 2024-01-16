@@ -2,12 +2,12 @@ colorSchemas:
   - schemaName: wexin
     name: wexin
     author: attiv
-    back_color: "0xDAD3D0"
-    button_back_color: "0xFFFDFE"
-    button_pressed_back_color: "0xD0D0D0"
-    button_foreground_color: "0x000000"
-    button_pressed_foreground_color: "0x000000"
-    button_swipe_foreground_color: "0x000000"
+    # back_color: "0xDAD3D0"
+    # button_back_color: "0xFFFDFE"
+    # button_pressed_back_color: "0xD0D0D0"
+    # button_foreground_color: "0x000000"
+    # button_pressed_foreground_color: "0x000000"
+    # button_swipe_foreground_color: "0x000000"
     corner_radius: 6
     border_color: "0x01000000"
     text_color: "0x000000"
