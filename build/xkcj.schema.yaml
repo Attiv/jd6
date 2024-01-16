@@ -10,7 +10,7 @@ __build_info:
     symbols: 1704727501
     symbols.custom: 0
     xkcj.custom: 0
-    xkcj.schema: 1704727501
+    xkcj.schema: 1705371643
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -68,7 +68,6 @@ engine:
     - "affix_segmentor@pinyin_simp"
     - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
-    - "affix_segmentor@xmjdWXYZ"
     - "affix_segmentor@xmjd6gbk"
     - abc_segmentor
     - punct_segmentor
@@ -81,10 +80,6 @@ engine:
     - punct_translator
     - table_translator
     - reverse_lookup_translator
-    - "table_translator@xmjdWXYZ"
-    - "table_translator@xmjdYY"
-    - "table_translator@xmjdZZ"
-    - "table_translator@xmjdWW"
     - "table_translator@xmjd6_user"
     - "history_translator@repeat_history"
     - "history_translator@repeat_history2"
@@ -395,7 +390,6 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
     xmjd6en: "^i[a-z]*?$"
     xmjd6gbk: "^o[a-z]*?$"
-    xmjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
     zhuan: "^\\\\.*$"
 repeat_history:
   initial_quality: 10000
@@ -508,71 +502,3 @@ xmjd6gbk:
   prefix: o
   tag: xmjd6gbk
   tips: "〔GBK字集〕"
-xmjdWW:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xmjd6.W
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~T"
-  tag: xmjdWW
-  tips: "〔W〕"
-  user_dict: xmjd6_user
-xmjdWXYZ:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xmjd6.extended
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: a
-  tag: xmjdWXYZ
-  tips: "〔造词〕"
-  user_dict: xmjd6_user
-xmjdYY:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xmjd6.Y
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~E"
-  tag: xmjdYY
-  tips: "〔Y〕"
-  user_dict: xmjd6_user
-xmjdZZ:
-  comment_format:
-    - "xform|1|_|"
-  db_class: tabledb
-  dictionary: xmjd6.Z
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - "xform|1|_|"
-  prefix: "~R"
-  tag: xmjdZZ
-  tips: "〔Z〕"
-  user_dict: xmjd6_user

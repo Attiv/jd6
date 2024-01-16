@@ -93,7 +93,7 @@ engine:
     - affix_segmentor@pinyin_simp
     - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
-    - affix_segmentor@xmjdWXYZ
+
     - affix_segmentor@xmjd6gbk
     - abc_segmentor
     - punct_segmentor
@@ -106,7 +106,7 @@ engine:
     - punct_translator
     - table_translator
     - reverse_lookup_translator
-    - table_translator@xmjdWXYZ
+
     - table_translator@xmjdYY
     - table_translator@xmjdZZ
     - table_translator@xmjdWW
@@ -268,45 +268,7 @@ reverse_lookup:
     - xform/$/〕/
     - xform/ /, /
 
-xmjdWXYZ:
-  tag: xmjdWXYZ
-  dictionary: xmjd6.extended
-  user_dict: xmjd6_user
-# ↓ 用户词典格式，tabledb（文本） 或 userdb （二进制）。
-  db_class: tabledb
-#  db_class: userdb
-  enable_charset_filter: false
-  enable_completion: true
-  enable_encoder: true
-  enable_sentence: true
-  enable_user_dict: true
-  encode_commit_history: false
-  preedit_format:
-    - xform|1|_|
-  comment_format:
-    - xform|1|_|
-#    - xform|~||
-  prefix: "a"
-  tips: "〔造词〕"
-  
-xmjdYY:
-  __include: /xmjdWXYZ
-  tag: xmjdYY
-  dictionary: xmjd6.Y
-  prefix: "~E"
-  tips: "〔Y〕"
-xmjdZZ:
-  __include: /xmjdWXYZ
-  tag: xmjdZZ
-  dictionary: xmjd6.Z
-  prefix: "~R"
-  tips: "〔Z〕"
-xmjdWW:
-  __include: /xmjdWXYZ
-  tag: xmjdWW
-  dictionary: xmjd6.W
-  prefix: "~T"
-  tips: "〔W〕"
+
 xmjd6_user:
   dictionary: ""
   user_dict: xmjd6_user
@@ -380,7 +342,7 @@ recognizer:
 
     reverse_lookup: "[a-z`]*`+[a-z`]*"
     punct: "^/([0-9]0?|[a-z]+)$"
-    xmjdWXYZ: "^a['/a-z][a-z,./:?!']*'?$"
+
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
     xmjd6en: "^i[a-z]*?$"
