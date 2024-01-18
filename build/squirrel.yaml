@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     squirrel: 1675621991
-    squirrel.custom: 1701188701
+    squirrel.custom: 1705547186
 app_options:
   co.zeit.hyper:
     ascii_mode: true
@@ -342,7 +342,7 @@ preset_color_schemes:
     inline_preedit: true
     label_color: 0x888888
     label_font_point: 14
-    name: vitta_light
+    name: vitta_mac
     text_color: 0x333333
   mac_dark:
     author: viita
@@ -506,6 +506,31 @@ preset_color_schemes:
     hilited_text_color: 0xfecb96
     name: "星際我爭霸／StarCraft"
     text_color: 0xccaa88
+  vitta_light:
+    back_color: 0x00000000
+    base_offset: 1.0
+    border_height: 4.0
+    border_width: 4.0
+    candidate_list_layout: linear
+    candidate_text_color: 0x333333
+    color_space: srgb
+    comment_text_color: 0x3F000000
+    corner_radius: 6.0
+    font_face: "HYZhengYuan-EEW"
+    font_point: 16.0
+    hilited_candidate_back_color: 0xD05B21
+    hilited_candidate_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xD8FFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_corner_radius: 6.0
+    hilited_text_color: 0xFFFFFF
+    inline_preedit: true
+    label_color: 0x888888
+    name: vitta_light
+    shadow_size: 4.0
+    text_color: 0x333333
+    text_orientation: horizontal
+    translucency: true
   wechat:
     author: zsakvo
     back_color: 0xE2E3E6
@@ -560,6 +585,7 @@ preset_color_schemes:
     label_font_point: 12
     name: "微信键盘浅色"
     text_color: 0x424242
+    translucency: true
 show_notifications_when: appropriate
 style:
   color_scheme: mac

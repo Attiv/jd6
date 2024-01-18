@@ -3,9 +3,6 @@ patch:
     color_scheme: mac
     color_scheme_dark: wechat_dark
     # color_scheme_dark: mac_dark
-    # color_scheme: native
-    # color_scheme_dark: native_dark
-    # color_scheme_dark: dark_saber
     # color_scheme: mac
     # translucency: true
     # cat windows start
@@ -38,6 +35,32 @@ patch:
     #   shadow_offset_y: 4
     # car end
   preset_color_schemes:
+    vitta_light:
+      name: "vitta_light"
+      font_face: "HYZhengYuan-EEW"
+      font_point: 16.0
+      candidate_list_layout: linear
+      text_orientation: horizontal
+      inline_preedit: true
+      translucency: true
+      corner_radius: 6.0
+      hilited_corner_radius: 6.0
+      border_height: 4.0
+      border_width: 4.0
+      base_offset: 1.0
+      shadow_size: 4.0
+      color_space: srgb
+      back_color: 0x00000000
+      candidate_text_color: 0x333333
+      comment_text_color: 0x3F000000
+      label_color: 0x888888
+      hilited_candidate_back_color: 0xD05B21
+      hilited_candidate_text_color: 0xD8FFFFFF
+      hilited_comment_text_color: 0xFFFFFF
+      hilited_candidate_label_color: 0xFFFFFF
+      text_color: 0x333333
+      hilited_text_color: 0xFFFFFF
+
     wechat_light:
       name: 微信键盘浅色
       horizontal: true                          # true横排，false竖排
@@ -55,6 +78,7 @@ patch:
       label_font_point: 12                      # 候选编号大小
       text_color: 0x424242                      # 拼音行文字颜色
       inline_preedit: true                      # 拼音位于： 候选框 false | 行内 true
+      translucency: true
 
     wechat_dark:
       name: 微信键盘深色
@@ -333,7 +357,7 @@ patch:
       text_color: 0xccaa88
     mac:
       author: "vitta"
-      name: "vitta_light"
+      name: "vitta_mac"
       hilited_comment_text_color: 0xffffff
       back_color: 0x00000000             #设置输入条的背景色，色值是按照BGR的形式16进制填写
       corner_radius: 5                  #设置输入条的圆角效果

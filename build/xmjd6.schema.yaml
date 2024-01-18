@@ -10,7 +10,7 @@ __build_info:
     symbols: 1705501643
     symbols.custom: 0
     xmjd6.custom: 1704727501
-    xmjd6.schema: 1705371576
+    xmjd6.schema: 1705561526
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -46,9 +46,9 @@ engine:
     - "simplifier@ascii_punct"
     - "simplifier@mars"
     - "simplifier@tofu"
+    - "lua_filter@*xmjd6/for_hint"
     - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
     - "lua_filter@*xmjd6/add_space"
-    - "lua_filter@*xmjd6/for_hint"
     - uniquifier
   processors:
     - "lua_processor@*xmjd6/xmjd6_select_character"
@@ -446,8 +446,6 @@ switches:
   - name: tofu
     states: ["不替换空字", "替换显示"]
   - name: EN2en
-  - name: embeded_cands
-    states: ["内嵌正常", "输入框显示候选"]
   - name: emoji_cn
     states: ["关闭emj", "开启emj"]
   - name: ascii_punct
@@ -456,6 +454,8 @@ switches:
     states: ["关₆₃₀", "开₆₃₀"]
   - name: completion
     states: ["逐码关", "逐码开"]
+  - name: embeded_cands
+    states: ["内嵌正常", "输入框显示候选"]
 tofu:
   opencc_config: tofu.json
   option_name: tofu

@@ -57,8 +57,6 @@ switches:
   - name: tofu
     states: [ 不替换空字, 替换显示 ]
   - name: EN2en
-  - name: embeded_cands
-    states: [内嵌正常, 输入框显示候选]
   - name: emoji_cn   #Emoji开关
     states: [ 关闭emj,开启emj  ]
   - name: ascii_punct
@@ -67,7 +65,8 @@ switches:
     states: [ "关₆₃₀", "开₆₃₀" ]
   - name: completion
     states: [ 逐码关, 逐码开 ]
-
+  - name: embeded_cands
+    states: [内嵌正常, 输入框显示候选]
 
 
   # - name: full_shape
@@ -129,9 +128,9 @@ engine:
     - simplifier@ascii_punct
     - simplifier@mars #火星文
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
+    - lua_filter@*xmjd6/for_hint
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@*xmjd6/add_space # | 替换成空格
-    - lua_filter@*xmjd6/for_hint
     - uniquifier
 
 #导入符号
