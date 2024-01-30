@@ -2516,7 +2516,7 @@ sort: original
 捕捉	bjfl
 必经之路	bjflo
 补妆	bjfm
-不解之谜	bjfmv
+不解之谜	bjfmvu
 部分	bjfn
 不分	bjfnv
 不妨	bjfp
@@ -2539,7 +2539,9 @@ sort: original
 不菲	bjfw
 不费	bjfwv
 补妆	bjfx
-不惊反喜	bjfxv
+不惊反喜	bjfxvo
+不装	bjfxv
+不装	bjfmv
 不重	bjfy
 补中	bjfyo
 变成这样	bjfyov
@@ -66744,8 +66746,8 @@ sort: original
 密云	mkyw
 眉开眼笑	mkyx
 每况愈下	mkyxu
-迷药	mkyz
-密钥	mkyzo
+迷药	mkyzo
+密钥	mkyz
 迷醉	mkzb
 弥足	mkzj
 米子	mkzk
@@ -118832,7 +118834,8 @@ sort: original
 载着	zhqeu
 在这	zhqev
 再战	zhqf
-灾情	zhqg
+灾情	zhqgo
+再请	zhqg
 在驻	zhqj
 崽猪	zhqji
 自毁前程	zhqju
