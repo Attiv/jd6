@@ -46,7 +46,6 @@ switches:
     reset: 0
   - name: tofu
     states: [ 不替换空字, 替换显示 ]
-  - name: EN2en
   - name: embeded_cands
     states: [内嵌正常, 输入框显示候选]
   - name: emoji_cn   #Emoji开关

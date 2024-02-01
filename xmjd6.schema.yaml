@@ -56,7 +56,6 @@ switches:
     reset: 0
   - name: tofu
     states: [ 不替换空字, 替换显示 ]
-  - name: EN2en
   - name: emoji_cn   #Emoji开关
     states: [ 关闭emj,开启emj  ]
   - name: ascii_punct

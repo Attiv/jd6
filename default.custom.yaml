@@ -17,7 +17,6 @@ patch:
     - full_shape
     - jffh
     - tofu
-    - EN2en
     - embeded_cands
     - emoji_cn
     - ascii_punct
