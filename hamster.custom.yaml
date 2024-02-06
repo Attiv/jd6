@@ -162,8 +162,23 @@ patch:
     # 配色方案
     # 来源: https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
     # hamster_color_schemas  为引用的颜色文件名称
+     # 键盘样式
+    #  style:
+    #    # 字体样式
+    #    fontFace:
+    #      # 字体文件名，
+    #      # 字体请放在 Rime/Font 目录中，此处填写字体的文件名称
+    #      # 注意字体顺序，优先显示排序在前的字体，当显示的字符在字体中不存在时，则按顺序查找支持显示字符的字体
+    #      - url: ""
+    #      # 字体名称可以用于引用系统已安装的字体，可通过以下网站查询字体名称
+    #      # https://github.com/lionhylra/iOS-UIFont-Names
+    #      - name: ""
     colorSchemas:
       __include: hamster_color_schemas:/colorSchemas
+    style:
+     fontFace:
+      - url: 极影毁片荧圆.ttf
+      - url: "SymbolsNerdFontMono-Regular.ttf"
 
   # RIME 引擎相关配置
   rime:

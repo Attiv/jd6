@@ -42,4 +42,57 @@ colorSchemas:
     candidate_text_color: "0xFFFFFF"
     comment_text_color: "0xFFFFFF"
     label_color: "0xFFFFFF"
-
+  - schemaName: WELLAN LT Y
+    name: 蔚蓝-青蛇 浅 影
+    author: MO
+    back_color: "0x01312C2D"
+    button_back_color: "0xFFFFFF"
+    button_pressed_back_color: "0x79972D"
+    button_bubble_back_color: "0xFFFFFF"
+    button_foreground_color: "0x3F3F3F"
+    button_pressed_foreground_color: "0xFFFFF2"
+    button_swipe_foreground_color: "0x000000"
+    font_size: 18
+    swipe_font_size: 6
+    corner_radius: 12
+    border_color: "0x01000000"
+    text_color: "0x79972D"
+    lower_edge_col: "0x0A000000"
+    shadow_color: "0x32000000"
+    shadow_size: 1
+    hilited_candidate_back_color: "0xFFFFFF"
+    hilited_candidate_text_color: "0x79972D"
+    hilited_candidate_label_color: "0x000000"
+    hilited_comment_text_color: "0x000000"
+    candidate_text_color: "0x000000"
+    comment_text_color: "0x000000"
+    label_color: "0x000000"
+    hilited_callout_back_color: "0x79972D"
+    hilited_callout_foreground_color: "0xFFFFFF"
+  - schemaName: WELLAN BK Y
+    name: 蔚蓝-青蛇 深 影
+    author: MO
+    back_color: "0x01312C2D"
+    button_back_color: "0x9B000000"
+    button_pressed_back_color: "0x79972D"
+    button_bubble_back_color: "0x454545"
+    button_foreground_color: "0xFFFFF2"
+    button_pressed_foreground_color: "0xFFFFF2"
+    button_swipe_foreground_color: "0xFFFFFF"
+    font_size: 18
+    swipe_font_size: 6
+    corner_radius: 13
+    border_color: "0x01000000"
+    text_color: "0x78962C"
+    lower_edge_col: "0x0A000000"
+    shadow_color: "0x37000000"
+    shadow_size: 1
+    hilited_candidate_back_color: "0x9B000000"
+    hilited_candidate_text_color: "0x78962C"
+    hilited_candidate_label_color: "0x78962C"
+    hilited_comment_text_color: "0x78962C"
+    candidate_text_color: "0xFFFFFF"
+    comment_text_color: "0xFFFFFF"
+    label_color: "0xFFFFFF"
+    hilited_callout_back_color: "0x79972D"
+    hilited_callout_foreground_color: "0xFFFFFF"
