@@ -177,7 +177,7 @@ patch:
       __include: hamster_color_schemas:/colorSchemas
     style:
      fontFace:
-      - url: 极影毁片荧圆.ttf
+      - url: "汉仪正圆-55W.ttf"
       - url: "SymbolsNerdFontMono-Regular.ttf"
 
   # RIME 引擎相关配置
