@@ -89,7 +89,6 @@ engine:
     - ascii_segmentor
     - matcher
     - affix_segmentor@pinyin_simp
-    - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
 
     - affix_segmentor@xmjd6gbk
@@ -113,7 +112,6 @@ engine:
     - history_translator@repeat_history2
     - script_translator@quanpinerfen
     - script_translator@pinyin_simp
-    - table_translator@xmjd6en
     - script_translator@xmjd6gbk
   filters:
     # - lua_filter@*xmjd6/xmjd6_filter
@@ -231,17 +229,6 @@ pinyin_simp:
     - xform/([jqxy])v/$1u/
   prefix: "u"
   tips: "〔全拼〕"
-  
-xmjd6en:
-  tag: xmjd6en
-  dictionary: xmjd6.en
-  enable_sentence: true
-  enable_completion: true
-  enable_user_dict: false
-  comment_format:
-    - xform/.*//
-  prefix: "i"
-  tips: "〔单词〕"
 
 #↓二分反查方案
 quanpinerfen_lookup:
@@ -344,7 +331,6 @@ recognizer:
 
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
-    xmjd6en: "^i[a-z]*?$"
     xmjd6gbk: "^o[a-z]*?$"
     jsq: "^=[^;']+$"
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字

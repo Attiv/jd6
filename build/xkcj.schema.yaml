@@ -10,7 +10,7 @@ __build_info:
     symbols: 1708415772
     symbols.custom: 0
     xkcj.custom: 0
-    xkcj.schema: 1706774131
+    xkcj.schema: 1708594770
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -66,7 +66,6 @@ engine:
     - ascii_segmentor
     - matcher
     - "affix_segmentor@pinyin_simp"
-    - "affix_segmentor@xmjd6en"
     - "affix_segmentor@quanpinerfen"
     - "affix_segmentor@xmjd6gbk"
     - abc_segmentor
@@ -85,7 +84,6 @@ engine:
     - "history_translator@repeat_history2"
     - "script_translator@quanpinerfen"
     - "script_translator@pinyin_simp"
-    - "table_translator@xmjd6en"
     - "script_translator@xmjd6gbk"
 gbk_lookup:
   dictionary: xmjd6.cx
@@ -393,7 +391,6 @@ recognizer:
     reverse_lookup: "[a-z`]*`+[a-z`]*"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
-    xmjd6en: "^i[a-z]*?$"
     xmjd6gbk: "^o[a-z]*?$"
     zhuan: "^\\\\.*$"
 repeat_history:
@@ -488,16 +485,6 @@ xmjd6_user:
   enable_sentence: false
   initial_quality: "-1"
   user_dict: xmjd6_user
-xmjd6en:
-  comment_format:
-    - "xform/.*//"
-  dictionary: xmjd6.en
-  enable_completion: true
-  enable_sentence: true
-  enable_user_dict: false
-  prefix: i
-  tag: xmjd6en
-  tips: "〔单词〕"
 xmjd6gbk:
   dictionary: xmjd6.gbk
   enable_completion: true
