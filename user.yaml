@@ -1,11 +1,11 @@
 var:
-  last_build_time: 1708681811
+  last_build_time: 1709106565
   option:
     completion: true
     embeded_cands: false
     emoji_cn: true
     simplification: true
-    tofu: true
+    tofu: false
     wxw_hint: true
   previously_selected_schema: xmjd6
   schema_access_time:
