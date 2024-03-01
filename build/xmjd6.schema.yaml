@@ -10,7 +10,7 @@ __build_info:
     symbols: 1708415772
     symbols.custom: 0
     xmjd6.custom: 1704727501
-    xmjd6.schema: 1709176063
+    xmjd6.schema: 1709296662
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -76,6 +76,7 @@ engine:
     - "lua_translator@*xmjd6/xmjd6_shijian"
     - "lua_translator@*xmjd6/zimu"
     - "lua_translator@*xmjd6/xmjd6_shuzi"
+    - "lua_translator@*xmjd6/unicode"
     - punct_translator
     - table_translator
     - reverse_lookup_translator
@@ -394,6 +395,7 @@ recognizer:
     punct: "^/([0-9]0?|[a-z]+)$"
     quanpinerfen: "^v[a-z']*'?$"
     reverse_lookup: "[a-z`]*`+[a-z`]*"
+    unicode: "^&+.*$"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
     xmjd6gbk: "^o[a-z]*?$"
