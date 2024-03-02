@@ -89,7 +89,6 @@ engine:
     - ascii_segmentor
     - matcher
     - affix_segmentor@pinyin_simp
-    - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
 
     - affix_segmentor@xmjd6gbk
@@ -101,6 +100,7 @@ engine:
     - lua_translator@*xmjd6/xmjd6_shijian
     - lua_translator@*xmjd6/zimu
     - lua_translator@*xmjd6/xmjd6_shuzi    
+    - lua_translator@*xmjd6/unicode
     - punct_translator
     - table_translator
     - reverse_lookup_translator
@@ -113,7 +113,6 @@ engine:
     - history_translator@repeat_history2
     - script_translator@quanpinerfen
     - script_translator@pinyin_simp
-    - table_translator@xmjd6en
     - script_translator@xmjd6gbk
   filters:
     # - lua_filter@*xmjd6/xmjd6_filter
@@ -231,17 +230,6 @@ pinyin_simp:
     - xform/([jqxy])v/$1u/
   prefix: "u"
   tips: "〔全拼〕"
-  
-xmjd6en:
-  tag: xmjd6en
-  dictionary: xmjd6.en
-  enable_sentence: true
-  enable_completion: true
-  enable_user_dict: false
-  comment_format:
-    - xform/.*//
-  prefix: "i"
-  tips: "〔单词〕"
 
 #↓二分反查方案
 quanpinerfen_lookup:
@@ -309,7 +297,7 @@ key_binder:
     # - {accept: bracketleft, send: Page_Up, when: has_menu} # [上翻页
     # - {accept: bracketright, send: Page_Down, when: has_menu} # ]下翻页
     - { when: always, accept: F6, select: .next }
-    - { when: always, accept: F7, toggle: jffh }
+    - { when: always, accept: "$", toggle: jffh }
     - { when: always, accept: "Control+backslash", toggle: emoji_cn }  #快捷电脑的快捷
     - { when: has_menu, accept: "&", toggle: emoji_cn }	#手机快捷切换表情
     - { when: has_menu, accept: "%", toggle: completion } #手机快捷逐码切换
@@ -344,10 +332,10 @@ recognizer:
 
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
-    xmjd6en: "^i[a-z]*?$"
     xmjd6gbk: "^o[a-z]*?$"
     jsq: "^=[^;']+$"
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
+    unicode: "^&+.*$"
     # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
 #        xmjdWXYZ: "^'['/a-z][a-z0-9,./:?!']*'?$"
 
