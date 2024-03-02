@@ -10,7 +10,7 @@ __build_info:
     symbols: 1709382753
     symbols.custom: 0
     xmjd6.custom: 1704727501
-    xmjd6.schema: 1709296700
+    xmjd6.schema: 1709383734
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -106,7 +106,7 @@ key_binder:
     - {accept: semicolon, send: 2, when: has_menu}
     - {accept: apostrophe, send: 3, when: has_menu}
     - {accept: F6, select: .next, when: always}
-    - {accept: F7, toggle: jffh, when: always}
+    - {accept: "$", toggle: jffh, when: always}
     - {accept: "Control+backslash", toggle: emoji_cn, when: always}
     - {accept: "&", toggle: emoji_cn, when: has_menu}
     - {accept: "%", toggle: completion, when: has_menu}

@@ -297,7 +297,7 @@ key_binder:
     # - {accept: bracketleft, send: Page_Up, when: has_menu} # [上翻页
     # - {accept: bracketright, send: Page_Down, when: has_menu} # ]下翻页
     - { when: always, accept: F6, select: .next }
-    - { when: always, accept: F7, toggle: jffh }
+    - { when: always, accept: "$", toggle: jffh }
     - { when: always, accept: "Control+backslash", toggle: emoji_cn }  #快捷电脑的快捷
     - { when: has_menu, accept: "&", toggle: emoji_cn }	#手机快捷切换表情
     - { when: has_menu, accept: "%", toggle: completion } #手机快捷逐码切换
