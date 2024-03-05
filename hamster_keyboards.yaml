@@ -388,10 +388,6 @@ keyboards:
                   symbol:
                     char: 𠙣䖁
                 label: 𠙣䖁
-              - action:
-                  symbol:
-                    char: u130b8
-                label: u130b8
           - action:
               character:
                 char: k
