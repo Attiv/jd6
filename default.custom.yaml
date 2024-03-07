@@ -12,6 +12,8 @@ patch:
     Control_R: noop
     Shift_L: null
     Shift_R: null
+  "switcher/hotkeys":  # 這個列表裏每項定義一個快捷鍵，使哪個都中
+    - "Control+Escape"  # 你看寫法並不是 Ctrl+` 而是與 IBus 一致的表示法
   
   "switcher/save_options/+":
     - full_shape

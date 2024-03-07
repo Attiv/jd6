@@ -1,5 +1,5 @@
 var:
-  last_build_time: 1709621004
+  last_build_time: 1709777388
   option:
     completion: true
     embeded_cands: false
@@ -10,4 +10,5 @@ var:
   previously_selected_schema: xmjd6
   schema_access_time:
     english: 1705638998
-    xmjd6: 1705639082
+    xkcj: 1709775495
+    xmjd6: 1709775684
