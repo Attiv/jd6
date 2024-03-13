@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.8.5
   timestamps:
     default: 1675621991
-    default.custom: 1710138273
+    default.custom: 1710308532
     key_bindings: 1675621991
     key_bindings.custom: 0
     punctuation: 1675621991
@@ -10,7 +10,7 @@ __build_info:
     symbols: 1709619146
     symbols.custom: 0
     xmjd6.custom: 1709777035
-    xmjd6.schema: 1710234839
+    xmjd6.schema: 1710308527
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -105,6 +105,7 @@ key_binder:
     - {accept: equal, send: Page_Down, when: has_menu}
     - {accept: semicolon, send: 2, when: has_menu}
     - {accept: apostrophe, send: 3, when: has_menu}
+    - {accept: Tab, send: 2, when: has_menu}
     - {accept: F6, select: .next, when: always}
     - {accept: "$", toggle: jffh, when: always}
     - {accept: "Control+backslash", toggle: emoji_cn, when: always}
