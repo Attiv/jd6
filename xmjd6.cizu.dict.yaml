@@ -2358,7 +2358,8 @@ sort: original
 不薄	bjbzvi
 保健操	bjc
 不测	bjce
-不睬	bjch
+不睬	bjchvi
+不菜	bjch
 不才	bjchv
 不辞	bjck
 不错	bjcl
@@ -34492,9 +34493,9 @@ sort: original
 过程中	gjf
 孤舟	gjfd
 国家重点	gjfdi
-骨折	gjfe
-国家重点实验室	gjfei
-顾着	gjfev
+骨折	gjfei
+国家重点实验室	gjfeio
+顾着	gjfe
 孤帆	gjff
 过程之中	gjffv
 古宅	gjfh
@@ -34764,8 +34765,8 @@ sort: original
 古桥	gjqc
 国家政策	gjqci
 姑且	gjqd
-骨折	gjqe
-顾着	gjqev
+骨折	gjqei
+顾着	gjqe
 孤站	gjqf
 国家政治	gjqfi
 国际政治	gjqfia
@@ -37053,7 +37054,8 @@ sort: original
 更为重要	gwfy
 过五关	gwg
 给跪	gwgb
-滚钩	gwgd
+给够	gwgd
+滚钩	gwgdai
 给个	gwge
 古文观止	gwgf
 过五关斩六将	gwgj
@@ -38552,8 +38554,8 @@ sort: original
 会审	hben
 回身	hbeni
 回神	hbenio
-会商	hbep
-会上	hbepi
+会商	hbepi
+会上	hbep
 徽商	hbepu
 回升	hber
 回声	hberi
@@ -59366,7 +59368,7 @@ sort: original
 落袋为安	ldwx
 流动性	ldx
 绿灯侠	ldxa
-漏芯	ldxb
+漏芯	ldxba
 漏泄	ldxd
 来电显示	ldxe
 烈性	ldxg
@@ -102123,7 +102125,8 @@ sort: original
 欧里	xdlkv
 斜率	xdll
 鞋脸	xdlm
-安德烈	xdlo
+学到了	xdlo
+安德烈	xdlouv
 辛德勒	xdlou
 新德里	xdloui
 新大陆	xdlov
@@ -110709,7 +110712,8 @@ sort: original
 因时制宜	yefyio
 一首歌	yeg
 也是个	yega
-夜归	yegb
+夜归	yegbo
+也贵	yegb
 野鬼	yegbi
 野狗	yegd
 也够	yegda
@@ -119054,8 +119058,8 @@ sort: original
 阻滞	zjfkaa
 阻值	zjfkai
 作奸犯科	zjfki
-自掘坟墓	zjfm
-组装	zjfma
+自掘坟墓	zjfmu
+组装	zjfm
 祖坟	zjfn
 组分	zjfna
 总价值	zjfo
