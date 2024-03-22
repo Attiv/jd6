@@ -128,6 +128,7 @@ engine:
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
     - lua_filter@*xmjd6/for_hint
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
+    - lua_filter@*xmjd6/split
     - lua_filter@*xmjd6/add_space # | 替换成空格
     - uniquifier
 

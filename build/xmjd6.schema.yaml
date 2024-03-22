@@ -10,7 +10,7 @@ __build_info:
     symbols: 1710313186
     symbols.custom: 0
     xmjd6.custom: 1709777035
-    xmjd6.schema: 1710308527
+    xmjd6.schema: 1711089668
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -48,6 +48,7 @@ engine:
     - "simplifier@tofu"
     - "lua_filter@*xmjd6/for_hint"
     - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
+    - "lua_filter@*xmjd6/split"
     - "lua_filter@*xmjd6/add_space"
     - uniquifier
   processors:
