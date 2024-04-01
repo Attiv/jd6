@@ -1150,7 +1150,7 @@ keyboards:
         buttonForegroundColor: '0xFFFFFF'
         lowerEdgeColor: '0x60C107'
   buttonInsets:
-    left: 2e+0
-    right: 2e+0
-    top: 4e+0
-    bottom: 4e+0
+    left: 2
+    right: 2
+    top: 4
+    bottom: 4
