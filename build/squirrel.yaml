@@ -1,7 +1,7 @@
 __build_info:
   rime_version: 1.8.5
   timestamps:
-    squirrel: 1675621991
+    squirrel: 1711642303
     squirrel.custom: 1705547186
 app_options:
   co.zeit.hyper:
@@ -52,8 +52,8 @@ com.apple.Finder:
   ascii_mode: false
 com.sublimetext.3:
   ascii_mode: false
-config_version: 0.37
-keyboard_layout: default
+config_version: 0.38
+keyboard_layout: last
 preset_color_schemes:
   CatDark:
     author: ProudCat
