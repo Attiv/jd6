@@ -8,9 +8,9 @@ keyboards:
           char: q
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: q
@@ -40,9 +40,9 @@ keyboards:
           char: w
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: w
@@ -72,9 +72,9 @@ keyboards:
           char: e
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: e
@@ -128,9 +128,9 @@ keyboards:
           char: r
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: r
@@ -160,9 +160,9 @@ keyboards:
           char: t
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: t
@@ -192,9 +192,9 @@ keyboards:
           char: y
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: y
@@ -224,9 +224,9 @@ keyboards:
           char: u
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: u
@@ -256,9 +256,9 @@ keyboards:
           char: i
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: i
@@ -288,9 +288,9 @@ keyboards:
           char: o
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: o
@@ -320,9 +320,9 @@ keyboards:
           char: p
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: p
@@ -365,9 +365,9 @@ keyboards:
           char: a
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: a
@@ -413,9 +413,9 @@ keyboards:
           char: s
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: s
@@ -445,9 +445,9 @@ keyboards:
           char: d
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: d
@@ -487,9 +487,9 @@ keyboards:
           char: f
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: f
@@ -519,9 +519,9 @@ keyboards:
           char: g
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: g
@@ -551,9 +551,9 @@ keyboards:
           char: h
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: h
@@ -595,9 +595,9 @@ keyboards:
           char: j
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: j
@@ -639,9 +639,9 @@ keyboards:
           char: k
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: k
@@ -671,9 +671,9 @@ keyboards:
           char: l
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: l
@@ -714,9 +714,9 @@ keyboards:
     - action: shift
       width:
         portrait:
-          percentage: 1.3e-1
+          percentage: 0.13
         landscape:
-          percentage: 1.3e-1
+          percentage: 0.13
       label:
         loadingText: ''
         text: ''
@@ -756,9 +756,9 @@ keyboards:
           char: z
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: z
@@ -793,9 +793,9 @@ keyboards:
           char: x
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: x
@@ -825,9 +825,9 @@ keyboards:
           char: c
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: c
@@ -862,9 +862,9 @@ keyboards:
           char: v
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: v
@@ -899,9 +899,9 @@ keyboards:
           char: b
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: b
@@ -931,9 +931,9 @@ keyboards:
           char: n
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: n
@@ -963,9 +963,9 @@ keyboards:
           char: m
       width:
         portrait:
-          percentage: 1e-1
+          percentage: 0.1
         landscape:
-          percentage: 1e-1
+          percentage: 0.1
       label:
         loadingText: ''
         text: m
@@ -1011,9 +1011,9 @@ keyboards:
     - action: backspace
       width:
         portrait:
-          percentage: 1.3e-1
+          percentage: 0.13
         landscape:
-          percentage: 1.3e-1
+          percentage: 0.13
       label:
         loadingText: ''
         text: ''
@@ -1050,9 +1050,9 @@ keyboards:
         keyboardType: numericNineGrid
       width:
         portrait:
-          percentage: 1.3e-1
+          percentage: 0.13
         landscape:
-          percentage: 1.3e-1
+          percentage: 0.13
       label:
         loadingText: ''
         text: ''
@@ -1071,9 +1071,9 @@ keyboards:
         keyboardType: classifySymbolic
       width:
         portrait:
-          percentage: 1.3e-1
+          percentage: 0.13
         landscape:
-          percentage: 1.3e-1
+          percentage: 0.13
       label:
         loadingText: ''
         text: 符
@@ -1110,9 +1110,9 @@ keyboards:
         keyboardType: alphabetic
       width:
         portrait:
-          percentage: 1.3e-1
+          percentage: 0.13
         landscape:
-          percentage: 1.3e-1
+          percentage: 0.13
       label:
         loadingText: ''
         text: ''
@@ -1122,9 +1122,9 @@ keyboards:
     - action: enter
       width:
         portrait:
-          percentage: 1.95e-1
+          percentage: 0.19
         landscape:
-          percentage: 1.95e-1
+          percentage: 0.19
       label:
         loadingText: ''
         text: ''
@@ -1139,18 +1139,15 @@ keyboards:
           loadingText: ''
           text: ''
       callout: []
-      lightModeStyle:
-        buttonBackgroundColor: '0xFF60C107'
-        pressedButtonBackgroundColor: '0xFF60C107'
-        buttonForegroundColor: '0xFFFFFF'
-        lowerEdgeColor: '0x60C107'
-      darkModeStyle:
-        buttonBackgroundColor: '0xFF60C107'
-        pressedButtonBackgroundColor: '0xFF60C107'
-        buttonForegroundColor: '0xFFFFFF'
-        lowerEdgeColor: '0x60C107'
+      lightModeStyleName: 微信
+      darkModeStyleName: 微信
   buttonInsets:
     left: 2
     right: 2
     top: 4
     bottom: 4
+  keyStyle:
+    微信:
+      buttonBackgroundColor: '0xFF60C107'
+      pressedButtonBackgroundColor: '0xFF60C107'
+      buttonForegroundColor: '0xFFFFFFFF'

@@ -162,7 +162,7 @@ patch:
     # 配色方案
     # 来源: https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
     # hamster_color_schemas  为引用的颜色文件名称
-     # 键盘样式
+    # 键盘样式
     #  style:
     #    # 字体样式
     #    fontFace:
@@ -176,9 +176,9 @@ patch:
     colorSchemas:
       __include: hamster_color_schemas:/colorSchemas
     style:
-     fontFace:
-      - url: "汉仪正圆-55W.ttf"
-      - url: "SymbolsNerdFontMono-Regular.ttf"
+      fontFace:
+        - url: "汉仪正圆-55W.ttf"
+        - url: "SymbolsNerdFontMono-Regular.ttf"
 
   # RIME 引擎相关配置
   rime:
@@ -216,8 +216,8 @@ patch:
     tangentThreshold: 0.577
     # 长按延迟时间，只要大于或等于此阈值，才会触发长按 Action，如空格划动
     longPressDelay: 0.2
-# 自定义键盘布局
-# 布局文档说明文档：https://github.com/imfuxiao/Hamster/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80
-# hamster_keyboards 为引用的键盘文件名称
+  # 自定义键盘布局
+  # 布局文档说明文档：https://github.com/imfuxiao/Hamster/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80
+  # hamster_keyboards 为引用的键盘文件名称
   keyboards:
-    __include: hamster_keyboards:/keyboards
+    __include: keyboards:/keyboards
