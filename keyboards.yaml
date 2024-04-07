@@ -1,3 +1,6 @@
+keyboard:
+  colorSchemas: []
+keyStyle: {}
 keyboards:
 - name: Attiv
   isPrimary: true
@@ -392,6 +395,14 @@ keyboards:
           text: ''
       - direction: left
         action: tab
+        processByRIME: true
+        display: true
+        label:
+          loadingText: ''
+          text: ''
+      - direction: right
+        action:
+          shortcutCommand: '#全选'
         processByRIME: true
         display: true
         label:
@@ -1041,6 +1052,14 @@ keyboards:
           shortcutCommand: '#重输'
         processByRIME: true
         display: false
+        label:
+          loadingText: ''
+          text: ''
+      - direction: up
+        action:
+          shortcutCommand: '#清空'
+        processByRIME: false
+        display: true
         label:
           loadingText: ''
           text: ''
