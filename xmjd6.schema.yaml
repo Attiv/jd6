@@ -80,6 +80,7 @@ engine:
     - key_binder    
     - lua_processor@*xmjd6/xmjd6_smart_2    #这个注释后不会顶功，使用流式请注释这两行
     - lua_processor@*xmjd6/xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
+    - lua_processor@*xmjd6/add_ge
     - speller
     - punctuator
     - selector
@@ -89,7 +90,6 @@ engine:
     - ascii_segmentor
     - matcher
     - affix_segmentor@pinyin_simp
-    - affix_segmentor@xmjd6en
     - affix_segmentor@quanpinerfen
 
     - affix_segmentor@xmjd6gbk
@@ -101,6 +101,7 @@ engine:
     - lua_translator@*xmjd6/xmjd6_shijian
     - lua_translator@*xmjd6/zimu
     - lua_translator@*xmjd6/xmjd6_shuzi    
+    - lua_translator@*xmjd6/unicode
     - punct_translator
     - table_translator
     - reverse_lookup_translator
@@ -113,7 +114,6 @@ engine:
     - history_translator@repeat_history2
     - script_translator@quanpinerfen
     - script_translator@pinyin_simp
-    - table_translator@xmjd6en
     - script_translator@xmjd6gbk
   filters:
     # - lua_filter@*xmjd6/xmjd6_filter
@@ -129,6 +129,7 @@ engine:
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
     - lua_filter@*xmjd6/for_hint
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
+    - lua_filter@*xmjd6/split
     - lua_filter@*xmjd6/add_space # | 替换成空格
     - uniquifier
 
@@ -231,17 +232,6 @@ pinyin_simp:
     - xform/([jqxy])v/$1u/
   prefix: "u"
   tips: "〔全拼〕"
-  
-xmjd6en:
-  tag: xmjd6en
-  dictionary: xmjd6.en
-  enable_sentence: true
-  enable_completion: true
-  enable_user_dict: false
-  comment_format:
-    - xform/.*//
-  prefix: "i"
-  tips: "〔单词〕"
 
 #↓二分反查方案
 quanpinerfen_lookup:
@@ -298,18 +288,20 @@ key_binder:
 #  import_preset: default
   select_first_character: "bracketleft"  # 左中括号 [
   select_last_character: "bracketright"  # 右中括号 ]
+  add_ge: "backslash"
   bindings:
     - { when: always, accept: "Control+period", toggle: ascii_punct }
     - {accept: minus, send: Page_Up, when: has_menu}
     - {accept: equal, send: Page_Down, when: has_menu}
     - {accept: semicolon, send: 2, when: has_menu} #分号次选
     - {accept: apostrophe, send: 3, when: has_menu} #撇号三选
+    - { when: has_menu, accept: Tab, send: 2 } # tab 次选
     # - {accept: comma, send: Page_Up, when: has_menu}     #<,>翻页功能
     # - {accept: period, send: Page_Down, when: has_menu}   #<。>翻页功能
     # - {accept: bracketleft, send: Page_Up, when: has_menu} # [上翻页
     # - {accept: bracketright, send: Page_Down, when: has_menu} # ]下翻页
     - { when: always, accept: F6, select: .next }
-    - { when: always, accept: F7, toggle: jffh }
+    - { when: always, accept: "$", toggle: jffh }
     - { when: always, accept: "Control+backslash", toggle: emoji_cn }  #快捷电脑的快捷
     - { when: has_menu, accept: "&", toggle: emoji_cn }	#手机快捷切换表情
     - { when: has_menu, accept: "%", toggle: completion } #手机快捷逐码切换
@@ -344,10 +336,10 @@ recognizer:
 
     pinyin_simp: "^u[a-z']*'?$"
     quanpinerfen: "^v[a-z']*'?$"
-    xmjd6en: "^i[a-z]*?$"
     xmjd6gbk: "^o[a-z]*?$"
     jsq: "^=[^;']+$"
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
+    unicode: "^&+.*$"
     # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
 #        xmjdWXYZ: "^'['/a-z][a-z0-9,./:?!']*'?$"
 
