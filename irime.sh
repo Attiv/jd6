@@ -11,7 +11,7 @@ else
 fi
 
 # create the zip file
-mkdir iRime && rsync -av --progress ./* iRime/ --exclude jd6_build.zip --exclude build --exclude .git --exclude .gitignore --exclude .history --exclude build.sh --exclude 兰佬转词库.zip --exclude 词库转换键道.zip --exclude qui.py --exclude .scripts --exclude chongfu.py --exclude .build_back --exclude zhuyin.py --exclude jd6_irime.zip --exclude jd6.zip && zip -r jd6.zip iRime/ && rm -rf iRime/
+mkdir iRime && rsync -av --progress ./* iRime/ --exclude jd6_build.zip --exclude build --exclude .git --exclude .gitignore --exclude .history --exclude build.sh --exclude 兰佬转词库.zip --exclude 词库转换键道.zip --exclude qui.py --exclude .scripts --exclude chongfu.py --exclude .build_back --exclude sync --exclude zhuyin.py --exclude jd6_irime.zip --exclude jd6.zip && zip -r jd6.zip iRime/ && rm -rf iRime/
 
 
 file_path="user.yaml"

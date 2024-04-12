@@ -1,6 +1,7 @@
 var:
-  last_build_time: 1712573636
+  last_build_time: 1712847221
   option:
+    ascii_punct: false
     completion: true
     embeded_cands: false
     emoji_cn: true
