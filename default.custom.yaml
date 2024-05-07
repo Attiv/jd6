@@ -1,8 +1,8 @@
 patch:
   schema_list:
     - schema: xmjd6
-    - schema: english
-    - schema: xkcj
+
+
 
   menu:
     page_size: 6

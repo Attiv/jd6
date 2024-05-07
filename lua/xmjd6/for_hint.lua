@@ -100,6 +100,7 @@ local function init(env)
 
     env.b = config:get_string("topup/topup_with")
     env.s = config:get_string("topup/topup_this")
+
     -- env.reverse = ReverseDb("build/".. dict_name .. ".reverse.bin")
     -- 假设 ReverseDb 实例已经存在，则先释放它
     if not env.reverse then
