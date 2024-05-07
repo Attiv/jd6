@@ -3,9 +3,7 @@
     by TsFreddie
     - 简码 630 提示
     - 单字模式
---]]
-
-local function startswith(str, start)
+--]] local function startswith(str, start)
     return string.sub(str, 1, string.len(start)) == start
 end
 
@@ -19,9 +17,9 @@ local function hint(cand, input, env)
     local b = env.b
 
     local lookup = " " .. reverse:lookup(cand.text) .. " "
-    local sbb = string.match(lookup, " (["..s.."]["..b.."]+) ")
-    local short = string.match(lookup, " (["..s.."]["..s.."]) ")
-    local ssb = string.match(lookup, " (["..s.."]["..s.."]["..b.."]+) ")
+    local sbb = string.match(lookup, " ([" .. s .. "][" .. b .. "]+) ")
+    local short = string.match(lookup, " ([" .. s .. "][" .. s .. "]) ")
+    local ssb = string.match(lookup, " ([" .. s .. "][" .. s .. "][" .. b .. "]+) ")
 
     if string.len(input) > 1 then
         if sbb and not startswith(sbb, input) then
@@ -59,7 +57,8 @@ local function filter(input, env)
     local is_completion_on = context:get_option('completion')
     local is_danzi_on = context:get_option('danzi_mode')
     local input_text = context.input
-    local no_commit = (input_text:len() < 4 and input_text:match("^[bcdefghjklmnpqrstwxyz]+$")) or (input_text:match("^[avuio]+$"))
+    local no_commit = (input_text:len() < 4 and input_text:match("^[bcdefghjklmnpqrstwxyz]+$")) or
+                          (input_text:match("^[avuio]+$"))
     local has_table = false
     local first = true
     local hint_text = env.engine.schema.config:get_string('hint_text') or '✖'
@@ -101,7 +100,21 @@ local function init(env)
 
     env.b = config:get_string("topup/topup_with")
     env.s = config:get_string("topup/topup_this")
-    env.reverse = ReverseDb("build/".. dict_name .. ".reverse.bin")
+    -- env.reverse = ReverseDb("build/".. dict_name .. ".reverse.bin")
+    -- 假设 ReverseDb 实例已经存在，则先释放它
+    if not env.reverse then
+        env.reverse = ReverseDb("build/" .. dict_name .. ".reverse.bin")
+    end
+    
+    -- if env.reverse then
+    --     env.reverse:close() -- 假设 ReverseDb 有一个 close 方法来释放资源
+    --     env.reverse = nil
+    -- end
+    -- env.reverse = ReverseDb("build/" .. dict_name .. ".reverse.bin")
+
 end
 
-return { init = init, func = filter }
+return {
+    init = init,
+    func = filter
+}
