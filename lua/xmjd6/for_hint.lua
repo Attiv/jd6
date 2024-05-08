@@ -100,13 +100,15 @@ local function init(env)
 
     env.b = config:get_string("topup/topup_with")
     env.s = config:get_string("topup/topup_this")
-
+    env.gc = env.engine.context.commit_notifier:connect(function(ctx)
+        collectgarbage('collect')
+    end)
     -- env.reverse = ReverseDb("build/".. dict_name .. ".reverse.bin")
     -- 假设 ReverseDb 实例已经存在，则先释放它
     if not env.reverse then
         env.reverse = ReverseDb("build/" .. dict_name .. ".reverse.bin")
     end
-    
+
     -- if env.reverse then
     --     env.reverse:close() -- 假设 ReverseDb 有一个 close 方法来释放资源
     --     env.reverse = nil
@@ -115,7 +117,13 @@ local function init(env)
 
 end
 
+local function fini(env)
+    env.reverse = nil
+    env.gc:disconnect()
+end
+
 return {
     init = init,
+    fini = fini,
     func = filter
 }

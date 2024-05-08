@@ -363,7 +363,7 @@ patch:
       candidate_list_layout: linear
       text_orientation: horizontal
       inline_preedit: true
-      translucency: false # 为true 的话就透明+blur 就是磨砂了
+      translucency: true # 为true 的话就透明+blur 就是磨砂了
       # mutual_exclusive: true
       corner_radius: 5.0
       hilited_corner_radius: 5.0
