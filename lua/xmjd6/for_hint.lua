@@ -97,7 +97,6 @@ end
 local function init(env)
     local config = env.engine.schema.config
     local dict_name = config:get_string("translator/dictionary")
-
     env.b = config:get_string("topup/topup_with")
     env.s = config:get_string("topup/topup_this")
     env.gc = env.engine.context.commit_notifier:connect(function(ctx)
