@@ -10,7 +10,7 @@ __build_info:
     symbols: 1715674958
     symbols.custom: 0
     xmjd6.custom: 1711348806
-    xmjd6.schema: 1715674835
+    xmjd6.schema: 1716177504
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -59,6 +59,7 @@ engine:
     - "lua_processor@*xmjd6/xmjd6_smart_2"
     - "lua_processor@*xmjd6/xmjd6_topup_processor"
     - "lua_processor@*xmjd6/add_ge"
+    - "lua_processor@*xmjd6/bianzi"
     - speller
     - punctuator
     - selector
@@ -102,6 +103,7 @@ jffh:
   option_name: jffh
 key_binder:
   add_ge: backslash
+  bian_zi: slash
   bindings:
     - {accept: "Control+period", toggle: ascii_punct, when: always}
     - {accept: minus, send: Page_Up, when: has_menu}
