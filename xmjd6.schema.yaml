@@ -124,11 +124,12 @@ engine:
     - reverse_lookup_filter@gbk_lookup
     # - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
     - simplifier@emoji_cn
+    - lua_filter@*xmjd6/for_hint
     - simplifier@jffh
     - simplifier@ascii_punct
     - simplifier@mars #火星文
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
-    - lua_filter@*xmjd6/for_hint
+    
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@*xmjd6/split
     - lua_filter@*xmjd6/add_space # | 替换成空格
