@@ -3,8 +3,9 @@ patch:
   schema/name: 键道6·仰望星空   #修改方案名称，显示在空格上的名字
   speller/auto_select: false    #自动上屏开关，默认关
   hint_text: '✖'    #顶功提示符
+  # translator/enable_completion: false 这个才是逐码开关，不过false 以后键道6的 提示lua 就用不了了
 
-  #流式功能配置，想使用流式请取消以下注释，取消注释删掉 # 即可
+  #流式功能配置，想使用流式请取消以下注释，取消注释删掉 # 即可 
   
   # engine/processors/@4: null
   # engine/processors/@5: null

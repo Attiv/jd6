@@ -9,8 +9,8 @@ __build_info:
     punctuation.custom: 0
     symbols: 1715674958
     symbols.custom: 0
-    xmjd6.custom: 1711348806
-    xmjd6.schema: 1716177504
+    xmjd6.custom: 1716365183
+    xmjd6.schema: 1716364902
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -487,7 +487,7 @@ translator:
     - "xform/[0-9]//"
   dictionary: xmjd6.extended
   enable_charset_filter: false
-  enable_completion: true
+  enable_completion: false
   enable_encoder: true
   enable_sentence: false
   enable_user_dict: false
