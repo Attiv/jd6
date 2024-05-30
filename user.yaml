@@ -5,7 +5,7 @@ var:
     completion: true
     embeded_cands: false
     emoji_cn: true
-    jffh: true
+    jffh: false
     simplification: true
     tofu: false
     wxw_hint: true
