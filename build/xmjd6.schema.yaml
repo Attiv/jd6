@@ -1,16 +1,16 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
-    default: 1716158870
+    default: 1717070434
     default.custom: 1715049411
-    key_bindings: 1716158870
+    key_bindings: 1717070434
     key_bindings.custom: 0
-    punctuation: 1716158870
+    punctuation: 1717070434
     punctuation.custom: 0
-    symbols: 1715674958
+    symbols: 1716977282
     symbols.custom: 0
-    xmjd6.custom: 1716365183
-    xmjd6.schema: 1716364902
+    xmjd6.custom: 1716365937
+    xmjd6.schema: 1717044428
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -42,11 +42,11 @@ engine:
     - "reverse_lookup_filter@quanpinerfen_lookup"
     - "reverse_lookup_filter@gbk_lookup"
     - "simplifier@emoji_cn"
+    - "lua_filter@*xmjd6/for_hint"
     - "simplifier@jffh"
     - "simplifier@ascii_punct"
     - "simplifier@mars"
     - "simplifier@tofu"
-    - "lua_filter@*xmjd6/for_hint"
     - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
     - "lua_filter@*xmjd6/split"
     - "lua_filter@*xmjd6/add_space"
@@ -362,6 +362,7 @@ punctuator:
     "/t": ["ᵗ", "ṫ", "ť", "ᵵ", "ţ", "ƭ", "ᶵ", "ƫ", "ṭ", "ʈ", "ț", "ṱ", "ṯ", "ⱦ", "ʇ", "ʧ", "ʨ", "ᶿ", "ȶ", "ŧ"]
     "/tab": ["\t"]
     "/tg": ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
+    "/tm": ["™"]
     "/tq": ["☀", "☁", "⛅", "⛈", "⛆", "☂", "☔", "☃", "⛄", "⛇"]
     "/tt": ["☄", "☼", "☽", "☾", "☿", "♀", "♁", "♂", "♃", "♄", "♅", "♆", "♇"]
     "/txj": ["⚊", "⚋", "⚌", "⚍", "⚎", "⚏", "𝌀", "𝌁", "𝌂", "𝌃", "𝌄", "𝌅", "𝌆", "𝌇", "𝌈", "𝌉", "𝌊", "𝌋", "𝌌", "𝌍", "𝌎", "𝌏", "𝌐", "𝌑", "𝌒", "𝌓", "𝌔", "𝌕", "𝌖", "𝌗", "𝌘", "𝌙", "𝌚", "𝌛", "𝌜", "𝌝", "𝌞", "𝌟", "𝌠", "𝌡", "𝌢", "𝌣", "𝌤", "𝌥", "𝌦", "𝌧", "𝌨", "𝌩", "𝌪", "𝌫", "𝌬", "𝌭", "𝌮", "𝌯", "𝌰", "𝌱", "𝌲", "𝌳", "𝌴", "𝌵", "𝌶", "𝌷", "𝌸", "𝌹", "𝌺", "𝌻", "𝌼", "𝌽", "𝌾", "𝌿", "𝍀", "𝍁", "𝍂", "𝍃", "𝍄", "𝍅", "𝍆", "𝍇", "𝍈", "𝍉", "𝍊", "𝍋", "𝍌", "𝍍", "𝍎", "𝍏", "𝍐", "𝍑", "𝍒", "𝍓", "𝍔", "𝍕", "𝍖"]
@@ -487,7 +488,7 @@ translator:
     - "xform/[0-9]//"
   dictionary: xmjd6.extended
   enable_charset_filter: false
-  enable_completion: false
+  enable_completion: true
   enable_encoder: true
   enable_sentence: false
   enable_user_dict: false

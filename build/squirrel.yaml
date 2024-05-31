@@ -1,8 +1,8 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
-    squirrel: 1716158870
-    squirrel.custom: 1715057832
+    squirrel: 1717070434
+    squirrel.custom: 1717126580
 app_options:
   co.zeit.hyper:
     ascii_mode: true
@@ -322,7 +322,7 @@ preset_color_schemes:
     text_color: 0xa5a5a5
   mac:
     alpha: 1
-    back_color: 0x00000000
+    back_color: 0x32FFFFFF
     blur: true
     border_height: 0.0
     border_width: "-4.0"

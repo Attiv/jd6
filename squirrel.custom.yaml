@@ -372,7 +372,7 @@ patch:
       alpha: 1
       blur: true
       color_space: srgb
-      back_color: 0x00000000
+      back_color: 0x32FFFFFF
       candidate_text_color: 0x333333
       comment_text_color: 0x3F000000
       label_color: 0x888888
