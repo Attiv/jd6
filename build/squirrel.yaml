@@ -1,7 +1,7 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
-    squirrel: 1717070434
+    squirrel: 1717774589
     squirrel.custom: 1717126580
 app_options:
   co.zeit.hyper:
@@ -30,6 +30,8 @@ app_options:
     ascii_mode: true
   com.microsoft.VSCode:
     ascii_mode: false
+  com.microsoft.edgemac:
+    inline: true
   "com.runningwithcrayons.Alfred-2":
     ascii_mode: true
   "com.runningwithcrayons.Alfred-3":
