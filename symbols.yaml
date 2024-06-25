@@ -262,3 +262,4 @@ punctuator:
     '/kg': [' ']
     '/tm': ['™']
     '/at': ['#Misaka_AT']
+    '/hl': ['🌚']

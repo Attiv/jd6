@@ -1,7 +1,7 @@
 var:
-  last_build_time: 1719225341
+  last_build_time: 1719285269
   option:
     completion: true
     emoji_cn: true
-    full_shape: true
+    full_shape: false
     wxw_hint: true

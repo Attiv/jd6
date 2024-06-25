@@ -335,6 +335,7 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 
     reverse_lookup: "[a-z`]*`+[a-z`]*"
+    # reverse_lookup: "[a-z]+`.*" # 这样的话必须前面有字母才可以反查
     punct: "^/([0-9]0?|[a-z]+)$"
 
     pinyin_simp: "^u[a-z']*'?$"
