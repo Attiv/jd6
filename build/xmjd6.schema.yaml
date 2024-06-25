@@ -7,10 +7,10 @@ __build_info:
     key_bindings.custom: 0
     punctuation: 1717774589
     punctuation.custom: 0
-    symbols: 1719285258
+    symbols: 1719285647
     symbols.custom: 0
     xmjd6.custom: 1716365937
-    xmjd6.schema: 1719285203
+    xmjd6.schema: 1719285580
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -235,6 +235,7 @@ punctuator:
     "]": ["」", "】", "〕", "］"]
     "^": {commit: "……"}
     _: "——"
+    "`": "·"
     "{": ["『", "〖", "｛"]
     "|": ["·", "・", "|", "｜", "§", "¦", "‖"]
     "}": ["』", "〗", "｝"]
