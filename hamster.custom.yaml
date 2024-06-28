@@ -173,12 +173,12 @@ patch:
     #      # 字体名称可以用于引用系统已安装的字体，可通过以下网站查询字体名称
     #      # https://github.com/lionhylra/iOS-UIFont-Names
     #      - name: ""
-    colorSchemas:
-      __include: hamster_color_schemas:/colorSchemas
-    style:
-      fontFace:
-        - url: "汉仪正圆-55W.ttf"
-        - url: "SymbolsNerdFontMono-Regular.ttf"
+    # colorSchemas:
+    #   __include: hamster_color_schemas:/colorSchemas
+    # style:
+    #   fontFace:
+    #     - url: "汉仪正圆-55W.ttf"
+    #     - url: "SymbolsNerdFontMono-Regular.ttf"
 
   # RIME 引擎相关配置
   rime:
@@ -219,5 +219,5 @@ patch:
   # 自定义键盘布局
   # 布局文档说明文档：https://github.com/imfuxiao/Hamster/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80
   # hamster_keyboards 为引用的键盘文件名称
-  keyboards:
-    __include: keyboards:/keyboards
+  # keyboards:
+  #   __include: keyboards:/keyboards

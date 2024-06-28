@@ -7,10 +7,10 @@ __build_info:
     key_bindings.custom: 0
     punctuation: 1717774589
     punctuation.custom: 0
-    symbols: 1719285647
+    symbols: 1719285717
     symbols.custom: 0
     xmjd6.custom: 1716365937
-    xmjd6.schema: 1719285580
+    xmjd6.schema: 1719285729
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -235,7 +235,7 @@ punctuator:
     "]": ["」", "】", "〕", "］"]
     "^": {commit: "……"}
     _: "——"
-    "`": "·"
+    "`": ["`", "‵", "·", "‶", "‷", "′", "″", "‴", "⁗"]
     "{": ["『", "〖", "｛"]
     "|": ["·", "・", "|", "｜", "§", "¦", "‖"]
     "}": ["』", "〗", "｝"]
@@ -410,7 +410,7 @@ recognizer:
     pinyin_simp: "^u[a-z']*'?$"
     punct: "^/([0-9]0?|[a-z]+)$"
     quanpinerfen: "^v[a-z']*'?$"
-    reverse_lookup: "[a-z]+`.*"
+    reverse_lookup: "[a-z`]*`+[a-z`]*"
     unicode: "^&+.*$"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
