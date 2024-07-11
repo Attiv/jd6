@@ -11903,7 +11903,8 @@ sort: original
 袋装	dhfm
 带状	dhfmv
 带妆	dhfmvo
-带分	dhfn
+带份	dhfn
+带分	dhfnv
 带风	dhfr
 代发	dhfs
 待发	dhfsu
@@ -21120,7 +21121,7 @@ sort: original
 双瞳	emtyai
 说明文	emw
 双马尾	emwa
-双腕	emwf
+双腕	emwfa
 爽歪	emwh
 双翅	emwk
 爽文	emwn
@@ -45406,7 +45407,8 @@ sort: original
 金门	jbmni
 金芒	jbmp
 紧忙	jbmpi
-金马	jbms
+进吗	jbms
+金马	jbmsia
 晋煤	jbmw
 金毛	jbmz
 几百年	jbn
@@ -49076,7 +49078,8 @@ sort: original
 出头	jjtd
 锄头	jjtdi
 积极推动	jjtdu
-初探	jjtf
+初探	jjtfoi
+出摊	jjtf
 经济体制	jjtfa
 拣精剔肥	jjtfi
 初谈	jjtfo
@@ -72967,8 +72970,8 @@ sort: original
 嫖客	pcke
 票款	pckt
 漂料	pclc
-瞟了	pcle
-飘了	pclev
+瞟了	pclei
+飘了	pcle
 票了	pcleva
 飘零	pclg
 嘌呤	pclgo
@@ -107577,8 +107580,8 @@ sort: original
 儿童团	xtt
 宣腿	xttb
 悬挑	xttc
-楦头	xttd
-玄铁	xttdo
+楦头	xttdv
+玄铁	xttd
 玄谈	xttf
 悬停	xttg
 选图	xttj
