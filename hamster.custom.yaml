@@ -1,6 +1,6 @@
 patch:
   # 通用配置
-  general:
+  general/+:
     #是否开启icloud同步
     enableAppleCloud: false
     # icloud同步过滤规则
@@ -13,7 +13,7 @@ patch:
     textEditorLineWrappingEnabled: true
 
   # 工具栏
-  toolbar:
+  toolbar/+:
     # 是否开启工具栏
     enableToolbar: true
     # 显示键盘 icon 按钮
@@ -42,7 +42,7 @@ patch:
     swipePaging: true
 
   # 键盘相关配置
-  keyboard:
+  keyboard/+:
     # 使用键盘类型:
     # chinese: 中文26键
     # chineseNineGrid: 中文九宫格
@@ -181,7 +181,7 @@ patch:
     #     - url: "SymbolsNerdFontMono-Regular.ttf"
 
   # RIME 引擎相关配置
-  rime:
+  rime/+:
     # 最大候选数量
     maximumNumberOfCandidate: 50
     # 简繁切换
@@ -203,7 +203,7 @@ patch:
       - "^.*[.]txt$"
 
   # 划动相关配置
-  swipe:
+  swipe/+:
     # 指空格移动多个 point，光标移动一位。所以数字越小越灵敏
     spaceDragSensitivity: 10
 
