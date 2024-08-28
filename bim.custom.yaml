@@ -1,0 +1,16 @@
+customization:
+  distribution_code_name: default
+  distribution_version: 61
+  generator: rime_patch
+  modified_time: "Tue Aug 13 17:27:50 2024"
+  rime_version: 1.9.0
+patch:
+  app_setting:
+    haptics_On: true
+    haptics_value: 0.5
+    show_system_info: false
+    sound_effect: "iphone (1)"
+    sound_on: true
+    theme_name: dark
+    volume: 0.76534652709960938
+  config_version: 5.0
