@@ -81,6 +81,7 @@ engine:
     - lua_processor@*xmjd6/xmjd6_smart_2    #这个注释后不会顶功，使用流式请注释这两行
     - lua_processor@*xmjd6/xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
     - lua_processor@*xmjd6/add_ge
+    - lua_processor@*xmjd6/bianzi
     - speller
     - punctuator
     - selector
@@ -123,11 +124,12 @@ engine:
     - reverse_lookup_filter@gbk_lookup
     # - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
     - simplifier@emoji_cn
+    - lua_filter@*xmjd6/for_hint
     - simplifier@jffh
     - simplifier@ascii_punct
     - simplifier@mars #火星文
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
-    - lua_filter@*xmjd6/for_hint
+    
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@*xmjd6/split
     - lua_filter@*xmjd6/add_space # | 替换成空格
@@ -289,6 +291,7 @@ key_binder:
   select_first_character: "bracketleft"  # 左中括号 [
   select_last_character: "bracketright"  # 右中括号 ]
   add_ge: "backslash"
+  bian_zi: "slash"
   bindings:
     - { when: always, accept: "Control+period", toggle: ascii_punct }
     - {accept: minus, send: Page_Up, when: has_menu}
@@ -322,6 +325,8 @@ key_binder:
     - {accept: KP_Multiply, send: "*", when: has_menu}
     - {accept: KP_Add, send: +, when: has_menu}
     - {accept: KP_Decimal, send: ".", when: has_menu}
+    - {accept: Left, send: "2", when: has_menu}
+    - {accept: Right, send: "3", when: has_menu}
 
 
 recognizer:
@@ -332,6 +337,7 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 
     reverse_lookup: "[a-z`]*`+[a-z`]*"
+    # reverse_lookup: "[a-z]+`.*" # 这样的话必须前面有字母才可以反查
     punct: "^/([0-9]0?|[a-z]+)$"
 
     pinyin_simp: "^u[a-z']*'?$"

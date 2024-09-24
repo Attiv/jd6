@@ -1,15 +1,16 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
-    default: 1714847973
-    default.custom: 1712473038
-    key_bindings: 1714847973
+    default: 1717774589
+    default.custom: 1717137721
+    key_bindings: 1717774589
     key_bindings.custom: 0
-    punctuation: 1714847973
+    punctuation: 1717774589
     punctuation.custom: 0
 ascii_composer:
   good_old_caps_lock: true
   switch_key:
+    Caps_Lock: commit_code
     Control_L: noop
     Control_R: noop
 config_version: 0.40
@@ -123,8 +124,6 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 schema_list:
   - schema: xmjd6
-  - schema: english
-  - schema: xkcj
 switcher:
   abbreviate_options: true
   caption: "〔方案選單〕"

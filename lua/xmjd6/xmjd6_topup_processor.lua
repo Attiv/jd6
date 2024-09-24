@@ -97,6 +97,15 @@ local function processor(key_event, env)
         topup(env)
     end
 
+	--  空码顶
+	if not is_prev_topup and not is_topup and env.mem then
+        -- input_len < min_len now
+        local input_to_be = input .. key
+        if not env.mem:dict_lookup(input_to_be, true, 1) then
+            context:commit()
+        end
+    end
+
     return 2
 end
 
@@ -111,6 +120,8 @@ local function init(env)
     env.auto_clear = config:get_bool("topup/auto_clear") or false
     env.topup_command = config:get_bool("topup/topup_command") or false
     env.enabled = true
+	-- 空码顶
+	env.mem = env.mem or Memory(env.engine, env.engine.schema)
 end
 
 return { init = init, func = processor }

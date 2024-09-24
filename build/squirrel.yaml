@@ -1,8 +1,8 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
-    squirrel: 1714847973
-    squirrel.custom: 1712847194
+    squirrel: 1717774589
+    squirrel.custom: 1717126580
 app_options:
   co.zeit.hyper:
     ascii_mode: true
@@ -30,6 +30,8 @@ app_options:
     ascii_mode: true
   com.microsoft.VSCode:
     ascii_mode: false
+  com.microsoft.edgemac:
+    inline: true
   "com.runningwithcrayons.Alfred-2":
     ascii_mode: true
   "com.runningwithcrayons.Alfred-3":
@@ -52,7 +54,7 @@ com.apple.Finder:
   ascii_mode: false
 com.sublimetext.3:
   ascii_mode: false
-config_version: 0.38
+config_version: 1.0
 keyboard_layout: last
 preset_color_schemes:
   CatDark:
@@ -321,29 +323,30 @@ preset_color_schemes:
     name: "明月／Luna"
     text_color: 0xa5a5a5
   mac:
-    author: vitta
-    back_color: 0x00000000
+    alpha: 1
+    back_color: 0x32FFFFFF
     blur: true
-    border_color_width: 0
-    border_height: 4
-    border_width: 4
-    candidate_back_color: 0xD05B21
-    candidate_format: "%c %@  "
+    border_height: 0.0
+    border_width: "-4.0"
+    candidate_list_layout: linear
     candidate_text_color: 0x333333
-    corner_radius: 5
+    color_space: srgb
+    comment_text_color: 0x3F000000
+    corner_radius: 5.0
     font_face: "AI-AI"
-    font_point: 16
+    font_point: 16.0
     hilited_candidate_back_color: 0xD05B21
-    hilited_candidate_label_color: 0xffffff
-    hilited_comment_text_color: 0xffffff
-    hilited_corner_radius: 5
-    hilited_text_color: 0xffffff
-    horizontal: true
+    hilited_candidate_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_corner_radius: 5.0
+    hilited_text_color: 0xFFFFFF
     inline_preedit: true
     label_color: 0x888888
-    label_font_point: 14
     name: vitta_mac
     text_color: 0x333333
+    text_orientation: horizontal
+    translucency: true
   mac_dark:
     author: viita
     back_color: 0x00000000
