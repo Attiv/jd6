@@ -74,14 +74,14 @@ switches:
 
 engine:
   processors:
-    - lua_processor@*xmjd6/xmjd6_select_character  # 以词定字
+    - lua_processor@xmjd6_select_character  # 以词定字
     - ascii_composer
     - recognizer
     - key_binder    
-    - lua_processor@*xmjd6/xmjd6_smart_2    #这个注释后不会顶功，使用流式请注释这两行
-    - lua_processor@*xmjd6/xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
-    - lua_processor@*xmjd6/add_ge
-    - lua_processor@*xmjd6/bianzi
+    - lua_processor@xmjd6_smart_2    #这个注释后不会顶功，使用流式请注释这两行
+    - lua_processor@xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
+    - lua_processor@add_ge
+    - lua_processor@bianzi
     - speller
     - punctuator
     - selector
@@ -97,11 +97,11 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
-    - lua_translator@*xmjd6/xmjd6_jisuanqi
-    - lua_translator@*xmjd6/xmjd6_shijian
-    - lua_translator@*xmjd6/zimu
-    - lua_translator@*xmjd6/xmjd6_shuzi    
-    - lua_translator@*xmjd6/unicode
+    - lua_translator@xmjd6_jisuanqi
+    - lua_translator@xmjd6_shijian
+    - lua_translator@zimu
+    - lua_translator@xmjd6_shuzi    
+    - lua_translator@unicode
     - punct_translator
     - table_translator
     - reverse_lookup_translator
@@ -121,15 +121,15 @@ engine:
     - reverse_lookup_filter@quanpinerfen_lookup
     # - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
     - simplifier@emoji_cn
-    - lua_filter@*xmjd6/for_hint
+    - lua_filter@for_hint
     - simplifier@jffh
     - simplifier@ascii_punct
     - simplifier@mars #火星文
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
     
-    - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
-    - lua_filter@*xmjd6/split
-    - lua_filter@*xmjd6/add_space # | 替换成空格
+    - lua_filter@xmjd6_embeded_cands@embeded_cands #嵌入候选
+    - lua_filter@split
+    - lua_filter@add_space # | 替换成空格
     - uniquifier
 
 #导入符号

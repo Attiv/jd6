@@ -3,17 +3,19 @@ __build_info:
   timestamps:
     default: 1717774589
     default.custom: 1727143837
+    english.custom: 0
+    english.schema: 1712473009
     key_bindings: 1717774589
     key_bindings.custom: 0
     punctuation: 1717774589
     punctuation.custom: 0
-    xmjd6.gbk.custom: 0
-    xmjd6.gbk.schema: 1704727501
 engine:
   filters:
     - simplifier
     - uniquifier
+    - "lua_filter@*eng/eng_filter"
   processors:
+    - "lua_processor@*eng/eng_processor"
     - ascii_composer
     - recognizer
     - key_binder
@@ -21,8 +23,9 @@ engine:
     - punctuator
     - selector
     - navigator
-    - express_editor
+    - fluency_editor
   segmentors:
+    - "lua_segmentor@*eng/eng_segmentor"
     - ascii_segmentor
     - matcher
     - abc_segmentor
@@ -31,6 +34,7 @@ engine:
   translators:
     - punct_translator
     - table_translator
+    - "script_translator@xmjd6"
 key_binder:
   bindings:
     - {accept: "Control+p", send: Up, when: composing}
@@ -66,7 +70,8 @@ key_binder:
     - {accept: "Control+Shift+percent", toggle: extended_charset, when: always}
   import_preset: default
 menu:
-  page_size: 6
+  alternative_select_keys: 1234567890
+  page_size: 8
 punctuator:
   full_shape:
     " ": {commit: "　"}
@@ -144,23 +149,63 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 schema:
   author:
-    - ProudCat
-  description: "GBK字集辅助方案"
-  name: "星猫键道6GBK字集辅助方案·勿选"
-  schema_id: xmjd6.gbk
+    - "Dicky Cheng <onkey@hotmail.com>"
+  dependencies:
+    - xmjd6
+  description: |
+    功能說明：
+      * 西文模式下不論大寫狀態與否均可輸入英文單詞，獨立於中文模式
+      * 支持大小寫混合輸入，候選單詞自動匹配
+      * 在輸入過程中可使用通配符查詞
+      * 符號或空格直接連候選詞一齊上屏，數字則取決於數字選詞開關
+      * 可以將單詞註釋展開成多行或疊起爲一行
+      * 中文輸入法使用"朙月拼音"，請自行更改
+
+  name: English
+  schema_id: english
   version: 0.1
+simplifier:
+  opencc_config: s2t.json
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba
-  delimiter: " ;'"
+  algebra:
+    - "xform/\\w/\\L$0/"
+  delimiter: " '"
+style:
+  horizontal: false
+  inline_preedit: false
 switches:
   - name: ascii_mode
-    reset: 0
-    states: ["中文", "西文"]
+    reset: 1
+    states: ["中文", "英文"]
   - name: full_shape
     states: ["半角", "全角"]
   - name: simplification
     states: ["漢字", "汉字"]
   - name: ascii_punct
+    reset: 0
     states: ["。，", "．，"]
+  - name: num_selection
+    states: ["🔟數字", "🔞引用"]
+  - name: fold_comments
+    states: ["展開", "疊起"]
 translator:
-  dictionary: xmjd6.gbk
+  delimiter: ""
+  dictionary: english
+  enable_encoder: false
+  enable_sentence: false
+  enable_user_dict: false
+  tag: raw
+  used_punct: "-.'"
+  wildcard: "`~"
+xmjd6:
+  comment_format:
+    - "xform/[0-9]//"
+  dictionary: xmjd6.extended
+  enable_charset_filter: false
+  enable_completion: true
+  enable_encoder: true
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: true
+  initial_quality: 0
+  max_phrase_length: 10
