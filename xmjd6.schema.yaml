@@ -64,8 +64,6 @@ switches:
     states: [ "关₆₃₀", "开₆₃₀" ]
   - name: completion
     states: [ 逐码关, 逐码开 ]
-  - name: embeded_cands
-    states: [内嵌正常, 输入框显示候选]
 
 
   # - name: full_shape
@@ -126,8 +124,6 @@ engine:
     - simplifier@ascii_punct
     - simplifier@mars #火星文
     - simplifier@tofu # 雪松佬替换手机上显示不出来的字
-    
-    - lua_filter@xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@split
     - lua_filter@add_space # | 替换成空格
     - uniquifier
@@ -252,17 +248,6 @@ xmjd6_user:
 #    - xform|~||
   initial_quality: -1  #原始的 -1<关>/999999<开>修改这个会影响自造词是否会变成第一位
 
-# 嵌入候選的顯示配置
-# 默認顯示效果爲:
-# 宇[浩¹]iwl ~淍² ~泃³
-embeded_cands:
-  option_name: embeded_cands                               # 嵌入候選開關
-  index_indicators: [ ¹, ², ³, ⁴, ⁵, ⁶, ⁷, ⁸, ⁹, ⁰ ]       # 嵌入候選的序號顯示格式
-  first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}" # 首選的渲染格式
-  next_format: "${Stash}${候選}${Seq}${Comment}"           # 非首選的渲染格式
-  separator: " "                                           # 候選之間的分隔符
-  stash_placeholder: "~" 
-  
 # punctuator:
 #   import_preset: default
 #   half_shape:
@@ -291,7 +276,6 @@ key_binder:
     - { when: has_menu, accept: "&", toggle: emoji_cn }	#手机快捷切换表情
     - { when: has_menu, accept: "%", toggle: completion } #手机快捷逐码切换
     - { when: has_menu, accept: "*", toggle: tofu } #手机快捷是否开启替换
-    - { when: has_menu, accept: "#", toggle: embeded_cands } #手机快捷切换内嵌
     - {accept: KP_0, send: 0, when: composing}
     - {accept: KP_1, send: 1, when: composing}
     - {accept: KP_2, send: 2, when: composing}

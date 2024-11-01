@@ -10,26 +10,9 @@ __build_info:
     symbols: 1730375967
     symbols.custom: 0
     xmjd6.custom: 1727143837
-    xmjd6.schema: 1730376892
+    xmjd6.schema: 1730425658
 ascii_punct:
   option_name: ascii_punct
-embeded_cands:
-  first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}"
-  index_indicators:
-    - "¹"
-    - "²"
-    - "³"
-    - "⁴"
-    - "⁵"
-    - "⁶"
-    - "⁷"
-    - "⁸"
-    - "⁹"
-    - "⁰"
-  next_format: "${Stash}${候選}${Seq}${Comment}"
-  option_name: embeded_cands
-  separator: " "
-  stash_placeholder: "~"
 emoji_cn:
   comment_format:
     - "xform/.*/ /"
@@ -46,7 +29,6 @@ engine:
     - "simplifier@ascii_punct"
     - "simplifier@mars"
     - "simplifier@tofu"
-    - "lua_filter@xmjd6_embeded_cands@embeded_cands"
     - "lua_filter@split"
     - "lua_filter@add_space"
     - uniquifier
@@ -109,7 +91,6 @@ key_binder:
     - {accept: "&", toggle: emoji_cn, when: has_menu}
     - {accept: "%", toggle: completion, when: has_menu}
     - {accept: "*", toggle: tofu, when: has_menu}
-    - {accept: "#", toggle: embeded_cands, when: has_menu}
     - {accept: KP_0, send: 0, when: composing}
     - {accept: KP_1, send: 1, when: composing}
     - {accept: KP_2, send: 2, when: composing}
@@ -467,8 +448,6 @@ switches:
     states: ["关₆₃₀", "开₆₃₀"]
   - name: completion
     states: ["逐码关", "逐码开"]
-  - name: embeded_cands
-    states: ["内嵌正常", "输入框显示候选"]
 tofu:
   opencc_config: tofu.json
   option_name: tofu

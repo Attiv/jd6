@@ -26,11 +26,11 @@ librime-lua 样例
 
 -- date_translator: 将 `date` 翻译为当前日期
 -- 详见 `lua/date.lua`:
-date_translator = require("date")
+-- date_translator = require("date")
 
 -- time_translator: 将 `time` 翻译为当前时间
 -- 详见 `lua/time.lua`
-time_translator = require("time")
+-- time_translator = require("time")
 
 
 
@@ -57,7 +57,6 @@ xmjd6_shijian = require("xmjd6_shijian")
 xmjd6_shuzi = require("xmjd6_shuzi")
 unicode = require("unicode")
 for_hint = require("for_hint")
-xmjd6_embeded_cands = require("xmjd6_embeded_cands")
 split = require("split")
 
 
@@ -68,4 +67,4 @@ english_segmentor = english.segmentor
 english_translator = english.translator
 english_filter = english.filter
 english_filter0 = english.filter0
-binggan_completion = require("completion")
+-- binggan_completion = require("completion")
