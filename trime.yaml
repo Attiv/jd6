@@ -739,6 +739,7 @@ preset_color_schemes:
     action_callout_back_color: 0xFFFBFEFF
     author: attiv
     back_color: 0xFFFBFEFF
+	keyboard_back_color: 0xFFFBFEFF
     border_color: 0x01000000
     border_size: 1.0
     button_back_color: 0xFFF1F4F5
@@ -751,14 +752,12 @@ preset_color_schemes:
     candidate_text_color: 0xFF000000
     comment_text_color: 0xFF000000
     corner_radius: 6.0
-    hilited_callout_back_color: 0xFF578B2E
-    hilited_callout_foreground_color: 0xFFFBFEFF
-    hilited_candidate_back_color: 0xFF578B2E
-    hilited_candidate_label_color: 0xFFF1F4F5
-    hilited_candidate_text_color: 0xFFF1F4F5
-    hilited_comment_text_color: 0xFFF1F4F5
+    hilited_candidate_back_color: 0xFFFFFDFE
+    hilited_candidate_label_color: 0xFF000000
+    hilited_candidate_text_color: 0xFF60C107
+    hilited_comment_text_color: 0xFF000000
     label_color: 0xFF000000
-    name: aicolor
+    name: aicolor			
     schemaName: aicolor
     text_color: 0xFF000000
     
