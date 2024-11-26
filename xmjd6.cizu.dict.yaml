@@ -3016,10 +3016,10 @@ sort: original
 不肖	bjxcvi
 不孝	bjxcvu
 不谢	bjxd
-不懈	bjxdv
+不懈	bjxdvo
 不屑	bjxdva
 布偶	bjxdvi
-不写	bjxdvo
+不写	bjxdv
 布鞋	bjxdvv
 不饿	bjxe
 不安	bjxf
@@ -7620,7 +7620,7 @@ sort: original
 才顾	chgj
 才过	chgl
 采光	chgm
-菜根	chgn
+菜根	chgni
 才刚	chgp
 才挂	chgq
 才更	chgr
@@ -13505,8 +13505,8 @@ sort: original
 多组	dlzj
 多字	dlzk
 多姿	dlzku
-多作	dlzl
-多做	dlzlu
+多作	dlzlu
+多做	dlzl
 独立自主	dlzq
 多增	dlzr
 等离子	dlzu
@@ -28569,8 +28569,8 @@ sort: original
 非你莫属	fnme
 分明	fnmg
 氛霾	fnmh
-坟墓	fnmj
-分母	fnmju
+坟墓	fnmjv
+分母	fnmj
 分泌	fnmk
 分米	fnmku
 粉末	fnml
@@ -33574,7 +33574,7 @@ sort: original
 敢打	gfds
 国防大学	gfdx
 感动	gfdy
-感到	gfdz
+感到	gfdzvv
 赶到	gfdzv
 干道	gfdzvo
 广州市	gfe
@@ -64800,7 +64800,9 @@ sort: original
 乱作一团	lzytu
 柳宗元	lzyv
 狼子野心	lzyx
-老妖	lzyz
+老要	lzyz
+老妖	lzyzua
+老腰	lzyzuu
 老祖宗	lzz
 捞嘴	lzzb
 乱糟糟的	lzzd
@@ -89329,7 +89331,7 @@ sort: original
 调速	tcsj
 挑唆	tcsl
 条腿	tctb
-条条	tctc
+条条	tctcu
 迢迢	tctca
 跳跳	tctco
 跳投	tctd
@@ -92335,7 +92337,7 @@ sort: original
 天天	tmtm
 甜甜	tmtmu
 天堂	tmtp
-天塔	tmts
+天塔	tmtsv
 天团	tmtt
 田屯	tmtw
 同名同姓	tmtx
@@ -103161,7 +103163,8 @@ sort: original
 安通	xfty
 悬浮窗	xfw
 消防车	xfwa
-安万	xfwf
+安完	xfwf
+安万	xfwfo
 岸外	xfwh
 西方文化	xfwhv
 小范围	xfwi
