@@ -2,7 +2,11 @@ __build_info:
   rime_version: 1.11.2
   timestamps:
     default: 1717774589
+<<<<<<< HEAD
     default.custom: 1727143837
+=======
+    default.custom: 1732613087
+>>>>>>> main
     key_bindings: 1717774589
     key_bindings.custom: 0
     punctuation: 1717774589
