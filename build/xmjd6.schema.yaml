@@ -11,13 +11,17 @@ __build_info:
     key_bindings.custom: 0
     punctuation: 1717774589
     punctuation.custom: 0
-    symbols: 1733825332
+    symbols: 1734337040
     symbols.custom: 0
     xmjd6.custom: 1727143837
+<<<<<<< HEAD
 <<<<<<< HEAD
     xmjd6.schema: 1730425658
 =======
     xmjd6.schema: 1732613287
+>>>>>>> main
+=======
+    xmjd6.schema: 1734337206
 >>>>>>> main
 ascii_punct:
   option_name: ascii_punct
