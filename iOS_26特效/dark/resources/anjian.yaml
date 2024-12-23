@@ -1,0 +1,44 @@
+# 26键白色
+# 左右留白 8 个 px, 共 16 px
+# 上下留白 18 个 px, 共 36 px
+image1:
+  rect: { x: 12, y: 2, width: 111, height: 162 }
+  insets: { top: 38, left: 30, bottom: 36, right: 30 }
+# 26键深色
+image2:
+  rect: { x: 142, y: 2, width: 111, height: 162 }
+  insets: { top: 38, left: 30, bottom: 36, right: 30 }
+# 26键蓝色
+image3:
+  rect: { x: 272, y: 2, width: 111, height: 162 }
+  insets: { top: 38, left: 30, bottom: 36, right: 30 }
+
+# 9键白色
+# 左右留白 8 个 px，共 16 个 px
+# 上下留白 8 个 px，共 16 px
+image11:
+  rect: { x: 12, y: 200, width: 110, height: 120 }
+  insets: { top: 35, left: 35, bottom: 35, right: 35 }
+# 9键深色
+image12:
+  rect: { x: 142, y: 200, width: 110, height: 120 }
+  insets: { top: 35, left: 35, bottom: 35, right: 35 }
+# 9键蓝色
+image13:
+  rect: { x: 272, y: 200, width: 110, height: 120 }
+  insets: { top: 35, left: 35, bottom: 35, right: 35 }
+
+# 按键 hint
+image20:
+  rect: { x: 20, y: 400, width: 116, height: 140 }
+  insets: { top: 50, left: 0, bottom: 55, right: 0 }
+
+# 长按背景
+image21:
+  rect: { x: 200, y: 400, width: 100, height: 130 }
+  insets: { top: 30, left: 30, bottom: 30, right: 30 }
+
+# 长按选中
+image22:
+  rect: { x: 350, y: 400, width: 80, height: 110 }
+  insets: { top: 30, left: 30, bottom: 30, right: 30 }
