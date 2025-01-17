@@ -34,8 +34,18 @@ alphabeticSwipeUpBadgeStyle: &alphabeticSwipeUpBadgeStyle
   fontSize: 10
   #  fontWeight: regular
   center:
-    x: 0.75
-    y: 0.65
+    x: 0.25
+    y: 0.68
+
+# 字母键下划角标通用属性
+alphabeticSwipeDownBadgeStyle: &alphabeticSwipeDownBadgeStyle
+  normalColor: 575757
+  highlightColor: 575757
+  fontSize: 10
+  #  fontWeight: regular
+  center:
+    x: 0.65
+    y: 0.68
 
 # 字母键 hint 通用属性
 alphabeticHintStyle: &alphabeticHintStyle
@@ -306,7 +316,9 @@ keyboard:
     - HStack:
         subviews:
           - Cell: 123Button
+          - Cell: symbolButton
           - Cell: spaceButton
+          - Cell: EnCnButton
           - Cell: enterButton
 
 keyboardStyle:
@@ -324,18 +336,21 @@ qButton:
   foregroundStyle:
     - qButtonForegroundStyle
     - qButtonUpForegroundStyle
+    - qButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - qButtonUppercasedStateForegroundStyle
     - qButtonUpForegroundStyle
+    - qButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - qButtonUppercasedStateForegroundStyle
     - qButtonUpForegroundStyle
+    - qButtonDownForegroundStyle
   hintStyle: qButtonHintStyle
   holdSymbolsStyle: qButtonHoldSymbolsStyle
   action: { character: q }
   uppercasedStateAction: { character: Q }
-  swipeUpAction: { symbol: 1 }
-  swipeDownAction: { symbol: "!" }
+  swipeUpAction: { character: "1" }
+  swipeDownAction: { character: "!" }
 
 qButtonForegroundStyle:
   text: "q"
@@ -349,10 +364,15 @@ qButtonUpForegroundStyle:
   text: 1
   <<: *alphabeticSwipeUpBadgeStyle
 
+qButtonDownForegroundStyle:
+  text: "!"
+  <<: *alphabeticSwipeDownBadgeStyle
+
 qButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
   foregroundStyle: qButtonHintForegroundStyle
   swipeUpForegroundStyle: qButtonSwipeUpHintForegroundStyle
+  swipeDownForegroundStyle: qButtonSwipeDownHintForegroundStyle
 
 qButtonHintForegroundStyle:
   text: Q
@@ -360,6 +380,10 @@ qButtonHintForegroundStyle:
 
 qButtonSwipeUpHintForegroundStyle:
   text: 1
+  <<: *alphabeticHintStyle
+
+qButtonSwipeDownHintForegroundStyle:
+  text: "!"
   <<: *alphabeticHintStyle
 
 qButtonHoldSymbolsStyle:
@@ -400,12 +424,15 @@ wButton:
   foregroundStyle:
     - wButtonForegroundStyle
     - wButtonUpForegroundStyle
+    - wButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - wButtonUppercasedStateForegroundStyle
     - wButtonUpForegroundStyle
+    - wButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - wButtonUppercasedStateForegroundStyle
     - wButtonUpForegroundStyle
+    - wButtonDownForegroundStyle
   hintStyle: wButtonHintStyle
   action: { character: w }
   uppercasedStateAction: { character: W }
@@ -424,6 +451,10 @@ wButtonUppercasedStateForegroundStyle:
 wButtonUpForegroundStyle:
   text: 2
   <<: *alphabeticSwipeUpBadgeStyle
+
+wButtonDownForegroundStyle:
+  text: "@"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 wButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -476,17 +507,20 @@ eButton:
   foregroundStyle:
     - eButtonForegroundStyle
     - eButtonUpForegroundStyle
+    - eButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - eButtonUppercasedStateForegroundStyle
     - eButtonUpForegroundStyle
+    - eButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - eButtonUppercasedStateForegroundStyle
     - eButtonUpForegroundStyle
+    - eButtonDownForegroundStyle
   hintStyle: eButtonHintStyle
   action: { character: e }
   uppercasedStateAction: { character: E }
   swipeUpAction: { symbol: 3 }
-  swipeDownAction: { shortcutCommand: "#中英切换" }
+  swipeDownAction: { symbol: "#" }
   holdSymbolsStyle: eButtonHoldSymbolsStyle
 
 eButtonForegroundStyle:
@@ -500,6 +534,10 @@ eButtonUppercasedStateForegroundStyle:
 eButtonUpForegroundStyle:
   text: 3
   <<: *alphabeticSwipeUpBadgeStyle
+
+eButtonDownForegroundStyle:
+  text: "#"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 eButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -552,17 +590,21 @@ rButton:
   foregroundStyle:
     - rButtonForegroundStyle
     - rButtonUpForegroundStyle
+    - rButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - rButtonUppercasedStateForegroundStyle
     - rButtonUpForegroundStyle
+    - rButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - rButtonUppercasedStateForegroundStyle
     - rButtonUpForegroundStyle
+    - rButtonDownForegroundStyle
   hintStyle: rButtonHintStyle
   holdSymbolsStyle: rButtonHoldSymbolsStyle
   action: { character: r }
   uppercasedStateAction: { character: R }
   swipeUpAction: { symbol: 4 }
+  swipeDownAction: { symbol: "$" }
 
 rButtonForegroundStyle:
   text: "r"
@@ -575,6 +617,10 @@ rButtonUppercasedStateForegroundStyle:
 rButtonUpForegroundStyle:
   text: 4
   <<: *alphabeticSwipeUpBadgeStyle
+
+rButtonDownForegroundStyle:
+  text: "$"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 rButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -627,17 +673,21 @@ tButton:
   foregroundStyle:
     - tButtonForegroundStyle
     - tButtonUpForegroundStyle
+    - tButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - tButtonUppercasedStateForegroundStyle
     - tButtonUpForegroundStyle
+    - tButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - tButtonUppercasedStateForegroundStyle
     - tButtonUpForegroundStyle
+    - tButtonDownForegroundStyle
   hintStyle: tButtonHintStyle
   holdSymbolsStyle: tButtonHoldSymbolsStyle
   action: { character: t }
   uppercasedStateAction: { character: T }
   swipeUpAction: { symbol: 5 }
+  swipeDownAction: { symbol: "%" }
 
 tButtonForegroundStyle:
   text: "t"
@@ -650,6 +700,10 @@ tButtonUppercasedStateForegroundStyle:
 tButtonUpForegroundStyle:
   text: 5
   <<: *alphabeticSwipeUpBadgeStyle
+
+tButtonDownForegroundStyle:
+  text: "%"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 tButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -702,12 +756,15 @@ yButton:
   foregroundStyle:
     - yButtonForegroundStyle
     - yButtonUpForegroundStyle
+    - yButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - yButtonUppercasedStateForegroundStyle
     - yButtonUpForegroundStyle
+    - yButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - yButtonUppercasedStateForegroundStyle
     - yButtonUpForegroundStyle
+    - yButtonDownForegroundStyle
   hintStyle: yButtonHintStyle
   holdSymbolsStyle: yButtonHoldSymbolsStyle
   action: { character: y }
@@ -726,6 +783,10 @@ yButtonUppercasedStateForegroundStyle:
 yButtonUpForegroundStyle:
   text: 6
   <<: *alphabeticSwipeUpBadgeStyle
+
+yButtonDownForegroundStyle:
+  text: "^"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 yButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -778,17 +839,21 @@ uButton:
   foregroundStyle:
     - uButtonForegroundStyle
     - uButtonUpForegroundStyle
+    - uButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - uButtonUppercasedStateForegroundStyle
     - uButtonUpForegroundStyle
+    - uButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - uButtonUppercasedStateForegroundStyle
     - uButtonUpForegroundStyle
+    - uButtonDownForegroundStyle
   hintStyle: uButtonHintStyle
   holdSymbolsStyle: uButtonHoldSymbolsStyle
   action: { character: u }
   uppercasedStateAction: { character: U }
   swipeUpAction: { symbol: 7 }
+  swipeDownAction: { symbol: "&" }
 
 uButtonForegroundStyle:
   text: "u"
@@ -801,6 +866,10 @@ uButtonUppercasedStateForegroundStyle:
 uButtonUpForegroundStyle:
   text: 7
   <<: *alphabeticSwipeUpBadgeStyle
+
+uButtonDownForegroundStyle:
+  text: "&"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 uButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -853,17 +922,21 @@ iButton:
   foregroundStyle:
     - iButtonForegroundStyle
     - iButtonUpForegroundStyle
+    - iButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - iButtonUppercasedStateForegroundStyle
     - iButtonUpForegroundStyle
+    - iButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - iButtonUppercasedStateForegroundStyle
     - iButtonUpForegroundStyle
+    - iButtonDownForegroundStyle
   hintStyle: iButtonHintStyle
   holdSymbolsStyle: iButtonHoldSymbolsStyle
   action: { character: i }
   uppercasedStateAction: { character: I }
   swipeUpAction: { symbol: 8 }
+  swipeDownAction: { symbol: "*" }
 
 iButtonForegroundStyle:
   text: "i"
@@ -876,6 +949,10 @@ iButtonUppercasedStateForegroundStyle:
 iButtonUpForegroundStyle:
   text: 8
   <<: *alphabeticSwipeUpBadgeStyle
+
+iButtonDownForegroundStyle:
+  text: "*"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 iButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -928,17 +1005,21 @@ oButton:
   foregroundStyle:
     - oButtonForegroundStyle
     - oButtonUpForegroundStyle
+    - oButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - oButtonUppercasedStateForegroundStyle
     - oButtonUpForegroundStyle
+    - oButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - oButtonUppercasedStateForegroundStyle
     - oButtonUpForegroundStyle
+    - oButtonDownForegroundStyle
   hintStyle: oButtonHintStyle
   holdSymbolsStyle: oButtonHoldSymbolsStyle
   action: { character: o }
   uppercasedStateAction: { character: O }
   swipeUpAction: { symbol: 9 }
+  swipeDownAction: { symbol: "(" }
 
 oButtonForegroundStyle:
   text: "o"
@@ -951,6 +1032,10 @@ oButtonUppercasedStateForegroundStyle:
 oButtonUpForegroundStyle:
   text: 9
   <<: *alphabeticSwipeUpBadgeStyle
+
+oButtonDownForegroundStyle:
+  text: "("
+  <<: *alphabeticSwipeDownBadgeStyle
 
 oButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1003,16 +1088,20 @@ pButton:
   foregroundStyle:
     - pButtonForegroundStyle
     - pButtonUpForegroundStyle
+    - pButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - pButtonUppercasedStateForegroundStyle
     - pButtonUpForegroundStyle
+    - pButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - pButtonUppercasedStateForegroundStyle
     - pButtonUpForegroundStyle
+    - pButtonDownForegroundStyle
   hintStyle: pButtonHintStyle
   action: { character: p }
   uppercasedStateAction: { character: P }
   swipeUpAction: { symbol: 0 }
+  swipeDownAction: { symbol: ")" }
   holdSymbolsStyle: pButtonHoldSymbolsStyle
 
 pButtonForegroundStyle:
@@ -1026,6 +1115,10 @@ pButtonUppercasedStateForegroundStyle:
 pButtonUpForegroundStyle:
   text: 0
   <<: *alphabeticSwipeUpBadgeStyle
+
+pButtonDownForegroundStyle:
+  text: ")"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 pButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1081,16 +1174,20 @@ aButton:
   foregroundStyle:
     - aButtonForegroundStyle
     - aButtonUpForegroundStyle
+    - aButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - aButtonUppercasedStateForegroundStyle
     - aButtonUpForegroundStyle
+    - aButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - aButtonUppercasedStateForegroundStyle
     - aButtonUpForegroundStyle
+    - aButtonDownForegroundStyle
   hintStyle: aButtonHintStyle
   action: { character: a }
   uppercasedStateAction: { character: A }
-  swipeUpAction: { character: "`" }
+  swipeUpAction: tab
+  swipeDownAction: { shortcutCommand: "#selectText" }
 
 aButtonForegroundStyle:
   text: "a"
@@ -1101,8 +1198,12 @@ aButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 aButtonUpForegroundStyle:
-  text: "`"
+  text: "⇥"
   <<: *alphabeticSwipeUpBadgeStyle
+
+aButtonDownForegroundStyle:
+  text: "全选"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 aButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1124,16 +1225,20 @@ sButton:
   foregroundStyle:
     - sButtonForegroundStyle
     - sButtonUpForegroundStyle
+    - sButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - sButtonUppercasedStateForegroundStyle
     - sButtonUpForegroundStyle
+    - sButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - sButtonUppercasedStateForegroundStyle
     - sButtonUpForegroundStyle
+    - sButtonDownForegroundStyle
   hintStyle: sButtonHintStyle
   action: { character: s }
   uppercasedStateAction: { character: S }
-  swipeUpAction: { symbol: "@" }
+  swipeUpAction: { symbol: "-" }
+  swipeDownAction: { character: "_" }
 
 sButtonForegroundStyle:
   text: "s"
@@ -1144,8 +1249,12 @@ sButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 sButtonUpForegroundStyle:
-  text: "@"
+  text: "-"
   <<: *alphabeticSwipeUpBadgeStyle
+
+sButtonDownForegroundStyle:
+  text: "_"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 sButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1157,7 +1266,7 @@ sButtonHintForegroundStyle:
   <<: *alphabeticHintStyle
 
 sButtonSwipeUpHintForegroundStyle:
-  text: "@"
+  text: "-"
   <<: *alphabeticHintStyle
 
 dButton:
@@ -1167,16 +1276,20 @@ dButton:
   foregroundStyle:
     - dButtonForegroundStyle
     - dButtonUpForegroundStyle
+    - dButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - dButtonUppercasedStateForegroundStyle
     - dButtonUpForegroundStyle
+    - dButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - dButtonUppercasedStateForegroundStyle
     - dButtonUpForegroundStyle
+    - dButtonDownForegroundStyle
   hintStyle: dButtonHintStyle
   action: { character: d }
   uppercasedStateAction: { character: D }
-  swipeUpAction: { symbol: "#" }
+  swipeUpAction: { character: "*" }
+  swipeDownAction: { character: "+" }
 
 dButtonForegroundStyle:
   text: "d"
@@ -1187,8 +1300,12 @@ dButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 dButtonUpForegroundStyle:
-  text: "#"
+  text: "*"
   <<: *alphabeticSwipeUpBadgeStyle
+
+dButtonDownForegroundStyle:
+  text: "+"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 dButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1200,7 +1317,7 @@ dButtonHintForegroundStyle:
   <<: *alphabeticHintStyle
 
 dButtonSwipeUpHintForegroundStyle:
-  text: "#"
+  text: "*"
   <<: *alphabeticHintStyle
 
 fButton:
@@ -1210,16 +1327,20 @@ fButton:
   foregroundStyle:
     - fButtonForegroundStyle
     - fButtonUpForegroundStyle
+    - fButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - fButtonUppercasedStateForegroundStyle
     - fButtonUpForegroundStyle
+    - fButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - fButtonUppercasedStateForegroundStyle
     - fButtonUpForegroundStyle
+    - fButtonDownForegroundStyle
   hintStyle: fButtonHintStyle
   action: { character: f }
   uppercasedStateAction: { character: F }
-  swipeUpAction: { symbol: "!" }
+  swipeUpAction: { character: "[" }
+  swipeDownAction: { runScript: "aifanyi" }
 
 fButtonForegroundStyle:
   text: "f"
@@ -1230,8 +1351,12 @@ fButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 fButtonUpForegroundStyle:
-  text: "!"
+  text: "["
   <<: *alphabeticSwipeUpBadgeStyle
+
+fButtonDownForegroundStyle:
+  text: "{"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 fButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1253,16 +1378,20 @@ gButton:
   foregroundStyle:
     - gButtonForegroundStyle
     - gButtonUpForegroundStyle
+    - gButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - gButtonUppercasedStateForegroundStyle
     - gButtonUpForegroundStyle
+    - gButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - gButtonUppercasedStateForegroundStyle
     - gButtonUpForegroundStyle
+    - gButtonDownForegroundStyle
   hintStyle: gButtonHintStyle
   action: { character: g }
   uppercasedStateAction: { character: G }
-  swipeUpAction: { symbol: "%" }
+  swipeUpAction: { character: "]" }
+  swipeDownAction: { character: "}" }
 
 gButtonForegroundStyle:
   text: "g"
@@ -1273,8 +1402,12 @@ gButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 gButtonUpForegroundStyle:
-  text: "%"
+  text: "]"
   <<: *alphabeticSwipeUpBadgeStyle
+
+gButtonDownForegroundStyle:
+  text: "}"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 gButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1286,7 +1419,7 @@ gButtonHintForegroundStyle:
   <<: *alphabeticHintStyle
 
 gButtonSwipeUpHintForegroundStyle:
-  text: "%"
+  text: "}"
   <<: *alphabeticHintStyle
 
 hButton:
@@ -1296,16 +1429,20 @@ hButton:
   foregroundStyle:
     - hButtonForegroundStyle
     - hButtonUpForegroundStyle
+    - hButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - hButtonUppercasedStateForegroundStyle
     - hButtonUpForegroundStyle
+    - hButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - hButtonUppercasedStateForegroundStyle
     - hButtonUpForegroundStyle
+    - hButtonDownForegroundStyle
   hintStyle: hButtonHintStyle
   action: { character: h }
   uppercasedStateAction: { character: H }
-  swipeUpAction: { symbol: "&" }
+  swipeUpAction: { character: "(" }
+  swipeDownAction: { character: "|" }
 
 hButtonForegroundStyle:
   text: "h"
@@ -1316,8 +1453,12 @@ hButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 hButtonUpForegroundStyle:
-  text: "&"
+  text: "("
   <<: *alphabeticSwipeUpBadgeStyle
+
+hButtonDownForegroundStyle:
+  text: "|"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 hButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1339,16 +1480,20 @@ jButton:
   foregroundStyle:
     - jButtonForegroundStyle
     - jButtonUpForegroundStyle
+    - jButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - jButtonUppercasedStateForegroundStyle
     - jButtonUpForegroundStyle
+    - jButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - jButtonUppercasedStateForegroundStyle
     - jButtonUpForegroundStyle
+    - jButtonDownForegroundStyle
   hintStyle: jButtonHintStyle
   action: { character: j }
   uppercasedStateAction: { character: J }
-  swipeUpAction: { symbol: "*" }
+  swipeUpAction: { character: ")" }
+  swipeDownAction: { character: "?" }
 
 jButtonForegroundStyle:
   text: "j"
@@ -1359,8 +1504,12 @@ jButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 jButtonUpForegroundStyle:
-  text: "*"
+  text: ")"
   <<: *alphabeticSwipeUpBadgeStyle
+
+jButtonDownForegroundStyle:
+  text: "?"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 jButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1382,16 +1531,20 @@ kButton:
   foregroundStyle:
     - kButtonForegroundStyle
     - kButtonUpForegroundStyle
+    - kButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - kButtonUppercasedStateForegroundStyle
     - kButtonUpForegroundStyle
+    - kButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - kButtonUppercasedStateForegroundStyle
     - kButtonUpForegroundStyle
+    - kButtonDownForegroundStyle
   hintStyle: kButtonHintStyle
   action: { character: k }
   uppercasedStateAction: { character: K }
-  swipeUpAction: { symbol: "(" }
+  swipeUpAction: { character: ";" }
+  swipeDownAction: { character: ":" }
 
 kButtonForegroundStyle:
   text: "k"
@@ -1402,8 +1555,12 @@ kButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 kButtonUpForegroundStyle:
-  text: (
+  text: ";"
   <<: *alphabeticSwipeUpBadgeStyle
+
+kButtonDownForegroundStyle:
+  text: ":"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 kButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1428,16 +1585,20 @@ lButton:
   foregroundStyle:
     - lButtonForegroundStyle
     - lButtonUpForegroundStyle
+    - lButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - lButtonUppercasedStateForegroundStyle
     - lButtonUpForegroundStyle
+    - lButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - lButtonUppercasedStateForegroundStyle
     - lButtonUpForegroundStyle
+    - lButtonDownForegroundStyle
   hintStyle: lButtonHintStyle
   action: { character: l }
   uppercasedStateAction: { character: L }
-  swipeUpAction: { symbol: ")" }
+  swipeUpAction: { character: "'" }
+  swipeDownAction: { character: '"' }
 
 lButtonForegroundStyle:
   text: "l"
@@ -1448,8 +1609,12 @@ lButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 lButtonUpForegroundStyle:
-  text: )
+  text: "'"
   <<: *alphabeticSwipeUpBadgeStyle
+
+lButtonDownForegroundStyle:
+  text: '"'
+  <<: *alphabeticSwipeDownBadgeStyle
 
 lButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1501,16 +1666,20 @@ zButton:
   foregroundStyle:
     - zButtonForegroundStyle
     - zButtonUpForegroundStyle
+    - zButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - zButtonUppercasedStateForegroundStyle
     - zButtonUpForegroundStyle
+    - zButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - zButtonUppercasedStateForegroundStyle
     - zButtonUpForegroundStyle
+    - zButtonDownForegroundStyle
   hintStyle: zButtonHintStyle
   action: { character: z }
   uppercasedStateAction: { character: Z }
-  swipeUpAction: { symbol: "~" }
+  swipeUpAction: { character: "`" }
+  swipeDownAction: { shortcutCommand: "#行首" }
 
 zButtonForegroundStyle:
   text: "z"
@@ -1521,8 +1690,12 @@ zButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 zButtonUpForegroundStyle:
-  text: ~
+  text: "`"
   <<: *alphabeticSwipeUpBadgeStyle
+
+zButtonDownForegroundStyle:
+  text: "行首"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 zButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1544,16 +1717,20 @@ xButton:
   foregroundStyle:
     - xButtonForegroundStyle
     - xButtonUpForegroundStyle
+    - xButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - xButtonUppercasedStateForegroundStyle
     - xButtonUpForegroundStyle
+    - xButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - xButtonUppercasedStateForegroundStyle
     - xButtonUpForegroundStyle
+    - xButtonDownForegroundStyle
   hintStyle: xButtonHintStyle
   action: { character: x }
   uppercasedStateAction: { character: X }
-  swipeUpAction: { symbol: "/" }
+  swipeUpAction: { symbol: ":" }
+  swipeDownAction: { shortcutCommand: "#行尾" }
 
 xButtonForegroundStyle:
   text: "x"
@@ -1564,8 +1741,12 @@ xButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 xButtonUpForegroundStyle:
-  text: /
+  text: ":"
   <<: *alphabeticSwipeUpBadgeStyle
+
+xButtonDownForegroundStyle:
+  text: "行尾"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 xButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1587,17 +1768,21 @@ cButton:
   foregroundStyle:
     - cButtonForegroundStyle
     - cButtonUpForegroundStyle
+    - cButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - cButtonUppercasedStateForegroundStyle
     - cButtonUpForegroundStyle
+    - cButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - cButtonUppercasedStateForegroundStyle
     - cButtonUpForegroundStyle
+    - cButtonDownForegroundStyle
   hintStyle: cButtonHintStyle
   holdSymbolsStyle: cButtonHoldSymbolsStyle
   action: { character: c }
   uppercasedStateAction: { character: C }
-  swipeUpAction: { symbol: ";" }
+  swipeUpAction: { symbol: "~" }
+  swipeDownAction: { shortcutCommand: "#复制" }
 
 cButtonForegroundStyle:
   text: "c"
@@ -1608,8 +1793,12 @@ cButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 cButtonUpForegroundStyle:
-  text: ";"
+  text: "~"
   <<: *alphabeticSwipeUpBadgeStyle
+
+cButtonDownForegroundStyle:
+  text: "复制"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 cButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1662,17 +1851,21 @@ vButton:
   foregroundStyle:
     - vButtonForegroundStyle
     - vButtonUpForegroundStyle
+    - vButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - vButtonUppercasedStateForegroundStyle
     - vButtonUpForegroundStyle
+    - vButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - vButtonUppercasedStateForegroundStyle
     - vButtonUpForegroundStyle
+    - vButtonDownForegroundStyle
   hintStyle: vButtonHintStyle
   holdSymbolsStyle: vButtonHoldSymbolsStyle
   action: { character: v }
   uppercasedStateAction: { character: V }
-  swipeUpAction: { symbol: "?" }
+  swipeUpAction: { character: "=" }
+  swipeDownAction: { shortcutCommand: "#粘贴" }
 
 vButtonForegroundStyle:
   text: "v"
@@ -1683,8 +1876,12 @@ vButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 vButtonUpForegroundStyle:
-  text: "?"
+  text: "="
   <<: *alphabeticSwipeUpBadgeStyle
+
+vButtonDownForegroundStyle:
+  text: "粘贴"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 vButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1737,17 +1934,20 @@ bButton:
   foregroundStyle:
     - bButtonForegroundStyle
     - bButtonUpForegroundStyle
+    - bButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - bButtonUppercasedStateForegroundStyle
     - bButtonUpForegroundStyle
+    - bButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - bButtonUppercasedStateForegroundStyle
     - bButtonUpForegroundStyle
+    - bButtonDownForegroundStyle
   hintStyle: bButtonHintStyle
   action: { character: b }
   uppercasedStateAction: { character: B }
-  swipeUpAction: { symbol: "，" }
-  swipeDownAction: { symbol: "." }
+  swipeUpAction: { symbol: "," }
+  swipeDownAction: { character: "，" }
 
 bButtonForegroundStyle:
   text: "b"
@@ -1760,6 +1960,10 @@ bButtonUppercasedStateForegroundStyle:
 bButtonUpForegroundStyle:
   text: ":"
   <<: *alphabeticSwipeUpBadgeStyle
+
+bButtonDownForegroundStyle:
+  text: "，"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 bButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1781,17 +1985,20 @@ nButton:
   foregroundStyle:
     - nButtonForegroundStyle
     - nButtonUpForegroundStyle
+    - nButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - nButtonUppercasedStateForegroundStyle
     - nButtonUpForegroundStyle
+    - nButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - nButtonUppercasedStateForegroundStyle
     - nButtonUpForegroundStyle
+    - nButtonDownForegroundStyle
   hintStyle: nButtonHintStyle
   action: { character: n }
   uppercasedStateAction: { character: N }
-  swipeUpAction: { character: "。" }
-  swipeDownAction: { character: "." }
+  swipeUpAction: { symbol: "." }
+  swipeDownAction: { character: "。" }
 
 nButtonForegroundStyle:
   text: "n"
@@ -1802,8 +2009,12 @@ nButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 nButtonUpForegroundStyle:
-  text: ","
+  text: "."
   <<: *alphabeticSwipeUpBadgeStyle
+
+nButtonDownForegroundStyle:
+  text: "。"
+  <<: *alphabeticSwipeDownBadgeStyle
 
 nButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1825,12 +2036,15 @@ mButton:
   foregroundStyle:
     - mButtonForegroundStyle
     - mButtonUpForegroundStyle
+    - mButtonDownForegroundStyle
   uppercasedStateForegroundStyle:
     - mButtonUppercasedStateForegroundStyle
     - mButtonUpForegroundStyle
+    - mButtonDownForegroundStyle
   capsLockedStateForegroundStyle:
     - mButtonUppercasedStateForegroundStyle
     - mButtonUpForegroundStyle
+    - mButtonDownForegroundStyle
   hintStyle: mButtonHintStyle
   action: { character: m }
   uppercasedStateAction: { character: M }
@@ -1846,8 +2060,12 @@ mButtonUppercasedStateForegroundStyle:
   <<: *alphabeticButtonUppercasedStateForegroundStyle
 
 mButtonUpForegroundStyle:
-  text: "."
+  text: "/"
   <<: *alphabeticSwipeUpBadgeStyle
+
+mButtonDownForegroundStyle:
+  text: '\\'
+  <<: *alphabeticSwipeDownBadgeStyle
 
 mButtonHintStyle:
   backgroundStyle: alphabeticHintBackgroundStyle
@@ -1883,7 +2101,7 @@ backspaceButtonForegroundStyle:
 
 123Button:
   size:
-    width: 280/1125
+    width: 140/1125
   backgroundStyle: systemButtonBackgroundStyle
   foregroundStyle: 123ButtonForegroundStyle
   action: { keyboardType: numeric }
@@ -1892,6 +2110,17 @@ backspaceButtonForegroundStyle:
 
 123ButtonForegroundStyle:
   text: "123"
+  <<: *systemButtonForegroundStyle
+
+symbolButton:
+  size:
+    width: 140/1125
+  backgroundStyle: systemButtonBackgroundStyle
+  foregroundStyle: symbolButtonForegroundStyle
+  action: { keyboardType: symbolic }
+
+symbolButtonForegroundStyle:
+  text: "符"
   <<: *systemButtonForegroundStyle
 
 spaceButton:
@@ -1909,9 +2138,26 @@ spaceButtonPinyinForegroundStyle:
   highlightColor: 575757
   fontSize: 16
 
+
+EnCnButton:
+  size:
+    width: 140/1125
+  backgroundStyle: systemButtonBackgroundStyle
+  foregroundStyle: EnCnButtonForegroundStyle
+  action: { shortcutCommand: "#中英切换" }
+
+EnCnButtonForegroundStyle:
+  text:  |-
+    // JavaScript
+    function getText() {
+      return $getRimeOptionState("ascii_mode") ? "英" : "中";
+    }
+  <<: *systemButtonForegroundStyle
+
+
 enterButton:
   size:
-    width: 280/1125
+    width: 140/1125
   backgroundStyle: |-
     // JavaScript
     function getText() {
