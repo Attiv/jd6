@@ -91,6 +91,7 @@ toolbar:
     - toolbarButton2Style
     - toolbarButton3Style
     - toolbarButton4Style
+    - toolbarButton5Style
   horizontalCandidateStyle: horizontalCandidateStyle
   verticalCandidateStyle: verticalCandidateStyle
   candidateContextMenu: candidateContextMenu
@@ -163,6 +164,18 @@ toolbarButton4ForegroundStyle:
   normalColor: 575757
   highlightColor: 575757
   fontSize: 16
+
+toolbarButton5Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle: toolbarButton5ForegroundStyle
+  action: { runTranslateScript: "aifanyi" }
+
+toolbarButton5ForegroundStyle:
+  #systemImageName: "goforward"
+  text: "译"
+  fontSize: 16
+  normalColor: 575757
+  highlightColor: 575757
 
 horizontalCandidateStyle:
   insets: { left: 3, bottom: 1, top: 3 }
@@ -1355,7 +1368,7 @@ fButtonUpForegroundStyle:
   <<: *alphabeticSwipeUpBadgeStyle
 
 fButtonDownForegroundStyle:
-  text: "{"
+  text: "译"
   <<: *alphabeticSwipeDownBadgeStyle
 
 fButtonHintStyle:
