@@ -1,7 +1,7 @@
 __build_info:
-  rime_version: 1.11.2
+  rime_version: 1.13.0
   timestamps:
-    squirrel: 1717774589
+    squirrel: 1737643099
     squirrel.custom: 1732613087
 app_options:
   co.zeit.hyper:

@@ -10636,7 +10636,8 @@ sort: original
 点到为止	ddwf
 电动车	ddwi
 当当网	ddwii
-豆豉	ddwk
+豆豉	ddwkv
+都吃	ddwk
 逗我	ddwl
 牒文	ddwn
 都穿	ddwt
@@ -26954,10 +26955,12 @@ sort: original
 治水	fkeb
 汁水	fkeba
 之水	fkebo
-制售	fked
+炙手	fkedui
+制售	fkedui
 值守	fkedi
 之手	fkedo
-只收	fkedoa
+只收	fked
+直售	fkedu
 只手	fkedoi
 之首	fkedoo
 职守	fkedv
@@ -48256,9 +48259,9 @@ sort: original
 决斗	jhdd
 角斗	jhddu
 春回大地	jhddv
-觉得	jhde
+觉得	jhdeo
 几乎都是	jhdeu
-长话短说	jhdeuo
+长话短说	jhde
 拆单	jhdf
 拆弹	jhdfi
 决定	jhdg
@@ -97608,7 +97611,9 @@ sort: original
 瘟神	wneno
 文尚	wnep
 闻声	wner
-温莎	wnes
+问啥	wnes
+温莎	wnesa
+问傻	wneso
 温顺	wnew
 问谁	wnewo
 窝囊废	wnf
@@ -105833,7 +105838,7 @@ sort: original
 先睡	xmeb
 咸水	xmebv
 显瘦	xmedi
-先手  xmed
+先手	xmed
 娴熟	xmej
 消磨时间	xmeja
 贤淑	xmeji
@@ -112417,7 +112422,8 @@ sort: original
 与会者	yhf
 又或者	yhfa
 一合之敌	yhfd
-欲火焚身	yhfe
+约着	yhfe
+欲火焚身	yhfeu
 月黑风高	yhfg
 岳父	yhfj
 乐府	yhfju
@@ -120046,8 +120052,8 @@ sort: original
 坐堂	zltp
 做通	zlty
 作痛	zltyi
-座套	zltz
-糟老头子	zltzo
+座套	zltzo
+糟老头子	zltzou
 脏乱差	zlw
 坐愁	zlwd
 坐车	zlwe
