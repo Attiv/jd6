@@ -617,7 +617,7 @@ rButton:
   action: { character: r }
   uppercasedStateAction: { character: R }
   swipeUpAction: { symbol: 4 }
-  swipeDownAction: { symbol: "$" }
+  swipeDownAction: { character: "$" }
 
 rButtonForegroundStyle:
   text: "r"
@@ -700,7 +700,7 @@ tButton:
   action: { character: t }
   uppercasedStateAction: { character: T }
   swipeUpAction: { symbol: 5 }
-  swipeDownAction: { symbol: "%" }
+  swipeDownAction: { character: "%" }
 
 tButtonForegroundStyle:
   text: "t"
@@ -866,7 +866,7 @@ uButton:
   action: { character: u }
   uppercasedStateAction: { character: U }
   swipeUpAction: { symbol: 7 }
-  swipeDownAction: { symbol: "&" }
+  swipeDownAction: { character: "&" }
 
 uButtonForegroundStyle:
   text: "u"
@@ -949,7 +949,7 @@ iButton:
   action: { character: i }
   uppercasedStateAction: { character: I }
   swipeUpAction: { symbol: 8 }
-  swipeDownAction: { symbol: "*" }
+  swipeDownAction: { character: "*" }
 
 iButtonForegroundStyle:
   text: "i"
