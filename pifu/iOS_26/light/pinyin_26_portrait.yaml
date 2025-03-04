@@ -407,7 +407,7 @@ qButtonHoldSymbolsStyle:
     - qButtonHoldSymbolsOfQForegroundStyle
   actions:
     - { character: q }
-    - { symbol: 1 }
+    - { character: 1 }
     - { character: Q }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 0
@@ -449,7 +449,7 @@ wButton:
   hintStyle: wButtonHintStyle
   action: { character: w }
   uppercasedStateAction: { character: W }
-  swipeUpAction: { symbol: 2 }
+  swipeUpAction: { character: 2 }
   swipeDownAction: { symbol: "@" }
   holdSymbolsStyle: wButtonHoldSymbolsStyle
 
@@ -490,7 +490,7 @@ wButtonHoldSymbolsStyle:
     - wButtonHoldSymbolsOfWForegroundStyle
   actions:
     - { character: w }
-    - { symbol: 2 }
+    - { character: 2 }
     - { character: W }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -532,7 +532,7 @@ eButton:
   hintStyle: eButtonHintStyle
   action: { character: e }
   uppercasedStateAction: { character: E }
-  swipeUpAction: { symbol: 3 }
+  swipeUpAction: { character: 3 }
   swipeDownAction: { symbol: "#" }
   holdSymbolsStyle: eButtonHoldSymbolsStyle
 
@@ -573,7 +573,7 @@ eButtonHoldSymbolsStyle:
     - eButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: e }
-    - { symbol: 3 }
+    - { character: 3 }
     - { character: E }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -616,8 +616,8 @@ rButton:
   holdSymbolsStyle: rButtonHoldSymbolsStyle
   action: { character: r }
   uppercasedStateAction: { character: R }
-  swipeUpAction: { symbol: 4 }
-  swipeDownAction: { symbol: "$" }
+  swipeUpAction: { character: 4 }
+  swipeDownAction: { character: "$" }
 
 rButtonForegroundStyle:
   text: "r"
@@ -656,7 +656,7 @@ rButtonHoldSymbolsStyle:
     - rButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: r }
-    - { symbol: 4 }
+    - { character: 4 }
     - { character: R }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -699,8 +699,8 @@ tButton:
   holdSymbolsStyle: tButtonHoldSymbolsStyle
   action: { character: t }
   uppercasedStateAction: { character: T }
-  swipeUpAction: { symbol: 5 }
-  swipeDownAction: { symbol: "%" }
+  swipeUpAction: { character: 5 }
+  swipeDownAction: { character: "%" }
 
 tButtonForegroundStyle:
   text: "t"
@@ -739,7 +739,7 @@ tButtonHoldSymbolsStyle:
     - tButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: t }
-    - { symbol: 5 }
+    - { character: 5 }
     - { character: T }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -782,7 +782,7 @@ yButton:
   holdSymbolsStyle: yButtonHoldSymbolsStyle
   action: { character: y }
   uppercasedStateAction: { character: Y }
-  swipeUpAction: { symbol: 6 }
+  swipeUpAction: { character: 6 }
   swipeDownAction: { symbol: "……" }
 
 yButtonForegroundStyle:
@@ -822,7 +822,7 @@ yButtonHoldSymbolsStyle:
     - yButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: y }
-    - { symbol: 6 }
+    - { character: 6 }
     - { character: Y }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -865,8 +865,8 @@ uButton:
   holdSymbolsStyle: uButtonHoldSymbolsStyle
   action: { character: u }
   uppercasedStateAction: { character: U }
-  swipeUpAction: { symbol: 7 }
-  swipeDownAction: { symbol: "&" }
+  swipeUpAction: { character: 7 }
+  swipeDownAction: { character: "&" }
 
 uButtonForegroundStyle:
   text: "u"
@@ -905,7 +905,7 @@ uButtonHoldSymbolsStyle:
     - uButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: u }
-    - { symbol: 7 }
+    - { character: 7 }
     - { character: U }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -948,8 +948,8 @@ iButton:
   holdSymbolsStyle: iButtonHoldSymbolsStyle
   action: { character: i }
   uppercasedStateAction: { character: I }
-  swipeUpAction: { symbol: 8 }
-  swipeDownAction: { symbol: "*" }
+  swipeUpAction: { character: 8 }
+  swipeDownAction: { character: "*" }
 
 iButtonForegroundStyle:
   text: "i"
@@ -988,7 +988,7 @@ iButtonHoldSymbolsStyle:
     - iButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: i }
-    - { symbol: 8 }
+    - { character: 8 }
     - { character: I }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -1031,7 +1031,7 @@ oButton:
   holdSymbolsStyle: oButtonHoldSymbolsStyle
   action: { character: o }
   uppercasedStateAction: { character: O }
-  swipeUpAction: { symbol: 9 }
+  swipeUpAction: { character: 9 }
   swipeDownAction: { symbol: "(" }
 
 oButtonForegroundStyle:
@@ -1071,7 +1071,7 @@ oButtonHoldSymbolsStyle:
     - oButtonHoldSymbolsForegroundStyle3
   actions:
     - { character: o }
-    - { symbol: 9 }
+    - { character: 9 }
     - { character: O }
   selectedStyle: alphabeticHoldSymbolsSelectedStyle
   selectedIndex: 1
@@ -1113,7 +1113,7 @@ pButton:
   hintStyle: pButtonHintStyle
   action: { character: p }
   uppercasedStateAction: { character: P }
-  swipeUpAction: { symbol: 0 }
+  swipeUpAction: { character: 0 }
   swipeDownAction: { symbol: ")" }
   holdSymbolsStyle: pButtonHoldSymbolsStyle
 
