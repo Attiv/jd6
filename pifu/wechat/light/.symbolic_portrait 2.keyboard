@@ -1,0 +1,1765 @@
+"\u5DE5\u5177\u680F\u4E3B\u56FE\u6807": logo
+"\u72B6\u6001\u680F\u56FE\u6807\u7F29\u653E": 0.65
+"\u5217\u8868\u548C\u8BE6\u60C5\u5B57\u4F53\u5927\u5C0F": 14
+"\u5220\u9664\u6309\u94AE\u524D\u666F\u56FE\u7247\u7F29\u653E": 1
+"\u6A2A\u6392\u5E8F\u53F7\u5B57\u4F53\u5927\u5C0F": 19
+"\u6A2A\u6392\u6587\u5B57\u5B57\u4F53\u5927\u5C0F": 19
+"\u6A2A\u6392\u6CE8\u91CA\u5B57\u4F53\u5927\u5C0F": 13
+"\u4E0B\u62C9\u5E8F\u53F7\u5B57\u4F53\u5927\u5C0F": 18
+"\u4E0B\u62C9\u6587\u5B57\u5B57\u4F53\u5927\u5C0F": 18
+"\u4E0B\u62C9\u6CE8\u91CA\u5B57\u4F53\u5927\u5C0F": 12
+toolbarButtonForeground:
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+verticalCandidateButton:
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+lockButtonForeground:
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+returnButtonForeground:
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+systemButtonForegroundStyle:
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+preeditHeight: 26
+toolbarHeight: 40
+keyboardHeight: 226
+preedit:
+  insets:
+    left: 10
+    top: 2
+  backgroundStyle: preeditBackgroundStyle
+  foregroundStyle: preeditForegroundStyle
+preeditBackgroundStyle:
+  type: original
+  normalColor: ffffff
+preeditForegroundStyle:
+  textColor: 1d1d1d
+  fontSize: 14
+toolbar:
+  backgroundStyle: toolbarBackgroundStyle
+  primaryButtonStyle: primaryButtonStyle
+  secondaryButtonStyle:
+  - toolbarButtonHideStyle
+  - toolbarButton3Style
+  - toolbarButton4Style
+  - toolbarButton2Style
+  - toolbarButton7Style
+  - toolbarButton5Style
+  - toolbarButton6Style
+  horizontalCandidateStyle: horizontalCandidateStyle
+  verticalCandidateStyle: verticalCandidateStyle
+toolbarBackgroundStyle:
+  type: original
+  normalColor: ffffff
+primaryButtonStyle:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - primaryButtonForegroundStyle
+  action:
+    floatKeyboardType: floatconfig
+toolbarButtonBackgroundStyle:
+  normalColor: 00000000
+  highlightColor: 00000000
+primaryButtonForegroundStyle:
+  systemImageName: hand.point.up.left.and.text
+  fontSize: 19
+  normalColor: 555555
+  highlightColor: 555555
+toolbarButtonHideStyle:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButtonHideForegroundStyle
+  action: dismissKeyboard
+toolbarButtonHideForegroundStyle:
+  normalImage:
+    file: toolbar_icon_hide
+    image: IMG1
+  highlightImage:
+    file: toolbar_icon_hide
+    image: IMG1
+  targetScale: 0.65
+toolbarButton2Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton2ForegroundStyle
+  action:
+    shortcutCommand: '#RimeSwitcher'
+toolbarButton2ForegroundStyle:
+  text: "\u5F00\u5173"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+toolbarButton3Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton3ForegroundStyle
+  action:
+    shortcutCommand: '#showPasteboardView'
+toolbarButton3ForegroundStyle:
+  text: "\u526A\u8D34"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+toolbarButton4Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton4ForegroundStyle
+  action:
+    shortcutCommand: '#showPhraseView'
+toolbarButton4ForegroundStyle:
+  text: "\u77ED\u8BED"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+toolbarButton5Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton5ForegroundStyle
+  action:
+    runTranslateScript: "\u667A\u8C31\u7FFB\u8BD1"
+toolbarButton5ForegroundStyle:
+  text: "\u7FFB\u8BD1"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+toolbarButton6Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton6ForegroundStyle
+  action:
+    openURL: hamster://dev.fuxiao.app.hamster/keyboardSkins
+toolbarButton6ForegroundStyle:
+  text: "\u76AE\u80A4"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+toolbarButton7Style:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle:
+  - toolbarButton7ForegroundStyle
+  action:
+    floatKeyboardType: floatsearch
+toolbarButton7ForegroundStyle:
+  text: "\u641C\u7D22"
+  fontSize: 14
+  normalColor: 1d1d1d
+  highlightColor: FD5F14
+horizontalCandidateStyle:
+  insets:
+    left: 5
+    top: 5
+    bottom: 5
+  candidateStateButtonStyle: candidateStateButtonStyle
+  highlightBackgroundColor: FFFFFF00
+  preferredBackgroundColor: FFFFFF00
+  preferredIndexColor: FD5F14
+  preferredTextColor: FD5F14
+  preferredCommentColor: FD5F14
+  indexColor: 1d1d1d
+  textColor: 1d1d1d
+  commentColor: 1d1d1d
+  indexFontSize: 19
+  textFontSize: 19
+  commentFontSize: 13
+candidateStateButtonStyle:
+  backgroundStyle: toolbarButtonBackgroundStyle
+  foregroundStyle: candidateStateButtonForegroundStyle
+candidateStateButtonForegroundStyle:
+  systemImageName: chevron.down
+  normalColor: 1d1d1d
+  fontSize: 16
+verticalCandidateStyle:
+  insets:
+    top: 3
+    bottom: 3
+    left: 4
+    right: 4
+  bottomRowHeight: 53
+  backgroundStyle: verticalCandidateBackgroundStyle
+  candidateStyle: verticalCandidateOfCandidateStyle
+  pageUpButtonStyle: verticalCandidatePageUpButtonStyle
+  pageDownButtonStyle: verticalCandidatePageDownButtonStyle
+  returnButtonStyle: verticalCandidateReturnButtonStyle
+  backspaceButtonStyle: verticalCandidateBackspaceButtonStyle
+verticalCandidateBackgroundStyle:
+  normalImage:
+    file: bg4
+    image: IMG1
+verticalCandidateOfCandidateStyle:
+  insets:
+    top: 3
+    bottom: 3
+    left: 4
+    right: 4
+  cornerRadius: 15
+  backgroundColor: FFFFFF00
+  separatorColor: FFFFFF00
+  highlightBackgroundColor: FFFFFF00
+  preferredBackgroundColor: FFFFFF00
+  preferredIndexColor: 1d1d1d
+  preferredTextColor: 1d1d1d
+  preferredCommentColor: 1d1d1d
+  indexColor: 1d1d1d
+  textColor: 1d1d1d
+  commentColor: 1d1d1d
+  indexFontSize: 18
+  textFontSize: 18
+  commentFontSize: 12
+verticalCandidatePageUpButtonStyle:
+  backgroundStyle: verticalCandidateButtonBackgroundStyle
+  foregroundStyle: verticalCandidatePageUpButtonForegroundStyle
+verticalCandidateButtonBackgroundStyle:
+  normalImage:
+    file: 9py
+    image: IMG1
+  highlightImage:
+    file: 9py_press
+    image: IMG1
+verticalCandidatePageUpButtonForegroundStyle:
+  systemImageName: arrowtriangle.up.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+verticalCandidatePageDownButtonStyle:
+  backgroundStyle: verticalCandidateButtonBackgroundStyle
+  foregroundStyle: verticalCandidatePageDownButtonForegroundStyle
+verticalCandidatePageDownButtonForegroundStyle:
+  systemImageName: arrowtriangle.down.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+verticalCandidateReturnButtonStyle:
+  backgroundStyle: verticalCandidateButtonBackgroundStyle
+  foregroundStyle: verticalCandidateReturnButtonForegroundStyle
+verticalCandidateReturnButtonForegroundStyle:
+  systemImageName: arrowshape.turn.up.left.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+verticalCandidateBackspaceButtonStyle:
+  backgroundStyle: verticalCandidateButtonBackgroundStyle
+  foregroundStyle:
+  - verticalCandidateBackspaceButtonForegroundStyle
+verticalCandidateBackspaceButtonForegroundStyle:
+  systemImageName: delete.left.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+keyboard:
+  style: keyboardStyle
+  subviews:
+  - HStack:
+      style: HStackStyle1
+      subviews:
+      - Cell: categoryCollection
+      - Cell: descriptionCollection
+  - HStack:
+      style: HStackStyle2
+      subviews:
+      - Cell: returnButton
+      - Cell: pageUpButton
+      - Cell: pageDownButton
+      - Cell: lockButton
+      - Cell: backspaceButton
+keyboardStyle:
+  insets:
+    top: 4
+  backgroundStyle: keyboardBackgroundStyle
+keyboardBackgroundStyle:
+  normalImage:
+    file: bg3
+    image: IMG1
+HStackStyle1:
+HStackStyle2:
+  size:
+    height: 2.2/10
+categoryCollection:
+  size:
+    width: 60/375
+  backgroundStyle: categoryCollectionButtonBackgroundStyle
+  type: classifiedSymbols
+  dataSource: category
+  cellStyle: collectionCellStyle
+categoryCollectionButtonBackgroundStyle:
+  normalImage:
+    file: 9k_bg
+    image: IMG1
+collectionCellStyle:
+  backgroundStyle: collectionCellBackgroundStyle
+  foregroundStyle: collectionCellForegroundStyle
+collectionCellBackgroundStyle:
+  highlightImage:
+    file: 9k_press
+    image: IMG1
+collectionCellForegroundStyle:
+  normalColor: '000000'
+  badgeNormalColor: '00000055'
+  fontSize: 14
+descriptionCollection:
+  size:
+    width: 315/375
+  backgroundStyle: descriptionCollectionButtonBackgroundStyle
+  type: subClassifiedSymbols
+  cellStyle: descriptionCollectionStyle
+descriptionCollectionButtonBackgroundStyle:
+  normalImage:
+    file: 26key2
+    image: IMG1
+  highlightImage:
+    file: 9k_press
+    image: IMG1
+descriptionCollectionStyle:
+  backgroundStyle: collectionCellBackgroundStyle
+  foregroundStyle: descriptionCollectionForegroundStyle
+descriptionCollectionForegroundStyle:
+  normalColor: 1d1d1d
+  badgeNormalColor: 1d1d1d55
+  fontSize: 14
+returnButton:
+  size:
+    width: 60/375
+  backgroundStyle: returnButtonBackgroundStyle
+  foregroundStyle: returnButtonForegroundStyle
+  action:
+    keyboardType: chinese
+returnButtonBackgroundStyle:
+  normalImage:
+    file: 9py
+    image: IMG1
+  highlightImage:
+    file: 9py_press
+    image: IMG1
+  animation: animation
+returnButtonForegroundStyle:
+  systemImageName: arrowshape.turn.up.left.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+pageUpButton:
+  size:
+    width: 85/375
+  backgroundStyle: systemButtonBackgroundStyle
+  foregroundStyle: pageUpButtonForegroundStyle
+  action: pageUp
+pageUpButtonForegroundStyle:
+  systemImageName: arrowtriangle.up.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+pageDownButton:
+  size:
+    width: 85/375
+  backgroundStyle: systemButtonBackgroundStyle
+  foregroundStyle: pageDownButtonForegroundStyle
+  action: pageDown
+pageDownButtonForegroundStyle:
+  systemImageName: arrowtriangle.down.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+lockButton:
+  size:
+    width: 85/375
+  backgroundStyle: lockButtonBackgroundStyle
+  foregroundStyle: |-
+    // JavaScript
+    function getText() {
+      return $getSymbolicKeyboardLockState() ? "lockButtonForegroundStyle" : "unlockButtonForegroundStyle";
+    }
+  action: symbolicKeyboardLockStateToggle
+lockButtonBackgroundStyle:
+  normalImage:
+    file: 9py
+    image: IMG1
+  highlightImage:
+    file: 9py_press
+    image: IMG1
+  animation: animation
+lockButtonForegroundStyle:
+  systemImageName: lock.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+unlockButtonForegroundStyle:
+  systemImageName: lock.open.fill
+  fontSize: 14
+  center:
+    x: 0.5
+    y: 0.48
+  normalColor: '000000'
+  highlightColor: '000000'
+backspaceButton:
+  size:
+    width: 60/375
+  backgroundStyle: backspaceButtonBackgroundStyle
+  foregroundStyle: backspaceButtonForegroundStyle
+  action: backspace
+  repeatAction: backspace
+backspaceButtonBackgroundStyle:
+  normalImage:
+    file: 9del
+    image: IMG1
+  highlightImage:
+    file: 9del_press
+    image: IMG1
+  animation: animation
+backspaceButtonForegroundStyle:
+  animation: animation
+  normalImage:
+    file: delf
+    image: IMG1
+  highlightImage:
+    file: delf
+    image: IMG1
+  targetScale: 1
+systemButtonBackgroundStyle:
+  normalImage:
+    file: 9py
+    image: IMG1
+  highlightImage:
+    file: 9py_press
+    image: IMG1
+  animation: animation
+animation:
+- type: bounds
+  duration: 60
+  repeatCount: 1
+  fromScale: 1
+  toScale: 0.87
+- type: bounds
+  duration: 80
+  repeatCount: 1
+  fromScale: 0.87
+  toScale: 1
+dataSource:
+  category:
+  - "\u5E38\u7528"
+  - "\u4E2D\u6587"
+  - "\u82F1\u6587"
+  - "\u6570\u5B66"
+  - "\u89D2\u6807"
+  - "\u5E8F\u53F7"
+  - "\u97F3\u6807"
+  - "\u7BAD\u5934"
+  - "\u7279\u6B8A"
+  - "\u62FC\u97F3"
+  - "\u6CE8\u97F3"
+  - "\u7AD6\u6807"
+  - "\u90E8\u9996"
+  - "\u62C9\u4E01"
+  - "\u5236\u8868"
+  "\u5E38\u7528":
+  - "\u201C\u201D"
+  - "\u2018\u2019"
+  - "\u300A\u300B"
+  - "\u3010\u3011"
+  - "\uFF3B\uFF3D"
+  - '"'
+  - "'"
+  - '{}'
+  - '[]'
+  - <>
+  - "\u3001"
+  - "\u2026\u2026"
+  - "\xB7"
+  - www.
+  - .com
+  - \
+  - ^
+  - '{'
+  - '}'
+  - $
+  "\u4E2D\u6587":
+  - "\u300A\u300B"
+  - "\u2018\u2019"
+  - "\u3008\u3009"
+  - "\xB7"
+  - '-'
+  - "\u02C9"
+  - "\u02C7"
+  - "\xA8"
+  - "\u3005"
+  - "\u2016"
+  - "\u2236"
+  - "\uFF02"
+  - "\uFF07"
+  - "\uFF40"
+  - "\uFF5C"
+  - "\u3003"
+  - "\u3014\u3015"
+  - "\u300C\u300D"
+  - "\u300E\u300F"
+  - "\uFF0E"
+  - "\u3016\u3017"
+  - "\u3010\u3011"
+  - "\uFF3B\uFF3D"
+  - "\uFF5B\uFF5D"
+  - "\uFF1A"
+  - "\uFF1B"
+  - "\uFF08\uFF09"
+  - "\u2014\u2014"
+  - "\u201C\u201D"
+  - "\u2026\u2026"
+  - "\uFF5E"
+  - "\u3001"
+  - "\uFF1F"
+  - "\uFF01"
+  - "\uFF0C"
+  - "\u3002"
+  "\u82F1\u6587":
+  - ','
+  - .
+  - '?'
+  - '!'
+  - ':'
+  - /
+  - '@'
+  - .
+  - .
+  - .
+  - '"'
+  - ;
+  - "'"
+  - '~'
+  - ()
+  - <>
+  - ()
+  - '[]'
+  - '{}'
+  - <>
+  - '*'
+  - '&'
+  - '['
+  - ']'
+  - '"'
+  - '`'
+  - '#'
+  - '%'
+  - ^
+  - _
+  - +
+  - '-'
+  - '='
+  - '{'
+  - '}'
+  - '|'
+  - "\xA5"
+  - "\xA3"
+  - "\u20AC"
+  - "\uFE49"
+  - "\u2013"
+  - .
+  - .
+  - "\xB4"
+  - "\uFF02"
+  - "\uFF07"
+  - "\xA2"
+  - "\u0E3F"
+  "\u5236\u8868":
+  - "\u251D"
+  - "\u251E"
+  - "\u251F"
+  - "\u2520"
+  - "\u2521"
+  - "\u2522"
+  - "\u2550"
+  - "\u255E"
+  - "\u255F"
+  - "\u2561"
+  - "\u2562"
+  - "\u256A"
+  - "\u252D"
+  - "\u252E"
+  - "\u252F"
+  - "\u2530"
+  - "\u2531"
+  - "\u2532"
+  - "\u2551"
+  - "\u2564"
+  - "\u2565"
+  - "\u2567"
+  - "\u2568"
+  - "\u256B"
+  - "\u2525"
+  - "\u2526"
+  - "\u2527"
+  - "\u2528"
+  - "\u2529"
+  - "\u252A"
+  - "\u253D"
+  - "\u253E"
+  - "\u253F"
+  - "\u2540"
+  - "\u2541"
+  - "\u2542"
+  - "\u2535"
+  - "\u2536"
+  - "\u2537"
+  - "\u2538"
+  - "\u2539"
+  - "\u253A"
+  - "\u2544"
+  - "\u2545"
+  - "\u2546"
+  - "\u2547"
+  - "\u2548"
+  - "\u2549"
+  - "\u2508"
+  - "\u2509"
+  - "\u250A"
+  - "\u250B"
+  - "\u2543"
+  - "\u254A"
+  - "\u250D"
+  - "\u2511"
+  - "\u2515"
+  - "\u2519"
+  - "\u250E"
+  - "\u2512"
+  - "\u2516"
+  - "\u251A"
+  - "\u2552"
+  - "\u2555"
+  - "\u2558"
+  - "\u255B"
+  - "\u2553"
+  - "\u2556"
+  - "\u2559"
+  - "\u255C"
+  - "\u2504"
+  - "\u2505"
+  - "\u2506"
+  - "\u2507"
+  - "\u250C"
+  - "\u252C"
+  - "\u2510"
+  - "\u251C"
+  - "\u253C"
+  - "\u2524"
+  - "\u2514"
+  - "\u2534"
+  - "\u2518"
+  - "\u250F"
+  - "\u2533"
+  - "\u2513"
+  - "\u2523"
+  - "\u254B"
+  - "\u252B"
+  - "\u2517"
+  - "\u253B"
+  - "\u251B"
+  - "\u2554"
+  - "\u2566"
+  - "\u2557"
+  - "\u2560"
+  - "\u256C"
+  - "\u2563"
+  - "\u255A"
+  - "\u2569"
+  - "\u255D"
+  "\u5E8F\u53F7":
+  - "\u2460"
+  - "\u2461"
+  - "\u2462"
+  - "\u2463"
+  - "\u2464"
+  - "\u2465"
+  - "\u2466"
+  - "\u2467"
+  - "\u2468"
+  - "\u2469"
+  - "\u2776"
+  - "\u2777"
+  - "\u2778"
+  - "\u2779"
+  - "\u277A"
+  - "\u277B"
+  - "\u277C"
+  - "\u277D"
+  - "\u277E"
+  - "\u277F"
+  - "\u24F5"
+  - "\u24F6"
+  - "\u24F7"
+  - "\u24F8"
+  - "\u24F9"
+  - "\u24FA"
+  - "\u24FB"
+  - "\u24FC"
+  - "\u24FD"
+  - "\u24FE"
+  - "\u2488"
+  - "\u2489"
+  - "\u248A"
+  - "\u248B"
+  - "\u248C"
+  - "\u248D"
+  - "\u248E"
+  - "\u248F"
+  - "\u2490"
+  - "\u2491"
+  - "\u2474"
+  - "\u2475"
+  - "\u2476"
+  - "\u2477"
+  - "\u2478"
+  - "\u2479"
+  - "\u247A"
+  - "\u247B"
+  - "\u247C"
+  - "\u247D"
+  - "\u3220"
+  - "\u3221"
+  - "\u3222"
+  - "\u3223"
+  - "\u3224"
+  - "\u3225"
+  - "\u3226"
+  - "\u3227"
+  - "\u3228"
+  - "\u3229"
+  - "\u58F9"
+  - "\u8D30"
+  - "\u53C1"
+  - "\u8086"
+  - "\u4F0D"
+  - "\u9646"
+  - "\u67D2"
+  - "\u634C"
+  - "\u7396"
+  - "\u62FE"
+  - "\u4F70"
+  - "\u4EDF"
+  - "\u842C"
+  - "\u5104"
+  - "\u2170"
+  - "\u2171"
+  - "\u2172"
+  - "\u2173"
+  - "\u2174"
+  - "\u2175"
+  - "\u2176"
+  - "\u2177"
+  - "\u2178"
+  - "\u2179"
+  - "\u2160"
+  - "\u2161"
+  - "\u2162"
+  - "\u2163"
+  - "\u2164"
+  - "\u2165"
+  - "\u2166"
+  - "\u2167"
+  - "\u2168"
+  - "\u2169"
+  - "\u216A"
+  - "\u216B"
+  "\u62C9\u4E01":
+  - "\xC0"
+  - "\xC1"
+  - "\xC2"
+  - "\xC3"
+  - "\xC4"
+  - "\xC5"
+  - "\u0100"
+  - "\xC6"
+  - "\xC7"
+  - "\xC8"
+  - "\xC9"
+  - "\xCA"
+  - "\xCB"
+  - "\u0112"
+  - "\xCC"
+  - "\xCD"
+  - "\xCE"
+  - "\xCF"
+  - "\u012A"
+  - "\xD0"
+  - "\xD1"
+  - "\xD2"
+  - "\xD3"
+  - "\xD4"
+  - "\xD5"
+  - "\xD6"
+  - "\u014C"
+  - "\xD8"
+  - "\u0152"
+  - "\xD9"
+  - "\xDA"
+  - "\xDB"
+  - "\xDC"
+  - "\u016A"
+  - "\xDD"
+  - "\u0178"
+  - "\xDE"
+  - "\u0160"
+  - "\xE0"
+  - "\xE1"
+  - "\xE2"
+  - "\xE3"
+  - "\xE4"
+  - "\xE5"
+  - "\xE6"
+  - "\xE7"
+  - "\xE8"
+  - "\xE9"
+  - "\xEA"
+  - "\xEB"
+  - "\u0113"
+  - "\xEC"
+  - "\xED"
+  - "\xEE"
+  - "\u01D0"
+  - "\xEF"
+  - "\u012B"
+  - "\xF0"
+  - "\xF1"
+  - "\xF2"
+  - "\xF3"
+  - "\xF5"
+  - "\u01D2"
+  - "\xF4"
+  - "\xF6"
+  - "\u014D"
+  - "\xF8"
+  - "\u0153"
+  - "\xF9"
+  - "\xFA"
+  - "\u01D4"
+  - "\xFB"
+  - "\xFC"
+  - "\u016B"
+  - "\xFD"
+  - "\xFE"
+  - "\u0161"
+  - "\xFF"
+  "\u62FC\u97F3":
+  - "\u0101"
+  - "\xE1"
+  - "\u01CE"
+  - "\xE0"
+  - "\u014D"
+  - "\xF3"
+  - "\u01D2"
+  - "\xF2"
+  - "\u0113"
+  - "\xE9"
+  - "\u011B"
+  - "\xE8"
+  - "\u012B"
+  - "\xED"
+  - "\u01D0"
+  - "\xEC"
+  - "\u016B"
+  - "\xFA"
+  - "\u01D4"
+  - "\xF9"
+  - "\u01D6"
+  - "\u01D8"
+  - "\u01DA"
+  - "\u01DC"
+  - "\xFC"
+  "\u6570\u5B66":
+  - '='
+  - +
+  - '-'
+  - "\xB7"
+  - /
+  - "\xD7"
+  - "\xF7"
+  - ^
+  - "\uFF1E"
+  - "\uFF1C"
+  - "\u2265"
+  - "\u2264"
+  - "\u226E"
+  - "\u226F"
+  - "\u2261"
+  - "\u2260"
+  - "\u2248"
+  - "\u2252"
+  - "\xB1"
+  - "\u221A"
+  - "\xB3"
+  - "\u221A"
+  - "\u03C0"
+  - '%'
+  - "\u2030"
+  - "\uFF05"
+  - "\u2105"
+  - "\xBD"
+  - "\u2153"
+  - "\u2154"
+  - "\xBC"
+  - "\xBE"
+  - "\u2236"
+  - "\u2235"
+  - "\u2234"
+  - "\u2237"
+  - "\u33D2"
+  - "\u33D1"
+  - "\u222B"
+  - "\u222C"
+  - "\u222D"
+  - "\u222E"
+  - "\u222F"
+  - "\u2230"
+  - "\u2202"
+  - "\u2211"
+  - "\u220F"
+  - "\u2208"
+  - "\u2209"
+  - "\u2205"
+  - "\u2282"
+  - "\u2283"
+  - "\u2286"
+  - "\u2287"
+  - "\u2284"
+  - "\u2285"
+  - "\u228A"
+  - "\u2288"
+  - "\u2ACB"
+  - "\u2ACC"
+  - "\u2200"
+  - "\u2203"
+  - "\u2229"
+  - "\u222A"
+  - "\u2227"
+  - "\u2228"
+  - "\u2299"
+  - "\u2295"
+  - "\u2225"
+  - "\u22A5"
+  - "\u2312"
+  - "\u221F"
+  - "\u2220"
+  - "\u25B3"
+  - "\u22BF"
+  - "\u221D"
+  - "\u223D"
+  - "\u221E"
+  - "\u224C"
+  - "\xB0"
+  - "\u2103"
+  - "\u2109"
+  - "\u338E"
+  - "\u338F"
+  - "\u03BC"
+  - m
+  - "\u339C"
+  - "\u339D"
+  - "\u339E"
+  - "\u33A1"
+  - m
+  - "\xB3"
+  - "\u33C4"
+  - "\u33D5"
+  "\u6CE8\u97F3":
+  - "\u3105"
+  - "\u3106"
+  - "\u3107"
+  - "\u3108"
+  - "\u3109"
+  - "\u310A"
+  - "\u310B"
+  - "\u310C"
+  - "\u310D"
+  - "\u310E"
+  - "\u310F"
+  - "\u3110"
+  - "\u3111"
+  - "\u3112"
+  - "\u3113"
+  - "\u3114"
+  - "\u3115"
+  - "\u3116"
+  - "\u3117"
+  - "\u3118"
+  - "\u3119"
+  - "\u3127"
+  - "\u3128"
+  - "\u3129"
+  - "\u311A"
+  - "\u311B"
+  - "\u311C"
+  - "\u311D"
+  - "\u311E"
+  - "\u311F"
+  - "\u3120"
+  - "\u3121"
+  - "\u3122"
+  - "\u3123"
+  - "\u3124"
+  - "\u3125"
+  - "\u3126"
+  "\u7279\u6B8A":
+  - "\u25B3"
+  - "\u25BD"
+  - "\u25CB"
+  - "\u25C7"
+  - "\u25A1"
+  - "\u2606"
+  - "\u25B7"
+  - "\u25C1"
+  - "\u2664"
+  - "\u2661"
+  - "\u2662"
+  - "\u2667"
+  - "\u25B2"
+  - "\u25BC"
+  - "\u25CF"
+  - "\u25C6"
+  - "\u25A0"
+  - "\u2605"
+  - "\u25B6"
+  - "\u25C0"
+  - "\u2660"
+  - "\u2665"
+  - "\u2666"
+  - "\u2663"
+  - "\u56CD"
+  - "\u263C"
+  - "\u263D"
+  - "\u263A"
+  - "\u25D0"
+  - "\u2611"
+  - "\u221A"
+  - "\u2714"
+  - "\u33C2"
+  - "\u2600"
+  - "\u263E"
+  - "\u2642"
+  - "\u2639"
+  - "\u25D1"
+  - "\xD7"
+  - "\u2715"
+  - "\u2718"
+  - "\u261A"
+  - "\u261B"
+  - "\u33D8"
+  - "\u25AA"
+  - "\u2022"
+  - "\u2025"
+  - "\u2026"
+  - "\u2581"
+  - "\u2582"
+  - "\u2583"
+  - "\u2584"
+  - "\u2585"
+  - "\u2586"
+  - "\u2587"
+  - "\u2588"
+  - "\u2237"
+  - "\u203B"
+  - "\u2591"
+  - "\u2592"
+  - "\u2593"
+  - "\u258F"
+  - "\u258E"
+  - "\u258D"
+  - "\u258C"
+  - "\u258B"
+  - "\u258A"
+  - "\u2589"
+  - "\u2669"
+  - "\u266A"
+  - "\u266B"
+  - "\u266C"
+  - "\xA7"
+  - "\u303C"
+  - "\u25CE"
+  - "\xA4"
+  - "\u06DE"
+  - "\u2117"
+  - "\xAE"
+  - "\xA9"
+  - "\u266D"
+  - "\u266F"
+  - "\u266E"
+  - "\u2016"
+  - "\xB6"
+  - "\u534D"
+  - "\u5350"
+  - "\u25AC"
+  - "\u3013"
+  - "\u2121"
+  - "\u2122"
+  - "\u33C7"
+  - "\u260C"
+  - "\u260D"
+  - "\u260B"
+  - "\u260A"
+  - "\u327F"
+  - "\u25EE"
+  - "\u25EA"
+  - "\u25D4"
+  - "\u25D5"
+  - '@'
+  - "\u3231"
+  - "\u2116"
+  - "\u2648"
+  - "\u2649"
+  - "\u264A"
+  - "\u264B"
+  - "\u264C"
+  - "\u264E"
+  - "\u264F"
+  - "\u2650"
+  - "\u2651"
+  - "\u2653"
+  - "\u2652"
+  - "\u264D"
+  - "\u2630"
+  - "\u2631"
+  - "\u2632"
+  - "\u2633"
+  - "\u262F"
+  - "\u2634"
+  - "\u2635"
+  - "\u2636"
+  - "\u2637"
+  - '*'
+  - "\uFF0A"
+  - "\u2732"
+  - "\u2748"
+  - "\u2749"
+  - "\u273F"
+  - "\u2740"
+  - "\u2743"
+  - "\u2741"
+  - "\u2638"
+  - "\u2716"
+  - "\u271A"
+  - "\u272A"
+  - "\u2764"
+  - "\u10E6"
+  - "\u2766"
+  - "\u2767"
+  - "\u20AA"
+  - "\u270E"
+  - "\u270D"
+  - "\U0001F4DD"
+  - "\u270C"
+  - "\u2601"
+  - "\u2602"
+  - "\u2603"
+  - "\u2604"
+  - "\u2668"
+  - "\u2607"
+  - "\u2608"
+  - "\u2621"
+  - "\u27B7"
+  - "\u22B9"
+  - "\u2709"
+  - "\u260F"
+  - "\u2622"
+  - "\u2623"
+  - "\u2620"
+  - "\u262E"
+  - "\u3004"
+  - "\u27B9"
+  - "\u2629"
+  - "\u0B90"
+  - "\u260E"
+  - "\u2708"
+  - "\u3020"
+  - "\u06E9"
+  - "\u2719"
+  - "\u271F"
+  - "\u2624"
+  - "\u2625"
+  - "\u2626"
+  - "\u2627"
+  - "\u2628"
+  - "\u262B"
+  - "\u262C"
+  - "\u265F"
+  - "\u2659"
+  - "\u265C"
+  - "\u2656"
+  - "\u265E"
+  - "\u2658"
+  - "\u265D"
+  - "\u2657"
+  - "\u265B"
+  - "\u2655"
+  - "\u265A"
+  - "\u2654"
+  - "\u2704"
+  - "\u2701"
+  - "\u2703"
+  - "\u2765"
+  - "\u272A"
+  - "\u2612"
+  - "\u2745"
+  - "\u2723"
+  - "\u2730"
+  - "\u2680"
+  - "\u2681"
+  - "\u2682"
+  - "\u2683"
+  - "\u2684"
+  - "\u2685"
+  "\u7AD6\u6807":
+  - "\uFE10"
+  - "\uFE11"
+  - "\uFE12"
+  - "\uFE13"
+  - "\uFE14"
+  - "\uFE15"
+  - "\uFE16"
+  - "\uFE35"
+  - "\uFE36"
+  - "\uFE37"
+  - "\uFE38"
+  - "\uFE39"
+  - "\uFE3A"
+  - "\uFE3F"
+  - "\uFE40"
+  - "\uFE3D"
+  - "\uFE3E"
+  - "\uFE41"
+  - "\uFE42"
+  - "\uFE43"
+  - "\uFE44"
+  - "\uFE3B"
+  - "\uFE3C"
+  - "\uFE17"
+  - "\uFE18"
+  - _
+  - "\xAF"
+  - "\uFF3F"
+  - "\uFFE3"
+  - "\uFE4F"
+  - "\uFE4B"
+  - "\uFE4D"
+  - "\uFE49"
+  - "\uFE4E"
+  - "\uFE4A"
+  - "\xA6"
+  - "\uFE34"
+  - "\xA1"
+  - "\xBF"
+  - ^
+  - "\u02C7"
+  - "\xA8"
+  - "\u02CA"
+  "\u7BAD\u5934":
+  - "\u2192"
+  - "\u2190"
+  - "\u2191"
+  - "\u2193"
+  - "\u2196"
+  - "\u2197"
+  - "\u2199"
+  - "\u2198"
+  - "\u2194"
+  - "\u2195"
+  - "\u21DE"
+  - "\u21DF"
+  - "\u21C6"
+  - "\u21C5"
+  - "\u21D4"
+  - "\u21D5"
+  - "\u21B0"
+  - "\u21B1"
+  - "\u21B2"
+  - "\u21B4"
+  - "\u21B6"
+  - "\u21B7"
+  - "\u21BA"
+  - "\u21BB"
+  - "\u219C"
+  - "\u219D"
+  - "\u219E"
+  - "\u219F"
+  - "\u21A0"
+  - "\u21A1"
+  - "\u27BA"
+  - "\u27BB"
+  - "\u27BC"
+  - "\u27B3"
+  - "\u27BD"
+  - "\u27B8"
+  - "\u27B9"
+  - "\u27B7"
+  - "\u21CE"
+  - "\u27A0"
+  - "\u21A3"
+  - "\u261E"
+  - "\u261C"
+  - "\u261F"
+  - "\u21E6"
+  - "\u21E7"
+  - "\u21E8"
+  - "\u21E9"
+  - "\u21EA"
+  - "\u27A9"
+  - "\u27AA"
+  - "\u27AB"
+  - "\u27AC"
+  - "\u27AF"
+  - "\u27B1"
+  - "\u27AE"
+  - "\u27AD"
+  - "\u27A0"
+  - "\u27A1"
+  - "\u27A2"
+  - "\u27A3"
+  - "\u27A4"
+  - "\u27A5"
+  - "\u27A6"
+  - "\u27A7"
+  - "\u27A8"
+  "\u89D2\u6807":
+  - "\xBA"
+  - "\u2070"
+  - "\xB9"
+  - "\xB2"
+  - "\xB3"
+  - "\u2074"
+  - "\u2075"
+  - "\u2076"
+  - "\u2077"
+  - "\u2078"
+  - "\u2079"
+  - "\u2071"
+  - "\u207A"
+  - "\u207B"
+  - "\u207C"
+  - "\u207D"
+  - "\u207E"
+  - "\u02E3"
+  - "\u02B8"
+  - "\u207F"
+  - "\u1DBB"
+  - "\u02E2"
+  - "\u2080"
+  - "\u2081"
+  - "\u2082"
+  - "\u2083"
+  - "\u2084"
+  - "\u2085"
+  - "\u2086"
+  - "\u2087"
+  - "\u2088"
+  - "\u2089"
+  - "\u208A"
+  - "\u208B"
+  - "\u208C"
+  - "\u208D"
+  - "\u208E"
+  - "\u2090"
+  - "\u2091"
+  - "\u2092"
+  - "\u2093"
+  - "\u1D67"
+  - "\u2094"
+  - "\u1D2C"
+  - "\u1D2E"
+  - "\u1D9C"
+  - "\u1D30"
+  - "\u1D31"
+  - "\u1DA0"
+  - "\u1D33"
+  - "\u1D34"
+  - "\u1D35"
+  - "\u1D36"
+  - "\u1D37"
+  - "\u1D38"
+  - "\u1D39"
+  - "\u1D3A"
+  - "\u1D3C"
+  - "\u1D3E"
+  - "\u1D9E"
+  - "\u1D3F"
+  - "\u1D40"
+  - "\u1D41"
+  - "\u1D5B"
+  - "\u1D42"
+  - "\u1D43"
+  - "\u1D47"
+  - "\u1D9C"
+  - "\u1D48"
+  - "\u1D49"
+  - "\u1DA0"
+  - "\u1D4D"
+  - "\u02B0"
+  - "\u2071"
+  - "\u02B2"
+  - "\u1D4F"
+  - "\u02E1"
+  - "\u1D50"
+  - "\u207F"
+  - "\u1D52"
+  - "\u1D56"
+  - "\u02B3"
+  - "\u02E2"
+  - "\u1D57"
+  - "\u1D58"
+  - "\u1D5B"
+  - "\u02B7"
+  - "\u02E3"
+  - "\u02B8"
+  - "\u1DBB"
+  "\u90E8\u9996":
+  - "\u4E28"
+  - "\u4E85"
+  - "\u4E3F"
+  - "\u4E5B"
+  - "\u4E00"
+  - "\u4E59"
+  - "\u4E5A"
+  - "\u4E36"
+  - "\u516B"
+  - "\u52F9"
+  - "\u5315"
+  - "\u51AB"
+  - "\u535C"
+  - "\u5382"
+  - "\u5200"
+  - "\u5202"
+  - "\u513F"
+  - "\u4E8C"
+  - "\u531A"
+  - "\u961D"
+  - "\u4E37"
+  - "\u51E0"
+  - "\u5369"
+  - "\u5182"
+  - "\u529B"
+  - "\u5196"
+  - "\u51F5"
+  - "\u4EBA"
+  - "\u4EBB"
+  - "\u5165"
+  - "\u5341"
+  - "\u53B6"
+  - "\u4EA0"
+  - "\u5338"
+  - "\u8BA0"
+  - "\u5EF4"
+  - "\u53C8"
+  - "\u8279"
+  - "\u5C6E"
+  - "\u5F73"
+  - "\u5DDB"
+  - "\u5DDD"
+  - "\u8FB6"
+  - "\u5BF8"
+  - "\u5927"
+  - "\u98DE"
+  - "\u5E72"
+  - "\u5DE5"
+  - "\u5F13"
+  - "\u5EFE"
+  - "\u5E7F"
+  - "\u5DF1"
+  - "\u5F50"
+  - "\u5F51"
+  - "\u5DFE"
+  - "\u53E3"
+  - "\u9A6C"
+  - "\u95E8"
+  - "\u5B80"
+  - "\u5973"
+  - "\u72AD"
+  - "\u5C71"
+  - "\u5F61"
+  - "\u5C38"
+  - "\u9963"
+  - "\u58EB"
+  - "\u624C"
+  - "\u6C35"
+  - "\u7E9F"
+  - "\u5DF3"
+  - "\u571F"
+  - "\u56D7"
+  - "\u5140"
+  - "\u5915"
+  - "\u5C0F"
+  - "\u5FC4"
+  - "\u5E7A"
+  - "\u5F0B"
+  - "\u5C22"
+  - "\u5902"
+  - "\u5B50"
+  - "\u8D1D"
+  - "\u6BD4"
+  - "\u706C"
+  - "\u957F"
+  - "\u8F66"
+  - "\u6B79"
+  - "\u6597"
+  - "\u5384"
+  - "\u65B9"
+  - "\u98CE"
+  - "\u7236"
+  - "\u6208"
+  - "\u535D"
+  - "\u6237"
+  - "\u706B"
+  - "\u65E1"
+  - "\u89C1"
+  - "\u65A4"
+  - "\u8002"
+  - "\u6BDB"
+  - "\u6728"
+  - "\u8080"
+  - "\u725B"
+  - "\u725C"
+  - "\u723F"
+  - "\u7247"
+  - "\u6534"
+  - "\u6535"
+  - "\u6C14"
+  - "\u6B20"
+  - "\u72AC"
+  - "\u65E5"
+  - "\u6C0F"
+  - "\u793B"
+  - "\u624B"
+  - "\u6BB3"
+  - "\u6C34"
+  - "\u74E6"
+  - "\u5C23"
+  - "\u738B"
+  - "\u97E6"
+  - "\u6587"
+  - "\u6BCB"
+  - "\u5FC3"
+  - "\u7259"
+  - "\u723B"
+  - "\u66F0"
+  - "\u6708"
+  - "\u722B"
+  - "\u652F"
+  - "\u6B62"
+  - "\u722A"
+  - "\u767D"
+  - "\u7676"
+  - "\u6B7A"
+  - "\u7518"
+  - "\u74DC"
+  - "\u79BE"
+  - "\u9485"
+  - "\u7ACB"
+  - "\u9F99"
+  - "\u77DB"
+  - "\u76BF"
+  - "\u6BCD"
+  - "\u76EE"
+  - "\u7592"
+  - "\u9E1F"
+  - "\u76AE"
+  - "\u751F"
+  - "\u77F3"
+  - "\u77E2"
+  - "\u793A"
+  - "\u7F52"
+  - "\u7530"
+  - "\u7384"
+  - "\u7A74"
+  - "\u758B"
+  - "\u4E1A"
+  - "\u8864"
+  - "\u7528"
+  - "\u7389"
+  - "\u8012"
+  - "\u8278"
+  - "\u81E3"
+  - "\u866B"
+  - "\u800C"
+  - "\u8033"
+  - "\u7F36"
+  - "\u826E"
+  - "\u864D"
+  - "\u81FC"
+  - "\u7C73"
+  - "\u9F50"
+  - "\u8089"
+  - "\u8272"
+  - "\u820C"
+  - "\u8980"
+  - "\u9875"
+  - "\u5148"
+  - "\u884C"
+  - "\u8840"
+  - "\u7F8A"
+  - "\u807F"
+  - "\u81F3"
+  - "\u821F"
+  - "\u8863"
+  - "\u7AF9"
+  - "\u81EA"
+  - "\u7FBD"
+  - "\u7CF8"
+  - "\u7CF9"
+  - "\u8C9D"
+  - "\u91C7"
+  - "\u9578"
+  - "\u8ECA"
+  - "\u8FB0"
+  - "\u8D64"
+  - "\u8FB5"
+  - "\u8C46"
+  - "\u8C37"
+  - "\u898B"
+  - "\u89D2"
+  - "\u514B"
+  - "\u91CC"
+  - "\u5364"
+  - "\u9EA6"
+  - "\u8EAB"
+  - "\u8C55"
+  - "\u8F9B"
+  - "\u8A00"
+  - "\u9091"
+  - "\u9149"
+  - "\u8C78"
+  - "\u8D70"
+  - "\u8DB3"
+  - "\u9752"
+  - "\u9751"
+  - "\u96E8"
+  - "\u9F7F"
+  - "\u9577"
+  - "\u975E"
+  - "\u961C"
+  - "\u91D1"
+  - "\u91D2"
+  - "\u96B6"
+  - "\u9580"
+  - "\u9763"
+  - "\u98E0"
+  - "\u9C7C"
+  - "\u96B9"
+  - "\u98A8"
+  - "\u9769"
+  - "\u9AA8"
+  - "\u9B3C"
+  - "\u97ED"
+  - "\u9762"
+  - "\u9996"
+  - "\u97CB"
+  - "\u9999"
+  - "\u9801"
+  - "\u97F3"
+  - "\u9ADF"
+  - "\u9B2F"
+  - "\u9B25"
+  - "\u9AD8"
+  - "\u9B32"
+  - "\u99AC"
+  - "\u9EC4"
+  - "\u9E75"
+  - "\u9E7F"
+  - "\u9EBB"
+  - "\u9EA5"
+  - "\u9CE5"
+  - "\u9B5A"
+  - "\u9F0E"
+  - "\u9ED1"
+  - "\u9EFD"
+  - "\u9ECD"
+  - "\u9EF9"
+  - "\u9F13"
+  - "\u9F20"
+  - "\u9F3B"
+  - "\u9F4A"
+  - "\u9F52"
+  - "\u9F8D"
+  - "\u9FA0"
+  "\u97F3\u6807":
+  - "\u0251\u02D0"
+  - "\u0254:"
+  - "\u025C\u02D0"
+  - 'i:'
+  - 'u:'
+  - "\u028C"
+  - "\u0252"
+  - "\u0259"
+  - "\u026A"
+  - "\u028A"
+  - e
+  - "\xE6"
+  - "e\u026A"
+  - "a\u026A"
+  - "\u0254\u026A"
+  - "\u026A\u0259"
+  - "e\u0259"
+  - "\u028A\u0259"
+  - "\u0259\u028A"
+  - "a\u028A"
+  - p
+  - t
+  - k
+  - f
+  - "\u03B8"
+  - s
+  - b
+  - d
+  - g
+  - v
+  - "\xF0"
+  - z
+  - "\u0283"
+  - h
+  - ts
+  - "t\u0283"
+  - j
+  - tr
+  - "\u0292"
+  - r
+  - dz
+  - "d\u0292"
+  - dr
+  - w
+  - m
+  - n
+  - "\u014B"
+  - l
