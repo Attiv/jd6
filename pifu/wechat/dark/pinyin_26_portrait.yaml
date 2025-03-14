@@ -29,7 +29,9 @@ cnenButtonForeground: &cnen_qj
 
 #状态栏图标字符样式&vtltb
 toolbarButtonForeground: &vtltb
-  fontSize: 16
+  fontSize: 0.88em
+  center:
+    y: 0.8
   normalColor: EBEBEB
   highlightColor: 1AC785
 
@@ -254,7 +256,9 @@ toolbarButtonBackgroundStyle:
 
 primaryButtonForegroundStyle:
   text: 
-  fontSize: 16
+  fontSize: 0.88em
+  center:
+    y: 0.8
   normalColor: EBEBEB
   highlightColor: 1AC785
 
