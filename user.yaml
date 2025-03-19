@@ -1,7 +1,11 @@
 var:
-  last_build_time: 1741605512
+  last_build_time: 1742276649
   option:
     completion: true
     emoji_cn: true
     full_shape: false
     wxw_hint: true
+  previously_selected_schema: xmjd6
+  schema_access_time:
+    english: 1742297156
+    xmjd6: 1742297407
