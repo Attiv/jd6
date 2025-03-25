@@ -172,9 +172,13 @@
                 // 要处理的文件路径模式
                 const filePatterns = [
                     /light\/pinyin_26_portrait\.yaml$/i,
+					/light\/pinyin_26_landscape\.yaml$/i,
+					/light\/alphabetic_26_portrait\.yaml$/i,
+					/light\/alphabetic_26_landscape\.yaml$/i,
                     /dark\/pinyin_26_portrait\.yaml$/i,
-                    /light\/pinyin_26_landscape\.yaml$/i,
-                    /dark\/pinyin_26_landscape\.yaml$/i
+                    /dark\/pinyin_26_landscape\.yaml$/i,
+					/dark\/alphabetic_26_portrait\.yaml$/i,
+					/dark\/alphabetic_26_landscape\.yaml$/i,
                 ];
                 
                 // 查找匹配的文件路径
@@ -403,28 +407,34 @@
             for (const [button, settings] of Object.entries(buttonSettings)) {
                 // 更新swipeUpAction和swipeDownAction
                 if (settings.swipeUpAction) {
+                    // 转义反引号
+                    const escapedSwipeUpAction = settings.swipeUpAction.replace(/`/g, '\`');
+                    
                     const swipeUpRegex = new RegExp(`(${button}:[\\s\\S]*?)swipeUpAction:.*?\\n`, 'i');
                     const hasSwipeUp = swipeUpRegex.test(updatedYaml);
                     
                     if (hasSwipeUp) {
-                        updatedYaml = updatedYaml.replace(swipeUpRegex, `$1${settings.swipeUpAction}\n`);
+                        updatedYaml = updatedYaml.replace(swipeUpRegex, `$1${escapedSwipeUpAction}\n`);
                     } else {
                         // 如果没有swipeUpAction，添加它
                         const buttonEndRegex = new RegExp(`(${button}:[\\s\\S]*?)(\\n\\w+:)`, 'i');
-                        updatedYaml = updatedYaml.replace(buttonEndRegex, `$1  ${settings.swipeUpAction}\n$2`);
+                        updatedYaml = updatedYaml.replace(buttonEndRegex, `$1  ${escapedSwipeUpAction}\n$2`);
                     }
                 }
                 
                 if (settings.swipeDownAction) {
+                    // 转义反引号
+                    const escapedSwipeDownAction = settings.swipeDownAction.replace(/`/g, '\\`');
+                    
                     const swipeDownRegex = new RegExp(`(${button}:[\\s\\S]*?)swipeDownAction:.*?\\n`, 'i');
                     const hasSwipeDown = swipeDownRegex.test(updatedYaml);
                     
                     if (hasSwipeDown) {
-                        updatedYaml = updatedYaml.replace(swipeDownRegex, `$1${settings.swipeDownAction}\n`);
+                        updatedYaml = updatedYaml.replace(swipeDownRegex, `$1${escapedSwipeDownAction}\n`);
                     } else {
                         // 如果没有swipeDownAction，添加它
                         const buttonEndRegex = new RegExp(`(${button}:[\\s\\S]*?)(\\n\\w+:)`, 'i');
-                        updatedYaml = updatedYaml.replace(buttonEndRegex, `$1  ${settings.swipeDownAction}\n$2`);
+                        updatedYaml = updatedYaml.replace(buttonEndRegex, `$1  ${escapedSwipeDownAction}\n$2`);
                     }
                 }
                 
