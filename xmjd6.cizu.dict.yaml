@@ -13103,7 +13103,8 @@ sort: original
 多病	dlbg
 多摆	dlbh
 电路板	dlbi
-多部	dlbj
+多不	dlbj
+多部	dlbju
 踱步	dlbjo
 躲避	dlbk
 多笔	dlbku
@@ -14755,8 +14756,8 @@ sort: original
 达观	dsgtva
 大官	dsgtvo
 第四个	dsgu
-打滚	dsgw
-打给	dsgwi
+打滚	dsgwi
+打给	dsgw
 打光	dsgx
 打工	dsgy
 大公	dsgyv
@@ -32873,7 +32874,7 @@ sort: original
 高等数学	gdexo
 个地方	gdf
 高度发达	gdfd
-高度重视	gdfe
+高度重视	gdfeo
 够烦	gdff
 够拽	gdfg
 古代中国	gdfgu
@@ -32890,6 +32891,8 @@ sort: original
 钩状	gdfx
 沟中	gdfy
 够着	gdfz
+够着	gdfe
+苟着	gdfei
 高低杠	gdg
 孤独感	gdga
 够贵	gdgb
@@ -35881,7 +35884,8 @@ sort: original
 刚掉	gpdc
 钢的	gpde
 钢弹	gpdf
-钢锭	gpdg
+刚定	gpdg
+钢锭	gpdgii
 港督	gpdj
 港独	gpdja
 刚度	gpdji
@@ -40888,7 +40892,8 @@ sort: original
 护手	hjedi
 黄金时代	hjedv
 互设	hjee
-忽闪	hjef
+互删	hjef
+忽闪	hjefu
 户数	hjej
 好长时间	hjeja
 很长时间	hjeju
@@ -79081,8 +79086,8 @@ sort: original
 歧黄	qkhx
 齐璜	qkhxo
 起哄	qkhy
-旗号	qkhz
-七号	qkhzv
+旗号	qkhzo
+七号	qkhz
 顷刻间	qkj
 起劲	qkjb
 齐进	qkjbo
@@ -79470,7 +79475,8 @@ sort: original
 去办	qlbf
 取半	qlbfv
 去斑	qlbfvv
-祛病	qlbg
+去冰	qlbg
+祛病	qlbgo
 曲柄	qlbgi
 趋利避害	qlbh
 珠联璧合	qlbhv
@@ -79615,7 +79621,8 @@ sort: original
 齐刘海	qlho
 区航	qlhp
 区划	qlhq
-趋缓	qlht
+去换	qlht
+趋缓	qlhtv
 去黑	qlhw
 去轰	qlhy
 区号	qlhz
@@ -79661,7 +79668,8 @@ sort: original
 屈驾	qljs
 起落架	qljv
 斩立决	qljvo
-曲江	qljx
+去讲	qljx
+曲江	qljxi
 枪林箭雨	qljy
 去吵	qljz
 株连九族	qljzv
@@ -91053,7 +91061,7 @@ sort: original
 太戊	thwj
 太迟	thwk
 太创	thwm
-泰文	thwn
+泰文	thwnv
 台网	thwp
 太翁	thwr
 太差	thws
@@ -95188,9 +95196,11 @@ sort: original
 万亏	wfkb
 碗口	wfkd
 充分肯定	wfkdo
-万棵	wfke
+完克	wfke 
+万棵	wfkevv
 万科	wfkev
 晚看	wfkf
+能关	nrgt
 无法控制	wfkfv
 碗筷	wfkg
 仇者快	wfki
@@ -96942,7 +96952,7 @@ sort: original
 握笔	wlbki
 我比	wlbku
 我便	wlbm
-我笨	wlbn
+我笨	wlbnu
 我帮	wlbp
 查漏补缺	wlbq
 我把	wlbs
@@ -97577,7 +97587,8 @@ sort: original
 稳操	wncz
 文斗	wndd
 文牒	wnddo
-文的	wnde
+问的	wnde
+文的	wndeou
 闻得	wndeo
 问得	wndeou
 文旦	wndf
@@ -108408,7 +108419,8 @@ sort: original
 项目	xxmj
 橡木	xxmjv
 香米	xxmk
-相模	xxml
+相模	xxmlvv
+想摸	xxml
 相面	xxmm
 寻寻觅觅	xxmma
 箱门	xxmn
@@ -109930,7 +109942,9 @@ sort: original
 有错	ydcl
 又藏	ydcp
 油藏	ydcpa
-油层	ydcr
+有层	ydcr
+油层	ydcraa
+慎买	enmha
 优存	ydcw
 犹存	ydcwu
 又从	ydcy
@@ -109988,8 +110002,8 @@ sort: original
 一丁点儿	yddxvv
 游动	yddy
 一点都没有	yddyv
-诱导	yddz
-又到	yddza
+诱导	yddzo
+又到	yddz
 又道	yddzao
 有道	yddzv
 一定是	yde
