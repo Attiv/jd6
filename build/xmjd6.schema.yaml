@@ -7,10 +7,10 @@ __build_info:
     key_bindings.custom: 0
     punctuation: 1737643099
     punctuation.custom: 0
-    symbols: 1744712600
+    symbols: 1744713607
     symbols.custom: 0
     xmjd6.custom: 1727143837
-    xmjd6.schema: 1743592452
+    xmjd6.schema: 1744713650
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
