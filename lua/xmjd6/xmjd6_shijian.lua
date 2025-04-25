@@ -935,7 +935,7 @@ function GetNowTimeJq(date)
 end
 
 local function main()
-    print(GetNowTimeJq("20210101"))
+    -- print(GetNowTimeJq("20210101"))
     -- print(JQtest("20210323")) --测试函数
     -- print(table.concat(GetNextJQ("20210101")))
 end
@@ -1938,6 +1938,13 @@ local function translator(input, seg)
         time = string.gsub(os.date("%H:%M:%S"), "^0+", "")
         candidate = Candidate("date", seg.start, seg._end, date .. " " .. time, "")
         yield(candidate)
+        
+        -- 获取当前时间戳
+        local timestamp = os.time()
+        -- 生成候选项
+        yield(Candidate("time", seg.start, seg._end, tostring(timestamp), "Unix时间戳"))
+        
+        
 
         -- 星期
     elseif (input == "xq" or input == "oxq") then
