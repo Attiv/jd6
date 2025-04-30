@@ -25,8 +25,8 @@ function rad2str(d, tim) -- 将弧度转为字串
     ---tim=1输出格式示例:  18h 29m 44.52s
     local s = "+"
     local w1 = "°"
-    w2 = "’"
-    w3 = "”"
+    w2 = "'"
+    w3 = "\""
     if d < 0 then
         d = -d
         s = '-'
@@ -1533,7 +1533,13 @@ function Date2LunarDate(Gregorian)
         -- print(Date2 .. "--" .. Date1 .. "--" .. Date3)
     end
     -- print(MonthInfo .. "-" .. LeapInfo .. "-" .. Leap .. "-" .. Newyear .. "-" .. Year)
-    Date3 = Date3 + 1
+    
+    -- 农历计算问题修复：
+    -- 移除了原有的+1偏移量计算，该偏移量导致农历日期有时会比实际大一天
+    -- 例如：2025-04-30应该是农历四月初三，但使用偏移量后显示为初四
+    -- 通过直接使用计算出的天数差，可以得到准确的农历日期
+    -- Date3 = Date3 + 1  -- 移除这个导致问题的偏移量
+    
     LYear = Year -- 农历年份，就是上面计算后的值
     if Leap > 0 then -- 有闰月
         thisMonthInfo = string.sub(MonthInfo, 1, Leap) .. LeapInfo .. string.sub(MonthInfo, Leap + 1)
