@@ -1,6 +1,7 @@
 __build_info:
   rime_version: 1.11.2
   timestamps:
+<<<<<<< HEAD
     default: 1717774589
 <<<<<<< HEAD
     default.custom: 1727143837
@@ -8,6 +9,11 @@ __build_info:
     default.custom: 1732613087
 >>>>>>> main
     key_bindings: 1717774589
+=======
+    default: 1737643099
+    default.custom: 1746005898
+    key_bindings: 1737643099
+>>>>>>> main
     key_bindings.custom: 0
     pinyin_simp.custom: 0
     pinyin_simp.schema: 1704727501
