@@ -1496,6 +1496,11 @@ local function translator(input, seg)
         candidate = Candidate("date", seg.start, seg._end, date .. " " .. time, "")
         yield(candidate)
 
+		-- 获取当前时间戳
+        local timestamp = os.time()
+        -- 生成候选项
+        yield(Candidate("time", seg.start, seg._end, tostring(timestamp), "Unix时间戳"))
+
         -- 星期
     elseif (input == "xq") then
         weekday = chinese_weekday(os.date("%w"))
