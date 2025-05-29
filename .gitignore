@@ -5,7 +5,6 @@ Session.vim
 .netrwhist
 *~
 
-
 ## Project ##
 
 *.userdb
@@ -42,3 +41,6 @@ jd6_irime.zip
 
 sync/
 jd6_old.zip
+
+# FVM Version Cache
+.fvm/
