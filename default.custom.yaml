@@ -4,7 +4,6 @@ patch:
     - schema: english
 
 
-
   menu:
     page_size: 6
   ascii_composer/switch_key:

@@ -11,13 +11,18 @@ __build_info:
     key_bindings: 1717774589
 =======
     default: 1737643099
-    default.custom: 1746005898
+    default.custom: 1747303948
     key_bindings: 1737643099
 >>>>>>> main
     key_bindings.custom: 0
     pinyin_simp.custom: 0
+<<<<<<< HEAD
     pinyin_simp.schema: 1704727501
     punctuation: 1717774589
+=======
+    pinyin_simp.schema: 1747303949
+    punctuation: 1737643099
+>>>>>>> main
     punctuation.custom: 0
 engine:
   processors:
