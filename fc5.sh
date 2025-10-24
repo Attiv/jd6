@@ -1,1 +1,1 @@
-rsync -av --progress --exclude '.git' ./ /Users/wanglikun/.local/share/fcitx5/rime
+rsync -av --progress --exclude '.git' ./ /Users/mac/.local/share/fcitx5/rime

@@ -31,5 +31,5 @@ add xmjd6enre.reverse.bin to the existing zip file
 zip -ur jd6.zip build/xmjd6enre.reverse.bin
 
 
-cp jd6.zip /Users/wanglikun/Library/Mobile\ Documents/com~apple~CloudDocs/jd6_irime.schema.zip
+cp jd6.zip /Users/mac/Library/Mobile\ Documents/com~apple~CloudDocs/jd6_irime.schema.zip
   echo "已创建 build.zip 压缩包。"
