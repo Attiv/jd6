@@ -19,4 +19,4 @@ else
   echo "当前目录下不存在 build 文件夹。"
 fi
 
-cp jd6_build.zip /Users/wanglikun/Library/Mobile\ Documents/com~apple~CloudDocs/jd6_build.zip
+cp jd6_build.zip /Users/mac/Library/Mobile\ Documents/com~apple~CloudDocs/jd6_build.zip
