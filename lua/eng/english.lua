@@ -1,6 +1,25 @@
 local function english()
 	local preedit, cands = {}, {}
 	local num_selection, fold_comments, used_punct, wildcard, changing, page_size
+	local english_rvdb_cache
+
+	local function get_english_rvdb(config)
+		local dict_name = config:get_string("translator/dictionary")
+		if not dict_name or dict_name == "" then return nil end
+		local cached = english_rvdb_cache
+		if cached and cached.dict_name == dict_name and cached.db then
+			return cached.db
+		end
+		local ok, db = pcall(function()
+			return ReverseDb("build/" .. dict_name .. ".reverse.bin")
+		end)
+		if not ok or not db then
+			english_rvdb_cache = nil
+			return nil
+		end
+		english_rvdb_cache = { dict_name = dict_name, db = db }
+		return db
+	end
 
 	local function init(env)
 		local engine = env.engine
@@ -221,11 +240,13 @@ local function english()
 						table.insert(cands, {text = preedit.t .. cand.comment:sub(2), comment = cand.text, index = #cands})
 					end
 				else
-					local english_rvdb = ReverseDb("build/" .. config:get_string("translator/dictionary") .. ".reverse.bin")   --因Rime對詞義相同,拼寫接近的單詞只保留一個,反查可全部找出
-					for cand in input:iter() do
-						for comment in english_rvdb:lookup(cand:get_genuine().text):gmatch("[^ ]+") do
-							if comment:sub(1, preedit.s):lower() == preedit.l then
-								table.insert(cands, {text = comment, comment = cand.text, index = #cands})
+					local english_rvdb = get_english_rvdb(config)	  --因Rime對詞義相同,拼寫接近的單詞只保留一個,反查可全部找出
+					if english_rvdb then
+						for cand in input:iter() do
+							for comment in english_rvdb:lookup(cand:get_genuine().text):gmatch("[^ ]+") do
+								if comment:sub(1, preedit.s):lower() == preedit.l then
+									table.insert(cands, {text = comment, comment = cand.text, index = #cands})
+								end
 							end
 						end
 					end

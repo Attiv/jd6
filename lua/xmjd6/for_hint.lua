@@ -13,13 +13,14 @@ local function hint(cand, input, env)
         return 0
     end
     local reverse = env.reverse
-    local s = env.s
-    local b = env.b
+    local pattern_sbb = env.pattern_sbb
+    local pattern_short = env.pattern_short
+    local pattern_ssb = env.pattern_ssb
 
     local lookup = " " .. reverse:lookup(cand.text) .. " "
-    local sbb = string.match(lookup, " ([" .. s .. "][" .. b .. "]+) ")
-    local short = string.match(lookup, " ([" .. s .. "][" .. s .. "]) ")
-    local ssb = string.match(lookup, " ([" .. s .. "][" .. s .. "][" .. b .. "]+) ")
+    local sbb = pattern_sbb and string.match(lookup, pattern_sbb)
+    local short = pattern_short and string.match(lookup, pattern_short)
+    local ssb = pattern_ssb and string.match(lookup, pattern_ssb)
 
     if string.len(input) > 1 then
         if sbb and not startswith(sbb, input) then
@@ -61,7 +62,7 @@ local function filter(input, env)
                           (input_text:match("^[avuio]+$"))
     local has_table = false
     local first = true
-    local hint_text = env.engine.schema.config:get_string('hint_text') or '✖'
+    local hint_text = env.hint_text or '✖'
 
     for cand in input:iter() do
         if no_commit and first then
@@ -99,6 +100,10 @@ local function init(env)
     local dict_name = config:get_string("translator/dictionary")
     env.b = config:get_string("topup/topup_with")
     env.s = config:get_string("topup/topup_this")
+    env.pattern_sbb = " ([" .. env.s .. "][" .. env.b .. "]+) "
+    env.pattern_short = " ([" .. env.s .. "][" .. env.s .. "]) "
+    env.pattern_ssb = " ([" .. env.s .. "][" .. env.s .. "][" .. env.b .. "]+) "
+    env.hint_text = config:get_string('hint_text') or '✖'
     env.gc = env.engine.context.commit_notifier:connect(function(ctx)
         collectgarbage('collect')
     end)

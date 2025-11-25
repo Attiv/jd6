@@ -1,25 +1,47 @@
-local KEY = "apostrophe"
+local semicolon = "semicolon"
+local apostrophe = "apostrophe"
+local kRejected = 0 -- do the OS default processing
+local kAccepted = 1 -- consume it
+local kNoop     = 2 -- leave it to other processors
 
 local function processor(key_event, env)
-    local engine = env.engine
-    local schema = engine.schema
-    local context = engine.context
-
-    if key_event:release() or key_event:repr() ~= KEY then
-        return 2
+    if key_event:release() or key_event:alt() or key_event:super() then
+        return kNoop
+    end
+    local key = key_event:repr()
+    if key ~= semicolon and key ~= apostrophe then
+        return kNoop
     end
 
-    if context:select(1) then
+    local context = env.engine.context
+    -- 添加边界检查，防止 composition:back() 返回 nil
+    local comp = context.composition:back()
+    if not comp then return kNoop end
+    
+    -- 防止 page_size 为 0 导致除零错误
+    local page_size = env.engine.schema.page_size or 5
+    if page_size == 0 then page_size = 5 end
+    
+    local selected_index = comp.selected_index
+    local page_start = math.floor(selected_index / page_size) * page_size
+
+    local index = key == semicolon and 1 or 2
+    if context:select(page_start + index) then
         context:commit()
-        return 1
+        return kAccepted
     end
 
-    if not env.engine.context:get_selected_candidate() then
+    if not context:get_selected_candidate() then
+        if context.input:len() <= 1 then
+            -- 分号引导的符号需要交给下一个处理器
+            return kNoop
+        end
         context:clear()
     else
         context:commit()
     end
-    return 2
+
+    return kAccepted
 end
 
 return { func = processor }
