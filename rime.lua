@@ -58,6 +58,7 @@ xmjd6_shuzi = require("xmjd6_shuzi")
 unicode = require("unicode")
 for_hint = require("for_hint")
 split = require("split")
+xmjd6_single_char = require("xmjd6_single_char")
 
 
 

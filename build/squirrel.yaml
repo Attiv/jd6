@@ -1,17 +1,8 @@
 __build_info:
-  rime_version: 1.11.2
+  rime_version: 1.13.0
   timestamps:
-<<<<<<< HEAD
-    squirrel: 1717774589
-<<<<<<< HEAD
-    squirrel.custom: 1727143837
-=======
-    squirrel.custom: 1732613087
->>>>>>> main
-=======
     squirrel: 1737643099
     squirrel.custom: 1747303949
->>>>>>> main
 app_options:
   co.zeit.hyper:
     ascii_mode: true
@@ -310,6 +301,32 @@ preset_color_schemes:
     hilited_text_color: 0x000000
     name: "墨池／Ink"
     text_color: 0x5a5a5a
+  lan:
+    author: lamb
+    back_color: 0xffffff
+    base_offset: 5.0
+    border_color: 0xffffff
+    border_color_width: 0
+    border_height: 4
+    border_width: 4
+    candidate_back_color: 0xffffff
+    candidate_format: "%c %@"
+    candidate_list_layout: stacked
+    candidate_text_color: 0x333333
+    corner_radius: 5
+    font_face: "汉仪正圆"
+    font_point: 14
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_label_color: 0xffffff
+    hilited_corner_radius: 5
+    hilited_text_color: 0xffffff
+    inline_preedit: true
+    label_color: 0x888888
+    label_font_point: 14
+    line_spacing: 3.0
+    name: lamb
+    text_color: 0x333333
+    text_orientation: vertical
   lost_temple:
     author: "佛振 <chen.sst@gmail.com>, based on ir_black"
     back_color: 0xee303030
@@ -380,31 +397,6 @@ preset_color_schemes:
     label_color: 0xffffff
     label_font_point: 14
     name: vitta_dark
-    text_color: 0x333333
-    translucency: true
-  mac_shu:
-    author: lamb
-    back_color: 0x00000000
-    blur: true
-    border_color_width: 0
-    border_height: 4
-    border_width: 4
-    candidate_back_color: 0xD05B21
-    candidate_format: "%c %@  "
-    candidate_text_color: 0x333333
-    corner_radius: 5
-    font_face: "HYZhengYuan-EEW"
-    font_point: 20
-    hilited_candidate_back_color: 0xD05B21
-    hilited_candidate_label_color: 0xffffff
-    hilited_comment_text_color: 0xffffff
-    hilited_corner_radius: 5
-    hilited_text_color: 0xffffff
-    horizontal: false
-    inline_preedit: true
-    label_color: 0x888888
-    label_font_point: 14
-    name: lamb
     text_color: 0x333333
     translucency: true
   mojave_dark:
@@ -598,7 +590,8 @@ preset_color_schemes:
     name: "微信键盘浅色"
     text_color: 0x424242
     translucency: true
+show_notifications_via_notification_center: true
 show_notifications_when: appropriate
 style:
-  color_scheme: mac
+  color_scheme: wechat_light
   color_scheme_dark: wechat_dark

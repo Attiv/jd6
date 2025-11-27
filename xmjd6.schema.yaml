@@ -117,7 +117,7 @@ engine:
     - simplifier
     - reverse_lookup_filter@pinyin_simp_lookup
     - reverse_lookup_filter@quanpinerfen_lookup
-    - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
+    - lua_filter@xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
     - simplifier@emoji_cn
     - lua_filter@for_hint
     - simplifier@jffh

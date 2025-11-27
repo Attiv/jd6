@@ -1,21 +1,11 @@
 __build_info:
-  rime_version: 1.11.2
+  rime_version: 1.13.0
   timestamps:
-<<<<<<< HEAD
-    default: 1717774589
-<<<<<<< HEAD
-    default.custom: 1727143837
-=======
-    default.custom: 1732613087
->>>>>>> main
-    key_bindings: 1717774589
-=======
     default: 1737643099
     default.custom: 1748689804
     key_bindings: 1737643099
->>>>>>> main
     key_bindings.custom: 0
-    punctuation: 1717774589
+    punctuation: 1737643099
     punctuation.custom: 0
     xmjd6.gbk.custom: 0
     xmjd6.gbk.schema: 1704727501
