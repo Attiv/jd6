@@ -122,7 +122,7 @@ engine:
     - reverse_lookup_filter@pinyin_simp_lookup
     - reverse_lookup_filter@quanpinerfen_lookup
     - reverse_lookup_filter@gbk_lookup
-    # - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
+    - lua_filter@*xmjd6/xmjd6_single_char #候选单字优先, 候选太多会导致卡顿
     - simplifier@emoji_cn
     - lua_filter@*xmjd6/for_hint
     - simplifier@jffh
@@ -280,7 +280,13 @@ embeded_cands:
   next_format: "${Stash}${候選}${Seq}${Comment}"           # 非首選的渲染格式
   separator: " "                                           # 候選之間的分隔符
   stash_placeholder: "~" 
-  
+  max_candidates: 50                                        # 0 表示不限
+
+for_hint:
+  max_hint_candidates: 50        # 0 表示不限
+  max_completion_candidates: 30  # completion 候选数量上限
+  gc_interval: 50                # 每处理多少条 hint 触发一次 GC。
+
 # punctuator:
 #   import_preset: default
 #   half_shape:

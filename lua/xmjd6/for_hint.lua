@@ -3,7 +3,12 @@
     by TsFreddie
     - 简码 630 提示
     - 单字模式
---]] local function startswith(str, start)
+--]]
+
+local DEFAULT_MAX_HINT_CANDIDATES = 50   -- 0 表示不限
+local DEFAULT_MAX_COMPLETION_CANDIDATES = 30
+
+local function startswith(str, start)
     return string.sub(str, 1, string.len(start)) == start
 end
 
@@ -63,6 +68,11 @@ local function filter(input, env)
     local has_table = false
     local first = true
     local hint_text = env.hint_text or '✖'
+    local hinted = 0
+    local yielded_completion = 0
+    local max_hint = env.max_hint_candidates or DEFAULT_MAX_HINT_CANDIDATES
+    local max_completion = env.max_completion_candidates or DEFAULT_MAX_COMPLETION_CANDIDATES
+    local gc_interval = env.hint_gc_interval or 50
 
     for cand in input:iter() do
         if no_commit and first then
@@ -70,16 +80,28 @@ local function filter(input, env)
         end
         first = false
         if cand.type == 'table' then
-            if is_hint_on then
-                hint(cand, input_text, env)
+            if is_hint_on and (max_hint == 0 or hinted < max_hint) then
+                local hinted_delta = hint(cand, input_text, env)
+                if hinted_delta and hinted_delta > 0 then
+                    hinted = hinted + 1
+                    if gc_interval > 0 and hinted % gc_interval == 0 then
+                        collectgarbage('step', 1)
+                    end
+                end
             end
 
             yield(cand)
             has_table = true
         elseif cand.type == 'completion' then
+            local completion_allowed = (max_completion == 0) or (yielded_completion < max_completion)
+            if not completion_allowed then
+                return
+            end
+
             if is_completion_on then
                 if not is_danzi_on or is_danzi(cand) then
                     yield(cand)
+                    yielded_completion = yielded_completion + 1
                 end
             elseif not has_table then
                 if not is_danzi_on or is_danzi(cand) then
@@ -104,6 +126,17 @@ local function init(env)
     env.pattern_short = " ([" .. env.s .. "][" .. env.s .. "]) "
     env.pattern_ssb = " ([" .. env.s .. "][" .. env.s .. "][" .. env.b .. "]+) "
     env.hint_text = config:get_string('hint_text') or '✖'
+    local function read_conf_int(path, default)
+        local ok, val = pcall(function()
+            return config:get_int(path)
+        end)
+        val = ok and tonumber(val) or nil
+        if not val or val < 0 then return default end
+        return val
+    end
+    env.max_hint_candidates = read_conf_int('for_hint/max_hint_candidates', DEFAULT_MAX_HINT_CANDIDATES)
+    env.max_completion_candidates = read_conf_int('for_hint/max_completion_candidates', DEFAULT_MAX_COMPLETION_CANDIDATES)
+    env.hint_gc_interval = read_conf_int('for_hint/gc_interval', 50)
     env.gc = env.engine.context.commit_notifier:connect(function(ctx)
         collectgarbage('collect')
     end)
@@ -118,6 +151,9 @@ end
 
 local function fini(env)
     env.gc:disconnect()
+    env.max_hint_candidates = nil
+    env.max_completion_candidates = nil
+    env.hint_gc_interval = nil
 end
 
 return {

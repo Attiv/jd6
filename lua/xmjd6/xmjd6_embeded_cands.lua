@@ -21,11 +21,13 @@ local DEFAULT_FIRST_FORMAT = "${Stash}[${候選}${Seq}]${Code}${Comment}"
 local DEFAULT_NEXT_FORMAT = "${Stash}${候選}${Seq}${Comment}"
 local DEFAULT_SEPARATOR = " "
 local DEFAULT_STASH_PLACEHOLDER = "~"
+local DEFAULT_MAX_CANDIDATES = 50  -- 0 表示不限
 
 -- 安全处理模块
 local safe = {
-    max_text_length = 100,    -- 单个候选最大长度
-    max_total_length = 500,   -- 整页候选最大长度
+    max_text_length = 50,    -- 单个候选最大长度
+    max_total_length = 50,   -- 整页候选最大长度
+    gc_interval = 20,        -- 候选条目分批触发 GC（参考 txj）
     truncate = function(text, max_len)
         if not text then return "" end
         text = tostring(text)
@@ -114,6 +116,16 @@ local function parse_conf_str_list(env, key, default_list)
     return list
 end
 
+local function parse_conf_int(env, key, default_val)
+    local val = nil
+    pcall(function()
+        val = env.engine.schema.config:get_int((env.name_space or "") .. "/" .. key)
+    end)
+    val = tonumber(val)
+    if not val or val < 0 then return default_val end
+    return val
+end
+
 -- 配置缓存，支持多namespace，使用弱引用防止内存泄漏
 local config_cache = {}
 setmetatable(config_cache, {__mode = "v"})
@@ -126,6 +138,7 @@ local function get_config(env)
         cfg.next_format_str = parse_conf_str(env, "next_format", DEFAULT_NEXT_FORMAT)
         cfg.separator_str = parse_conf_str(env, "separator", DEFAULT_SEPARATOR)
         cfg.stash_placeholder_str = parse_conf_str(env, "stash_placeholder", DEFAULT_STASH_PLACEHOLDER)
+        cfg.max_candidates = parse_conf_int(env, "max_candidates", DEFAULT_MAX_CANDIDATES)
         cfg.formatter = {
             first = compile_formatter(cfg.first_format_str),
             next = compile_formatter(cfg.next_format_str),
@@ -196,11 +209,29 @@ function embeded_cands_filter.func(input, env)
         local active_input_code = env.input_code or ""
         local active_stash = env.stashed_text or ""
         local sep = cfg.separator_str
+        local max_candidates = cfg.max_candidates or DEFAULT_MAX_CANDIDATES
+        local limit_enabled = max_candidates and max_candidates > 0
+        local yielded_total = 0
+        local processed = 0
         -- 优化：直接设置为 nil 而不是使用 table.remove
         local function clear(tbl) 
             for i = 1, #tbl do 
                 tbl[i] = nil 
             end 
+        end
+        local function yield_page()
+            if #page_cands == 0 then return false end
+            if first_cand and #page_rendered > 0 then
+                first_cand.preedit = table_concat(page_rendered, sep)
+            end
+            for _, c in ipairs(page_cands) do
+                coroutine_yield(c)
+                yielded_total = yielded_total + 1
+                if limit_enabled and yielded_total >= max_candidates then
+                    return true
+                end
+            end
+            return false
         end
         local iter, obj = input:iter()
         local next_cand = iter(obj)
@@ -214,21 +245,19 @@ function embeded_cands_filter.func(input, env)
             table_insert(page_cands, genuine)
             if string_len(preedit) > 0 then table_insert(page_rendered, preedit) end
             if idx == page_size then
-                if first_cand and #page_rendered > 0 then
-                    first_cand.preedit = table_concat(page_rendered, sep)
-                end
-                for _, c in ipairs(page_cands) do coroutine_yield(c) end
+                if yield_page() then return end
                 idx, first_cand, preedit = 0, nil, ""
                 digested = false
                 clear(page_cands); clear(page_rendered)
             end
+            processed = processed + 1
+            if processed % safe.gc_interval == 0 then
+                collectgarbage("step", 1)
+            end
             next_cand = iter(obj)
         end
         if idx > 0 and #page_cands > 0 then
-            if first_cand and #page_rendered > 0 then
-                first_cand.preedit = table_concat(page_rendered, sep)
-            end
-            for _, c in ipairs(page_cands) do coroutine_yield(c) end
+            if yield_page() then return end
         end
     end)
     if not ok then
