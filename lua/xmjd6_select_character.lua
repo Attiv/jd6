@@ -1,94 +1,83 @@
--- 以词定字
--- 来源 https://github.com/BlindingDark/rime-lua-select-character
--- 删除了默认按键 [ ]，和方括号翻页冲突，需要在 key_binder 下指定才能生效
--- 20230526195910 不再错误地获取commit_text，而是直接获取get_selected_candidate().text。
--- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
-local function utf8_sub(s, i, j)
+local kAccepted = 1
+local kNoop = 2
+
+local function utf8_safe_sub(s, i, j)
+    if type(s) ~= "string" or s == "" then return "" end
+
     i = i or 1
     j = j or -1
 
-    if i < 1 or j < 1 then
-        local n = utf8.len(s)
-        if not n then
-            return nil
-        end
-        if i < 0 then
-            i = n + 1 + i
-        end
-        if j < 0 then
-            j = n + 1 + j
-        end
-        if i < 0 then
-            i = 1
-        elseif i > n then
-            i = n
-        end
-        if j < 0 then
-            j = 1
-        elseif j > n then
-            j = n
-        end
+    local len = utf8.len(s)
+    if not len or len == 0 then return "" end
+
+    if i < 0 then i = math.max(len + 1 + i, 1) else i = math.min(i, len) end
+    if j < 0 then j = math.max(len + 1 + j, 1) else j = math.min(j, len) end
+    if j < i then return "" end
+
+    local byte_start = utf8.offset(s, i)
+    if not byte_start then return "" end
+    local byte_end = utf8.offset(s, j + 1)
+    return byte_end and s:sub(byte_start, byte_end - 1) or s:sub(byte_start)
+end
+
+local function commit_slice(engine, context, text, i, j)
+    local slice = utf8_safe_sub(text, i, j)
+    if slice ~= "" then
+        engine:commit_text(slice)
+        context:clear()
+        return kAccepted
     end
-
-    if j < i then
-        return ""
-    end
-
-    i = utf8.offset(s, i)
-    j = utf8.offset(s, j + 1)
-
-    if i and j then
-        return s:sub(i, j - 1)
-    elseif i then
-        return s:sub(i)
-    else
-        return ""
-    end
+    return kNoop
 end
 
-local function first_character(s)
-    return utf8_sub(s, 1, 1)
+local select_character = {}
+
+function select_character.init(env)
+    local config = env.engine.schema.config
+    env.first_key = config:get_string('key_binder/select_first_character')
+    env.last_key = config:get_string('key_binder/select_last_character')
 end
 
-local function last_character(s)
-    return utf8_sub(s, -1, -1)
-end
+function select_character.func(key, env)
+    if key:release() then return kNoop end
+    local first_key, last_key = env.first_key, env.last_key
+    if not (first_key or last_key) then return kNoop end
 
-local function get_commit_text(context, fun)
-    local candidate_text = context:get_selected_candidate().text
-    local selected_character = fun(candidate_text)
-
-    context:clear_previous_segment()
-    local commit_text = context:get_commit_text()
-
-    context:clear()
-
-    return commit_text .. selected_character
-end
-
-local function select_character(key, env)
     local engine = env.engine
     local context = engine.context
-    local config = engine.schema.config
-
-    local first_key = config:get_string('key_binder/select_first_character') or 'bracketleft'
-    local last_key = config:get_string('key_binder/select_last_character') or 'bracketright'
-
-    local commit_text = context:get_commit_text()
-
-    if (key:repr() == first_key and commit_text ~= "") then
-        engine:commit_text(get_commit_text(context, first_character))
-
-        return 1 -- kAccepted
+    if not (context:is_composing() or context:has_menu()) then
+        return kNoop
     end
 
-    if (key:repr() == last_key and commit_text ~= "") then
-        engine:commit_text(get_commit_text(context, last_character))
-
-        return 1 -- kAccepted
+    local key_repr = key:repr()
+    if key_repr ~= first_key and key_repr ~= last_key then
+        return kNoop
     end
 
-    return 2 -- kNoop
+    local text
+    local selected = context:get_selected_candidate()
+    if selected and selected.text and selected.text ~= "" then
+        text = selected.text
+    else
+        text = context.input
+    end
+
+    if not text or utf8.len(text) == nil or utf8.len(text) <= 1 then
+        return kNoop
+    end
+
+    if first_key and key_repr == first_key then
+        return commit_slice(engine, context, text, 1, 1)
+    end
+    if last_key and key_repr == last_key then
+        return commit_slice(engine, context, text, -1, -1)
+    end
+    return kNoop
+end
+
+function select_character.fini(env)
+    env.first_key = nil
+    env.last_key = nil
 end
 
 return select_character
