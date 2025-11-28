@@ -104,9 +104,6 @@ engine:
     - table_translator
     - reverse_lookup_translator
 
-    - table_translator@xmjdYY
-    - table_translator@xmjdZZ
-    - table_translator@xmjdWW
     - table_translator@xmjd6_user
     - history_translator@repeat_history
     - history_translator@repeat_history2
