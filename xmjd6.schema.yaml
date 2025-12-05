@@ -80,6 +80,7 @@ engine:
     - key_binder    
     - lua_processor@*xmjd6/xmjd6_smart_2    #这个注释后不会顶功，使用流式请注释这两行
     - lua_processor@*xmjd6/xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
+    - lua_processor@*xmjd6/auto_fallback   #空码自动上屏前面首选
     - lua_processor@*xmjd6/add_ge
     - lua_processor@*xmjd6/bianzi
     - speller
