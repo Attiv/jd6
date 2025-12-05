@@ -80,6 +80,7 @@ engine:
     - lua_processor@xmjd6_topup_processor   #这个注释后不会顶功，使用流式请注释这两行
     - lua_processor@add_ge
     - lua_processor@bianzi
+    - lua_processor@auto_fallback 
     - speller
     - punctuator
     - selector

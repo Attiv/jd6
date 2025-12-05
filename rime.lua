@@ -50,6 +50,7 @@ xmjd6_topup_processor = require("xmjd6_topup_processor")
 add_space = require("add_space")
 add_ge = require("add_ge")
 bian_zi = require("bianzi")
+auto_fallback = require("auto_fallback")
 -- 输入框显示候选
 zimu_translator = require("zimu")
 xmjd6_jisuanqi = require("xmjd6_jisuanqi")
