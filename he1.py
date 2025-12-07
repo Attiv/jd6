@@ -2,43 +2,73 @@
 import glob
 import os
 
-# 获取当前目录下所有.dict.yaml文件的列表
-files = glob.glob('./*.dict.yaml')
-entries = {}
+IMPORT_TABLE_FILE = 'xmjd6.extended.dict.yaml'
 
-# 遍历所有.dict.yaml文件
-for filename in files:
-    basename = os.path.basename(filename)
-    # 忽略pinyin_simp.dict.yaml文件和以english开头的文件
-    if basename == 'pinyin_simp.dict.yaml' or basename.startswith('english'):
-        continue
-    # 读取当前文件的内容
-    with open(filename, 'r', encoding='utf-8') as infile:
-        # 逐行检查
+
+def load_import_order(path: str) -> list[str]:
+    order = []
+    in_import_tables = False
+    with open(path, 'r', encoding='utf-8') as infile:
         for raw_line in infile:
-            # 如果该行不符合给定的规则，则跳过
+            stripped = raw_line.strip()
+            if not stripped:
+                continue
+            if stripped.startswith('import_tables:'):
+                in_import_tables = True
+                continue
+            if not in_import_tables or stripped.startswith('#'):
+                continue
+            if stripped.startswith('- '):
+                name = stripped[2:].split('#', 1)[0].strip()
+                if name:
+                    order.append(f'{name}.dict.yaml')
+    return order
+
+
+def should_skip(basename: str) -> bool:
+    return (
+        basename == 'pinyin_simp.dict.yaml'
+        or basename.startswith('english')
+        or basename.startswith('xmjd6.en')
+        or basename == IMPORT_TABLE_FILE
+    )
+
+
+def iter_ordered_files() -> list[str]:
+    files = glob.glob('./*.dict.yaml')
+    order = load_import_order(IMPORT_TABLE_FILE)
+    file_map = {
+        os.path.basename(path): path
+        for path in files
+        if not should_skip(os.path.basename(path))
+    }
+
+    ordered_paths = []
+    for fname in order:
+        path = file_map.pop(fname, None)
+        if path:
+            ordered_paths.append(path)
+    ordered_paths.extend(file_map.values())
+    return ordered_paths
+
+
+entries: dict[str, list[str]] = {}
+for filename in iter_ordered_files():
+    with open(filename, 'r', encoding='utf-8') as infile:
+        for raw_line in infile:
             if raw_line.startswith(('#', '---', '...', 'name:', 'version:', 'sort:')):
                 continue
             line = raw_line.strip()
-            # 如果该行不包含制表符或为空，则跳过
             if not line or '\t' not in line:
                 continue
-            # 将行拆分为部分
             parts = [part.strip() for part in line.split('\t') if part.strip()]
-            # 如果部分少于2个，则跳过
             if len(parts) < 2:
                 continue
-            # 获取代码和候选项
-            candidate = parts[0]
-            code = parts[1]
-            # 获取或创建代码的条目
+            candidate, code = parts[0], parts[1]
             target = entries.setdefault(code, [])
-            # 将候选项添加到条目中
             if candidate not in target:
                 target.append(candidate)
 
-# 在新的txt文件中打开写入模式
 with open('v6.txt', 'w', encoding='utf-8', newline='\n') as outfile:
-    # 遍历条目并写入文件
     for code, candidates in entries.items():
         outfile.write('\t'.join([code] + candidates) + '\n')
