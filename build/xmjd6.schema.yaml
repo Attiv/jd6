@@ -7,10 +7,10 @@ __build_info:
     key_bindings.custom: 0
     punctuation: 1737643099
     punctuation.custom: 0
-    symbols: 1764900297
+    symbols: 1764933051
     symbols.custom: 0
     xmjd6.custom: 1764916474
-    xmjd6.schema: 1764916590
+    xmjd6.schema: 1765120641
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -469,6 +469,7 @@ speller:
     - "derive|^;|/|"
   alphabet: "zyxwvutsrqponmlkjihgfedcba;'"
   auto_select: false
+  auto_select_pattern: "^;\\w"
   delimiter: " '"
   initials: "abcdefghijklmnopqrstuvwxyz;'"
 style:
