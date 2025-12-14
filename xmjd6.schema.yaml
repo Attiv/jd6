@@ -56,14 +56,17 @@ switches:
     reset: 0
   - name: tofu
     states: [ 不替换空字, 替换显示 ]
-  - name: emoji_cn   #Emoji开关
-    states: [ 关闭emj,开启emj  ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+  - name: emoji_cn   #Emoji开关
+    states: [ 关闭emj,开启emj  ]
+    reset: 1
   - name: wxw_hint # 逐码是否显示630
     states: [ "关₆₃₀", "开₆₃₀" ]
+    reset: 1
   - name: completion
     states: [ 逐码关, 逐码开 ]
+    reset: 1
   - name: embeded_cands
     states: [内嵌正常, 输入框显示候选]
 
