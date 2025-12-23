@@ -44,3 +44,5 @@ jd6_old.zip
 
 # FVM Version Cache
 .fvm/
+jdx.csv
+result.dict.yaml
