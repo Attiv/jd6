@@ -1,8 +1,12 @@
 __build_info:
-  rime_version: 1.13.0
+  rime_version: 1.16.0
   timestamps:
-    default: 1765332545
+    default: 1768354364
     default.custom: 1765362672
+    key_bindings: 1768354364
+    key_bindings.custom: 0
+    punctuation: 1768354364
+    punctuation.custom: 0
     xmjd6.cx.custom: 0
     xmjd6.cx.schema: 1701250826
 engine:
@@ -33,6 +37,11 @@ schema:
   name: "键道6反查"
   schema_id: xmjd6.cx
   version: 1
+selector:
+  bindings:
+    ISO_Left_Tab: previous_candidate
+    "Shift+Tab": previous_candidate
+    Tab: next_candidate
 speller:
   algebra:
     - "derive/^.(.*)$/`$1/"
