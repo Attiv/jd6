@@ -1,4 +1,4 @@
--- 优化版forTopUp  来源：@浮生 https://github.com/wzxmer/rime-txjx
+-- 顶功处理器
 local function string2set(str)
     local t = {}
     if type(str) ~= "string" then return t end
@@ -10,13 +10,12 @@ end
 
 local function topup(env)
     local ctx = env.engine.context
-    if not ctx:get_selected_candidate() and env.auto_clear then
-        ctx:clear()
-    else
+    if ctx:get_selected_candidate() then
         ctx:commit()
+        collectgarbage("collect")
+    elseif env.auto_clear then
+        ctx:clear()
     end
-    -- 清理首字符状态缓存，防止状态残留
-    env.first_char = nil
 end
 
 local function processor(key_event, env)
@@ -38,13 +37,8 @@ local function processor(key_event, env)
         return 2
     end
 
-    -- 首字符状态缓存
-    if #input == 0 then
-        env.first_char = key
-    end
-    local is_first_topup = env.topup_set[env.first_char or key]
-
-    if env.topup_command and is_first_topup then
+    local first = #input > 0 and input:sub(1, 1) or key
+    if env.topup_command and env.topup_set[first] then
         return 2
     end
 
@@ -53,8 +47,8 @@ local function processor(key_event, env)
     local is_topup = env.topup_set[key]
     local is_prev_topup = env.topup_set[prev]
 
-    local min_len = context:get_option('danzi_mode') 
-        and env.topup_min_danzi 
+    local min_len = context:get_option('danzi_mode')
+        and env.topup_min_danzi
         or env.topup_min
 
     if is_prev_topup and not is_topup then
@@ -72,14 +66,16 @@ local function init(env)
     local config = env.engine.schema.config
     env.topup_set = string2set(config:get_string("topup/topup_with") or "")
     env.alphabet = string2set(config:get_string("speller/alphabet") or "abcdefghijklmnopqrstuvwxyz")
-    
     env.topup_min = math.max(1, config:get_int("topup/min_length") or 4)
     env.topup_min_danzi = math.max(1, config:get_int("topup/min_length_danzi") or env.topup_min)
     env.topup_max = math.max(env.topup_min, config:get_int("topup/max_length") or 6)
-    
     env.auto_clear = config:get_bool("topup/auto_clear")
     env.topup_command = config:get_bool("topup/topup_command")
-    env.first_char = nil  -- 初始化首字符缓存
 end
 
-return { init = init, func = processor }
+local function fini(env)
+    env.topup_set = nil
+    env.alphabet = nil
+end
+
+return { init = init, func = processor, fini = fini }
