@@ -593,9 +593,23 @@ patch:
       hilited_candidate_back_color: 0x434246  # 选中候选底色
 
 
+  # 关闭所有应用的默认西文模式
+  "app_options/com.apple.Spotlight/ascii_mode": false
+  "app_options/com.alfredapp.Alfred/ascii_mode": false
+  "app_options/com.runningwithcrayons.Alfred-2/ascii_mode": false
   "app_options/com.runningwithcrayons.Alfred-3/ascii_mode": false
-  "com.sublimetext.3/ascii_mode": false
-  "com.apple.Finder/ascii_mode": false
-  "app_options/com.microsoft.VSCode/ascii_mode": false
-  "app_options/com.apple.dt.Xcode/ascii_mode": false
+  "app_options/com.blacktree.Quicksilver/ascii_mode": false
+  "app_options/com.apple.Terminal/ascii_mode": false
   "app_options/com.googlecode.iterm2/ascii_mode": false
+  "app_options/org.vim.MacVim/ascii_mode": false
+  "app_options/com.apple.dt.Xcode/ascii_mode": false
+  "app_options/com.barebones.textwrangler/ascii_mode": false
+  "app_options/com.macromates.TextMate.preview/ascii_mode": false
+  "app_options/com.github.atom/ascii_mode": false
+  "app_options/com.microsoft.VSCode/ascii_mode": false
+  "app_options/com.sublimetext.2/ascii_mode": false
+  "app_options/com.sublimetext.3/ascii_mode": false
+  "app_options/org.gnu.Aquamacs/ascii_mode": false
+  "app_options/org.gnu.Emacs/ascii_mode": false
+  "app_options/co.zeit.hyper/ascii_mode": false
+  "app_options/com.apple.Finder/ascii_mode": false
