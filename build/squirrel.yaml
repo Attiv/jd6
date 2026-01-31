@@ -2,58 +2,58 @@ __build_info:
   rime_version: 1.16.0
   timestamps:
     squirrel: 1768354364
-    squirrel.custom: 1747303949
+    squirrel.custom: 1768970813
 app_options:
   co.zeit.hyper:
-    ascii_mode: true
+    ascii_mode: false
   com.alfredapp.Alfred:
-    ascii_mode: true
+    ascii_mode: false
+  com.apple.Finder:
+    ascii_mode: false
   com.apple.Spotlight:
-    ascii_mode: true
+    ascii_mode: false
   com.apple.Terminal:
-    ascii_mode: true
+    ascii_mode: false
     no_inline: true
   com.apple.dt.Xcode:
     ascii_mode: false
   com.barebones.textwrangler:
-    ascii_mode: true
+    ascii_mode: false
   com.blacktree.Quicksilver:
-    ascii_mode: true
+    ascii_mode: false
   com.github.atom:
-    ascii_mode: true
+    ascii_mode: false
   com.google.Chrome:
     inline: true
   com.googlecode.iterm2:
     ascii_mode: false
     no_inline: true
   com.macromates.TextMate.preview:
-    ascii_mode: true
+    ascii_mode: false
   com.microsoft.VSCode:
     ascii_mode: false
   com.microsoft.edgemac:
     inline: true
   "com.runningwithcrayons.Alfred-2":
-    ascii_mode: true
+    ascii_mode: false
   "com.runningwithcrayons.Alfred-3":
     ascii_mode: false
   com.sublimetext.2:
-    ascii_mode: true
+    ascii_mode: false
+  com.sublimetext.3:
+    ascii_mode: false
   org.gnu.Aquamacs:
-    ascii_mode: true
+    ascii_mode: false
   org.gnu.Emacs:
-    ascii_mode: true
+    ascii_mode: false
     no_inline: true
   org.vim.MacVim:
-    ascii_mode: true
+    ascii_mode: false
     no_inline: true
     vim_mode: true
   ru.keepcoder.Telegram:
     inline: true
 chord_duration: 0.1
-com.apple.Finder:
-  ascii_mode: false
-com.sublimetext.3:
-  ascii_mode: false
 config_version: 1.0
 keyboard_layout: last
 preset_color_schemes:
