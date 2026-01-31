@@ -36,6 +36,7 @@ local function is_priority_candidate(cand)
     if not cand or not cand.text then return false end
     if cand.comment and #cand.comment == 0 then return true end
     if cand.text:match('^%d%d%d%d%-%d%d%-%d%d$') then return true end
+    if cand.comment == "Unix时间戳" then return true end
     local len = utf8.len(cand.text)
     return len ~= nil and len == 1
 end
