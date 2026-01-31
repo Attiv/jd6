@@ -30,7 +30,7 @@ local function hint(cand, input, env)
               or string.match(lookup, env.pattern_short)
               or string.match(lookup, env.pattern_ssb)
 
-    if short and #input > #short and not input:sub(1, #short) == short then
+    if short and #input > #short and input:sub(1, #short) ~= short then
         cand:get_genuine().comment = cand.comment .. "〔" .. short .. "〕"
         return true
     end

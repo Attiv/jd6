@@ -9,8 +9,8 @@ __build_info:
     punctuation.custom: 0
     symbols: 1769677408
     symbols.custom: 0
-    xmjd6.custom: 1764916474
-    xmjd6.schema: 1769857405
+    xmjd6.custom: 1769876165
+    xmjd6.schema: 1769877749
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
