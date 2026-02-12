@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# 打包前恢复 default.yaml（Rime 部署会删除它）
+if [ -f "trash/default.yaml" ]; then
+    cp trash/default.yaml default.yaml
+    echo "已从 trash/ 恢复 default.yaml"
+fi
+
 file="jd6.zip"
 
 if [ -f "$file" ]; then
