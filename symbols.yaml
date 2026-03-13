@@ -293,3 +293,5 @@ punctuator:
     '/zw': ['所有回答使用中文.']
     '/fz': ['龘', '靆', '鑾', '躖', '讜', '讞']
     '/kf': ['-method:OPTIONS']
+    '/log': ['需要什么log 你自己打tag, 我好筛选']
+    '/wifi': ['WIFI']
