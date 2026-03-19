@@ -46,3 +46,4 @@ jd6_old.zip
 .fvm/
 jdx.csv
 result.dict.yaml
+__pycache__
