@@ -17,7 +17,7 @@ else
 fi
 
 # create the zip file
-zip -vr jd6.zip . -x "jd6_build.zip" -x "build/*" -x ".git/*" -x ".gitignore*" -x "sync/*" -x ".history/*" -x "build.sh" -x "兰佬转词库.zip" -x "词库转换键道.zip" -x "qui.py" -x ".scripts/*" -x "chongfu.py" -x ".build_back/*" -x ".build_back" -x "zhuyin.py" -x "jd6_irime.zip" -x "jd6.zip" -x "jd6_old.zip" -x "Fonts/*"
+zip -vr jd6.zip . -x "jd6_build.zip" -x "build/*" -x ".git/*" -x ".gitignore*" -x "sync/*" -x ".history/*" -x "build.sh" -x "兰佬转词库.zip" -x "词库转换键道.zip" -x "qui.py" -x ".scripts/*" -x "chongfu.py" -x ".build_back/*" -x ".build_back" -x "zhuyin.py" -x "jd6_irime.zip" -x "jd6.zip" -x "jd6_old.zip" -x "Fonts/*" -x "__pycache__" -x "__pycache__/*" -x ".claude" -x ".claude/*" -x ".serena" -x ".serena/*" -x ".vscode" -x ".vscode/*"
 
 
 file_path="user.yaml"
