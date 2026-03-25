@@ -1,5 +1,5 @@
 ---
-name: xkjd6.zidingyi
+name: xmjd6.zidingyi
 version: "Q1"
 sort: original
 ...
@@ -215,3 +215,6 @@ YAML	yaml
 Yarn	yarn
 Zod	zod
 Zsh	zsh
+icon	icon
+OK	ok
+adb	adb
