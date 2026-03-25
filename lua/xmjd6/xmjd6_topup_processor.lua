@@ -1,4 +1,6 @@
 -- 顶功处理器
+local protected_codes = require("xmjd6.protected_codes")
+
 local function string2set(str)
     local t = {}
     if type(str) ~= "string" then return t end
@@ -37,6 +39,11 @@ local function processor(key_event, env)
         return 2
     end
 
+    local next_code = input .. key
+    if env.protected_codes[next_code] then
+        return 2
+    end
+
     local first = #input > 0 and input:sub(1, 1) or key
     if env.topup_command and env.topup_set[first] then
         return 2
@@ -71,11 +78,13 @@ local function init(env)
     env.topup_max = math.max(env.topup_min, config:get_int("topup/max_length") or 6)
     env.auto_clear = config:get_bool("topup/auto_clear")
     env.topup_command = config:get_bool("topup/topup_command")
+    env.protected_codes = protected_codes.load(config)
 end
 
 local function fini(env)
     env.topup_set = nil
     env.alphabet = nil
+    env.protected_codes = nil
 end
 
 return { init = init, func = processor, fini = fini }

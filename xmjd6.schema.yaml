@@ -363,6 +363,7 @@ topup:
   auto_clear: true
   min_length_danzi: 2
   topup_command: true
+  protected_dicts: []
 # menu:     #如果想要修改候选直接反注释这四行内容
 #   page_size: 6 #候选项数
 style:

@@ -3,6 +3,18 @@
 
 local kAccepted = 1
 local kNoop = 2
+local protected_codes = require("xmjd6.protected_codes")
+
+local function string2set(str)
+    local t = {}
+    if type(str) ~= "string" then
+        return t
+    end
+    for i = 1, #str do
+        t[str:sub(i, i)] = true
+    end
+    return t
+end
 
 local function processor(key_event, env)
     if key_event:release() or key_event:ctrl() or key_event:alt() then
@@ -21,6 +33,13 @@ local function processor(key_event, env)
 
     local context = env.engine.context
     local input = context.input
+    if input and env.protected_codes[input .. key] then
+        return kNoop
+    end
+    local prev = #input > 0 and input:sub(-1) or ""
+    if env.topup_set[prev] then
+        return kNoop
+    end
     
     -- 至少要有1位输入才能回退
     if #input < 1 then
@@ -58,6 +77,8 @@ local function init(env)
     for i = 1, #alphabet_str do
         env.alphabet[alphabet_str:sub(i, i)] = true
     end
+    env.topup_set = string2set(config:get_string("topup/topup_with") or "")
+    env.protected_codes = protected_codes.load(config)
 end
 
 return { init = init, func = processor }
