@@ -9,7 +9,7 @@ __build_info:
     punctuation.custom: 0
     symbols: 1773981764
     symbols.custom: 0
-    xmjd6.custom: 1769876165
+    xmjd6.custom: 1774444784
     xmjd6.schema: 1774435613
 ascii_punct:
   option_name: ascii_punct
@@ -514,7 +514,8 @@ topup:
   max_length: 10
   min_length: 4
   min_length_danzi: 2
-  protected_dicts: []
+  protected_dicts:
+    - xmjd6.zidingyi
   topup_command: true
   topup_this: bcdefghjklmnpqrstwxyz
   topup_with: "avuio;"

@@ -78,7 +78,7 @@ local function init(env)
     env.topup_max = math.max(env.topup_min, config:get_int("topup/max_length") or 6)
     env.auto_clear = config:get_bool("topup/auto_clear")
     env.topup_command = config:get_bool("topup/topup_command")
-    env.protected_codes = protected_codes.load(config)
+    env.protected_codes = protected_codes.load()
 end
 
 local function fini(env)

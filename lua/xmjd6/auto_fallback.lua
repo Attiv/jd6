@@ -78,7 +78,7 @@ local function init(env)
         env.alphabet[alphabet_str:sub(i, i)] = true
     end
     env.topup_set = string2set(config:get_string("topup/topup_with") or "")
-    env.protected_codes = protected_codes.load(config)
+    env.protected_codes = protected_codes.load()
 end
 
 return { init = init, func = processor }
