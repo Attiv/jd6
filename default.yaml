@@ -23,6 +23,7 @@ switcher:
     - ascii_punct
     - wxw_hint
     - completion
+    - eng_space
 
 menu:
   page_size: 6

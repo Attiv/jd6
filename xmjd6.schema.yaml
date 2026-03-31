@@ -69,6 +69,9 @@ switches:
     reset: 1
   - name: embeded_cands
     states: [内嵌正常, 输入框显示候选]
+  - name: eng_space
+    states: [ 英文不加空格, 英文自动加空格 ]
+    reset: 1
 
 
   # - name: full_shape
@@ -134,6 +137,7 @@ engine:
     - lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands #嵌入候选
     - lua_filter@*xmjd6/split
     - lua_filter@*xmjd6/add_space # | 替换成空格
+    - lua_filter@*xmjd6/add_en_space # 英文上屏自动加空格
     - uniquifier
 
 #导入符号
