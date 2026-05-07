@@ -160,7 +160,9 @@ function embeded_cands_filter.init(env)
     end
     -- 初始化时同步一次
     handler(env.engine.context, option_name)
-    env.engine.context.option_update_notifier:connect(handler)
+    -- 保存 connection 以便 fini 中 disconnect，避免 schema 重新部署时累积旧 handler
+    env.notifier_handler = handler
+    env.notifier_connection = env.engine.context.option_update_notifier:connect(handler)
 end
 
 local function render_candidate(cfg, seq, input_code, stashed_text, text, comment, digested)
@@ -266,6 +268,12 @@ function embeded_cands_filter.func(input, env)
 end
 
 function embeded_cands_filter.fini(env)
+    -- 主动 disconnect，避免 librime-lua 中 notifier 持有 handler 闭包导致 env 无法释放
+    if env.notifier_connection then
+        pcall(function() env.notifier_connection:disconnect() end)
+        env.notifier_connection = nil
+    end
+    env.notifier_handler = nil
     config_cache[env.name_space] = nil
     env.option = nil
     collectgarbage("collect")  -- 主动触发垃圾回收（学习 wanxiang）

@@ -347,6 +347,28 @@ end
 -- greedy：隨時求值（每次變化都會求值，否則結尾爲特定字符時求值）
 local greedy = true
 
+-- 表达式编译缓存（FIFO），避免逐键输入时重复 lex/parse/compile
+local EXPR_CACHE_MAX = 32
+local expr_cache = {}
+local expr_keys = {}
+local expr_keys_n = 0
+
+local function get_compiled_expr(expe)
+    local f = expr_cache[expe]
+    if f then return f end
+    f = load("return " .. expe)
+    if not f then return nil end
+    if expr_keys_n >= EXPR_CACHE_MAX then
+        local oldest = table.remove(expr_keys, 1)
+        if oldest then expr_cache[oldest] = nil end
+        expr_keys_n = expr_keys_n - 1
+    end
+    expr_keys_n = expr_keys_n + 1
+    expr_keys[expr_keys_n] = expe
+    expr_cache[expe] = f
+    return f
+end
+
 local function splitNumStr(str)
     --[[
     split a number (or a string describing a number) into 4 parts:
@@ -537,9 +559,9 @@ local function calculator_translator(input, seg)
 
   -- yield(Candidate("text",seg.start, seg._end, expe, "表達式"))
   -- 使用 pcall 捕获执行错误，防止崩溃
-  local func, load_err = load("return "..expe)
+  local func = get_compiled_expr(expe)
   if not func then return end
-  
+
   local success, result = pcall(func)
   if not success then return end
   -- return語句保證了只有合法的Lua表達式才可執行

@@ -2,12 +2,24 @@ local function english()
 	local preedit, cands = {}, {}
 	local num_selection, fold_comments, used_punct, wildcard, changing, page_size
 	local english_rvdb_cache
+	local last_lookup_time
+	local IDLE_TIMEOUT = 15  -- 秒,空闲超时后卸载 ReverseDb,降低常驻内存
+
+	local function maybe_release_rvdb()
+		if english_rvdb_cache and last_lookup_time
+			and os.difftime(os.time(), last_lookup_time) > IDLE_TIMEOUT then
+			english_rvdb_cache = nil
+			last_lookup_time = nil
+			collectgarbage("collect")
+		end
+	end
 
 	local function get_english_rvdb(config)
 		local dict_name = config:get_string("translator/dictionary")
 		if not dict_name or dict_name == "" then return nil end
 		local cached = english_rvdb_cache
 		if cached and cached.dict_name == dict_name and cached.db then
+			last_lookup_time = os.time()
 			return cached.db
 		end
 		local ok, db = pcall(function()
@@ -15,9 +27,11 @@ local function english()
 		end)
 		if not ok or not db then
 			english_rvdb_cache = nil
+			last_lookup_time = nil
 			return nil
 		end
 		english_rvdb_cache = { dict_name = dict_name, db = db }
+		last_lookup_time = os.time()
 		return db
 	end
 
@@ -38,6 +52,7 @@ local function english()
 	end
 
 	local function processor(key, env)
+		maybe_release_rvdb()
 		local engine = env.engine
 		local context = engine.context
 		local composition = context.composition
@@ -161,6 +176,7 @@ local function english()
 	end
 
 	local function filter(input, env)
+		maybe_release_rvdb()
 		local engine = env.engine
 		local context = engine.context
 		local schema = engine.schema
@@ -215,6 +231,7 @@ local function english()
 	end
 
 	local function filter0(input, env)
+		maybe_release_rvdb()
 		local engine = env.engine
 		local context = engine.context
 		local schema = engine.schema

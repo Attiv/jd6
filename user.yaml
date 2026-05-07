@@ -1,8 +1,12 @@
 var:
-  last_build_time: 1777447508
+  last_build_time: 1778152315
   option:
     completion: true
     embeded_cands: false
     emoji_cn: true
     jffh: false
     wxw_hint: true
+  previously_selected_schema: xmjd6
+  schema_access_time:
+    english: 1778155392
+    xmjd6: 1778155405

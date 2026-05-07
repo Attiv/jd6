@@ -10,7 +10,7 @@ __build_info:
     symbols: 1773981764
     symbols.custom: 0
     xmjd6.custom: 1774444784
-    xmjd6.schema: 1774939151
+    xmjd6.schema: 1778151966
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -34,6 +34,10 @@ embeded_cands:
 emoji_cn:
   comment_format:
     - "xform/.*/ /"
+  dict_file: emoji.txt
+  force_comment: " "
+  idle_timeout: 30
+  mode: word
   opencc_config: emoji.json
   option_name: emoji_cn
 engine:
@@ -43,12 +47,12 @@ engine:
     - "reverse_lookup_filter@quanpinerfen_lookup"
     - "reverse_lookup_filter@gbk_lookup"
     - "lua_filter@*xmjd6/xmjd6_single_char"
-    - "simplifier@emoji_cn"
+    - "lua_filter@*xmjd6/lazy_simplifier@emoji_cn"
     - "lua_filter@*xmjd6/for_hint"
     - "simplifier@jffh"
     - "simplifier@ascii_punct"
-    - "simplifier@mars"
-    - "simplifier@tofu"
+    - "lua_filter@*xmjd6/lazy_simplifier@mars"
+    - "lua_filter@*xmjd6/lazy_simplifier@tofu"
     - "lua_filter@*xmjd6/xmjd6_embeded_cands@embeded_cands"
     - "lua_filter@*xmjd6/split"
     - "lua_filter@*xmjd6/add_space"
@@ -157,6 +161,9 @@ layout:
     topup_this: bcdefghjklmnpqrstwxyz
     topup_with: "avuio;"
 mars:
+  dict_file: mars.txt
+  idle_timeout: 30
+  mode: char
   opencc_config: mars.json
   option_name: mars
 menu:
@@ -511,6 +518,9 @@ switches:
     reset: 1
     states: ["英文不加空格", "英文自动加空格"]
 tofu:
+  dict_file: tofu.txt
+  idle_timeout: 30
+  mode: char
   opencc_config: tofu.json
   option_name: tofu
 topup:
