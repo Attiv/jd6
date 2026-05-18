@@ -49,3 +49,5 @@ result.dict.yaml
 __pycache__
 docs/
 .serena
+.kiro
+.trellis
