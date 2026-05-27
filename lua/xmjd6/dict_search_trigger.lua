@@ -5,6 +5,11 @@
 local kAccepted = 1
 local kNoop = 2
 
+-- sentinel keycode: XK_VoidSymbol = 0xFFFFFF
+-- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，触发本脚本释放词库缓存。
+-- VoidSymbol 是 X11 标准 noop keysym，正常 processor 都不会处理它。
+local CLEAR_CACHE_KEYCODE = 0xFFFFFF
+
 -- 要搜索的词库列表：要禁用某个词库，在它前面加 -- 注释掉即可
 local DICT_FILES = {
     -- ============ 最初的 3 个核心词库 ============
@@ -103,6 +108,19 @@ end
 
 local function dict_search_trigger(key, env)
     if key:release() then return kNoop end
+
+    -- 收到清缓存 sentinel：丢掉常驻 _G 上的词库 entries / candidates，触发 Lua GC。
+    -- 在没有 composing/menu 的状态下到达（键盘扩展收起前调用），不会影响用户输入。
+    if key.keycode == CLEAR_CACHE_KEYCODE then
+        if _G.__dict_search_state then
+            _G.__dict_search_state.entries = nil
+            _G.__dict_search_state.candidates = nil
+            _G.__dict_search_state.query = nil
+        end
+        collectgarbage("collect")
+        return kAccepted
+    end
+
     if key.keycode ~= 0x3f then return kNoop end
 
     local context = env.engine.context
