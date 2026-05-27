@@ -81,6 +81,7 @@ switches:
 engine:
   processors:
     - lua_processor@*xmjd6/xmjd6_select_character  # 以词定字
+    - lua_processor@*xmjd6/dict_search_trigger    # ? 触发：词库模糊查询（尽量靠前避免被截胡）
     - ascii_composer
     - recognizer
     - key_binder    
@@ -108,8 +109,9 @@ engine:
     - lua_translator@*xmjd6/xmjd6_jisuanqi
     - lua_translator@*xmjd6/xmjd6_shijian
     - lua_translator@*xmjd6/zimu
-    - lua_translator@*xmjd6/xmjd6_shuzi    
+    - lua_translator@*xmjd6/xmjd6_shuzi
     - lua_translator@*xmjd6/unicode
+    - lua_translator@*xmjd6/dict_search    # ? 触发：词库模糊查询结果
     - punct_translator
     - table_translator
     - reverse_lookup_translator
@@ -370,6 +372,7 @@ recognizer:
     jsq: "^=[^;']+$"
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
     unicode: "^&+.*$"
+    dict_search: "^[a-z]+\\?$"    # 键道码+? 触发词库模糊查询
     # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
 #        xmjdWXYZ: "^'['/a-z][a-z0-9,./:?!']*'?$"
 
