@@ -61,9 +61,14 @@ local function load_entries()
     if _G.__dict_search_state.entries then return end
     local entries = {}
     local user_dir = rime_api.get_user_data_dir()
+    local shared_dir = rime_api.get_shared_data_dir()
     for _, fname in ipairs(DICT_FILES) do
-        local path = user_dir .. "/" .. fname
-        local f = io.open(path, "r")
+        -- 词库文件优先从 user_dir 读取（允许用户覆盖），
+        -- 找不到时回退到 shared_dir（输入法发行版自带词库放在这里，例如 iOS App Group SharedData/Rime）
+        local f = io.open(user_dir .. "/" .. fname, "r")
+        if not f and shared_dir and shared_dir ~= "" then
+            f = io.open(shared_dir .. "/" .. fname, "r")
+        end
         if f then
             local in_data = false
             for line in f:lines() do
