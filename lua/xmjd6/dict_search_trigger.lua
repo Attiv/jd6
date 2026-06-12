@@ -1,12 +1,18 @@
 -- dict_search_trigger.lua
 -- 拦截 ? 键：取当前首选文本，在指定词库中模糊搜索，把结果存全局
 -- 然后在 input 末尾追加 ?，让 recognizer 识别为 dict_search 段，交给 lua_translator 显示
+--
+-- 内存说明：词条不再用 {text=, code=} 的逐条 table 缓存（6.5 万条实测 ~13.7MB Lua 堆），
+-- 而是拼接成单个 "text\tcode\n" 大字符串（同数据实测 ~1MB），搜索直接在大字符串上
+-- string.find（C 层扫描），比逐条 Lua 循环更快。
+
+local mem_cleaner = require("xmjd6.mem_cleaner")
 
 local kAccepted = 1
 local kNoop = 2
 
 -- sentinel keycode: XK_VoidSymbol = 0xFFFFFF
--- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，触发本脚本释放词库缓存。
+-- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，触发统一释放所有 Lua 缓存。
 -- VoidSymbol 是 X11 标准 noop keysym，正常 processor 都不会处理它。
 local CLEAR_CACHE_KEYCODE = 0xFFFFFF
 
@@ -56,15 +62,26 @@ local MAX_CANDIDATES = 200
 
 if not _G.__dict_search_state then
     _G.__dict_search_state = {
-        entries = nil,
-        candidates = nil,
+        blob = nil,        -- 所有词条拼成的大字符串，每行 "text\tcode"
+        candidates = nil,  -- 最近一次搜索结果（dict_search.lua 读取）
         query = nil,
     }
 end
 
-local function load_entries()
-    if _G.__dict_search_state.entries then return end
-    local entries = {}
+-- 模块级注册：sentinel 到达时由 mem_cleaner 统一清空
+mem_cleaner.register(function()
+    local state = _G.__dict_search_state
+    if state then
+        state.blob = nil
+        state.candidates = nil
+        state.query = nil
+    end
+end)
+
+local function load_blob()
+    if _G.__dict_search_state.blob then return end
+    local chunks = {}
+    local n = 0
     local user_dir = rime_api.get_user_data_dir()
     local shared_dir = rime_api.get_shared_data_dir()
     for _, fname in ipairs(DICT_FILES) do
@@ -80,7 +97,8 @@ local function load_entries()
                 if in_data then
                     local text, code = line:match("^([^\t]+)\t([^\t]+)")
                     if text and code and not text:match("^#") then
-                        table.insert(entries, { text = text, code = code })
+                        n = n + 1
+                        chunks[n] = text .. "\t" .. code
                     end
                 elseif line == "..." then
                     in_data = true
@@ -89,19 +107,32 @@ local function load_entries()
             f:close()
         end
     end
-    _G.__dict_search_state.entries = entries
+    _G.__dict_search_state.blob = table.concat(chunks, "\n")
 end
 
 local function search(query)
-    load_entries()
+    load_blob()
+    local blob = _G.__dict_search_state.blob
     local matches = {}
     local n = 0
-    for _, entry in ipairs(_G.__dict_search_state.entries) do
-        if string.find(entry.text, query, 1, true) then
-            n = n + 1
-            matches[n] = entry
-            if n >= MAX_CANDIDATES then break end
+    local pos = 1
+    while n < MAX_CANDIDATES do
+        local s = string.find(blob, query, pos, true)
+        if not s then break end
+        -- 回找行首、行尾，取出完整词条行
+        local line_start = s
+        while line_start > 1 and blob:byte(line_start - 1) ~= 10 do
+            line_start = line_start - 1
         end
+        local line_end = string.find(blob, "\n", s, true) or (#blob + 1)
+        local line = blob:sub(line_start, line_end - 1)
+        local text, code = line:match("^([^\t]+)\t([^\t]+)")
+        -- 确认命中落在词条文本部分（而不是编码部分）
+        if text and code and string.find(text, query, 1, true) then
+            n = n + 1
+            matches[n] = { text = text, code = code }
+        end
+        pos = line_end + 1 -- 跳到下一行，同一行内多次命中只取一次
     end
     return matches
 end
@@ -109,15 +140,11 @@ end
 local function dict_search_trigger(key, env)
     if key:release() then return kNoop end
 
-    -- 收到清缓存 sentinel：丢掉常驻 _G 上的词库 entries / candidates，触发 Lua GC。
+    -- 收到清缓存 sentinel：统一释放所有注册过的 Lua 缓存（词库 blob、反查库、
+    -- lazy_simplifier 字典、懒加载的时间模块等），触发 Lua GC。
     -- 在没有 composing/menu 的状态下到达（键盘扩展收起前调用），不会影响用户输入。
     if key.keycode == CLEAR_CACHE_KEYCODE then
-        if _G.__dict_search_state then
-            _G.__dict_search_state.entries = nil
-            _G.__dict_search_state.candidates = nil
-            _G.__dict_search_state.query = nil
-        end
-        collectgarbage("collect")
+        mem_cleaner.release_all()
         return kAccepted
     end
 
@@ -132,7 +159,8 @@ local function dict_search_trigger(key, env)
     end
 
     local query = selected.text
-    if utf8.len(query) < 1 then return kNoop end
+    -- utf8.len 对非法 UTF-8 返回 nil，or 0 防止 nil 比较报错
+    if (utf8.len(query) or 0) < 1 then return kNoop end
 
     _G.__dict_search_state.candidates = search(query)
     _G.__dict_search_state.query = query

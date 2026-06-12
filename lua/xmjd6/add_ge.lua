@@ -1,4 +1,8 @@
-function handle(t)
+-- 加"个"模式：按绑定键（默认 \）把当前首选第一个字后插入"个"再上屏
+local kAccepted = 1
+local kNoop = 2
+
+local function handle(t)
     local text = t
     if utf8.len(text) > 1 then
         -- 使用 utf8.offset 来获取第一个字符的位置
@@ -11,28 +15,29 @@ function handle(t)
     end
 end
 
-local function add_ge(key, env)
-    local engine = env.engine
-    local context = engine.context
-    local commit_text = context:get_commit_text()
-    local config = engine.schema.config
-    local bindKey = config:get_string('key_binder/add_ge')
-
-    if context:has_menu() and context:get_selected_candidate().text ~= '' then
-        if (key:repr() == bindKey) then
-
-            local candidate = context:get_selected_candidate()
-            if candidate ~= nil then
-                local text = handle(candidate.text)
-                engine:commit_text(text)
-
-                context:clear()
-                return 1 -- kAccepted
-            end
-        end
-    end
-
-    return 2 -- kNoop
+local function init(env)
+    -- 绑定键在部署时读一次，避免每个按键都查询 config
+    env.bind_key = env.engine.schema.config:get_string('key_binder/add_ge')
 end
 
-return add_ge
+local function add_ge(key, env)
+    if not env.bind_key or key:repr() ~= env.bind_key then
+        return kNoop
+    end
+
+    local context = env.engine.context
+    if not context:has_menu() then
+        return kNoop
+    end
+
+    local candidate = context:get_selected_candidate()
+    if candidate and candidate.text and candidate.text ~= '' then
+        env.engine:commit_text(handle(candidate.text))
+        context:clear()
+        return kAccepted
+    end
+
+    return kNoop
+end
+
+return { init = init, func = add_ge }

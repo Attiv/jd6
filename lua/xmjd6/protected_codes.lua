@@ -1,5 +1,9 @@
 local M = {}
 
+-- 模块级共享缓存：auto_fallback 与 topup_processor 都会 load()，
+-- 只读一次文件、共用同一张表，避免每个组件实例各持一份
+local cache = nil
+
 local function get_script_dir()
     local source = debug.getinfo(1).source or ""
     return source:match("@?(.*/)")
@@ -18,6 +22,7 @@ local function is_ascii_text(text)
 end
 
 function M.load()
+    if cache then return cache end
     local codes = {}
     local script_dir = get_script_dir()
     if not script_dir then
@@ -38,6 +43,7 @@ function M.load()
     end
 
     file:close()
+    cache = codes
     return codes
 end
 

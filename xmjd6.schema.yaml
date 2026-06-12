@@ -305,7 +305,6 @@ embeded_cands:
 for_hint:
   max_hint_candidates: 50        # 0 表示不限
   max_completion_candidates: 30  # completion 候选数量上限
-  gc_interval: 50                # 每处理多少条 hint 触发一次 GC。
 
 # punctuator:
 #   import_preset: default

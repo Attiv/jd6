@@ -79,7 +79,7 @@ local function read_number(conf, n)
    return s
 end
 
-function translator(input, seg)
+local function translator(input, seg)
    if string.sub(input, 1, 1) == "=" then
       local n = string.sub(input, 2)
       if tonumber(n) ~= nil then

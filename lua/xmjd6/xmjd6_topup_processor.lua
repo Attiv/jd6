@@ -14,7 +14,6 @@ local function topup(env)
     local ctx = env.engine.context
     if ctx:get_selected_candidate() then
         ctx:commit()
-        collectgarbage("collect")
     elseif env.auto_clear then
         ctx:clear()
     end

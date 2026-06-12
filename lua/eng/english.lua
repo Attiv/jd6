@@ -4,6 +4,16 @@ local function english()
 	local english_rvdb_cache
 	local last_lookup_time
 	local IDLE_TIMEOUT = 15  -- 秒,空闲超时后卸载 ReverseDb,降低常驻内存
+	local MAX_MATCH_CANDS = 500  -- 单次收集的匹配候选上限,防止短前缀时瞬时内存峰值
+
+	-- 接入统一清理(注册表在 xmjd6 目录;若 eng 目录被单独分发则静默跳过)
+	local has_cleaner, mem_cleaner = pcall(require, "xmjd6.mem_cleaner")
+	if has_cleaner then
+		mem_cleaner.register(function()
+			english_rvdb_cache = nil
+			last_lookup_time = nil
+		end)
+	end
 
 	local function maybe_release_rvdb()
 		if english_rvdb_cache and last_lookup_time
@@ -198,6 +208,7 @@ local function english()
 			else
 				cands = {}
 				for cand in input:iter() do
+					if #cands >= MAX_MATCH_CANDS then break end
 					table.insert(cands, {text = preedit.t .. cand.comment:sub(2), comment = cand.text, index = #cands})
 				end
 				if #cands ~=0 then
@@ -254,12 +265,14 @@ local function english()
 				cands = {}
 				if preedit.s <= 1 then				--爲加快速度,首碼不使用反查,如確保所有詞義唯一,或者不介意頭幾碼被Rime忽略部份同義詞,可增加此數值
 					for cand in input:iter() do
+						if #cands >= MAX_MATCH_CANDS then break end
 						table.insert(cands, {text = preedit.t .. cand.comment:sub(2), comment = cand.text, index = #cands})
 					end
 				else
 					local english_rvdb = get_english_rvdb(config)	  --因Rime對詞義相同,拼寫接近的單詞只保留一個,反查可全部找出
 					if english_rvdb then
 						for cand in input:iter() do
+							if #cands >= MAX_MATCH_CANDS then break end
 							for comment in english_rvdb:lookup(cand:get_genuine().text):gmatch("[^ ]+") do
 								if comment:sub(1, preedit.s):lower() == preedit.l then
 									table.insert(cands, {text = comment, comment = cand.text, index = #cands})

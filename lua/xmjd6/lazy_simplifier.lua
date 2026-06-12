@@ -22,6 +22,8 @@
 
 local M = {}
 
+local mem_cleaner = require("xmjd6.mem_cleaner")
+
 local DEFAULT_IDLE_TIMEOUT = 30
 
 local function get_dict_path(filename)
@@ -111,9 +113,16 @@ function M.init(env)
     env.dict = nil
     env.last_use_time = nil
     env.disabled = (env.dict_file == "")
+    -- 注册到统一清理：iOS 键盘收起 sentinel 到达时释放字典
+    env.mem_release = mem_cleaner.register(function()
+        env.dict = nil
+        env.last_use_time = nil
+    end)
 end
 
 function M.fini(env)
+    mem_cleaner.unregister(env.mem_release)
+    env.mem_release = nil
     env.dict = nil
     env.last_use_time = nil
     collectgarbage("collect")

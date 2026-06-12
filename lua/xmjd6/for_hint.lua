@@ -1,4 +1,6 @@
 -- 简码提示 + 单字模式过滤器
+local mem_cleaner = require("xmjd6.mem_cleaner")
+
 local DEFAULT_MAX_HINT = 50
 local DEFAULT_MAX_COMPLETION = 30
 local IDLE_TIMEOUT = 15
@@ -121,9 +123,16 @@ local function init(env)
     env.max_completion = config:get_int('for_hint/max_completion_candidates') or DEFAULT_MAX_COMPLETION
     env.reverse = nil
     env.last_lookup_time = nil
+    -- 注册到统一清理：iOS 键盘收起 sentinel 到达时释放 ReverseLookup
+    env.mem_release = mem_cleaner.register(function()
+        env.reverse = nil
+        env.last_lookup_time = nil
+    end)
 end
 
 local function fini(env)
+    mem_cleaner.unregister(env.mem_release)
+    env.mem_release = nil
     env.reverse = nil
     env.last_lookup_time = nil
     collectgarbage("collect")

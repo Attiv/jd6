@@ -10,7 +10,7 @@ __build_info:
     symbols: 1773981764
     symbols.custom: 0
     xmjd6.custom: 1774444784
-    xmjd6.schema: 1779849820
+    xmjd6.schema: 1781262077
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -100,7 +100,6 @@ engine:
     - "script_translator@pinyin_simp"
     - "script_translator@xmjd6gbk"
 for_hint:
-  gc_interval: 50
   max_completion_candidates: 30
   max_hint_candidates: 50
 gbk_lookup:
