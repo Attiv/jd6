@@ -106,6 +106,7 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
+    - lua_translator@*xmjd6/xmjd6_tools      # = 工具集：=uuid / =pw密码 / =mem内存 / =时间戳
     - lua_translator@*xmjd6/xmjd6_jisuanqi
     - lua_translator@*xmjd6/xmjd6_shijian
     - lua_translator@*xmjd6/zimu
@@ -369,6 +370,7 @@ recognizer:
     quanpinerfen: "^v[a-z']*'?$"
     xmjd6gbk: "^o[a-z]*?$"
     jsq: "^=[^;']+$"
+    sjx: "^sjx/$"    # 纪念日倒计时：输入 sjx 后按 / 触发（缺此 pattern 时 / 进不了编码串）
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
     unicode: "^&+.*$"
     dict_search: "^[a-z]+\\?$"    # 键道码+? 触发词库模糊查询

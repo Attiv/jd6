@@ -1463,6 +1463,85 @@ local function nl_shengri2(y, m, d)
 end
 -- 农历倒计时结束
 
+-- 自定义纪念日（sjx/ 触发）：从 anniversaries.txt 读取，user_dir 优先、shared_dir 回退。
+-- 三种行格式（# 开头为注释）：
+--   名称<Tab>公历<Tab>MMDD    按公历每年循环
+--   名称<Tab>农历<Tab>MMDD    按农历每年循环
+--   名称<Tab>节气             名称须为二十四节气名，日期每年天文推算
+-- 缓存在本模块沙箱内，impl 被 sentinel 卸载时一并释放。
+local anniversaries = nil
+
+local function load_anniversaries()
+    if anniversaries then return anniversaries end
+    anniversaries = {}
+    local dirs = {}
+    if rime_api and rime_api.get_user_data_dir then
+        dirs[#dirs + 1] = rime_api.get_user_data_dir()
+        local shared = rime_api.get_shared_data_dir()
+        if shared and shared ~= "" then dirs[#dirs + 1] = shared end
+    end
+    for _, dir in ipairs(dirs) do
+        local f = io.open(dir .. "/anniversaries.txt", "r")
+        if f then
+            for line in f:lines() do
+                line = line:gsub("\r$", "") -- 容忍 CRLF
+                if line ~= "" and line:sub(1, 1) ~= "#" then
+                    local name, typ, md = line:match("^([^\t]+)\t([^\t]+)\t(%d%d%d%d)%s*$")
+                    if name and typ and md then
+                        anniversaries[#anniversaries + 1] =
+                            { name = name, lunar = (typ == "农历"), md = md }
+                    else
+                        local jq_name = line:match("^([^\t]+)\t节气%s*$")
+                        if jq_name then
+                            anniversaries[#anniversaries + 1] =
+                                { name = jq_name, jieqi = true }
+                        end
+                    end
+                end
+            end
+            f:close()
+            break -- 用找到的第一个文件，不合并
+        end
+    end
+    return anniversaries
+end
+
+-- 节气倒计时。getJQ(y) 返回"y 年春分起的 24 节气"时刻表，
+-- 表尾的小寒~惊蛰实际落在 y+1 年，所以查"下一次节气 X"要从 y-1 年的表开始找。
+-- 节气时刻表按年缓存在沙箱内，impl 卸载时随之释放。
+local JQ_NAMES = { -- 与 getJQ 返回顺序一致（从春分开始）
+    "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露",
+    "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰"
+}
+
+local jq_year_cache = {}
+
+local function get_jq_times(y)
+    if not jq_year_cache[y] then jq_year_cache[y] = getJQ(y) end
+    return jq_year_cache[y]
+end
+
+-- 返回距下一次该节气的天数和它的公历日期(MM-DD)；非节气名返回 nil
+local function next_jieqi_days(name)
+    local idx
+    for i, n in ipairs(JQ_NAMES) do
+        if n == name then idx = i break end
+    end
+    if not idx then return nil end
+    local today = os.date("%Y%m%d")
+    local year = tonumber(os.date("%Y"))
+    for _, y in ipairs({ year - 1, year, year + 1 }) do
+        local t = get_jq_times(y)[idx]
+        if t then
+            local days = diffDate(today, os.date("%Y%m%d", t))
+            if days and days >= 0 then
+                return days, os.date("%m-%d", t)
+            end
+        end
+    end
+    return nil
+end
+
 local function translator(input, seg)
     -- 日期
     if (input == "rq") then
@@ -1568,28 +1647,50 @@ local function translator(input, seg)
             end
         end -- if tonumber
     elseif (input == "sjx/") then
-        -- 公历倒计时
-        sth_y = "2000" -- 公历生日——年
-        sth_m = "10" -- 公历生日——月
-        sth_d = "31" -- 公历生日——日
-        -- sjxsr="距离下次生日还有"..nl_shengri2(sth_y,sth_m,sth_d).."天"
-        sjxsr = "距离下次生日还有" .. diffDate2(os.date("%Y%m%d"), sth_y .. sth_m .. sth_d) .. "天"
-        candidate = Candidate("sjx/", seg.start, seg._end, sjxsr, "")
-        yield(candidate)
-        -- 公历倒计时
-        sth_y = "2021" -- 公历日期——年
-        sth_m = "02" -- 公历日期——月
-        sth_d = "14" -- 公历日期——日
-        djs = "距离下次情人节还有" .. diffDate2(os.date("%Y%m%d"), sth_y .. sth_m .. sth_d) .. "天"
-        candidate = Candidate("sjx/", seg.start, seg._end, djs, "")
-        yield(candidate)
-        -- 农历倒计时
-        bb_y = "2021" -- 农历生日——年
-        bb_m = "07" -- 农历生日——月
-        bb_d = "07" -- 农历生日——日
-        djs = "距离下次七夕节还有" .. nl_shengri2(bb_y, bb_m, bb_d) .. "天"
-        candidate = Candidate("sjx/", seg.start, seg._end, djs, "")
-        yield(candidate)
+        local list = load_anniversaries()
+        if #list > 0 then
+            -- 计算每条的剩余天数，按"最近要过的"升序输出
+            local items = {}
+            for i, item in ipairs(list) do
+                -- pcall 包住每条：单条日期写错不影响其余条目
+                local ok, days, jq_date = pcall(function()
+                    if item.jieqi then
+                        return next_jieqi_days(item.name)
+                    elseif item.lunar then
+                        return nl_shengri2(os.date("%Y"), item.md:sub(1, 2), item.md:sub(3, 4))
+                    end
+                    return diffDate2(os.date("%Y%m%d"), os.date("%Y") .. item.md)
+                end)
+                if ok and type(days) == "number" and days >= 0 then
+                    local text = (days == 0) and ("今天是" .. item.name)
+                        or ("距离" .. item.name .. "还有" .. days .. "天")
+                    local tip
+                    if item.jieqi then
+                        tip = "〔节气" .. (jq_date and ("·" .. jq_date) or "") .. "〕"
+                    else
+                        tip = (item.lunar and "〔农历" or "〔公历")
+                            .. item.md:sub(1, 2) .. "·" .. item.md:sub(3, 4) .. "〕"
+                    end
+                    items[#items + 1] = { days = days, text = text, tip = tip, idx = i }
+                end
+            end
+            table.sort(items, function(a, b)
+                if a.days ~= b.days then return a.days < b.days end
+                return a.idx < b.idx -- 同天数按文件行序，保证排序稳定
+            end)
+            for _, it in ipairs(items) do
+                yield(Candidate("sjx/", seg.start, seg._end, it.text, it.tip))
+            end
+        else
+            -- 未配置 anniversaries.txt 时保留内置示例
+            local today = os.date("%Y%m%d")
+            local sr = "距离下次生日还有" .. diffDate2(today, "20001031") .. "天"
+            yield(Candidate("sjx/", seg.start, seg._end, sr, ""))
+            local qrj = "距离下次情人节还有" .. diffDate2(today, "20210214") .. "天"
+            yield(Candidate("sjx/", seg.start, seg._end, qrj, ""))
+            local qx = "距离下次七夕节还有" .. nl_shengri2("2021", "07", "07") .. "天"
+            yield(Candidate("sjx/", seg.start, seg._end, qx, ""))
+        end
     end -- if
 end -- function
 

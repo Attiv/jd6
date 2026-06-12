@@ -33,6 +33,13 @@ local function processor(key_event, env)
     local input = context.input
     if not input then return 2 end
 
+    -- 功能引导符开头的输入（=计算器/工具、\转字体、&Unicode）不参与顶功，
+    -- 否则 =uuid、=floor(2) 这类字母输入会在第4码被强制上屏截断
+    local lead = input:sub(1, 1)
+    if lead == "=" or lead == "\\" or lead == "&" then
+        return 2
+    end
+
     local key = string.char(ch)
     if not env.alphabet[key] then
         return 2

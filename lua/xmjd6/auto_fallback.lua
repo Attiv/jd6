@@ -36,6 +36,12 @@ local function processor(key_event, env)
     if input and env.protected_codes[input .. key] then
         return kNoop
     end
+    -- 功能引导符开头的输入（=计算器/工具、\转字体、&Unicode）没有词库候选属正常，
+    -- 不做空码回退，否则 =uuid 这类输入会被截断上屏
+    local lead = input and input:sub(1, 1) or ""
+    if lead == "=" or lead == "\\" or lead == "&" then
+        return kNoop
+    end
     local prev = #input > 0 and input:sub(-1) or ""
     if env.topup_set[prev] then
         return kNoop
