@@ -2,9 +2,10 @@
 -- 拦截 ? 键：取当前首选文本，在指定词库中模糊搜索，把结果存全局
 -- 然后在 input 末尾追加 ?，让 recognizer 识别为 dict_search 段，交给 lua_translator 显示
 --
--- 内存说明：词条不再用 {text=, code=} 的逐条 table 缓存（6.5 万条实测 ~13.7MB Lua 堆），
--- 而是拼接成单个 "text\tcode\n" 大字符串（同数据实测 ~1MB），搜索直接在大字符串上
--- string.find（C 层扫描），比逐条 Lua 循环更快。
+-- 实现说明：流式扫描——每次搜索逐块读词库文件、边读边匹配、用完即扔，
+-- 词条不在内存常驻（iOS 键盘扩展友好，jetsam 零负担）。
+-- 代价是每次按 ? 都重读文件：18 个词库约 106 万词条，实测典型 50~300ms，
+-- 最坏（无命中需扫完全部文件）约 650ms（Mac）；凑满 MAX_CANDIDATES 即提前终止。
 
 local mem_cleaner = require("xmjd6.mem_cleaner")
 
@@ -12,7 +13,7 @@ local kAccepted = 1
 local kNoop = 2
 
 -- sentinel keycode: XK_VoidSymbol = 0xFFFFFF
--- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，触发统一释放所有 Lua 缓存。
+-- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，统一释放所有 Lua 缓存。
 -- VoidSymbol 是 X11 标准 noop keysym，正常 processor 都不会处理它。
 local CLEAR_CACHE_KEYCODE = 0xFFFFFF
 
@@ -27,14 +28,14 @@ local DICT_FILES = {
     "xkjd6.kaifa.dict.yaml",      -- 开发 (134 行)
 
     -- ============ xkjd6.* 其他词库 ============
-    -- "xkjd6.changyong.dict.yaml",  -- 常用 (859 行)
-    -- "xkjd6.hanyu.dict.yaml",      -- 汉语 (33 行)
+    "xkjd6.changyong.dict.yaml",  -- 常用 (859 行)
+    "xkjd6.hanyu.dict.yaml",      -- 汉语 (33 行)
 
-    -- "xkjd6.lanlao.dict.yaml",     -- 兰佬 (104k 行)
-    -- "xkjd6.lanlao2.dict.yaml",    -- 兰佬2 (406k 行 ★大)
-    -- "xkjd6.liangzi.dict.yaml",    -- 量子 (190k 行 ★大)
+    "xkjd6.lanlao.dict.yaml",     -- 兰佬 (104k 行)
+    "xkjd6.lanlao2.dict.yaml",    -- 兰佬2 (406k 行 ★大)
+    "xkjd6.liangzi.dict.yaml",    -- 量子 (190k 行 ★大)
 
-    -- "xkjd6.ssb1.dict.yaml",       -- 声笔笔 (22 行)
+    "xkjd6.ssb1.dict.yaml",       -- 声笔笔 (22 行)
     "xkjd6.wanne.dict.yaml",      -- 离谱诗词 (1.9k 行)
     -- "xkjd6.yingwen.dict.yaml",    -- 英文 (135 行)
     "xkjd6.yinyang.dict.yaml",    -- 阴阳 (129 行)
@@ -47,7 +48,7 @@ local DICT_FILES = {
     -- "xmjd6.danzi.dict.yaml",      -- 单字 (33k 行)
     -- "xmjd6.en.dict.yaml",      -- 英文 (569k 行 ★★超大，默认关闭；中文搜索意义不大)
     -- "xmjd6.extended.dict.yaml",   -- 扩展 (126 行)
-    -- "xmjd6.fjcy.dict.yaml",       -- 附加词语 (294k 行 ★大)
+    "xmjd6.fjcy.dict.yaml",       -- 附加词语 (294k 行 ★大)
     -- "xmjd6.fuhao.dict.yaml",      -- 符号 (180 行)
     -- "xmjd6.gbk.dict.yaml",        -- GBK (24k 行)
     "xmjd6.lianjie.dict.yaml",    -- 链接 (17 行)
@@ -59,28 +60,74 @@ local DICT_FILES = {
 }
 
 local MAX_CANDIDATES = 200
+local CHUNK_SIZE = 262144 -- 256KB/块：块内用 C 层 string.find 扫描，远快于逐行迭代
 
 if not _G.__dict_search_state then
     _G.__dict_search_state = {
-        blob = nil,        -- 所有词条拼成的大字符串，每行 "text\tcode"
-        candidates = nil,  -- 最近一次搜索结果（dict_search.lua 读取）
+        candidates = nil, -- 最近一次搜索结果（dict_search.lua 读取），最多 MAX_CANDIDATES 条
         query = nil,
     }
 end
 
--- 模块级注册：sentinel 到达时由 mem_cleaner 统一清空
+-- 流式实现本身无常驻缓存；注册清理是为了 sentinel 到达时顺手放掉上次的搜索结果
 mem_cleaner.register(function()
     local state = _G.__dict_search_state
     if state then
-        state.blob = nil
         state.candidates = nil
         state.query = nil
     end
 end)
 
-local function load_blob()
-    if _G.__dict_search_state.blob then return end
-    local chunks = {}
+-- 在一个由完整行组成的文本块内收集命中词条。
+-- 词库头部(yaml 元数据)无需特意跳过：没有 Tab 两列结构的行通不过格式校验。
+local function scan_block(block, query, matches, n)
+    local pos = 1
+    while n < MAX_CANDIDATES do
+        local s = string.find(block, query, pos, true)
+        if not s then break end
+        -- 回找行首、行尾，取出完整词条行
+        local line_start = s
+        while line_start > 1 and block:byte(line_start - 1) ~= 10 do
+            line_start = line_start - 1
+        end
+        local line_end = string.find(block, "\n", s, true) or (#block + 1)
+        local line = block:sub(line_start, line_end - 1)
+        local text, code = line:match("^([^\t]+)\t([^\t]+)")
+        -- 确认命中落在词条文本部分（而不是编码部分），并过滤注释行
+        if text and code and not text:match("^#") and string.find(text, query, 1, true) then
+            n = n + 1
+            matches[n] = { text = text, code = code }
+        end
+        pos = line_end + 1 -- 跳到下一行，同一行内多次命中只取一次
+    end
+    return n
+end
+
+local function scan_file(f, query, matches, n)
+    local tail = "" -- 上一块末尾的不完整行，拼到下一块开头，保证 query 命中不跨块
+    while n < MAX_CANDIDATES do
+        local block = f:read(CHUNK_SIZE)
+        if not block then break end
+        block = tail .. block
+        local last_nl = block:match("()\n[^\n]*$")
+        if last_nl then
+            tail = block:sub(last_nl + 1)
+            block = block:sub(1, last_nl)
+        else
+            -- 整块没有换行（单行超过 256KB 的病态情况）：当独立块处理
+            tail = ""
+        end
+        n = scan_block(block, query, matches, n)
+    end
+    -- 文件末行可能没有换行符，残尾单独扫一次
+    if tail ~= "" and n < MAX_CANDIDATES then
+        n = scan_block(tail, query, matches, n)
+    end
+    return n
+end
+
+local function search(query)
+    local matches = {}
     local n = 0
     local user_dir = rime_api.get_user_data_dir()
     local shared_dir = rime_api.get_shared_data_dir()
@@ -92,47 +139,10 @@ local function load_blob()
             f = io.open(shared_dir .. "/" .. fname, "r")
         end
         if f then
-            local in_data = false
-            for line in f:lines() do
-                if in_data then
-                    local text, code = line:match("^([^\t]+)\t([^\t]+)")
-                    if text and code and not text:match("^#") then
-                        n = n + 1
-                        chunks[n] = text .. "\t" .. code
-                    end
-                elseif line == "..." then
-                    in_data = true
-                end
-            end
+            n = scan_file(f, query, matches, n)
             f:close()
         end
-    end
-    _G.__dict_search_state.blob = table.concat(chunks, "\n")
-end
-
-local function search(query)
-    load_blob()
-    local blob = _G.__dict_search_state.blob
-    local matches = {}
-    local n = 0
-    local pos = 1
-    while n < MAX_CANDIDATES do
-        local s = string.find(blob, query, pos, true)
-        if not s then break end
-        -- 回找行首、行尾，取出完整词条行
-        local line_start = s
-        while line_start > 1 and blob:byte(line_start - 1) ~= 10 do
-            line_start = line_start - 1
-        end
-        local line_end = string.find(blob, "\n", s, true) or (#blob + 1)
-        local line = blob:sub(line_start, line_end - 1)
-        local text, code = line:match("^([^\t]+)\t([^\t]+)")
-        -- 确认命中落在词条文本部分（而不是编码部分）
-        if text and code and string.find(text, query, 1, true) then
-            n = n + 1
-            matches[n] = { text = text, code = code }
-        end
-        pos = line_end + 1 -- 跳到下一行，同一行内多次命中只取一次
+        if n >= MAX_CANDIDATES then break end
     end
     return matches
 end
@@ -140,7 +150,7 @@ end
 local function dict_search_trigger(key, env)
     if key:release() then return kNoop end
 
-    -- 收到清缓存 sentinel：统一释放所有注册过的 Lua 缓存（词库 blob、反查库、
+    -- 收到清缓存 sentinel：统一释放所有注册过的 Lua 缓存（反查库、
     -- lazy_simplifier 字典、懒加载的时间模块等），触发 Lua GC。
     -- 在没有 composing/menu 的状态下到达（键盘扩展收起前调用），不会影响用户输入。
     if key.keycode == CLEAR_CACHE_KEYCODE then

@@ -36,6 +36,13 @@ local function gen_password(len, with_symbol)
     return table.concat(out)
 end
 
+-- 取某时间戳所在「本地日历日」的零点时间戳，用于按日期（而非按 86400 秒）算天数差
+local function day_start(t)
+    local d = os.date("*t", t)
+    d.hour, d.min, d.sec = 0, 0, 0
+    return os.time(d)
+end
+
 local function tools(input, seg, env)
     if input == "=uuid" then
         local u = uuid4()
@@ -71,7 +78,8 @@ local function tools(input, seg, env)
         local ok, datestr = pcall(os.date, "%Y-%m-%d %H:%M:%S", ts)
         if ok and type(datestr) == "string" then
             local ms = (#digits == 13) and ("." .. digits:sub(11)) or ""
-            local diff_days = math.floor((ts - os.time()) / 86400)
+            -- 按本地日历日期算天数差（不能用 (ts-now)/86400 取整：同一天但更早的时刻会被误判为「1天前」）
+            local diff_days = math.floor((day_start(ts) - day_start(os.time())) / 86400 + 0.5)
             local rel
             if diff_days == 0 then rel = "今天"
             elseif diff_days > 0 then rel = diff_days .. "天后"
