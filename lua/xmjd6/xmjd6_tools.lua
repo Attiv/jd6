@@ -3,6 +3,7 @@
 --   =uuid         生成 UUID v4（小写/大写候选）
 --   =pw / =pw20   生成随机密码（默认 16 位，可指定 8~64 位，候选含符号/纯字母数字两种）
 --   =mem          查看当前 Lua 堆内存与已注册缓存数（配合 iOS 内存调试）
+--   =memc         立即释放所有已注册缓存并 GC，显示清理前后内存对比
 --   =1718160000   10/13 位 Unix 时间戳转日期时间（13 位按毫秒解析）
 
 local mem_cleaner = require("xmjd6.mem_cleaner")
@@ -60,12 +61,20 @@ local function tools(input, seg, env)
         return
     end
 
-    if input == "=mem" then
-        local kb = collectgarbage("count")
+    if input == "=mem" or input == "=memc" then
+        local before = collectgarbage("count")
+        if input == "=memc" then
+            mem_cleaner.release_all()
+            local after = collectgarbage("count")
+            yield(Candidate("tools", seg.start, seg._end,
+                string.format("已清理 %.2f MB", (before - after) / 1024),
+                string.format("%.2f → %.2f MB", before / 1024, after / 1024)))
+            return
+        end
         local n = 0
         for _ in pairs(mem_cleaner.releasers) do n = n + 1 end
         yield(Candidate("tools", seg.start, seg._end,
-            string.format("Lua堆 %.2f MB", kb / 1024), _VERSION))
+            string.format("Lua堆 %.2f MB", before / 1024), _VERSION))
         yield(Candidate("tools", seg.start, seg._end,
             string.format("已注册缓存 %d 个", n), "可被sentinel释放"))
         return
