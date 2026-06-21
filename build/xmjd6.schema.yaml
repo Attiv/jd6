@@ -10,7 +10,7 @@ __build_info:
     symbols: 1773981764
     symbols.custom: 0
     xmjd6.custom: 1774444784
-    xmjd6.schema: 1781269318
+    xmjd6.schema: 1782019198
 ascii_punct:
   option_name: ascii_punct
 embeded_cands:
@@ -61,6 +61,7 @@ engine:
   processors:
     - "lua_processor@*xmjd6/xmjd6_select_character"
     - "lua_processor@*xmjd6/dict_search_trigger"
+    - "lua_processor@*xmjd6/app_launcher"
     - ascii_composer
     - recognizer
     - key_binder
@@ -84,6 +85,7 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
+    - "lua_translator@*xmjd6/app_launcher_translator"
     - "lua_translator@*xmjd6/xmjd6_tools"
     - "lua_translator@*xmjd6/xmjd6_jisuanqi"
     - "lua_translator@*xmjd6/xmjd6_shijian"
@@ -439,6 +441,7 @@ quanpinerfen_lookup:
     - quanpinerfen
 recognizer:
   patterns:
+    app_launcher: "^=o[a-z0-9]*$"
     dict_search: "^[a-z]+\\?$"
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
     jsq: "^=[^;']+$"

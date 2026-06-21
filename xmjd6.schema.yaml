@@ -82,6 +82,7 @@ engine:
   processors:
     - lua_processor@*xmjd6/xmjd6_select_character  # 以词定字
     - lua_processor@*xmjd6/dict_search_trigger    # ? 触发：词库模糊查询（尽量靠前避免被截胡）
+    - lua_processor@*xmjd6/app_launcher            # =o 应用启动器：=oc计算器/=ol日历/=os设置
     - ascii_composer
     - recognizer
     - key_binder    
@@ -106,6 +107,7 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
+    - lua_translator@*xmjd6/app_launcher_translator   # =o 应用启动器候选提示
     - lua_translator@*xmjd6/xmjd6_tools      # = 工具集：=uuid / =pw密码 / =mem内存 / =时间戳
     - lua_translator@*xmjd6/xmjd6_jisuanqi
     - lua_translator@*xmjd6/xmjd6_shijian
@@ -332,7 +334,7 @@ key_binder:
     - { when: always, accept: F6, select: .next }
     - { when: always, accept: "$", toggle: jffh }
     - { when: always, accept: "Control+backslash", toggle: emoji_cn }  #快捷电脑的快捷
-    - { when: has_menu, accept: "&", toggle: emoji_cn }	#手机快捷切换表情
+    - { when: has_menu, accept: "&", toggle: emoji_cn }  #手机快捷切换表情
     - { when: has_menu, accept: "%", toggle: completion } #手机快捷逐码切换
     - { when: has_menu, accept: "*", toggle: tofu } #手机快捷是否开启替换
     - { when: has_menu, accept: "#", toggle: embeded_cands } #手机快捷切换内嵌
@@ -373,6 +375,7 @@ recognizer:
     sjx: "^sjx/$"    # 纪念日倒计时：输入 sjx 后按 / 触发（缺此 pattern 时 / 进不了编码串）
     zhuan: "^\\\\.*$" # 不加这句后面不能跟数字
     unicode: "^&+.*$"
+    app_launcher: "^=o[a-z0-9]*$"
     dict_search: "^[a-z]+\\?$"    # 键道码+? 触发词库模糊查询
     # zhuanxiao: "^\\+.*$" # 不加这句后面不能跟数字
 #        xmjdWXYZ: "^'['/a-z][a-z0-9,./:?!']*'?$"
