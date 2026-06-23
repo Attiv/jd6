@@ -10,9 +10,11 @@ __build_info:
     symbols: 1773981764
     symbols.custom: 0
     xmjd6.custom: 1774444784
-    xmjd6.schema: 1782019198
+    xmjd6.schema: 1782179060
 ascii_punct:
   option_name: ascii_punct
+dynamic_phrase:
+  store_file: dynamic_phrases.txt
 embeded_cands:
   first_format: "${Stash}[${候選}${Seq}]${Code}${Comment}"
   index_indicators:
@@ -62,6 +64,7 @@ engine:
     - "lua_processor@*xmjd6/xmjd6_select_character"
     - "lua_processor@*xmjd6/dict_search_trigger"
     - "lua_processor@*xmjd6/app_launcher"
+    - "lua_processor@*xmjd6/dynamic_phrase_processor"
     - ascii_composer
     - recognizer
     - key_binder
@@ -86,6 +89,7 @@ engine:
     - fallback_segmentor
   translators:
     - "lua_translator@*xmjd6/app_launcher_translator"
+    - "lua_translator@*xmjd6/dynamic_phrase"
     - "lua_translator@*xmjd6/xmjd6_tools"
     - "lua_translator@*xmjd6/xmjd6_jisuanqi"
     - "lua_translator@*xmjd6/xmjd6_shijian"
@@ -443,6 +447,7 @@ recognizer:
   patterns:
     app_launcher: "^=o[a-z0-9]*$"
     dict_search: "^[a-z]+\\?$"
+    dynamic_phrase: "^=(?:add|del)(?:/.*)?;?$"
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
     jsq: "^=[^;']+$"
     pinyin_simp: "^u[a-z']*'?$"

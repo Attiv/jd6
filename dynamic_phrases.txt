@@ -1,0 +1,4 @@
+# xmjd6 dynamic phrases
+# text<TAB>code; edited by =add/=del commands
+恩恩	xx
+恩象	xx
