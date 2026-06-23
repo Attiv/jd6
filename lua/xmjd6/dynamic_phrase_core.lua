@@ -4,6 +4,14 @@
 
 local M = {}
 
+-- Cache for indexed entries
+local cache = {
+    path = nil,
+    mtime = nil,
+    entries = nil,      -- 原始词条数组
+    by_code = nil       -- 按编码索引: { [code] = { {text, code}, ... } }
+}
+
 M.default_filename = "dynamic_phrases.txt"
 
 local function trim(s)
@@ -81,6 +89,60 @@ function M.store_path(filename)
         end
     end
     return filename
+end
+
+local function get_file_mtime(path)
+    local lfs_ok, lfs = pcall(require, "lfs")
+    if lfs_ok and lfs.attributes then
+        local ok, attr = pcall(lfs.attributes, path, "modification")
+        if ok and attr then
+            return attr
+        end
+    end
+    -- Fallback: use file size + existence as a simple cache key
+    local f = io.open(path, "r")
+    if not f then return 0 end
+    local size = f:seek("end")
+    f:close()
+    return size or 0
+end
+
+local function build_code_index(entries)
+    local index = {}
+    for _, entry in ipairs(entries) do
+        local code = entry.code
+        if not index[code] then
+            index[code] = {}
+        end
+        index[code][#index[code] + 1] = entry
+    end
+    return index
+end
+
+local function clear_cache()
+    cache.path = nil
+    cache.mtime = nil
+    cache.entries = nil
+    cache.by_code = nil
+end
+
+local function get_cached_entries(path)
+    path = path or M.store_path()
+    local mtime = get_file_mtime(path)
+
+    if cache.path == path and cache.mtime == mtime and cache.entries then
+        return cache.entries, cache.by_code
+    end
+
+    -- Cache miss or stale - reload and rebuild indexes
+    local entries = M.load_entries_uncached(path)
+    local by_code = build_code_index(entries)
+    cache.path = path
+    cache.mtime = mtime
+    cache.entries = entries
+    cache.by_code = by_code
+
+    return entries, by_code
 end
 
 function M.is_dynamic_command(input)
@@ -171,7 +233,7 @@ function M.parse_command(input)
     return nil, "未知命令"
 end
 
-function M.load_entries(path)
+function M.load_entries_uncached(path)
     path = path or M.store_path()
     local entries = {}
     local f = io.open(path, "r")
@@ -195,6 +257,11 @@ function M.load_entries(path)
     return entries
 end
 
+function M.load_entries(path)
+    local entries = get_cached_entries(path)
+    return entries
+end
+
 function M.save_entries(entries, path)
     path = path or M.store_path()
     local f, err = io.open(path, "w")
@@ -213,6 +280,10 @@ function M.save_entries(entries, path)
     if ok == false then
         return false, close_err or "保存动态词库失败"
     end
+
+    -- Clear cache after saving to force reload on next access
+    clear_cache()
+
     return true
 end
 
@@ -358,20 +429,18 @@ end
 function M.lookup(code, path)
     code = trim(code)
     if code == "" then return {} end
-    local entries = M.load_entries(path)
-    local matches = {}
-    for _, entry in ipairs(entries) do
-        if entry.code == code then
-            matches[#matches + 1] = entry
-        end
-    end
-    return matches
+
+    local _, by_code = get_cached_entries(path)
+    return by_code[code] or {}
 end
 
 function M.lookup_prefix(prefix, path, limit)
     prefix = trim(prefix)
     if prefix == "" then return {} end
     limit = limit or 50
+
+    -- Prefix lookup is not used by the input path. Keep it uncached and bounded
+    -- to avoid retaining a second multi-prefix index for every dynamic phrase.
     local entries = M.load_entries(path)
     local matches = {}
     for _, entry in ipairs(entries) do
@@ -399,6 +468,11 @@ function M.command_preview(input, last_commit_text)
         return prefix .. cmd.text, cmd.code or "全部编码"
     end
     return nil, "未知命令"
+end
+
+-- Public API to manually clear cache (useful for debugging or external updates)
+function M.clear_cache()
+    clear_cache()
 end
 
 return M

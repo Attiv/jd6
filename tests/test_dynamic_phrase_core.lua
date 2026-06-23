@@ -6,6 +6,7 @@ package.path = table.concat({
 }, ";")
 
 local core = require("xmjd6.dynamic_phrase_core")
+local mem_cleaner = require("xmjd6.mem_cleaner")
 
 local tmp_path = os.tmpname()
 os.remove(tmp_path)
@@ -24,6 +25,45 @@ local function assert_true(value, label)
   if not value then
     error(label or "assert_true failed", 2)
   end
+end
+
+
+local function write_file(path, body)
+  local f = assert(io.open(path, "w"))
+  f:write(body)
+  f:close()
+end
+
+local function count_mem_releasers()
+  local n = 0
+  for _ in pairs(mem_cleaner.releasers or {}) do
+    n = n + 1
+  end
+  return n
+end
+
+local function test_dynamic_phrase_cache_registers_mem_releaser()
+  assert_true(count_mem_releasers() >= 1, "dynamic phrase cache should register a mem_cleaner releaser")
+end
+
+local function test_mem_cleaner_release_all_clears_dynamic_phrase_cache()
+  local old_lfs = package.loaded["lfs"]
+  package.loaded["lfs"] = { attributes = function() return 123456 end }
+  core.clear_cache()
+
+  write_file(tmp_path, "aa\tzz\n")
+  local first = core.lookup("zz", tmp_path)
+  assert_equal(first[1].text, "aa", "first cached text")
+
+  write_file(tmp_path, "bb\tzz\n")
+  local cached = core.lookup("zz", tmp_path)
+  assert_equal(cached[1].text, "aa", "precondition: unchanged mtime keeps cache")
+
+  mem_cleaner.release_all()
+  local refreshed = core.lookup("zz", tmp_path)
+  assert_equal(refreshed[1].text, "bb", "release_all clears dynamic phrase cache")
+
+  package.loaded["lfs"] = old_lfs
 end
 
 local function test_add_single_code_uses_last_committed_text()
@@ -179,6 +219,8 @@ local function test_delete_by_text_and_code_is_precise()
 end
 
 local tests = {
+  test_dynamic_phrase_cache_registers_mem_releaser,
+  test_mem_cleaner_release_all_clears_dynamic_phrase_cache,
   test_add_single_code_uses_last_committed_text,
   test_add_chunk_count_joins_recent_commits,
   test_apply_add_chunk_count_joins_recent_commits,
