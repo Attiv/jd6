@@ -133,9 +133,19 @@ local function cache()
     return _G.__dict_search_cache
 end
 
+-- 桌面端发行版白名单：这些平台内存充足，词库加载到内存常驻缓存
+local DESKTOP_DISTROS = {
+    Squirrel = true,      -- macOS 鼠须管
+    Weasel = true,        -- Windows 小狼毫
+    ["fcitx-rime"] = true, -- fcitx5-mac 小企鹅 / Linux fcitx5-rime
+}
+
+-- 是否缓存词库：基于引擎发行版代码名（rime_api.get_distribution_code_name，
+-- 编译期常量，非运行时 app 名）。桌面端缓存；移动端（Hamster/iRime/Trime 等）
+-- 和自定义发行版流式读取，不占内存配额。
 local function is_desktop()
     local distro = rime_api.get_distribution_code_name()
-    return distro == "Squirrel" or distro == "Weasel"
+    return DESKTOP_DISTROS[distro] == true
 end
 
 local function load_all_dicts()
