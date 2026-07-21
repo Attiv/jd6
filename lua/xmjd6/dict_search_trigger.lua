@@ -2,20 +2,14 @@
 -- 拦截 ? 键：取当前首选文本，在指定词库中模糊搜索，把结果存全局
 -- 然后在 input 末尾追加 ?，让 recognizer 识别为 dict_search 段，交给 lua_translator 显示
 --
--- 实现说明：桌面端（Squirrel / Weasel）词库内容常驻内存缓存，搜索响应时间优化至 <50ms；
--- 移动端（Hamster / iRime / Trime 等）流式读取不缓存，每次搜索重读文件（典型 50~300ms）。
--- 缓存经 mem_cleaner 注册释放回调，iOS 键盘收起时自动清空。
--- 搜索结果排序：精确匹配优先 > 编码短优先 > 词库原序（稳定），凑满 MAX_CANDIDATES 即提前终止。
-
-local mem_cleaner = require("xmjd6.mem_cleaner")
+-- 实现说明：流式扫描——每次搜索逐块读词库文件、边读边匹配、用完即扔，
+-- 词条不在内存常驻（移动端友好，桌面端避免慢速磁盘加载卡顿）。
+-- 代价是每次按 ? 都重读文件：18 个词库约 106 万词条，典型 50~300ms，
+-- 最坏（无命中需扫完全部文件）约 650ms；凑满 MAX_CANDIDATES 即提前终止。
+-- 搜索结果排序：精确匹配优先 > 编码短优先 > 词库原序（稳定）。
 
 local kAccepted = 1
 local kNoop = 2
-
--- sentinel keycode: XK_VoidSymbol = 0xFFFFFF
--- 由 iOS 端 RimeEngine.cleanupMemory() 在键盘收起时发送，统一释放所有 Lua 缓存。
--- VoidSymbol 是 X11 标准 noop keysym，正常 processor 都不会处理它。
-local CLEAR_CACHE_KEYCODE = 0xFFFFFF
 
 -- 要搜索的词库列表：要禁用某个词库，在它前面加 -- 注释掉即可
 local DICT_FILES = {
@@ -69,15 +63,6 @@ if not _G.__dict_search_state then
     }
 end
 
--- 流式实现本身无常驻缓存；注册清理是为了 sentinel 到达时顺手放掉上次的搜索结果
-mem_cleaner.register(function()
-    local state = _G.__dict_search_state
-    if state then
-        state.candidates = nil
-        state.query = nil
-    end
-end)
-
 -- 在一个由完整行组成的文本块内收集命中词条。
 -- 词库头部(yaml 元数据)无需特意跳过：没有 Tab 两列结构的行通不过格式校验。
 local function scan_block(block, query, matches, n)
@@ -126,30 +111,11 @@ local function scan_file(f, query, matches, n)
     return n
 end
 
-local function cache()
-    if not _G.__dict_search_cache then
-        _G.__dict_search_cache = { loaded = false, data = nil }
-    end
-    return _G.__dict_search_cache
-end
+local function search(query)
+    local matches = {}
+    local n = 0
 
--- 桌面端发行版白名单：这些平台内存充足，词库加载到内存常驻缓存
-local DESKTOP_DISTROS = {
-    Squirrel = true,      -- macOS 鼠须管
-    Weasel = true,        -- Windows 小狼毫
-    ["fcitx-rime"] = true, -- fcitx5-mac 小企鹅 / Linux fcitx5-rime
-}
-
--- 是否缓存词库：基于引擎发行版代码名（rime_api.get_distribution_code_name，
--- 编译期常量，非运行时 app 名）。桌面端缓存；移动端（Hamster/iRime/Trime 等）
--- 和自定义发行版流式读取，不占内存配额。
-local function is_desktop()
-    local distro = rime_api.get_distribution_code_name()
-    return DESKTOP_DISTROS[distro] == true
-end
-
-local function load_all_dicts()
-    local all_lines = {}
+    -- 流式读取所有词库文件
     local user_dir = rime_api.get_user_data_dir()
     local shared_dir = rime_api.get_shared_data_dir()
     for _, fname in ipairs(DICT_FILES) do
@@ -158,54 +124,10 @@ local function load_all_dicts()
             f = io.open(shared_dir .. "/" .. fname, "r")
         end
         if f then
-            for line in f:lines() do
-                all_lines[#all_lines + 1] = line
-            end
+            n = scan_file(f, query, matches, n)
             f:close()
         end
-    end
-    return all_lines
-end
-
-local function search_in_lines(lines, query, matches, n)
-    local query_lower = query:lower()
-    for _, line in ipairs(lines) do
         if n >= MAX_CANDIDATES then break end
-        local text, code = line:match("^([^\t]+)\t([^\t]+)")
-        if text and text:lower():find(query_lower, 1, true) then
-            matches[#matches + 1] = { text = text, code = code }
-            n = n + 1
-        end
-    end
-    return n
-end
-
-local function search(query)
-    local matches = {}
-    local n = 0
-
-    if is_desktop() then
-        local c = cache()
-        if not c.loaded then
-            c.data = load_all_dicts()
-            c.loaded = true
-        end
-        n = search_in_lines(c.data, query, matches, n)
-    else
-        -- 移动端流式读取，不缓存
-        local user_dir = rime_api.get_user_data_dir()
-        local shared_dir = rime_api.get_shared_data_dir()
-        for _, fname in ipairs(DICT_FILES) do
-            local f = io.open(user_dir .. "/" .. fname, "r")
-            if not f and shared_dir and shared_dir ~= "" then
-                f = io.open(shared_dir .. "/" .. fname, "r")
-            end
-            if f then
-                n = scan_file(f, query, matches, n)
-                f:close()
-            end
-            if n >= MAX_CANDIDATES then break end
-        end
     end
 
     -- 排序：词条精确等于查询词的优先，其次编码短的优先，同级保持词库原序。
@@ -225,14 +147,6 @@ end
 
 local function dict_search_trigger(key, env)
     if key:release() then return kNoop end
-
-    -- 收到清缓存 sentinel：统一释放所有注册过的 Lua 缓存（反查库、
-    -- lazy_simplifier 字典、懒加载的时间模块等），触发 Lua GC。
-    -- 在没有 composing/menu 的状态下到达（键盘扩展收起前调用），不会影响用户输入。
-    if key.keycode == CLEAR_CACHE_KEYCODE then
-        mem_cleaner.release_all()
-        return kAccepted
-    end
 
     if key.keycode ~= 0x3f then return kNoop end
 
@@ -266,11 +180,5 @@ local function dict_search_trigger(key, env)
     context:push_input("?")
     return kAccepted
 end
-
-mem_cleaner.register(function()
-    local c = cache()
-    c.loaded = false
-    c.data = nil
-end)
 
 return dict_search_trigger
