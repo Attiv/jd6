@@ -1,0 +1,48 @@
+# XMJD6 常用功能集中配置
+# 修改后需要重新部署。true=开启，false=关闭。
+patch:
+  # ===== 方案显示与基础输入 =====
+  schema/name: 键道6·仰望星空       # 方案名称
+  speller/auto_select: false          # 自动上屏；默认关闭
+  hint_text: '✖'                     # 顶功提示符
+
+  # ===== 逐码提示与候选数量 =====
+  translator/enable_completion: true  # 主词库逐码候选；关闭后键道提示 Lua 也会受影响
+  menu/page_size: 5                   # 每页候选数量
+  for_hint/max_hint_candidates: 50    # 追加简码提示的候选上限；0 表示不限
+  for_hint/max_completion_candidates: 30  # 逐码 completion 候选上限
+  embeded_cands/max_candidates: 50    # 输入框内嵌候选上限；0 表示不限
+
+  # ===== 功能总开关 =====
+  candidate_order/enabled: true       # 动态调频；false 时按 0 不调频
+  quick_symbol/enabled: true          # 快捷符号
+  direct_ascii/symbols: ".,:!?"      # 空码直接上屏；避免加入 ; ' / = \
+  direct_ascii/digits: true           # 空码数字直接上屏
+  text_transform/hotkey: "Control+g" # 当前候选进入文本加工面板
+  text_transform/sentence_hotkey: "slash" # 有候选时按 / 加工当前内容
+  text_transform/sentence_prefix: "'"      # 整句模式前缀
+
+  # ===== 各状态开关的默认值 =====
+  # switches 序号来自 xmjd6.schema.yaml；1=默认开启，0=默认关闭。
+  switches/@6/reset: 1                # Emoji
+  switches/@7/reset: 1                # 630 简码提示
+  switches/@8/reset: 1                # 逐码候选
+  switches/@9/reset: 1                # 动态调频
+  switches/@10/reset: 1               # 快捷符号
+  switches/@12/reset: 1               # 英文自动加空格
+  # switches/@11/reset: 0             # 输入框内嵌候选；需要默认关闭时取消注释
+
+  # ===== 重复上屏记忆数量 =====
+  repeat_history/size: 5              # 输入 i 时显示最近多少条
+  repeat_history2/size: 6             # 输入 ;f 时显示最近多少条
+
+  # ===== 顶功保护词库 =====
+  topup/protected_dicts:
+    - xmjd6.zidingyi
+
+  # ===== 流式输入（默认关闭） =====
+  # 使用流式输入时，取消下面四行注释。
+  # engine/processors/@13: null       # xmjd6_smart_2
+  # engine/processors/@14: null       # xmjd6_topup_processor
+  # translator/enable_sentence: true
+  # translator/enable_user_dict: true

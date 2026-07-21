@@ -1,0 +1,5 @@
+# xmjd6 candidate order
+# promoted<TAB>old_code<TAB>displaced<TAB>target_code
+AI	ai	阝	ai
+
+不必	boa	不是	bo	bjekvo

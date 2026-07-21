@@ -1,0 +1,1 @@
+rsync -av --progress --exclude '.git' ./ /Users/mac/.local/share/fcitx5/rime

@@ -1,0 +1,3 @@
+# xmjd6 dynamic phrases
+# text<TAB>code; edited by =add/=del commands
+太皓	thhzvu

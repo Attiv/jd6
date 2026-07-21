@@ -1,0 +1,6 @@
+image1:
+  rect: { x: 0, y: 10, width: 1125, height: 100 }
+image2:
+  rect: { x: 0, y: 110, width: 1125, height: 520 }
+image3:
+  rect: { x: 0, y: 0, width: 1125, height: 10 }

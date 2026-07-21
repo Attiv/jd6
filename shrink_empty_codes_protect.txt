@@ -1,0 +1,2 @@
+# 手工指定补码：这些 word<TAB>code 不参与自动缩码
+两委干部	lxgbvu
