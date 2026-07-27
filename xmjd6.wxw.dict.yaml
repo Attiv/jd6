@@ -83,7 +83,8 @@ sort: original
 当前	dou
 地方	dov
 当然	du
-多么	dua
+多久	dua
+# 多么	dua
 独自	dui
 读者	duo
 等待	duu
@@ -105,6 +106,7 @@ sort: original
 是个	eii
 适当	eio
 数据	eiu
+视频	eiv
 社会	eiv
 时间	eo
 试试	eoa
@@ -123,7 +125,8 @@ sort: original
 时期	evi
 上来	evo
 上面	evu
-属于	evv
+上班	evv
+# 属于	evv
 发展	fa
 父母	faa
 房子	fai
@@ -137,14 +140,16 @@ sort: original
 直接	fiu
 只会	fiv
 知道	fo
-中心	foa
+翻译	foa
+# 中心	foa
 只是	foi
 方案	foo
 之前	fou
 这次	fov
 这么	fu
 服务	fua
-方向	fui
+照片	fui
+# 方向	fui
 这都	fuo
 之后	fuu
 这种	fuv
@@ -193,7 +198,8 @@ sort: original
 好像	hi
 后果	hia
 行业	hii
-黄金	hio
+火锅	hio
+# 黄金	hio
 很少	hiu
 还会	hiv
 还是	ho
@@ -236,7 +242,8 @@ sort: original
 竟然	jua
 阶段	jui
 简直	juo
-进行	juu
+记得	juu
+# 进行	juu
 今年	juv
 今天	jv
 计划	jva
@@ -246,7 +253,8 @@ sort: original
 出现	jvv
 可以	ka
 看书	kaa
-看出	kai
+困了	kai
+# 看出	kai
 可能	kao
 开始	kau
 夸张	kav
@@ -279,7 +287,8 @@ sort: original
 来了	lai
 练习	lao
 良好	lau
-立即	lav
+领导	lav
+# 立即	lav
 两个	li
 类似	lia
 来个	lii
@@ -303,7 +312,8 @@ sort: original
 留下	lvi
 垃圾	lvo
 里面	lvu
-两天	lvv
+聊天	lvv
+# 两天	lvv
 妈妈	ma
 描绘	maa
 没了	mai
@@ -320,7 +330,8 @@ sort: original
 默认	moa
 明显	moi
 慢慢	moo
-面前	mou
+麻烦	mou
+# 面前	mou
 每次	mov
 明白	mu
 没用	mua
@@ -332,7 +343,8 @@ sort: original
 密切	mva
 没事	mvi
 描述	mvo
-明确	mvu
+密码	mvu
+# 明确	mvu
 每天	mvv
 努力	na
 年纪	naa
@@ -366,7 +378,8 @@ sort: original
 那天	nvv
 普通	pa
 婆婆	paa
-牌子	pai
+排队	pai
+# 牌子	pai
 平淡	pao
 旁边	pau
 啤酒	pav
@@ -375,7 +388,8 @@ sort: original
 评价	pii
 平常	pio
 拍摄	piu
-凭借	piv
+跑步	piv
+# 凭借	piv
 评论	po
 普遍	poa
 拍照	poi
@@ -463,7 +477,8 @@ sort: original
 三个	si
 送回	sia
 四个	sii
-思念	sio
+私信	sio
+# 思念	sio
 随手	siu
 随便	siv
 随时	so
@@ -475,14 +490,16 @@ sort: original
 虽然	su
 四周	sua
 随身	sui
-似乎	suo
+搜索	suo
+# 似乎	suo
 素质	suu
 三年	suv
 所有	sv
 送到	sva
 私下	svi
 送来	svo
-所在	svu
+扫码	svu
+# 所在	svu
 三天	svv
 提出	ta
 体验	taa
@@ -499,12 +516,14 @@ sort: original
 特别	to
 听说	toa
 同时	toi
-天空	too
+淘宝	too
+# 天空	too
 提前	tou
 提高	tov
 他的	tu
 突然	tua
-她的	tui
+图片	tui
+# 她的	tui
 探索	tuo
 特征	tuu
 通知	tuv
@@ -535,12 +554,15 @@ sort: original
 重复	wu
 吃饭	wua
 我的	wui
-充分	wuo
+外卖	wuo
+# 充分	wuo
 往往	wuu
 创造	wuv
 完成	wv
-无比	wva
-完整	wvi
+迟到	wva
+# 无比	wva
+无聊	wvi
+# 完整	wvi
 未来	wvo
 外面	wvu
 唯一	wvv
@@ -563,9 +585,11 @@ sort: original
 相关	xou
 希望	xov
 许多	xu
-想象	xua
+下周	xua
+# 想象	xua
 信息	xui
-享受	xuo
+下载	xuo
+# 享受	xuo
 显得	xuu
 下午	xuv
 现在	xv
