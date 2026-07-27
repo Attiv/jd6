@@ -35,6 +35,10 @@ EXCLUDED_REMOVE_FILES = {
     "xmjd6.candidate_order.dict.yaml",
 }
 
+# xmjd6.extended 同时 import 了 xkjd6 系列词库，被挤词的旧条目可能位于其中
+# （如 xkjd6.lanlao2 的「汽车碾压 qjny」），删除与占用统计都必须覆盖两个前缀。
+DICT_GLOBS = ("xmjd6*.dict.yaml", "xkjd6*.dict.yaml")
+
 
 @dataclasses.dataclass
 class Order:
@@ -149,7 +153,12 @@ def phrase_full_code(text: str, target_code: str, char_codes: dict[str, list[str
 
 
 def dict_files(root: Path) -> list[Path]:
-    return sorted(p for p in root.glob("xmjd6*.dict.yaml") if p.name not in EXCLUDED_REMOVE_FILES)
+    return sorted(
+        path
+        for pattern in DICT_GLOBS
+        for path in root.glob(pattern)
+        if path.name not in EXCLUDED_REMOVE_FILES
+    )
 
 
 def load_occupied_codes(root: Path, exclude_pairs: set[tuple[str, str]]) -> dict[str, set[str]]:

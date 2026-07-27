@@ -23,9 +23,24 @@ M.occupied_dict_files = {
     "xmjd6.wxwdanzi.dict.yaml",
     "xmjd6.yingwen.dict.yaml",
     "xmjd6.zidingyi.dict.yaml",
-    -- xmjd6.extended imports xkjd6.liangzi; two-character words there can
-    -- occupy fallback codes such as pklzo(疲痨).
+    -- xmjd6.extended imports the whole xkjd6 series; their words occupy
+    -- fallback codes too, e.g. pklzo(疲痨) in liangzi, qjny(汽车碾压) in
+    -- lanlao2. Missing one here makes generated fallback codes collide.
+    "xkjd6.changyong.dict.yaml",
+    "xkjd6.hanyu.dict.yaml",
+    "xkjd6.jisuanji.dict.yaml",
+    "xkjd6.kaifa.dict.yaml",
+    "xkjd6.lanlao.dict.yaml",
+    "xkjd6.lanlao2.dict.yaml",
     "xkjd6.liangzi.dict.yaml",
+    "xkjd6.liuxing.dict.yaml",
+    "xkjd6.qiche.dict.yaml",
+    "xkjd6.ssb1.dict.yaml",
+    "xkjd6.tangshi.dict.yaml",
+    "xkjd6.wanne.dict.yaml",
+    "xkjd6.yingwen.dict.yaml",
+    "xkjd6.yinyang.dict.yaml",
+    "xkjd6.yixue.dict.yaml",
 }
 
 local cache = {
