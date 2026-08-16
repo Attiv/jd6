@@ -32,6 +32,28 @@
 
   `scripts/qianwen_overlay/qime_trigger_compat.lua` 是同步时注入的按键兼容层。
 
+  按键语义兼容引擎(`RimeSync/compat/libqime-key-semantics.dylib`)是旧版千问的厂商签名原件,无法为新版重建。
+  当千问新版 `libqianwen_engine.dylib` 需要它没有的 ABI 符号时,脚本会打印警告并**跳过 libqime 替换**,
+  Rime 数据照常同步。相关环境变量:
+
+  ```bash
+  QW_ENGINE_COMPAT_STRICT=1   # 兼容引擎不可用时直接中止(默认降级继续)
+  QW_DISABLE_ENGINE_COMPAT=1  # 完全不用兼容引擎,也不再提示
+  ```
+
+- `scripts/rollback_qianwen.sh` — 用备份的千问 App 整包替换当前版本,并默认禁用自动更新
+
+  ```bash
+  scripts/rollback_qianwen.sh status            # 当前版本、可用备份、自动更新状态
+  scripts/rollback_qianwen.sh install           # 装回默认的 1.1.5.23 备份
+  scripts/rollback_qianwen.sh install <App 路径> # 装回指定版本(如换回新版)
+  ```
+
+  **千问 1.2.x 起不再把字母键交给 librime 的 processor 链**(只转发控制键和标点),
+  顶功、`=` 引导键、`0` 调频、以词定字、快捷符号等全部 `lua_processor` 功能因此失效,
+  且无法在 Lua 或 schema 层修复。1.1.5.23 是已知最后一个逐键处理版本。
+  替换通过千问自带的厂商签名 `QianwenIMEAtomicSwap` helper 完成,替换前自动整包备份当前版本。
+
 ### 打包 / 多端同步
 
 - `build.sh` — 全配置打包 `jd6.zip` 并拷到 iCloud(jd6_cang.zip);顺带把 `user.yaml` 的 tofu 置 true,打包前从 `trash/` 恢复 default.yaml

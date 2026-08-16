@@ -27,8 +27,17 @@ PYTHON3="${PYTHON3:-$(command -v python3 || true)}"
 QW_COMPAT_LIBQIME="${QW_COMPAT_LIBQIME:-$STATE_DIR/compat/libqime-key-semantics.dylib}"
 QW_SKIP_ENGINE_ABI_CHECK="${QW_SKIP_ENGINE_ABI_CHECK:-0}"
 QW_DISABLE_ENGINE_COMPAT="${QW_DISABLE_ENGINE_COMPAT:-0}"
+QW_ENGINE_COMPAT_STRICT="${QW_ENGINE_COMPAT_STRICT:-0}"
+QW_ENGINE_COMPAT_ANNOUNCED="${QW_ENGINE_COMPAT_ANNOUNCED:-0}"
 QW_IN_ATOMIC_STAGE="${QW_IN_ATOMIC_STAGE:-0}"
 QW_FORCE_ATOMIC_STAGE="${QW_FORCE_ATOMIC_STAGE:-0}"
+
+# 按键语义兼容引擎的处置结果：install / skip。
+ENGINE_COMPAT_DECISION="skip"
+ENGINE_COMPAT_STATUS="unknown"
+ENGINE_COMPAT_REASON=""
+ENGINE_COMPAT_MISSING_FILE=""
+ENGINE_COMPAT_HASH=""
 
 QW_DATA="$QW_APP/Contents/SharedSupport/qw_ime_data"
 QW_SCHEMAS="$QW_DATA/schemas"
@@ -50,6 +59,10 @@ die() {
   exit 1
 }
 
+warn() {
+  printf '[千问 Rime] 警告：%s\n' "$*" >&2
+}
+
 usage() {
   cat <<'EOF'
 用法：
@@ -68,6 +81,8 @@ usage() {
 可用环境变量：
   QW_APP, RIME_DIR, QW_USER_DIR, BACKUP_ROOT, STATE_DIR,
   RIME_DEPLOYER, QW_RELAUNCHER, QW_COMPAT_LIBQIME
+  QW_DISABLE_ENGINE_COMPAT=1   完全不使用按键语义兼容引擎，也不再提示
+  QW_ENGINE_COMPAT_STRICT=1    兼容引擎不可用时直接中止（默认降级继续同步）
 EOF
 }
 
@@ -142,9 +157,7 @@ validate_sync_inputs() {
   validate_source_inputs
   [[ -w "$QW_DATA" ]] \
     || die "千问目录不可写，且原子暂存部署未生效：$QW_DATA"
-  if [[ "$QW_DISABLE_ENGINE_COMPAT" -ne 1 && -f "$QW_COMPAT_LIBQIME" ]]; then
-    [[ -f "$QW_LIBQIME" ]] || die "找不到千问 libqime：$QW_LIBQIME"
-    [[ -f "$QW_ENGINE_WRAPPER" ]] || die "找不到千问引擎包装层：$QW_ENGINE_WRAPPER"
+  if [[ "$ENGINE_COMPAT_DECISION" == "install" ]]; then
     [[ -w "$QW_LIBQIME" ]] \
       || die "千问 libqime 不可写，且原子暂存部署未生效：$QW_LIBQIME"
   fi
@@ -162,7 +175,7 @@ probe_writable_dir() {
 
 app_can_be_modified_directly() {
   probe_writable_dir "$QW_DATA" || return 1
-  if [[ "$QW_DISABLE_ENGINE_COMPAT" -ne 1 && -f "$QW_COMPAT_LIBQIME" ]]; then
+  if [[ "$ENGINE_COMPAT_DECISION" == "install" ]]; then
     probe_writable_dir "$(dirname "$QW_LIBQIME")" || return 1
   fi
 }
@@ -245,7 +258,7 @@ deploy_to_staging() {
     xmjd6.extended.table.bin
   do
     [[ -f "$build_stage/$required" ]] \
-      || die "部署结果缺少 $required；尚未修改千问文件"
+      || die "部署结果缺少 ${required}；尚未修改千问文件"
   done
 
   mkdir -p "$STATE_DIR/logs"
@@ -357,23 +370,30 @@ codesign_team_id() {
   fi
 }
 
-validate_engine_compat() {
+engine_compat_is_usable() {
+  ENGINE_COMPAT_REASON=""
+  ENGINE_COMPAT_MISSING_FILE=""
   [[ "$QW_SKIP_ENGINE_ABI_CHECK" -eq 1 ]] && return 0
 
   if command -v codesign >/dev/null 2>&1; then
-    codesign --verify --strict "$QW_COMPAT_LIBQIME" 2>/dev/null \
-      || die "兼容 libqime 自身签名无效：$QW_COMPAT_LIBQIME"
+    if ! codesign --verify --strict "$QW_COMPAT_LIBQIME" 2>/dev/null; then
+      ENGINE_COMPAT_REASON="兼容 libqime 自身签名无效：$QW_COMPAT_LIBQIME"
+      return 1
+    fi
     local app_team compat_team
     app_team="$(codesign_team_id "$QW_APP")"
     compat_team="$(codesign_team_id "$QW_COMPAT_LIBQIME")"
     if [[ -n "$app_team" && -n "$compat_team" && "$app_team" != "$compat_team" ]]; then
-      die "兼容 libqime 与千问 Team ID 不一致：$compat_team != $app_team"
+      ENGINE_COMPAT_REASON="兼容 libqime 与千问 Team ID 不一致：$compat_team != $app_team"
+      return 1
     fi
   fi
 
   if command -v lipo >/dev/null 2>&1; then
-    lipo "$QW_COMPAT_LIBQIME" -verify_arch "$(uname -m)" >/dev/null 2>&1 \
-      || die "兼容 libqime 不包含当前架构：$(uname -m)"
+    if ! lipo "$QW_COMPAT_LIBQIME" -verify_arch "$(uname -m)" >/dev/null 2>&1; then
+      ENGINE_COMPAT_REASON="兼容 libqime 不包含当前架构：$(uname -m)"
+      return 1
+    fi
   fi
 
   if command -v nm >/dev/null 2>&1; then
@@ -386,24 +406,65 @@ validate_engine_compat() {
       | awk '{print $3}' | LC_ALL=C sort -u >"$exports"
     LC_ALL=C comm -23 "$imports" "$exports" >"$missing"
     if [[ -s "$missing" ]]; then
-      cat "$missing" >&2
-      die "新版引擎包装层需要兼容 libqime 中不存在的 ABI，已停止替换"
+      ENGINE_COMPAT_MISSING_FILE="$missing"
+      ENGINE_COMPAT_REASON="千问新版引擎包装层需要 $(wc -l <"$missing" | tr -d ' ') 个兼容 libqime 中不存在的 ABI 符号"
+      return 1
     fi
   fi
 }
 
-install_engine_compat() {
-  ENGINE_COMPAT_HASH=""
+# 在改动任何千问文件之前决定兼容引擎的去留：可用就装，不可用则默认降级，
+# 只跳过 libqime 替换，星猫键道数据照常同步（QW_ENGINE_COMPAT_STRICT=1 时中止）。
+decide_engine_compat() {
+  ENGINE_COMPAT_DECISION="skip"
+  ENGINE_COMPAT_REASON=""
+  local announce=1
+  [[ "$QW_ENGINE_COMPAT_ANNOUNCED" -eq 1 ]] && announce=0
+
   if [[ "$QW_DISABLE_ENGINE_COMPAT" -eq 1 ]]; then
-    log "已通过 QW_DISABLE_ENGINE_COMPAT 跳过按键语义兼容引擎"
+    ENGINE_COMPAT_STATUS="disabled"
+    [[ "$announce" -eq 1 ]] \
+      && log "已通过 QW_DISABLE_ENGINE_COMPAT 跳过按键语义兼容引擎"
     return 0
   fi
   if [[ ! -f "$QW_COMPAT_LIBQIME" ]]; then
-    log "未找到按键语义兼容引擎，跳过：$QW_COMPAT_LIBQIME"
+    ENGINE_COMPAT_STATUS="absent"
+    [[ "$announce" -eq 1 ]] \
+      && log "未找到按键语义兼容引擎，跳过：$QW_COMPAT_LIBQIME"
+    return 0
+  fi
+  [[ -f "$QW_LIBQIME" ]] || die "找不到千问 libqime：$QW_LIBQIME"
+  [[ -f "$QW_ENGINE_WRAPPER" ]] || die "找不到千问引擎包装层：$QW_ENGINE_WRAPPER"
+
+  if engine_compat_is_usable; then
+    ENGINE_COMPAT_DECISION="install"
+    ENGINE_COMPAT_STATUS="installed"
     return 0
   fi
 
-  validate_engine_compat
+  ENGINE_COMPAT_STATUS="skipped"
+  if [[ "$QW_ENGINE_COMPAT_STRICT" -eq 1 ]]; then
+    if [[ -n "$ENGINE_COMPAT_MISSING_FILE" && -s "$ENGINE_COMPAT_MISSING_FILE" ]]; then
+      cat "$ENGINE_COMPAT_MISSING_FILE" >&2
+    fi
+    die "${ENGINE_COMPAT_REASON}；已按 QW_ENGINE_COMPAT_STRICT=1 停止，未修改千问文件"
+  fi
+  if [[ "$announce" -eq 1 ]]; then
+    if [[ -n "$ENGINE_COMPAT_MISSING_FILE" && -s "$ENGINE_COMPAT_MISSING_FILE" ]]; then
+      cat "$ENGINE_COMPAT_MISSING_FILE" >&2
+    fi
+    warn "$ENGINE_COMPAT_REASON"
+    warn "兼容 libqime 是旧版千问的厂商签名原件，无法为新版重建，本次保留千问自带引擎"
+    warn "星猫键道方案、词库、Lua 与 OpenCC 仍会照常同步"
+    warn "若顶功或 Lua 引导键因此失效，请回退到可用的旧版千问；确认不再需要可设 QW_DISABLE_ENGINE_COMPAT=1 消除此提示"
+  fi
+  return 0
+}
+
+install_engine_compat() {
+  ENGINE_COMPAT_HASH=""
+  [[ "$ENGINE_COMPAT_DECISION" == "install" ]] || return 0
+
   ENGINE_COMPAT_HASH="$(sha256_file "$QW_COMPAT_LIBQIME")"
   if [[ "$(sha256_file "$QW_LIBQIME")" == "$ENGINE_COMPAT_HASH" ]]; then
     log "按键语义兼容引擎已经安装"
@@ -509,6 +570,7 @@ write_state() {
     printf 'app_identity=%s\n' "$APP_IDENTITY"
     printf 'source_schema_sha256=%s\n' "$source_hash"
     printf 'engine_compat_sha256=%s\n' "${ENGINE_COMPAT_HASH:-}"
+    printf 'engine_compat_status=%s\n' "${ENGINE_COMPAT_STATUS:-unknown}"
     printf 'backup=%s\n' "$LAST_BACKUP"
     printf 'synced_at=%s\n' "$(date '+%Y-%m-%d %H:%M:%S %z')"
   } >"$state_tmp"
@@ -545,17 +607,31 @@ run_status() {
     return 10
   fi
 
-  if [[ "$QW_DISABLE_ENGINE_COMPAT" -ne 1 && -f "$QW_COMPAT_LIBQIME" ]]; then
-    local wanted_engine current_engine
-    wanted_engine="$(sha256_file "$QW_COMPAT_LIBQIME")"
-    current_engine="$(sha256_file "$QW_LIBQIME")"
-    if [[ "$wanted_engine" != "$current_engine" ]]; then
-      log "千问更新覆盖了逐键兼容引擎，顶功和 Lua 引导键会失效，请重新运行 sync"
-      return 10
+  local engine_status engine_note=""
+  engine_status="$(state_value engine_compat_status)"
+  if [[ -z "$engine_status" ]]; then
+    # 旧状态文件没有该字段：有哈希即代表当时装过兼容引擎。
+    if [[ -n "$(state_value engine_compat_sha256)" ]]; then
+      engine_status="installed"
+    else
+      engine_status="skipped"
     fi
   fi
 
-  log "已同步：千问 $APP_VERSION ($APP_BUILD)，星猫键道与逐键兼容层存在"
+  if [[ "$engine_status" == "installed" ]]; then
+    local wanted_engine current_engine
+    wanted_engine="$(state_value engine_compat_sha256)"
+    current_engine="$(sha256_file "$QW_LIBQIME")"
+    if [[ -n "$wanted_engine" && "$wanted_engine" != "$current_engine" ]]; then
+      log "千问更新覆盖了逐键兼容引擎，顶功和 Lua 引导键会失效，请重新运行 sync"
+      return 10
+    fi
+    engine_note="逐键兼容层存在"
+  else
+    engine_note="按键语义兼容引擎未启用（${engine_status}），使用千问自带引擎"
+  fi
+
+  log "已同步：千问 $APP_VERSION ($APP_BUILD)，星猫键道就绪；$engine_note"
 }
 
 atomic_exchange_contents() {
@@ -668,6 +744,8 @@ run_sync_via_atomic_stage() {
   QW_COMPAT_LIBQIME="$QW_COMPAT_LIBQIME" \
   QW_SKIP_ENGINE_ABI_CHECK="$QW_SKIP_ENGINE_ABI_CHECK" \
   QW_DISABLE_ENGINE_COMPAT="$QW_DISABLE_ENGINE_COMPAT" \
+  QW_ENGINE_COMPAT_STRICT="$QW_ENGINE_COMPAT_STRICT" \
+  QW_ENGINE_COMPAT_ANNOUNCED=1 \
   PYTHON3="$PYTHON3" \
     "$SCRIPT_DIR/$(basename "$0")" "${recursive_args[@]}"
 
@@ -699,12 +777,22 @@ run_sync_via_atomic_stage() {
     log "已跳过重载（--no-reload）"
   fi
 
-  log "原子暂存同步完成；更新后的顶功、Lua 引导键和单符号显示已恢复"
+  if [[ "$ENGINE_COMPAT_DECISION" == "install" ]]; then
+    log "原子暂存同步完成；更新后的顶功、Lua 引导键和单符号显示已恢复"
+  else
+    log "原子暂存同步完成；本次未替换 libqime，使用千问自带引擎"
+  fi
   log "完整回退副本：$stage_app"
 }
 
 run_sync() {
   validate_source_inputs
+  WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/qime-sync.XXXXXX")"
+
+  # 先判定兼容引擎，再决定是否需要原子暂存：跳过引擎替换时不必为了
+  # libqime 的写权限而整包暂存。
+  decide_engine_compat
+
   if [[ "$QW_IN_ATOMIC_STAGE" -ne 1 ]] \
       && { [[ "$QW_FORCE_ATOMIC_STAGE" -eq 1 ]] \
            || ! app_can_be_modified_directly; }; then
@@ -714,7 +802,6 @@ run_sync() {
 
   validate_sync_inputs
   current_app_metadata
-  WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/qime-sync.XXXXXX")"
 
   deploy_to_staging
 

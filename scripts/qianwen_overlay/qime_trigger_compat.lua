@@ -7,6 +7,33 @@ local kAccepted, kNoop = 1, 2
 local triggers = { ['=']=true, [';']=true, ['`']=true, ["'"]=true, ['\\']=true }
 local pad = utf8.char(0x200B)
 
+-- Probe: only active while /tmp/xmjd6_topup_debug exists. This shim is the
+-- first processor in the chain, so it sees every key that reaches librime.
+local kDebugFlag = '/tmp/xmjd6_topup_debug'
+local kDebugLog = '/tmp/xmjd6_keys.log'
+local debug_checked, debug_on = false, false
+
+local function probe(key, context)
+  if not debug_checked then
+    debug_checked = true
+    local flag = io.open(kDebugFlag, 'r')
+    if flag then
+      flag:close()
+      debug_on = true
+    end
+  end
+  if not debug_on then return end
+  local file = io.open(kDebugLog, 'a')
+  if not file then return end
+  local code = key and key.keycode or -1
+  local repr = ''
+  pcall(function() repr = key and key:repr() or '' end)
+  file:write(string.format('code=%d repr=%s release=%s input=%q\n',
+    code, repr, tostring(key and key:release()),
+    context and context.input or '<no context>'))
+  file:close()
+end
+
 local function key_char(key)
   local code = key and key.keycode
   if code and code >= 0x20 and code < 0x7f then return string.char(code) end
@@ -18,6 +45,7 @@ end
 local function processor(key, env)
   if not key then return kNoop end
   local context = env and env.engine and env.engine.context
+  probe(key, context)
   if not context then return kNoop end
 
   local input = context.input or ''

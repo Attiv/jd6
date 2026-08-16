@@ -2,6 +2,18 @@
 local protected_codes = require("xmjd6.protected_codes")
 local candidate_order_ok, candidate_order_core = pcall(require, "xmjd6.candidate_order_core")
 
+-- 调试开关：存在 /tmp/xmjd6_topup_debug 时才写日志，平时只多一次布尔判断。
+local kDebugFlag = "/tmp/xmjd6_topup_debug"
+local kDebugLog = "/tmp/xmjd6_topup.log"
+
+local function debug_log(env, message)
+    if not env.debug_log then return end
+    local file = io.open(env.debug_log, "a")
+    if not file then return end
+    file:write(message, "\n")
+    file:close()
+end
+
 local function string2set(str)
     local t = {}
     if type(str) ~= "string" then return t end
@@ -13,7 +25,9 @@ end
 
 local function topup(env)
     local ctx = env.engine.context
-    if ctx:get_selected_candidate() then
+    local selected = ctx:get_selected_candidate()
+    debug_log(env, string.format("  topup selected=%s", selected and (selected.text or "?") or "nil"))
+    if selected then
         ctx:commit()
     elseif env.auto_clear then
         ctx:clear()
@@ -34,6 +48,8 @@ local function processor(key_event, env)
     local input = context.input
     if not input then return 2 end
 
+    debug_log(env, string.format("key=%s input=%q", string.char(ch), input))
+
     -- 功能引导符开头的输入（=计算器/工具、\转字体、&Unicode）不参与顶功，
     -- 否则 =uuid、=floor(2) 这类字母输入会在第4码被强制上屏截断
     local lead = input:sub(1, 1)
@@ -43,22 +59,26 @@ local function processor(key_event, env)
 
     local key = string.char(ch)
     if not env.alphabet[key] then
+        debug_log(env, "  skip: not in alphabet")
         return 2
     end
 
     local next_code = input .. key
     if env.protected_codes[next_code] then
+        debug_log(env, "  skip: protected code")
         return 2
     end
     if candidate_order_ok and candidate_order_core
         and candidate_order_core.is_enabled(env)
         and candidate_order_core.has_code_prefix
         and candidate_order_core.has_code_prefix(next_code) then
+        debug_log(env, "  skip: candidate_order prefix")
         return 2
     end
 
     local first = #input > 0 and input:sub(1, 1) or key
     if env.topup_command and env.topup_set[first] then
+        debug_log(env, "  skip: topup_command")
         return 2
     end
 
@@ -71,12 +91,17 @@ local function processor(key_event, env)
         and env.topup_min_danzi
         or env.topup_min
 
+    debug_log(env, string.format("  len=%d min=%d max=%d prev=%q is_topup=%s is_prev_topup=%s",
+        input_len, min_len, env.topup_max, prev, tostring(is_topup), tostring(is_prev_topup)))
+
     if is_prev_topup and not is_topup then
         topup(env)
     elseif not is_prev_topup and not is_topup and input_len >= min_len then
         topup(env)
     elseif input_len >= env.topup_max then
         topup(env)
+    else
+        debug_log(env, "  no topup condition met")
     end
 
     return 2
@@ -92,12 +117,23 @@ local function init(env)
     env.auto_clear = config:get_bool("topup/auto_clear")
     env.topup_command = config:get_bool("topup/topup_command")
     env.protected_codes = protected_codes.load()
+
+    env.debug_log = nil
+    local flag = io.open(kDebugFlag, "r")
+    if flag then
+        flag:close()
+        env.debug_log = kDebugLog
+        debug_log(env, string.format("=== init topup min=%d min_danzi=%d max=%d topup_with=%q auto_clear=%s",
+            env.topup_min, env.topup_min_danzi, env.topup_max,
+            config:get_string("topup/topup_with") or "", tostring(env.auto_clear)))
+    end
 end
 
 local function fini(env)
     env.topup_set = nil
     env.alphabet = nil
     env.protected_codes = nil
+    env.debug_log = nil
 end
 
 return { init = init, func = processor, fini = fini }
