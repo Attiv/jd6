@@ -36,7 +36,9 @@ Git 只切换源文件，`build/` 中可能仍是上一个分支的编译结果�
 macOS 也可以执行：
 
 ```bash
-"/Library/Input Methods/Squirrel.app/Contents/MacOS/rime_deployer" --build ~/Library/Rime
+"/Library/Input Methods/Squirrel.app/Contents/MacOS/rime_deployer" --build \
+  ~/Library/Rime \
+  "/Library/Input Methods/Squirrel.app/Contents/SharedSupport"
 ```
 
 Windows 用户在小狼毫托盘菜单中选择“重新部署”即可。
