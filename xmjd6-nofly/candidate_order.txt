@@ -1,8 +1,0 @@
-# xmjd6 candidate order
-# promoted<TAB>old_code<TAB>displaced<TAB>target_code
-AI	ai	阝	ai
-避雷	bklwa	壁垒	bklw
-
-喊上	hfepoi	韩商	hfep	hfepuo
-
-双份	exfna	双酚	exfn	exfna
