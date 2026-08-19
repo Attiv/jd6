@@ -6,6 +6,7 @@ from __future__ import annotations
 import dataclasses
 import enum
 import re
+import shutil
 import unicodedata
 from collections.abc import Sequence
 from pathlib import Path
@@ -23,6 +24,24 @@ class DictionaryKind(enum.Enum):
     STANDARD = "standard"
     SSB = "ssb"
     COPY = "copy"
+
+
+@dataclasses.dataclass
+class DictionaryStats:
+    source: str
+    entries: int = 0
+    output_entries: int = 0
+    converted: int = 0
+    collapsed: int = 0
+    unresolved: list[str] = dataclasses.field(default_factory=list)
+
+
+class UnresolvedEntriesError(RuntimeError):
+    def __init__(self, source: Path, entries: Sequence[str]):
+        self.source = source
+        self.entries = list(entries)
+        sample = "\n".join(self.entries[:20])
+        super().__init__(f"{source}: unresolved standard entries:\n{sample}")
 
 
 FINAL_KEYS: dict[str, tuple[str, ...]] = {
@@ -141,7 +160,7 @@ def choose_reading(sound_prefix: str, readings: Sequence[Reading]) -> Reading | 
     for reading in readings:
         if sound_prefix[0] not in _initial_keys(reading):
             continue
-        if len(sound_prefix) >= 2 and sound_prefix[1] not in FINAL_KEYS.get(reading.final, ()): 
+        if len(sound_prefix) >= 2 and sound_prefix[1] not in FINAL_KEYS.get(reading.final, ()):
             continue
         matches.add(reading)
     if len(matches) == 1:
@@ -173,6 +192,55 @@ def load_overrides(path: Path) -> dict[tuple[str, str, str], list[Reading]]:
 def _set(chars: list[str], index: int, value: str | None) -> None:
     if value is not None and index < len(chars):
         chars[index] = value
+
+
+def _slot_matches(reading: Reading, code: str, initial_index: int, final_index: int | None) -> bool:
+    if initial_index >= len(code):
+        return True
+    if code[initial_index] not in _initial_keys(reading):
+        return False
+    if final_index is not None and final_index < len(code):
+        return code[final_index] in FINAL_KEYS.get(reading.final, ())
+    return True
+
+
+def _readings_match_code(code: str, kind: DictionaryKind, readings: Sequence[Reading]) -> bool:
+    if kind is DictionaryKind.COPY or not readings:
+        return kind is DictionaryKind.COPY
+    if kind is DictionaryKind.SSB:
+        return _slot_matches(readings[0], code, 0, None)
+    if len(readings) == 1:
+        return _slot_matches(readings[0], code, 0, 1)
+    if len(readings) == 2:
+        return _slot_matches(readings[0], code, 0, 1) and _slot_matches(readings[1], code, 2, 3)
+    if len(readings) == 3:
+        return all(_slot_matches(reading, code, index, None) for index, reading in enumerate(readings))
+    selected = (readings[0], readings[1], readings[2], readings[-1])
+    return all(_slot_matches(reading, code, index, None) for index, reading in enumerate(selected))
+
+
+def _entry_readings(
+    dictionary: str,
+    text: str,
+    code: str,
+    line: str,
+    kind: DictionaryKind,
+    overrides: dict[tuple[str, str, str], list[Reading]],
+) -> list[Reading] | None:
+    override = overrides.get((dictionary, text, code))
+    if override is not None:
+        return override if _readings_match_code(code, kind, override) else None
+
+    if len(text) == 1:
+        candidates = parse_pinyin_comment(line)
+        if candidates:
+            reading = choose_reading(code[:2], tuple(candidates))
+            return [reading] if reading is not None else None
+
+    readings = contextual_readings(text)
+    if len(readings) != len(text) or not _readings_match_code(code, kind, readings):
+        return None
+    return readings
 
 
 def convert_code(
@@ -213,3 +281,79 @@ def convert_code(
             _set(result, index, _rewrite_initial(reading.initial))
 
     return "".join(result)
+
+
+ENTRY_CODE_RE = re.compile(r"^([a-z;]+)(.*)$")
+
+
+def convert_dictionary(
+    source: Path,
+    output: Path,
+    kind: DictionaryKind,
+    overrides: dict[tuple[str, str, str], list[Reading]] | None = None,
+) -> DictionaryStats:
+    """Convert one Rime dictionary without altering non-code fields."""
+
+    stats = DictionaryStats(source=source.name)
+    if kind is DictionaryKind.COPY:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, output)
+        for raw in source.read_text("utf-8-sig", errors="replace").splitlines():
+            if raw and not raw.lstrip().startswith("#") and "\t" in raw:
+                stats.entries += 1
+        stats.output_entries = stats.entries
+        return stats
+
+    override_map = overrides or {}
+    payload = source.read_bytes()
+    has_bom = payload.startswith(b"\xef\xbb\xbf")
+    text_data = payload.decode("utf-8-sig")
+    result_lines: list[str] = []
+    seen: set[tuple[str, str]] = set()
+
+    for line_no, raw in enumerate(text_data.splitlines(keepends=True), 1):
+        newline = ""
+        body = raw
+        if raw.endswith("\r\n"):
+            body, newline = raw[:-2], "\r\n"
+        elif raw.endswith(("\n", "\r")):
+            body, newline = raw[:-1], raw[-1]
+
+        if not body or body.lstrip().startswith("#") or "\t" not in body:
+            result_lines.append(raw)
+            continue
+
+        fields = body.split("\t")
+        text = fields[0]
+        match = ENTRY_CODE_RE.match(fields[1]) if len(fields) >= 2 else None
+        if not text or match is None:
+            result_lines.append(raw)
+            continue
+
+        code, code_suffix = match.groups()
+        stats.entries += 1
+        readings = _entry_readings(source.name, text, code, body, kind, override_map)
+        if readings is None:
+            stats.unresolved.append(f"line {line_no}: {text}\t{code}")
+            result_lines.append(raw)
+            continue
+
+        converted = convert_code(text, code, kind, readings)
+        if converted != code:
+            stats.converted += 1
+        key = (text, converted)
+        if key in seen:
+            stats.collapsed += 1
+            continue
+        seen.add(key)
+        fields[1] = converted + code_suffix
+        result_lines.append("\t".join(fields) + newline)
+        stats.output_entries += 1
+
+    if stats.unresolved:
+        raise UnresolvedEntriesError(source, stats.unresolved)
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    encoded = "".join(result_lines).encode("utf-8")
+    output.write_bytes((b"\xef\xbb\xbf" if has_bom else b"") + encoded)
+    return stats

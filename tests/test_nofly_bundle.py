@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -16,8 +17,10 @@ from scripts.build_nofly_bundle import (
     choose_reading,
     contextual_readings,
     convert_code,
+    convert_dictionary,
     load_overrides,
     parse_pinyin_comment,
+    UnresolvedEntriesError,
 )
 
 
@@ -144,6 +147,75 @@ class ReadingResolutionTests(unittest.TestCase):
                     ]
                 },
             )
+
+
+class DictionaryTransformTests(unittest.TestCase):
+    def test_dictionary_conversion_preserves_header_bom_and_trailing_fields(self) -> None:
+        source_text = (
+            "# Rime dictionary\n"
+            "---\n"
+            "name: sample\n"
+            "...\n"
+            "超\tjzvo\t900 # 高频\n"
+            "找\tfz\t800\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_bytes(b"\xef\xbb\xbf" + source_text.encode("utf-8"))
+
+            stats = convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertTrue(output.read_bytes().startswith(b"\xef\xbb\xbf"))
+            self.assertEqual(
+                output.read_text("utf-8-sig"),
+                source_text.replace("超\tjzvo", "超\twzvo").replace("找\tfz", "找\tqz"),
+            )
+            self.assertEqual(stats.entries, 2)
+            self.assertEqual(stats.converted, 2)
+            self.assertEqual(stats.collapsed, 0)
+
+    def test_duplicate_fly_variants_collapse_stably(self) -> None:
+        source_text = "超\tjz\n抄\twz\n超\twz\n找\tfz\n找\tqz\n"
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text(source_text, "utf-8")
+
+            stats = convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertEqual(output.read_text("utf-8"), "超\twz\n抄\twz\n找\tqz\n")
+            self.assertEqual(stats.entries, 5)
+            self.assertEqual(stats.output_entries, 3)
+            self.assertEqual(stats.collapsed, 2)
+
+    def test_copy_dictionary_is_byte_for_byte_identical(self) -> None:
+        payload = b"\xef\xbb\xbf# custom\r\n\xe8\xb6\x85\tjzvo\r\n"
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "custom.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_bytes(payload)
+
+            stats = convert_dictionary(source, output, DictionaryKind.COPY)
+
+            self.assertEqual(output.read_bytes(), payload)
+            self.assertEqual(stats.converted, 0)
+
+    def test_unmatched_standard_entry_fails_without_guessing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text("超\tbk\n", "utf-8")
+
+            with self.assertRaises(UnresolvedEntriesError) as raised:
+                convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertIn("超", str(raised.exception))
+            self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":
