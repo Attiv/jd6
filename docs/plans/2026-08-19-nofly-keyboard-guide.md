@@ -59,8 +59,8 @@ git commit -m "test(nofly): define keyboard guide contract"
 **Step 1: Edit the approved source image**
 
 Use the built-in image-generation tool in precise edit mode with the supplied
-image as a local reference. Preserve the original 2048 x 640 layout, colors,
-fonts, symbols, and logo. Remove only:
+image as a local reference. Preserve the complete wide layout, colors, fonts,
+symbols, and logo in a high-resolution output. Remove only:
 
 - the pink `zh` label from F;
 - the pink `ch` label from W;

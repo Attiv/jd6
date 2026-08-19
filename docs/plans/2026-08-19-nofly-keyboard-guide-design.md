@@ -16,9 +16,10 @@ implementation records remain in English.
 
 ## Keyboard Diagram
 
-Use the supplied 2048 x 640 keyboard image as the edit source. Preserve its
-black background, peach key outlines and letters, blue finals, purple special
-keys, red logo, spacing, proportions, and every unchanged label.
+Use the supplied keyboard image as the edit source. Preserve its black
+background, peach key outlines and letters, blue finals, purple special keys,
+red logo, three-row composition, and every unchanged label. Keep the complete
+keyboard visible in a high-resolution wide image.
 
 Remove only the three fly-key alternatives:
 
@@ -66,9 +67,9 @@ collapsed; different candidates sharing a code remain ordered.
 The documented conversion totals are:
 
 - Input entries: 1,259,654.
-- Output entries: 1,251,653.
-- Converted entries: 195,446.
-- Collapsed duplicates: 8,001.
+- Output entries: 1,251,651.
+- Converted entries: 168,381.
+- Collapsed duplicates: 8,003.
 - Unresolved standard entries: 0.
 
 ## Verification

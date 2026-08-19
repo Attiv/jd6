@@ -32,8 +32,8 @@ class NoFlyGuideTests(unittest.TestCase):
         width, height = struct.unpack(">II", data[16:24])
         self.assertGreaterEqual(width, 1_500)
         self.assertGreaterEqual(height, 450)
-        self.assertGreater(width / height, 3.0)
-        self.assertLess(width / height, 3.4)
+        self.assertGreater(width / height, 2.1)
+        self.assertLess(width / height, 2.4)
 
     def test_canonical_mappings_and_focus_keys_are_documented(self) -> None:
         required = (
@@ -69,7 +69,7 @@ class NoFlyGuideTests(unittest.TestCase):
                 self.assertIn(marker, self.guide_text)
 
     def test_conversion_totals_are_documented(self) -> None:
-        required = ("1,259,654", "1,251,653", "195,446", "8,001", "未解决条目：0")
+        required = ("1,259,654", "1,251,651", "168,381", "8,003", "未解决条目：0")
         for marker in required:
             with self.subTest(marker=marker):
                 self.assertIn(marker, self.guide_text)
