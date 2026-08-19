@@ -25,12 +25,13 @@ local function make_stream(limit)
   local stream = { pulled = 0 }
   function stream:iter()
     local index = 0
-    return function()
+    local function next_candidate(iterator_state)
       index = index + 1
       if index > limit then return nil end
-      self.pulled = self.pulled + 1
+      iterator_state.pulled = iterator_state.pulled + 1
       return candidates[index]
     end
+    return next_candidate, self
   end
   return stream
 end

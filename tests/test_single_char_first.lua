@@ -31,13 +31,17 @@ local function make_stream(texts)
 
   function state:iter()
     local index = 0
-    return function()
+    local function next_candidate(iterator_state)
       index = index + 1
       local text = texts[index]
       if text == nil then return nil end
-      self.pulled = self.pulled + 1
+      iterator_state.pulled = iterator_state.pulled + 1
       return candidate(text, index)
     end
+    -- librime-lua TranslationReg.raw_iter returns the next function and the
+    -- Translation userdata as generic-for state. Tests must preserve this
+    -- two-value protocol instead of using a closure-only mock.
+    return next_candidate, self
   end
 
   return state

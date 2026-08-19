@@ -57,22 +57,34 @@ function M.func(input, env)
         return
     end
 
-    local iter = input:iter()
+    -- librime-lua returns the generic-for triple: iterator, state, control.
+    -- Keep all three values so the C iterator receives its Translation state.
+    local iter, iterator_state, control = input:iter()
+    local function next_candidate()
+        local cand = iter(iterator_state, control)
+        control = cand
+        return cand
+    end
     local words = {}
     local scanned = 0
 
-    for cand in iter do
+    while scanned < scan_limit do
+        local cand = next_candidate()
+        if cand == nil then break end
         scanned = scanned + 1
         if is_single_codepoint(cand and cand.text) then
             yield(cand)
         else
             words[#words + 1] = cand
         end
-        if scanned >= scan_limit then break end
     end
 
     for index = 1, #words do yield(words[index]) end
-    for cand in iter do yield(cand) end
+    while true do
+        local cand = next_candidate()
+        if cand == nil then break end
+        yield(cand)
+    end
 end
 
 M.is_single_codepoint = is_single_codepoint

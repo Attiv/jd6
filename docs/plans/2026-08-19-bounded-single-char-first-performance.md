@@ -21,28 +21,28 @@ so neither the old nor new filter can emit an early single character.
 
 | Path | Upstream pulls | Total time | Time per operation |
 | --- | ---: | ---: | ---: |
-| Direct pass-through | 1 | 0.1764 s | 1,764.2 ns |
-| Legacy scan-100 filter | 100 | 4.2319 s | 42,319.4 ns |
-| New bounded scan-20 filter | 20 | 0.6242 s | 6,241.8 ns |
+| Direct pass-through | 1 | 0.1147 s | 1,147.4 ns |
+| Legacy scan-100 filter | 100 | 3.9684 s | 39,684.4 ns |
+| New bounded scan-20 filter | 20 | 0.7128 s | 7,128.1 ns |
 
 The bounded filter reduces worst-case upstream prefetch from 100 to 20
 candidates, an 80% structural reduction. Its measured first-output CPU is
-85.3% lower than the legacy implementation.
+82.0% lower than the legacy implementation.
 
-Compared with no filter, the bounded filter adds approximately 4.48
+Compared with no filter, the bounded filter adds approximately 5.98
 microseconds in this intentionally worst-case fixture. The percentage increase
-looks large because direct pass-through is only 1.76 microseconds; the absolute
+looks large because direct pass-through is only 1.15 microseconds; the absolute
 Lua cost remains below 0.01 milliseconds on this machine.
 
 ### Complete 20-Candidate Stream
 
 | Path | Total time | Time per operation |
 | --- | ---: | ---: |
-| Direct pass-through | 0.2612 s | 2,612.3 ns |
-| Legacy scan-100 filter | 1.1314 s | 11,314.4 ns |
-| New bounded scan-20 filter | 0.7499 s | 7,498.7 ns |
+| Direct pass-through | 0.2403 s | 2,403.2 ns |
+| Legacy scan-100 filter | 1.1062 s | 11,061.7 ns |
+| New bounded scan-20 filter | 0.7435 s | 7,435.2 ns |
 
-Processing and yielding all 20 candidates adds approximately 4.89
+Processing and yielding all 20 candidates adds approximately 5.03
 microseconds over pass-through and uses at most 20 candidate references.
 
 ## Interpretation
