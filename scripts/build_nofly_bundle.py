@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import dataclasses
 import enum
+import argparse
 import re
 import shutil
+import sys
 import unicodedata
 from collections.abc import Sequence
 from pathlib import Path
@@ -286,6 +288,82 @@ def convert_code(
 ENTRY_CODE_RE = re.compile(r"^([a-z;]+)(.*)$")
 
 
+STANDARD_DICTIONARIES = {
+    "xmjd6.danzi",
+    "xmjd6.cizu",
+    "xmjd6.cx",
+    "xmjd6.fjcy",
+    "xmjd6.chaojizici",
+    "xmjd6.same_code_short_first",
+    "xmjd6.candidate_order",
+}
+SSB_DICTIONARIES = {"xmjd6.wxw", "xkjd6.ssb1"}
+COPY_DICTIONARIES = {
+    "xmjd6.zidingyi",
+    "xmjd6.fuhao",
+    "xmjd6.buchong",
+    "xmjd6.lianjie",
+    "xmjd6.user",
+    "xmjd6.yingwen",
+    "xkjd6.yingwen",
+    "xkjd6.wanne",
+}
+SCHEMA_FILES = (
+    "xmjd6.schema.yaml",
+    "xmjd6.cx.schema.yaml",
+    "xmjd6.gbk.schema.yaml",
+    "pinyin_simp.schema.yaml",
+    "liangfen.schema.yaml",
+    "english.schema.yaml",
+)
+SUPPORT_DICTIONARIES = (
+    "xmjd6.dict.yaml",
+    "xmjd6.extended.dict.yaml",
+    "xmjd6.cx.dict.yaml",
+    "xmjd6.gbk.dict.yaml",
+    "xmjd6.en.dict.yaml",
+    "pinyin_simp.dict.yaml",
+    "liangfen.dict.yaml",
+    "english.dict.yaml",
+)
+RUNTIME_TEXT_FILES = (
+    "anniversaries.txt",
+    "candidate_order.txt",
+    "dynamic_phrases.txt",
+)
+
+
+def active_imports(path: Path) -> list[str]:
+    """Return uncommented import table names in source order."""
+
+    imports: list[str] = []
+    in_imports = False
+    for raw in path.read_text("utf-8-sig").splitlines():
+        if re.match(r"^import_tables\s*:", raw):
+            in_imports = True
+            continue
+        if not in_imports or raw.lstrip().startswith("#"):
+            continue
+        if raw and not raw[0].isspace():
+            break
+        match = re.match(r"^\s+-\s+([A-Za-z0-9_.-]+)(?:\s*(?:#.*)?)?$", raw)
+        if match:
+            imports.append(match.group(1))
+    return imports
+
+
+def dictionary_kind(name: str) -> DictionaryKind:
+    if name in SSB_DICTIONARIES:
+        return DictionaryKind.SSB
+    if name in COPY_DICTIONARIES:
+        return DictionaryKind.COPY
+    if name in STANDARD_DICTIONARIES:
+        return DictionaryKind.STANDARD
+    if name.startswith("xkjd6."):
+        return DictionaryKind.STANDARD
+    raise ValueError(f"unclassified dictionary: {name}")
+
+
 def convert_dictionary(
     source: Path,
     output: Path,
@@ -357,3 +435,293 @@ def convert_dictionary(
     encoded = "".join(result_lines).encode("utf-8")
     output.write_bytes((b"\xef\xbb\xbf" if has_bom else b"") + encoded)
     return stats
+
+
+def _copy_tree(source: Path, output: Path) -> None:
+    def ignore(_directory: str, names: list[str]) -> set[str]:
+        return {
+            name
+            for name in names
+            if name in {".DS_Store", "__pycache__"}
+            or name.endswith((".pyc", ".pyo"))
+        }
+
+    shutil.copytree(source, output, ignore=ignore)
+
+
+def _copy_required(source: Path, output: Path) -> None:
+    if not source.is_file():
+        raise FileNotFoundError(f"required bundle resource is missing: {source.name}")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, output)
+
+
+def _copy_optional(source: Path, output: Path) -> bool:
+    if not source.is_file():
+        return False
+    output.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, output)
+    return True
+
+
+def _patch_schema_name(path: Path) -> None:
+    payload = path.read_bytes()
+    has_bom = payload.startswith(b"\xef\xbb\xbf")
+    content = payload.decode("utf-8-sig")
+    patched, count = re.subn(
+        r"^(\s*name:\s*).*$",
+        r"\g<1>键道6·无飞键版",
+        content,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    if count != 1:
+        raise ValueError(f"cannot locate schema name in {path}")
+    path.write_bytes((b"\xef\xbb\xbf" if has_bom else b"") + patched.encode("utf-8"))
+
+
+def _readme_text() -> str:
+    return """# 键道6·无飞键版（Windows）
+
+这是一个**独立生成的 Windows 优先分发目录**，构建程序不会自动安装，也不会把任何文件复制到当前 Rime 用户目录。
+
+## 规则
+
+- `ch → W`，例如超：`wz`。
+- `zh → Q`，例如找：`qz`。
+- `uang → X`，例如光：`gx`。
+- 普通的 `j`、`q`、`w`、`f` 声母和其他韵母保持原规则。
+
+## Windows 手动使用
+
+1. 先运行 `verify_windows.cmd`，只读检查包是否完整。
+2. 退出小狼毫或备份现有用户目录后，按自己的安装方式把本目录内容放入 Rime 用户目录。
+3. 在小狼毫菜单中执行“重新部署”。
+
+内部方案标识仍是 schema_id: `xmjd6`，因此本版用于**替换原版**，不能与原版同时共存。此目录没有执行安装，也不包含 macOS 编译产物、用户数据库或已编译的 `build` 目录。
+
+`conversion-report.txt` 记录每个码表的转换与去重数量。若要重新生成，请在源码项目中运行 `python scripts/build_nofly_bundle.py`。
+"""
+
+
+def _windows_verifier_text() -> str:
+    return r"""@echo off
+setlocal EnableExtensions
+chcp 65001 >nul
+set "ROOT=%~dp0"
+set "FAILED=0"
+
+call :require "xmjd6.schema.yaml"
+call :require "xmjd6.extended.dict.yaml"
+call :require "default.yaml"
+call :require "default.custom.yaml"
+call :require "weasel.custom.yaml"
+call :require "symbols.yaml"
+call :require "conversion-report.txt"
+call :require "lua\xmjd6"
+call :require "opencc"
+
+if exist "%ROOT%build\" (
+  echo [FAIL] Package must not contain a build directory.
+  set "FAILED=1"
+)
+
+if "%FAILED%"=="0" (
+  echo [OK] Package structure is complete. No files were installed or changed.
+) else (
+  echo [FAIL] Package verification failed.
+)
+exit /b %FAILED%
+
+:require
+if not exist "%ROOT%%~1" (
+  echo [MISS] %~1
+  set "FAILED=1"
+) else (
+  echo [ OK ] %~1
+)
+exit /b 0
+"""
+
+
+def _write_report(output: Path, stats: Sequence[DictionaryStats]) -> None:
+    total_entries = sum(item.entries for item in stats)
+    total_output = sum(item.output_entries for item in stats)
+    total_converted = sum(item.converted for item in stats)
+    total_collapsed = sum(item.collapsed for item in stats)
+    unresolved = sum(len(item.unresolved) for item in stats)
+    lines = [
+        "XMJD6 no-fly conversion report",
+        "mapping: ch=W, zh=Q, uang=X",
+        "",
+        f"input entries: {total_entries}",
+        f"output entries: {total_output}",
+        f"converted entries: {total_converted}",
+        f"collapsed duplicates: {total_collapsed}",
+        f"unresolved entries: {unresolved}",
+        "",
+        "per dictionary:",
+    ]
+    for item in stats:
+        lines.append(
+            f"- {item.source}: input={item.entries}, output={item.output_entries}, "
+            f"converted={item.converted}, collapsed={item.collapsed}, "
+            f"unresolved={len(item.unresolved)}"
+        )
+    (output / "conversion-report.txt").write_text("\n".join(lines) + "\n", "utf-8")
+
+
+def validate_bundle(output: Path) -> list[str]:
+    """Return deterministic validation errors without modifying the bundle."""
+
+    errors: list[str] = []
+    required = {
+        "default.yaml",
+        "default.custom.yaml",
+        "weasel.custom.yaml",
+        "symbols.yaml",
+        "xmjd6.schema.yaml",
+        "xmjd6.dict.yaml",
+        "xmjd6.extended.dict.yaml",
+        "README.md",
+        "verify_windows.cmd",
+        "conversion-report.txt",
+    }
+    required.update(SCHEMA_FILES)
+    required.update(RUNTIME_TEXT_FILES)
+    for name in sorted(required):
+        if not (output / name).is_file():
+            errors.append(f"missing file: {name}")
+
+    for directory in ("lua/xmjd6", "opencc"):
+        if not (output / directory).is_dir():
+            errors.append(f"missing directory: {directory}")
+
+    extended = output / "xmjd6.extended.dict.yaml"
+    if extended.is_file():
+        for name in active_imports(extended):
+            relative = f"{name}.dict.yaml"
+            if not (output / relative).is_file():
+                errors.append(f"missing active import: {relative}")
+
+    schema = output / "xmjd6.schema.yaml"
+    if schema.is_file():
+        content = schema.read_text("utf-8-sig")
+        if not re.search(r"^\s*schema_id:\s*xmjd6\s*$", content, re.MULTILINE):
+            errors.append("main schema_id is not xmjd6")
+        if not re.search(r"^\s*name:\s*键道6·无飞键版\s*$", content, re.MULTILINE):
+            errors.append("main schema display name is not the no-fly name")
+
+    for path in output.rglob("*") if output.exists() else ():
+        relative = path.relative_to(output).as_posix()
+        if path.is_dir() and relative == "build":
+            errors.append("forbidden directory: build")
+        if path.is_file() and path.suffix.lower() in {
+            ".bin",
+            ".hskin",
+            ".zip",
+            ".rar",
+            ".7z",
+        }:
+            errors.append(f"forbidden artifact: {relative}")
+        if path.is_file() and path.name in {"installation.yaml", "user.yaml"}:
+            errors.append(f"forbidden local state: {relative}")
+    return errors
+
+
+def build_bundle(root: Path, output: Path, clean: bool = True) -> list[DictionaryStats]:
+    """Build and atomically publish a standalone Windows-first bundle."""
+
+    root = root.resolve()
+    output = output.resolve()
+    extended = root / "xmjd6.extended.dict.yaml"
+    imports = active_imports(extended)
+    stage = output.with_name(f".{output.name}.tmp")
+    if stage.exists():
+        shutil.rmtree(stage)
+    if output.exists() and not clean:
+        raise FileExistsError(output)
+    stage.mkdir(parents=True)
+
+    try:
+        _copy_required(root / "default_win.yaml", stage / "default.yaml")
+        _copy_required(root / "default.custom_win.yaml", stage / "default.custom.yaml")
+        for name in ("weasel.custom.yaml", "symbols.yaml", *SCHEMA_FILES, *RUNTIME_TEXT_FILES):
+            _copy_required(root / name, stage / name)
+        _patch_schema_name(stage / "xmjd6.schema.yaml")
+
+        for name in SUPPORT_DICTIONARIES:
+            _copy_optional(root / name, stage / name)
+        _copy_optional(root / "xmjd6.custom.yaml", stage / "xmjd6.custom.yaml")
+
+        for directory in ("lua/xmjd6", "opencc"):
+            source_directory = root / directory
+            if not source_directory.is_dir():
+                raise FileNotFoundError(f"required bundle resource is missing: {directory}")
+            _copy_tree(source_directory, stage / directory)
+        if (root / "Fonts").is_dir():
+            _copy_tree(root / "Fonts", stage / "Fonts")
+
+        overrides = load_overrides(root / "scripts/nofly_overrides.tsv")
+        stats: list[DictionaryStats] = []
+        transformed_names = set(imports)
+        if (root / "xmjd6.cx.dict.yaml").is_file():
+            transformed_names.add("xmjd6.cx")
+        for name in sorted(transformed_names):
+            source = root / f"{name}.dict.yaml"
+            if not source.is_file():
+                raise FileNotFoundError(f"active dictionary is missing: {source.name}")
+            stats.append(
+                convert_dictionary(
+                    source,
+                    stage / source.name,
+                    dictionary_kind(name),
+                    overrides,
+                )
+            )
+
+        (stage / "README.md").write_text(_readme_text(), "utf-8")
+        (stage / "verify_windows.cmd").write_text(_windows_verifier_text(), "utf-8", newline="\r\n")
+        _write_report(stage, stats)
+
+        errors = validate_bundle(stage)
+        if errors:
+            raise RuntimeError("bundle validation failed:\n" + "\n".join(errors))
+
+        if output.exists():
+            shutil.rmtree(output)
+        stage.rename(output)
+        return stats
+    except BaseException:
+        if stage.exists():
+            shutil.rmtree(stage)
+        raise
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    project_root = Path(__file__).resolve().parents[1]
+    parser.add_argument("--root", type=Path, default=project_root)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args(argv)
+    output = args.output or args.root / "xmjd6-nofly"
+
+    if args.check:
+        errors = validate_bundle(output)
+        if errors:
+            print("\n".join(errors), file=sys.stderr)
+            return 1
+        print(f"Bundle OK: {output}")
+        return 0
+
+    stats = build_bundle(args.root, output)
+    print(
+        f"Built {output}: {sum(item.converted for item in stats)} converted, "
+        f"{sum(item.collapsed for item in stats)} duplicates collapsed"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
