@@ -53,6 +53,14 @@ class NoFlyRootLayoutTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertIn(code, codes_for(text))
 
+    def test_readme_explains_branch_switching_and_redeployment(self) -> None:
+        readme = (ROOT / "README.md").read_text("utf-8")
+        self.assertIn("git checkout main", readme)
+        self.assertIn("git checkout feature/xmjd6-nofly", readme)
+        self.assertIn("重新部署", readme)
+        self.assertIn("installation.yaml", readme)
+        self.assertIn("user.yaml", readme)
+
 
 if __name__ == "__main__":
     unittest.main()
