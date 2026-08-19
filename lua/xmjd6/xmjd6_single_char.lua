@@ -43,14 +43,15 @@ function M.init(env)
     local enabled = config:get_bool(CONFIG_PREFIX .. "enabled")
     local scan_limit = tonumber(config:get_int(CONFIG_PREFIX .. "scan_limit"))
 
-    env.single_char_first_enabled = enabled ~= false
+    -- Opt in explicitly. Missing configuration remains disabled.
+    env.single_char_first_enabled = enabled == true
     env.single_char_first_scan_limit = math.max(0, scan_limit or DEFAULT_SCAN_LIMIT)
 end
 
 function M.func(input, env)
     if not input or type(input.iter) ~= "function" then return end
 
-    local enabled = not env or env.single_char_first_enabled ~= false
+    local enabled = env and env.single_char_first_enabled == true
     local scan_limit = env and env.single_char_first_scan_limit or DEFAULT_SCAN_LIMIT
     if not enabled or scan_limit < 2 then
         passthrough(input)

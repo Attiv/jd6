@@ -182,11 +182,11 @@ end
 local function test_default_configuration_uses_twenty()
   local env = make_env(nil, nil)
   filter.init(env)
-  assert_equal(env.single_char_first_enabled, true, "default enabled")
+  assert_equal(env.single_char_first_enabled, false, "default disabled")
   assert_equal(env.single_char_first_scan_limit, 20, "default scan limit")
 end
 
-local function test_schema_enables_filter_first_with_default_twenty()
+local function test_schema_keeps_filter_first_but_disables_it_by_default()
   local file = assert(io.open("xmjd6.schema.yaml", "r"))
   local schema = file:read("*a")
   file:close()
@@ -197,8 +197,8 @@ local function test_schema_enables_filter_first_with_default_twenty()
   assert_true(simplifier_position ~= nil, "schema must contain the simplifier filter")
   assert_true(filter_position < simplifier_position, "single-char filter must run before simplifier")
   assert_true(
-    schema:match("\nxmjd6_single_char:%s*\n%s+enabled:%s*true%s*\n%s+scan_limit:%s*20"),
-    "schema must configure enabled=true and scan_limit=20"
+    schema:match("\nxmjd6_single_char:%s*\n%s+enabled:%s*false%s*\n%s+scan_limit:%s*20"),
+    "schema must configure enabled=false and scan_limit=20"
   )
 end
 
@@ -211,7 +211,7 @@ local tests = {
   test_disabled_filter_is_direct_passthrough,
   test_small_or_zero_window_is_direct_passthrough,
   test_default_configuration_uses_twenty,
-  test_schema_enables_filter_first_with_default_twenty,
+  test_schema_keeps_filter_first_but_disables_it_by_default,
 }
 
 for _, test in ipairs(tests) do test() end
