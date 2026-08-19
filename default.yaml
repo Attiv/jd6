@@ -11,6 +11,8 @@ schema_list:
 switcher:
   caption: "〔方案選單〕"
   hotkeys:
+    - Control+Escape
+    - Control+F4
     - F4
   save_options:
     - full_shape
@@ -29,11 +31,11 @@ menu:
 ascii_composer:
   good_old_caps_lock: true
   switch_key:
-    Caps_Lock: clear
+    Caps_Lock: null
     Control_L: noop
     Control_R: noop
-    Shift_L: commit_code
-    Shift_R: commit_code
+    Shift_L: null
+    Shift_R: null
 
 key_binder:
   bindings:
