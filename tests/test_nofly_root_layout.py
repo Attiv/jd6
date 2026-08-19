@@ -27,21 +27,22 @@ class NoFlyRootLayoutTests(unittest.TestCase):
 
     def test_representative_fly_variants_are_normalized(self) -> None:
         normalized = {
-            "超": "wz",
-            "春": "wwv",
+            "超": "jz",
+            "春": "jwv",
             "找": "qz",
             "中": "qy",
             "装": "qx",
             "光": "gx",
-            "穿": "wt",
+            "穿": "jt",
         }
         legacy = {
-            "超": {"jz"},
-            "春": {"jwv"},
+            "超": {"wz"},
+            "春": {"wwv"},
             "找": {"fz"},
             "中": {"fy"},
             "装": {"fm", "fx"},
             "光": {"gm"},
+            "穿": {"wt"},
         }
         for text, expected in normalized.items():
             with self.subTest(text=text):

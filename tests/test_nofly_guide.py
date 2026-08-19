@@ -37,13 +37,13 @@ class NoFlyGuideTests(unittest.TestCase):
 
     def test_canonical_mappings_and_focus_keys_are_documented(self) -> None:
         required = (
-            "ch → W",
+            "ch → J",
             "zh → Q",
             "uang → X",
             "Q：zh",
-            "W：ch",
+            "W：ei、un",
             "F：an",
-            "J：er、u",
+            "J：ch；er、u",
             "X：iang、uang",
             "M：ian",
         )
@@ -53,8 +53,8 @@ class NoFlyGuideTests(unittest.TestCase):
 
     def test_converted_and_native_examples_are_documented(self) -> None:
         required = (
-            "超 `wz`",
-            "春 `wwv`",
+            "超 `jz`",
+            "春 `jwv`",
             "找 `qz`",
             "中 `qy`",
             "装 `qx`",

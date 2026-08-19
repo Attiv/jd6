@@ -65,8 +65,8 @@ def make_bundle_fixture(root: Path) -> None:
     )
     dictionaries = {
         "xmjd6.dict.yaml": "---\nname: xmjd6\n...\n",
-        "xmjd6.danzi.dict.yaml": "超\tjz\n找\tfz\n",
-        "xmjd6.wxw.dict.yaml": "超找\tjfm\n",
+        "xmjd6.danzi.dict.yaml": "超\twz\n找\tfz\n",
+        "xmjd6.wxw.dict.yaml": "超找\twfm\n",
         "xmjd6.zidingyi.dict.yaml": "自定义\tjzvo\n",
         "xmjd6.cx.dict.yaml": "超\tjz\t0 # 〔chāo〕\n",
         "xmjd6.gbk.dict.yaml": "龘\tOabcd\n",
@@ -89,8 +89,8 @@ def make_bundle_fixture(root: Path) -> None:
 class ConversionUnitTests(unittest.TestCase):
     def test_single_character_fly_keys_are_normalized(self) -> None:
         self.assertEqual(
-            convert_code("超", "jzvo", DictionaryKind.STANDARD, [Reading("ch", "ao")]),
-            "wzvo",
+            convert_code("超", "wzvo", DictionaryKind.STANDARD, [Reading("ch", "ao")]),
+            "jzvo",
         )
         self.assertEqual(
             convert_code("找", "fziuv", DictionaryKind.STANDARD, [Reading("zh", "ao")]),
@@ -118,15 +118,15 @@ class ConversionUnitTests(unittest.TestCase):
     def test_two_character_sound_positions_are_normalized(self) -> None:
         readings = [Reading("ch", "ao"), Reading("zh", "uang")]
         self.assertEqual(
-            convert_code("超装", "jzfmvo", DictionaryKind.STANDARD, readings),
-            "wzqxvo",
+            convert_code("超装", "wzfmvo", DictionaryKind.STANDARD, readings),
+            "jzqxvo",
         )
 
     def test_three_character_initial_positions_are_normalized(self) -> None:
         readings = [Reading("ch", "ao"), Reading("zh", "ao"), Reading("g", "uang")]
         self.assertEqual(
-            convert_code("超找光", "jfgvio", DictionaryKind.STANDARD, readings),
-            "wqgvio",
+            convert_code("超找光", "wfgvio", DictionaryKind.STANDARD, readings),
+            "jqgvio",
         )
 
     def test_long_phrase_uses_first_three_and_last_initials(self) -> None:
@@ -138,15 +138,15 @@ class ConversionUnitTests(unittest.TestCase):
             Reading("zh", "ong"),
         ]
         self.assertEqual(
-            convert_code("超找光明中", "jfgfvo", DictionaryKind.STANDARD, readings),
-            "wqgqvo",
+            convert_code("超找光明中", "wfgfvo", DictionaryKind.STANDARD, readings),
+            "jqgqvo",
         )
 
     def test_ssb_only_treats_first_position_as_an_initial(self) -> None:
         readings = [Reading("ch", "ao"), Reading("zh", "ao")]
         self.assertEqual(
-            convert_code("超找", "jfm", DictionaryKind.SSB, readings),
-            "wfm",
+            convert_code("超找", "wfm", DictionaryKind.SSB, readings),
+            "jfm",
         )
 
     def test_copy_dictionary_is_never_rewritten(self) -> None:
@@ -241,7 +241,7 @@ class ReadingResolutionTests(unittest.TestCase):
             )
             self.assertEqual(
                 load_overrides(path),
-                {("sample.dict.yaml", "B超", "bjz"): "bwz"},
+                {("sample.dict.yaml", "B超", "bwz"): "bjz"},
             )
 
 
@@ -252,7 +252,7 @@ class DictionaryTransformTests(unittest.TestCase):
             "---\n"
             "name: sample\n"
             "...\n"
-            "超\tjzvo\t900 # 高频\n"
+            "超\twzvo\t900 # 高频\n"
             "找\tfz\t800\n"
         )
         with tempfile.TemporaryDirectory() as tmp_name:
@@ -266,14 +266,14 @@ class DictionaryTransformTests(unittest.TestCase):
             self.assertTrue(output.read_bytes().startswith(b"\xef\xbb\xbf"))
             self.assertEqual(
                 output.read_text("utf-8-sig"),
-                source_text.replace("超\tjzvo", "超\twzvo").replace("找\tfz", "找\tqz"),
+                source_text.replace("超\twzvo", "超\tjzvo").replace("找\tfz", "找\tqz"),
             )
             self.assertEqual(stats.entries, 2)
             self.assertEqual(stats.converted, 2)
             self.assertEqual(stats.collapsed, 0)
 
     def test_duplicate_fly_variants_collapse_stably(self) -> None:
-        source_text = "超\tjz\n抄\twz\n超\twz\n找\tfz\n找\tqz\n"
+        source_text = "超\twz\n抄\tjz\n超\tjz\n找\tfz\n找\tqz\n"
         with tempfile.TemporaryDirectory() as tmp_name:
             tmp = Path(tmp_name)
             source = tmp / "sample.dict.yaml"
@@ -282,7 +282,7 @@ class DictionaryTransformTests(unittest.TestCase):
 
             stats = convert_dictionary(source, output, DictionaryKind.STANDARD)
 
-            self.assertEqual(output.read_text("utf-8"), "超\twz\n抄\twz\n找\tqz\n")
+            self.assertEqual(output.read_text("utf-8"), "超\tjz\n抄\tjz\n找\tqz\n")
             self.assertEqual(stats.entries, 5)
             self.assertEqual(stats.output_entries, 3)
             self.assertEqual(stats.collapsed, 2)
@@ -340,19 +340,19 @@ class DictionaryTransformTests(unittest.TestCase):
             tmp = Path(tmp_name)
             source = tmp / "sample.dict.yaml"
             output = tmp / "output.dict.yaml"
-            source.write_text("B超\tbjz\nB超\tbwz\n", "utf-8")
+            source.write_text("B超\tbwz\nB超\tbjz\n", "utf-8")
 
             stats = convert_dictionary(
                 source,
                 output,
                 DictionaryKind.STANDARD,
                 {
-                    ("sample.dict.yaml", "B超", "bjz"): "bwz",
-                    ("sample.dict.yaml", "B超", "bwz"): "bwz",
+                    ("sample.dict.yaml", "B超", "bwz"): "bjz",
+                    ("sample.dict.yaml", "B超", "bjz"): "bjz",
                 },
             )
 
-            self.assertEqual(output.read_text("utf-8"), "B超\tbwz\n")
+            self.assertEqual(output.read_text("utf-8"), "B超\tbjz\n")
             self.assertEqual(stats.collapsed, 1)
 
     def test_cx_o_prefix_preserves_the_prefix_and_converts_the_sound_code(self) -> None:
@@ -366,7 +366,7 @@ class DictionaryTransformTests(unittest.TestCase):
 
             self.assertEqual(
                 output.read_text("utf-8"),
-                "超\towzviv\t0 # 〔chāo〕\n",
+                "超\tojzviv\t0 # 〔chāo〕\n",
             )
 
 
@@ -427,11 +427,11 @@ class BundleManifestTests(unittest.TestCase):
             self.assertNotIn("name: 键道6·仰望星空", schema)
             self.assertEqual(
                 (output / "xmjd6.danzi.dict.yaml").read_text("utf-8"),
-                "超\twz\n找\tqz\n",
+                "超\tjz\n找\tqz\n",
             )
             self.assertEqual(
                 (output / "xmjd6.wxw.dict.yaml").read_text("utf-8"),
-                "超找\twfm\n",
+                "超找\tjfm\n",
             )
             self.assertEqual(
                 (output / "xmjd6.zidingyi.dict.yaml").read_bytes(),
@@ -481,10 +481,10 @@ class WindowsArtifactTests(unittest.TestCase):
                 "不能与原版同时共存",
                 "重新部署",
                 "不包含 macOS 编译产物",
-                "ch → W",
+                "ch → J",
                 "zh → Q",
                 "uang → X",
-                "超：`wz`",
+                "超：`jz`",
                 "找：`qz`",
                 "光：`gx`",
             ):
