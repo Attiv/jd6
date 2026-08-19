@@ -32,14 +32,14 @@ use_preset_vocabulary: false
 半以	bfykoa
 被发佯狂	bfykoa
 # code: bjeqva
-不出社区	bweqva
+不出社区	bjeqva
 杯酒释兵权	bjeqva
 # code: bjlmoa
 补练	bjlmoa
-爆出冷门	bwlmoa
+爆出冷门	bjlmoa
 # code: bjnmo
 补念	bjnmo
-弊车驽马	bwnmo
+弊车驽马	bjnmo
 # code: bjxfii
 钣金修复	bjxfii
 苯甲酰精氨酸乙酯	bjxqii
@@ -47,7 +47,7 @@ use_preset_vocabulary: false
 比较一般	bjybvv
 不均一核糖核蛋白	bjybvv
 # code: bjz
-B超	bwz
+B超	bjz
 败家子	bjz
 # code: bktpo
 必烫	bktpo
@@ -66,7 +66,7 @@ B超	bwz
 丙哌利定	bpldv
 # code: bpzjoa
 被骗资金	bpzjoa
-别皮甾酮四醇	bpzwoa
+别皮甾酮四醇	bpzjoa
 # code: bqf
 B站	bqf
 补助费	bqf
@@ -78,7 +78,7 @@ B站	bqf
 白屋之士	bwqeu
 # code: bwqfii
 北战	bwqfii
-保持这种	bwqqii
+保持这种	bjqqii
 # code: bwqtov
 被犬	bwqtov
 别无其它	bwqtov
@@ -101,7 +101,7 @@ B站	bqf
 摆在这里	bzqliv
 # code: cfljv
 蚕鹿	cfljv
-磁浮列车	cflwv
+磁浮列车	cfljv
 # code: chfqv
 才抓	chqqv
 存货周转	chqqv
@@ -115,14 +115,14 @@ B站	bqf
 促凝血药	cnxyi
 促凝血球蛋白原	cnxyi
 # code: csejvv
-醋酸市场	csewvv
-醋酸生育醇	csewvv
+醋酸市场	csejvv
+醋酸生育醇	csejvv
 # code: cwdsvv
 村大	cwdsvv
 磁王单速	cwdsvv
 # code: cwjwvv
 村均	cwjwvv
-刺五加茶	cwjwvv
+刺五加茶	cwjjvv
 # code: dbfqa
 对抓	dbqqa
 蛋白脂质	dbqqa
@@ -145,8 +145,8 @@ B站	bqf
 都印	ddybuu
 多多益办	ddybuu
 # code: dejeui
-的扯	deweui
-待势乘时	deweui
+的扯	dejeui
+待势乘时	dejeui
 # code: dfqyi
 但穷	dfqyi
 挡风遮雨	dfqyi
@@ -185,7 +185,7 @@ D盘	dpf
 东睃西望	dsxwvi
 # code: dwfwoo
 吨废	dwfwoo
-定喘止嗽丸	dwqwoo
+定喘止嗽丸	djqwoo
 # code: dyfeii
 抵押方式	dyfeii
 但余钟磬声	dyqeii
@@ -206,7 +206,7 @@ D盘	dpf
 疏风活血汤	efhtau
 # code: efjqou
 善九	efjqou
-实质成长	eqwqou
+实质成长	eqjqou
 # code: efnluu
 膻衄	efnluu
 十分努力	efnluu
@@ -217,11 +217,11 @@ D盘	dpf
 扇者	efqeou
 慎重其事	eqqeou
 # code: egwbov
-施工船舶	egwbov
+施工船舶	egjbov
 商贾无市井之事则不比	egwbov
 # code: ehljai
 深化理解	ehljai
-水合离子形成	ehlwai
+水合离子形成	ehljai
 # code: ehtnu
 生活太难	ehtnu
 舌红苔黄腻	ehtnu
@@ -245,7 +245,7 @@ D盘	dpf
 数量质量	elqlo
 # code: elqjoo
 说祝	elqjoo
-熟路轻车	elqwoo
+熟路轻车	elqjoo
 # code: emdmao
 双店	exdmao
 双嘧达莫	emdmao
@@ -284,7 +284,7 @@ D盘	dpf
 复方胆通	ffdtuo
 # code: ffjduu
 反解	ffjduu
-追风掣电	qfwduu
+追风掣电	qfjduu
 # code: ffnsui
 反拿	ffnsui
 氟芬那酸	ffnsui
@@ -299,13 +299,13 @@ D盘	dpf
 丰筋多力	fjdlvu
 # code: fjfjvv
 覆覆	fjfjvv
-覆车之鉴	fwqjvv
+覆车之鉴	fjqjvv
 # code: fjgtui
 直接沟通	qjgtui
 直接固位体	qjgtui
 # code: fjkhii
 付凯	fjkhii
-非常看好	fwkhii
+非常看好	fjkhii
 # code: fjrba
 弗瑞	fjrba
 浙江日报	qjrba
@@ -334,14 +334,14 @@ D盘	dpf
 风气不正	fqbquu
 腑气不通证	fqbquu
 # code: fqjri
-抓城	qqwri
+抓城	qqjri
 扶倾济弱	fqjri
 # code: fqwhiu
 抓外	qqwhiu
 中秋晚会	qqwhiu
 # code: fqwji
 抓五	qqwji
-指指戳戳	qqwwi
+指指戳戳	qqjji
 # code: fqwquo
 风情万千	fqwquo
 腹前外侧群	fqwquo
@@ -387,7 +387,7 @@ GDP	gdp
 肱骨上端开放性骨折	ggequi
 # code: ggwqv
 感概万千	ggwqv
-根管充填器	ggwqv
+根管充填器	ggjqv
 # code: gjpzv
 鼓泡	gjpzv
 梗迹萍踪	gjpzv
@@ -399,7 +399,7 @@ GDP	gdp
 铬镍铝镍热电偶	gnlxii
 # code: gnqjou
 跟猪	gnqjou
-赣南脐橙	gnqwou
+赣南脐橙	gnqjou
 # code: gplju
 缸橹	gplju
 肝脾肋下未触及	gplju
@@ -417,7 +417,7 @@ GDP	gdp
 过热蒸汽	grqqv
 # code: gsjqo
 噶就	gsjqo
-高速成长	gswqo
+高速成长	gsjqo
 # code: gtpyv
 共同朋友	gtpyv
 根痛平片薄膜衣	gtpyv
@@ -426,10 +426,10 @@ GDP	gdp
 果糖二磷酸钠附灭菌注射用水	gtxeio
 # code: gwdlii
 国网电力	gwdlii
-骨传导装置调整和管理	gwdlii
+骨传导装置调整和管理	gjdlii
 # code: gwjeoi
 官网建设	gwjeoi
-高位产钳术	gwweoi
+高位产钳术	gwjeoi
 # code: gxbxoo
 高效表现	gxbxoo
 冠心病心律失常型	gxbxoo
@@ -468,7 +468,7 @@ GDP	gdp
 卉乖	hbggu
 后半规管	hbggu
 # code: hbjnvv
-惠辰	hbwnvv
+惠辰	hbjnvv
 黄柏胶囊	hbjnvv
 # code: hbpev
 画报拍摄	hbpev
@@ -541,22 +541,22 @@ HTML	html
 及奔逸绝尘而回瞠若乎后者	jbyquv
 # code: jdfduo
 解咒	jdqduo
-彻底否定	wdfduo
+彻底否定	jdfduo
 # code: jdjqao
 姐就	jdjqao
-澈底澄清	wdwqao
+澈底澄清	jdjqao
 # code: jdlyuv
 九大领域	jdlyuv
 解毒凉血口服液	jdlyuv
 # code: jdw
 U盾	jdw
-超低温	wdw
+超低温	jdw
 # code: jfjhov
 兼职机会	jqjhov
 脊椎棘突吻合	jqjhov
 # code: jfzjvo
-厨房灶具	wfzjvo
-臣之子亦不能受之于臣	wqzwvo
+厨房灶具	jfzjvo
+臣之子亦不能受之于臣	jqzjvo
 # code: jglki
 🫡	jglki
 敬礼	jglki
@@ -564,17 +564,17 @@ U盾	jdw
 竞	jglo
 叫过来	jglo
 # code: jhbnv
-成化八年	whbnv
+成化八年	jhbnv
 聚磺苯己烯钠	jhbnv
 # code: jhyjai
 结合语境	jhyjai
 经会阴活检	jhyjai
 # code: jjgsiv
-集成公司	jwgsiv
+集成公司	jjgsiv
 甲基钴胺素	jjgsiv
 # code: jjlxav
-出两	wjlxav
-驾车旅行	jwlxav
+出两	jjlxav
+驾车旅行	jjlxav
 # code: jjxfia
 拒绝安装	jjxqia
 甲己烯雌酚	jjxfia
@@ -583,33 +583,33 @@ U盾	jdw
 菌落刺激因子	jlczi
 # code: jlgjoi
 距骨	jlgjoi
-记里鼓车	jlgwoi
+记里鼓车	jlgjoi
 # code: jljni
-据陈	jlwni
+据陈	jljni
 艽龙胶囊	jljni
 # code: jljniv
-菊辰	jlwniv
+菊辰	jljniv
 金龙胶囊	jljniv
 # code: jljrvv
-巨城	jlwrvv
-车辆出入	wlwrvv
+巨城	jljrvv
+车辆出入	jljrvv
 # code: jlpga
 居平	jlpga
 迦陵频伽	jlpga
 # code: jnqqa
-陈秋	wnqqa
+陈秋	jnqqa
 济南轻骑	jnqqa
 # code: jplqiu
-常留	wplqiu
-扯篷拉纤	wplqiu
+常留	jplqiu
+扯篷拉纤	jplqiu
 # code: jpqbv
 极品主播	jpqbv
 柬埔寨血红蛋白	jpqbv
 # code: jqdsuv
 久大	jqdsuv
-长期打算	wqdsuv
+长期打算	jqdsuv
 # code: jqjeii
-揪扯	jqweii
+揪扯	jqjeii
 接著就是	jqjeii
 # code: jqmdo
 就咩	jqmdo
@@ -619,12 +619,12 @@ U盾	jdw
 久蛰思动	jqsdu
 # code: jqwjoo
 就唔	jqwjoo
-军情五处	jqwwoo
+军情五处	jqwjoo
 # code: jrswv
-成人色网	wrswv
+成人色网	jrswv
 聚乳酸聚乙醇酸共聚物	jrswv
 # code: jrswvu
-进入四川	jrswvu
+进入四川	jrsjvu
 聚乳酸乙醇酸共聚物	jrswvu
 聚乳酸聚乙二醇嵌段共聚物	jrswvu
 # code: jtdpo
@@ -644,19 +644,19 @@ U盾	jdw
 寄小读者	jxdqo
 # code: jxemav
 江爽	jxexav
-出现什么	wxemav
+出现什么	jxemav
 # code: jxjdii
 蒋介	jxjdii
-撤销决定	wxjdii
+撤销决定	jxjdii
 # code: jxslo
 将所	jxslo
 精氨酸阿司匹林	jxslo
 # code: jysxvv
-超越三星	wysxvv
+超越三星	jysxvv
 枸橼酸铁铵	jysxvv
 # code: jzmwa
-潮妹	wzmwa
-江泽民传	jzmwa
+潮妹	jzmwa
+江泽民传	jzmja
 # code: kbdjio
 卡被冻结	kbdjio
 抗病毒糖浆	kbdjio
@@ -664,19 +664,19 @@ U盾	jdw
 看病买药	kbmyi
 卡波姆滴眼液	kbmyi
 # code: kewbv
-可吹	kewbv
+可吹	kejbv
 开氏温标	kewbv
 # code: kflfi
 看兰	kflfi
 抗肿瘤化学药物配置	kqlqi
 # code: khxjoo
-客户现场	khxwoo
+客户现场	khxjoo
 空褐胺宁碱	khxjoo
 # code: kjbjo
 哭不	kjbjo
 空间布局	kjbjo
 # code: kjjwii
-抗菌除臭	kjwwii
+抗菌除臭	kjjjii
 卡介菌素纯蛋白衍生物	kjjwii
 # code: kqbxou
 口气不小	kqbxou
@@ -715,17 +715,17 @@ U盾	jdw
 蓝芒	lfmpi
 萝芙木片	lfmpi
 # code: lgjjo
-另出	lgwjo
-路公交车	lgjwo
+另出	lgjjo
+路公交车	lgjjo
 # code: lhdjvv
 来堵	lhdjvv
-雷轰电掣	lhdwvv
+雷轰电掣	lhdjvv
 # code: lhmni
 莱门	lhmni
 罗红霉素胶囊	lhmni
 # code: lkljoo
 立路	lkljoo
-旅客列车	lklwoo
+旅客列车	lkljoo
 # code: llfmoo
 裸装	llqxoo
 离娄之明	llqmoo
@@ -752,7 +752,7 @@ U盾	jdw
 立体影片	ltypo
 # code: lxfjov
 良辅	lxfjov
-凌霄飞车	lxfwov
+凌霄飞车	lxfjov
 # code: lxhqvo
 两话	lxhqvo
 柳暗花遮	lxhqvo
@@ -785,13 +785,13 @@ U盾	jdw
 毛蕊花糖苷麦角甾苷	mrhgu
 # code: mwmsa
 没嘛	mwmsa
-马迟枚速	mwmsa
+马迟枚速	mjmsa
 # code: mwmwao
 没美	mwmwao
-没吃没穿	mwmwao
+没吃没穿	mjmjao
 # code: mwqhau
 没缺	mwqhau
-满船清梦压星河	mwqhau
+满船清梦压星河	mjqhau
 # code: mxdzo
 门下弟子	mxdzo
 慢性胆囊炎急性发作	mxdzo
@@ -854,7 +854,7 @@ OK	ok
 平均残基分子量	pjclv
 # code: pjzjvv
 平均租金	pjzjvv
-平均自由路程	pjzwvv
+平均自由路程	pjzjvv
 # code: pmfqu
 片抓	pmqqu
 片面追求	pmqqu
@@ -866,7 +866,7 @@ OK	ok
 膨胀性生长	pqxqu
 # code: pthjoa
 普通环境	pthjoa
-普通换药车	pthwoa
+普通换药车	pthjoa
 # code: pttsi
 葡萄糖酸	pttsi
 葡萄糖软袋双管双塞	pttsi
@@ -890,16 +890,16 @@ OK	ok
 穷神观化	qeghoo
 # code: qehjov
 这壶	qehjov
-齐声欢唱	qehwov
+齐声欢唱	qehjov
 # code: qehtu
 者患	qehtu
 长山核桃	qehtu
 # code: qejjoa
-着出	qewjoa
+着出	qejjoa
 弃书捐剑	qejjoa
 # code: qejxoo
 着将	qejxoo
-准时出席	qewxoo
+准时出席	qejxoo
 # code: qelgo
 着令	qelgo
 鹯视狼顾	qelgo
@@ -950,45 +950,45 @@ OK	ok
 正好赶上	qhgeva
 # code: qjdfiu
 助胆	qjdfiu
-倾肠倒腹	qwdfiu
+倾肠倒腹	qjdfiu
 # code: qjgsi
 住噶	qjgsi
-雀巢公司	qwgsi
+雀巢公司	qjgsi
 # code: qjhjoo
 主户	qjhjoo
 前襟后裾	qjhjoo
 # code: qjjeav
-驻车	qjweav
-汽车驾驶	qwjeav
+驻车	qjjeav
+汽车驾驶	qjjeav
 # code: qjjeo
-主撤	qjweo
+主撤	qjjeo
 这仅仅是	qjjeo
 # code: qjleaa
 注了	qjleaa
 浙江龙盛	qjleaa
 # code: qjqqov
 祝求	qjqqov
-这场战争	qwqqov
+这场战争	qjqqov
 # code: qjsjui
 朱苏	qjsjui
 千金散尽	qjsjui
 # code: qjwlaa
 驻涡	qjwlaa
-群除我佬	qwwlaa
+群除我佬	qjwlaa
 # code: qjxsoi
 诸侠	qjxsoi
 羟甲香豆素	qjxsoi
 # code: qjxsvv
-切成细丝	qwxsvv
+切成细丝	qjxsvv
 醛基纤维素	qjxsvv
 # code: qjydav
 驻有	qjydav
-汽车运动	qwydav
+汽车运动	qjydav
 # code: qljkvv
 取机	qljkvv
 青龙金匮	qljkvv
 # code: qljpvv
-区场	qlwpvv
+区场	qljpvv
 樟柳碱片	qljpvv
 # code: qlqmvu
 去签	qlqmvu
@@ -1004,10 +1004,10 @@ OK	ok
 照明设备	qmeboo
 # code: qmjdiv
 钱杰	qmjdiv
-全面彻底	qmwdiv
+全面彻底	qmjdiv
 # code: qmjti
 钱捐	qmjti
-全面撤退	qmwti
+全面撤退	qmjti
 # code: qntbv
 震退	qntbv
 青年驼背	qntbv
@@ -1040,13 +1040,13 @@ OK	ok
 其他品行障碍	qtpxv
 # code: qtwfvi
 其他未知	qtwqvi
-其他传染病病原携带者	qtwqvi
+其他传染病病原携带者	qtjqvi
 # code: qtzxvi
 其他最新	qtzxvi
 其他早期妊娠出血	qtzxvi
 # code: qwbjo
 准不	qwbjo
-请勿泊车	qwbwo
+请勿泊车	qwbjo
 # code: qwyeoa
 准也	qwyeoa
 前卫艺术	qwyeoa
@@ -1075,11 +1075,11 @@ OK	ok
 热透	retdiu
 人生态度	retdiu
 # code: rgfji
-人工支出	rgqwi
+人工支出	rgqji
 人工智能程序设计	rgqji
 # code: rljwi
 若君	rljwi
-肉林酒池	rljwi
+肉林酒池	rljji
 # code: rrtxi
 惹人疼爱	rrtxi
 人乳头瘤病毒型	rrtxi
@@ -1094,7 +1094,7 @@ OK	ok
 热稀释漂浮导管	rxegi
 # code: rxejiv
 仍需时间	rxejiv
-冉相氏得其环中以随成	rxewiv
+冉相氏得其环中以随成	rxejiv
 # code: rxlja
 柔性连接	rxlja
 溶血链球菌	rxlja
@@ -1157,22 +1157,22 @@ A股	sgj
 瞳孔测量	tkcli
 # code: tljlio
 拖距	tljlio
-铁路车辆	tlwlio
+铁路车辆	tljlio
 # code: tpbyo
 突破百亿	tpbyo
 头皮部分割性蜂窝织炎	tpbyo
 # code: wbxdo
-吹些	wbxdo
+吹些	jbxdo
 文本校对	wbxdo
 # code: wehjoi
 晚上喝酒	wehjoi
 为伤寒杂病论合十六卷	wehjoi
 # code: wfeguu
-垂直深耕	wqeguu
-重复输尿管	wfeguu
+垂直深耕	jqeguu
+重复输尿管	jfeguu
 # code: wffjoi
 宛芙	wffjoi
-误中副车	wqfwoi
+误中副车	wqfjoi
 # code: wffmvo
 碗装	wfqxvo
 无方之民	wfqmvo
@@ -1181,49 +1181,49 @@ A股	sgj
 外汇行市	whheua
 # code: wjffuu
 勿翻	wjffuu
-重重复复	wwffuu
+重重复复	jjffuu
 # code: wjhyvi
 雾虹	wjhyvi
 五金行业	wjhyvi
 # code: wjjzui
-勿抄	wjwzui
-重金兼紫	wjjzui
+勿抄	wjjzui
+重金兼紫	jjjzui
 # code: wjqyia
-创建企业	wjqyia
-创建者效应	wjqyia
+创建企业	jjqyia
+创建者效应	jjqyia
 # code: wketu
-岔开双腿	wketu
+岔开双腿	jketu
 微孔生物型髋臼假体	wketu
 # code: wknq
 WIN7	wknq
 无可奈何花落去	wknq
 # code: wkxeou
-吃鹅	wkxeou
+吃鹅	jkxeou
 文科学士	wkxeou
 # code: wmekoo
-床是	wxekoo
+床是	jxekoo
 完美时空	wmekoo
 # code: wwlqou
 唯留	wwlqou
 唯物论者	wwlqou
 # code: wzdhvu
-超待	wzdhvu
-车载电话	wzdhvu
+超待	jzdhvu
+车载电话	jzdhvu
 # code: wzfqv
-超抓	wzqqv
+超抓	jzqqv
 无足重轻	wzqqv
 # code: xbbsov
 新坝	xbbsov
 宣布比赛	xbbsov
 # code: xbjyau
-细胞产业	xbwyau
+细胞产业	xbjyau
 细胞间转运	xbjyau
 # code: xbkmov
 新矿	xbkxov
 宣布开幕	xbkmov
 # code: xdqjui
 蟹蛛	xdqjui
-奥迪汽车	xdqwui
+奥迪汽车	xdqjui
 # code: xfjnau
 限制技能	xqjnau
 消肿接骨胶囊	xqjnau
@@ -1240,7 +1240,7 @@ WIN7	wknq
 X光	xgx
 习惯性	xgx
 # code: xgxjuu
-血管形成	xgxwuu
+血管形成	xgxjuu
 血管性坏疽	xgxjuu
 # code: xhwquu
 向后弯曲	xhwquu
@@ -1253,7 +1253,7 @@ X光	xgx
 现金购买	xjgmvi
 # code: xjqrvv
 而正	xjqrvv
-现场确认	xwqrvv
+现场确认	xjqrvv
 # code: xjxpai
 细节安排	xjxpai
 溴甲阿托品	xjxpai
@@ -1265,7 +1265,7 @@ X光	xgx
 氨酪酸注射液	xlsyuv
 # code: xmjxia
 仙江	xmjxia
-挦绵扯絮	xmwxia
+挦绵扯絮	xmjxia
 # code: xmsro
 兄妹四人	xmsro
 鄂木斯克出血热	xmsro
@@ -1280,12 +1280,12 @@ X光	xgx
 二氢埃托啡	xqxfvu
 # code: xtcjui
 协同促进	xtcjui
-协同操作进程	xtcwui
+协同操作进程	xtcjui
 # code: xtyluo
 选哟	xtyluo
 儿童娱乐	xtyluo
 # code: xwpgv
-想吃苹果	xwpgv
+想吃苹果	xjpgv
 二维葡磷钙	xwpgv
 # code: xxekiv
 像事	xxekiv
@@ -1297,11 +1297,11 @@ X光	xgx
 像匡	xxkxiv
 按下快门	xxkmiv
 # code: xyjno
-兄陈	xywno
+兄陈	xyjno
 心元胶囊	xyjno
 # code: xzfjou
 心脏附近	xzfjou
-心脏辅助系统去除	xzfwou
+心脏辅助系统去除	xzfjou
 # code: ybqeio
 因这	ybqeio
 因病去世	ybqeio
@@ -1313,13 +1313,13 @@ X光	xgx
 一段感情	ydgqvu
 # code: ydpjvv
 有埔	ydpjvv
-硬顶跑车	ydpwvv
+硬顶跑车	ydpjvv
 # code: ydqhau
 又缺	ydqhau
 以待其所不知之化已乎	ydqhau
 # code: ydwyao
-又冲	ydwyao
-阴道冲洗液	ydwyao
+又冲	ydjyao
+阴道冲洗液	ydjyao
 # code: ydylvv
 友于	ydylvv
 一带一路	ydylvv
@@ -1339,7 +1339,7 @@ X光	xgx
 也颇	yepla
 也是拼了	yepla
 # code: yewtai
-也传	yewtai
+也传	yejtai
 以食为天	yewtai
 # code: yfssv
 盐撒	yfssv
@@ -1360,7 +1360,7 @@ X光	xgx
 依旧漂亮	yjplii
 眼睑皮肤恶性肿瘤	yjplii
 # code: yjpwa
-演出票务	ywpwa
+演出票务	yjpwa
 阴茎排出物	yjpwa
 # code: ykkla
 已扩	ykkla
@@ -1418,7 +1418,7 @@ X光	xgx
 液体清凉油	ytqya
 # code: ywyhvu
 云月	ywyhvu
-雨愁烟恨	ywyhvu
+雨愁烟恨	yjyhvu
 # code: yxetau
 婴儿身体	yxetau
 隐血试纸条	yxetau

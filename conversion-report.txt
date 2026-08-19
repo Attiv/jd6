@@ -1,38 +1,38 @@
 XMJD6 no-fly conversion report
-mapping: ch=W, zh=Q, uang=X
+mapping: ch=J, zh=Q, uang=X
 
 input entries: 1259654
-output entries: 1251653
-converted entries: 195446
-collapsed duplicates: 8001
+output entries: 1251651
+converted entries: 168381
+collapsed duplicates: 8003
 unresolved entries: 0
 
 per dictionary:
-- xkjd6.changyong.dict.yaml: input=852, output=852, converted=94, collapsed=0, unresolved=0
+- xkjd6.changyong.dict.yaml: input=852, output=852, converted=104, collapsed=0, unresolved=0
 - xkjd6.hanyu.dict.yaml: input=28, output=28, converted=3, collapsed=0, unresolved=0
-- xkjd6.jisuanji.dict.yaml: input=63, output=63, converted=13, collapsed=0, unresolved=0
-- xkjd6.kaifa.dict.yaml: input=129, output=129, converted=32, collapsed=0, unresolved=0
-- xkjd6.lanlao.dict.yaml: input=104819, output=104636, converted=16779, collapsed=183, unresolved=0
-- xkjd6.lanlao2.dict.yaml: input=406331, output=406330, converted=76689, collapsed=1, unresolved=0
-- xkjd6.liangzi.dict.yaml: input=189677, output=187894, converted=21324, collapsed=1783, unresolved=0
-- xkjd6.liuxing.dict.yaml: input=29436, output=29392, converted=4213, collapsed=44, unresolved=0
+- xkjd6.jisuanji.dict.yaml: input=63, output=63, converted=15, collapsed=0, unresolved=0
+- xkjd6.kaifa.dict.yaml: input=129, output=129, converted=34, collapsed=0, unresolved=0
+- xkjd6.lanlao.dict.yaml: input=104819, output=104636, converted=15688, collapsed=183, unresolved=0
+- xkjd6.lanlao2.dict.yaml: input=406331, output=406330, converted=64295, collapsed=1, unresolved=0
+- xkjd6.liangzi.dict.yaml: input=189677, output=187894, converted=19060, collapsed=1783, unresolved=0
+- xkjd6.liuxing.dict.yaml: input=29436, output=29392, converted=3905, collapsed=44, unresolved=0
 - xkjd6.qiche.dict.yaml: input=122, output=122, converted=24, collapsed=0, unresolved=0
 - xkjd6.ssb1.dict.yaml: input=18, output=18, converted=0, collapsed=0, unresolved=0
-- xkjd6.tangshi.dict.yaml: input=3473, output=3473, converted=796, collapsed=0, unresolved=0
+- xkjd6.tangshi.dict.yaml: input=3473, output=3473, converted=630, collapsed=0, unresolved=0
 - xkjd6.wanne.dict.yaml: input=1870, output=1870, converted=0, collapsed=0, unresolved=0
 - xkjd6.yingwen.dict.yaml: input=120, output=120, converted=0, collapsed=0, unresolved=0
 - xkjd6.yinyang.dict.yaml: input=99, output=99, converted=0, collapsed=0, unresolved=0
-- xkjd6.yixue.dict.yaml: input=29453, output=29453, converted=3858, collapsed=0, unresolved=0
+- xkjd6.yixue.dict.yaml: input=29453, output=29453, converted=3822, collapsed=0, unresolved=0
 - xmjd6.buchong.dict.yaml: input=245, output=245, converted=0, collapsed=0, unresolved=0
-- xmjd6.candidate_order.dict.yaml: input=22, output=22, converted=1, collapsed=0, unresolved=0
-- xmjd6.chaojizici.dict.yaml: input=424, output=417, converted=23, collapsed=7, unresolved=0
-- xmjd6.cizu.dict.yaml: input=121550, output=116666, converted=18597, collapsed=4884, unresolved=0
-- xmjd6.cx.dict.yaml: input=40800, output=40620, converted=2430, collapsed=180, unresolved=0
-- xmjd6.danzi.dict.yaml: input=33045, output=32382, converted=2268, collapsed=663, unresolved=0
-- xmjd6.fjcy.dict.yaml: input=294399, output=294144, converted=48057, collapsed=255, unresolved=0
+- xmjd6.candidate_order.dict.yaml: input=22, output=22, converted=2, collapsed=0, unresolved=0
+- xmjd6.chaojizici.dict.yaml: input=424, output=417, converted=19, collapsed=7, unresolved=0
+- xmjd6.cizu.dict.yaml: input=121550, output=116666, converted=17041, collapsed=4884, unresolved=0
+- xmjd6.cx.dict.yaml: input=40800, output=40619, converted=2576, collapsed=181, unresolved=0
+- xmjd6.danzi.dict.yaml: input=33045, output=32381, converted=2177, collapsed=664, unresolved=0
+- xmjd6.fjcy.dict.yaml: input=294399, output=294144, converted=38792, collapsed=255, unresolved=0
 - xmjd6.fuhao.dict.yaml: input=69, output=69, converted=0, collapsed=0, unresolved=0
 - xmjd6.lianjie.dict.yaml: input=5, output=5, converted=0, collapsed=0, unresolved=0
-- xmjd6.same_code_short_first.dict.yaml: input=975, output=974, converted=222, collapsed=1, unresolved=0
+- xmjd6.same_code_short_first.dict.yaml: input=975, output=974, converted=170, collapsed=1, unresolved=0
 - xmjd6.user.dict.yaml: input=739, output=739, converted=0, collapsed=0, unresolved=0
-- xmjd6.wxw.dict.yaml: input=632, output=632, converted=23, collapsed=0, unresolved=0
+- xmjd6.wxw.dict.yaml: input=632, output=632, converted=24, collapsed=0, unresolved=0
 - xmjd6.zidingyi.dict.yaml: input=259, output=259, converted=0, collapsed=0, unresolved=0
