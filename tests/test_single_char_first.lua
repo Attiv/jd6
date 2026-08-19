@@ -182,6 +182,22 @@ local function test_default_configuration_uses_twenty()
   assert_equal(env.single_char_first_scan_limit, 20, "default scan limit")
 end
 
+local function test_schema_enables_filter_first_with_default_twenty()
+  local file = assert(io.open("xmjd6.schema.yaml", "r"))
+  local schema = file:read("*a")
+  file:close()
+
+  local filter_position = schema:find("\n%s+%- lua_filter@%*xmjd6/xmjd6_single_char")
+  local simplifier_position = schema:find("\n%s+%- simplifier%s*\n")
+  assert_true(filter_position ~= nil, "schema must enable the single-char filter")
+  assert_true(simplifier_position ~= nil, "schema must contain the simplifier filter")
+  assert_true(filter_position < simplifier_position, "single-char filter must run before simplifier")
+  assert_true(
+    schema:match("\nxmjd6_single_char:%s*\n%s+enabled:%s*true%s*\n%s+scan_limit:%s*20"),
+    "schema must configure enabled=true and scan_limit=20"
+  )
+end
+
 local tests = {
   test_module_exposes_component_api,
   test_single_codepoint_detection,
@@ -191,6 +207,7 @@ local tests = {
   test_disabled_filter_is_direct_passthrough,
   test_small_or_zero_window_is_direct_passthrough,
   test_default_configuration_uses_twenty,
+  test_schema_enables_filter_first_with_default_twenty,
 }
 
 for _, test in ipairs(tests) do test() end
