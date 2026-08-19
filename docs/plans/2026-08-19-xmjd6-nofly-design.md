@@ -7,7 +7,7 @@ users. The bundle must preserve the current XMJD6 dictionaries, features, code
 shortening, shape codes, comments, weights, and candidate order while removing
 the fly-key split:
 
-- `ch` always uses `W` in an initial position.
+- `ch` always uses `J` in an initial position.
 - `zh` always uses `Q` in an initial position.
 - `uang` always uses `X` in a final position.
 
@@ -65,7 +65,8 @@ and explicitly user-defined shortcut codes are copied unchanged.
 
 Pronunciation context, the original code, and word length are combined to
 distinguish fly-key initials from ordinary `j`, `w`, `f`, and `q` initials. For
-example, `春 jwv` becomes `wwv`, while `均 jw` remains unchanged.
+example, both historical `春 jwv` and `春 wwv` normalize to `jwv`, while
+native `均 jw` remains unchanged.
 
 When multiple historical fly-key entries collapse to the same text and code,
 only the first entry is retained. Different texts that converge on the same
@@ -99,9 +100,9 @@ reported as copied rather than transformed.
 
 Automated tests cover representative conversions and non-conversions:
 
-- `超`: `jz`/`jzvo` to `wz`/`wzvo`.
-- `春`: `jwv` to `wwv`.
-- `穿`: existing `wt...` remains unchanged.
+- `超`: `wz`/`wzvo` to `jz`/`jzvo`.
+- `春`: `wwv` to `jwv`.
+- `穿`: `wt...` to `jt...`.
 - `找`: `fz` and `qz` collapse to `qz`.
 - `中`: `fy` to `qy`.
 - `装`: `fm` and `fx` collapse to `qx`.

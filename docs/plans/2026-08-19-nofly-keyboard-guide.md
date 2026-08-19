@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add a Chinese no-fly scheme guide and an edited keyboard diagram that show the canonical W/Q/X assignments, explain every conversion decision, and prioritize Windows testing instructions.
+**Goal:** Add a Chinese no-fly scheme guide and an edited keyboard diagram that show the canonical J/Q/X assignments, explain every conversion decision, and prioritize Windows testing instructions.
 
 **Architecture:** A focused regression test defines the content and image contract. The supplied keyboard image is edited with the built-in image-generation tool while preserving its layout, then a Markdown guide ties the visual mapping to the already-generated no-fly dictionaries, conversion report, branch-root workflow, and existing test evidence.
 
@@ -24,7 +24,7 @@ Add a dependency-free Python test that asserts:
 ```python
 assert GUIDE.exists()
 assert IMAGE.exists()
-assert "ch → W" in guide_text
+assert "ch → J" in guide_text
 assert "zh → Q" in guide_text
 assert "uang → X" in guide_text
 ```
@@ -63,10 +63,10 @@ image as a local reference. Preserve the original 2048 x 640 layout, colors,
 fonts, symbols, and logo. Remove only:
 
 - the pink `zh` label from F;
-- the pink `ch` label from J;
+- the pink `ch` label from W;
 - the blue `uang` final from M.
 
-Keep Q `zh`, W `ch`, and X `iang uang` unchanged.
+Keep Q `zh`, J `ch`, and X `iang uang` unchanged.
 
 **Step 2: Save the generated image**
 
@@ -112,7 +112,7 @@ phonetic slots and does not globally replace the letters W/J/F/Q/X/M.
 
 **Step 3: Document examples and all implementation changes**
 
-Include normalized examples (`超 wz`, `春 wwv`, `找 qz`, `中 qy`, `装 qx`,
+Include normalized examples (`超 jz`, `春 jwv`, `找 qz`, `中 qy`, `装 qx`,
 `光 gx`) and unchanged native examples (`均 jw`, `无 wj`, `求 qq`, `服 fj`).
 
 Document structural dictionary layouts, pinyin/comment/context resolution,

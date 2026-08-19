@@ -37,8 +37,8 @@ the source files from the previous branch.
 
 Automated checks verify the root schema name and representative conversions:
 
-- `超`: `wz`, not `jz`.
-- `春`: `wwv`, not `jwv`.
+- `超`: `jz`, not `wz`.
+- `春`: `jwv`, not `wwv`.
 - `找`: `qz`, not `fz`.
 - `中`: `qy`, not `fy`.
 - `装`: `qx`, not `fm` or `fx`.

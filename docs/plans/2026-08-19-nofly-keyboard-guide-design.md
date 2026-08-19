@@ -3,7 +3,7 @@
 ## Goal
 
 Add a self-contained Chinese guide for the `feature/xmjd6-nofly` branch and a
-matching no-fly keyboard diagram. The guide must make the W/J/X/M distinctions
+matching no-fly keyboard diagram. The guide must make the Q/W/F/J/X/M distinctions
 easy to remember and record exactly what changed when the original fly-key
 scheme was converted.
 
@@ -23,7 +23,7 @@ keys, red logo, spacing, proportions, and every unchanged label.
 Remove only the three fly-key alternatives:
 
 - Remove the pink `zh` from `F`; keep `F` as the native initial and `an` final.
-- Remove the pink `ch` from `J`; keep `J` as the native initial and `er`/`u`
+- Remove the pink `ch` from `W`; keep `W` as the native initial and `ei`/`un`
   finals.
 - Remove the blue `uang` from `M`; keep `M` as the native initial and `ian`
   final.
@@ -31,7 +31,7 @@ Remove only the three fly-key alternatives:
 Keep the canonical assignments visible:
 
 - `Q`: native `q`, mapped initial `zh`, finals `iu` and `ua`.
-- `W`: native `w`, mapped initial `ch`, finals `ei` and `un`.
+- `J`: native `j`, mapped initial `ch`, finals `er` and `u`.
 - `X`: native `x`, zero initial, finals `iang` and `uang`.
 
 Save the final asset as `guide/xmjd6-nofly-keyboard.png` and reference it from
@@ -41,7 +41,7 @@ the guide using a relative Markdown link.
 
 Create `guide/无飞键版说明.md` with:
 
-1. A short definition of the no-fly rules: `ch -> W`, `zh -> Q`, and
+1. A short definition of the no-fly rules: `ch -> J`, `zh -> Q`, and
    `uang -> X` in phonetic positions.
 2. The keyboard image.
 3. A complete QWERTY key table covering native initials, mapped initials,
@@ -58,7 +58,7 @@ Create `guide/无飞键版说明.md` with:
 ## Accuracy Rules
 
 The guide must distinguish a keyboard letter from a phonetic slot. For
-example, mapping `ch` to W does not rewrite a native `w` or `j` globally. Shape
+example, mapping `ch` to J does not rewrite a native `w` or `j` globally. Shape
 suffixes, weights, comments, headers, BOM/line endings, and candidate order are
 preserved. Only identical text-plus-code rows created by normalization are
 collapsed; different candidates sharing a code remain ordered.
