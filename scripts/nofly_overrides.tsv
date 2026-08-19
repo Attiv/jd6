@@ -3,8 +3,8 @@ xkjd6.jisuanji.dict.yaml	终端作业标识	fdzfao	zh:ong,d:uan,z:uo,y:e,b:iao,z
 xkjd6.lanlao2.dict.yaml	免服兵役	wfbyu	COPY
 xkjd6.lanlao2.dict.yaml	两委干部	lxgbvu	COPY
 xkjd6.lanlao2.dict.yaml	免服务费	wfwfuu	COPY
-xmjd6.same_code_short_first.dict.yaml	B超	bjz	CODE:bwz
-xmjd6.same_code_short_first.dict.yaml	B超	bwz	CODE:bwz
+xmjd6.same_code_short_first.dict.yaml	B超	bjz	CODE:bjz
+xmjd6.same_code_short_first.dict.yaml	B超	bwz	CODE:bjz
 xmjd6.same_code_short_first.dict.yaml	B站	bqf	COPY
 xmjd6.same_code_short_first.dict.yaml	保持清醒型	hbdsav	COPY
 xmjd6.same_code_short_first.dict.yaml	自嘲摆烂型	hbdsio	COPY

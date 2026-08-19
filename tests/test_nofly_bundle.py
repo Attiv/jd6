@@ -236,7 +236,7 @@ class ReadingResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_name:
             path = Path(tmp_name) / "overrides.tsv"
             path.write_text(
-                "sample.dict.yaml\tB超\tbjz\tCODE:bwz\n",
+                "sample.dict.yaml\tB超\tbwz\tCODE:bjz\n",
                 "utf-8",
             )
             self.assertEqual(

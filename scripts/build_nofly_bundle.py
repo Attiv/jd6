@@ -95,7 +95,7 @@ OverrideValue = list[Reading] | str
 
 def _rewrite_initial(initial: str) -> str | None:
     if initial == "ch":
-        return "w"
+        return "j"
     if initial == "zh":
         return "q"
     return None
@@ -675,7 +675,7 @@ def _readme_text() -> str:
 
 ## 规则
 
-- `ch → W`，例如超：`wz`。
+- `ch → J`，例如超：`jz`。
 - `zh → Q`，例如找：`qz`。
 - `uang → X`，例如光：`gx`。
 - 普通的 `j`、`q`、`w`、`f` 声母和其他韵母保持原规则。
@@ -740,7 +740,7 @@ def _write_report(output: Path, stats: Sequence[DictionaryStats]) -> None:
     unresolved = sum(len(item.unresolved) for item in stats)
     lines = [
         "XMJD6 no-fly conversion report",
-        "mapping: ch=W, zh=Q, uang=X",
+        "mapping: ch=J, zh=Q, uang=X",
         "",
         f"input entries: {total_entries}",
         f"output entries: {total_output}",
