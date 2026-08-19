@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 from scripts.build_nofly_bundle import (
     active_imports,
     build_bundle,
+    compile_bundle,
     DictionaryKind,
     Reading,
     choose_reading,
@@ -169,6 +170,16 @@ class ReadingResolutionTests(unittest.TestCase):
         self.assertEqual(choose_reading("we", readings), Reading("ch", "e"))
         self.assertEqual(choose_reading("jl", readings), Reading("j", "v"))
 
+    def test_both_legacy_fly_variants_resolve_for_ch_and_zh(self) -> None:
+        self.assertEqual(
+            choose_reading("qx", [Reading("zh", "uang")]),
+            Reading("zh", "uang"),
+        )
+        self.assertEqual(
+            choose_reading("wz", [Reading("ch", "ao")]),
+            Reading("ch", "ao"),
+        )
+
     def test_ambiguous_or_unmatched_prefix_is_not_guessed(self) -> None:
         readings = [Reading("ch", "ao"), Reading("ch", "ao")]
         self.assertEqual(choose_reading("jz", readings), Reading("ch", "ao"))
@@ -207,6 +218,30 @@ class ReadingResolutionTests(unittest.TestCase):
                         Reading("ch", "e"),
                     ]
                 },
+            )
+
+    def test_override_file_supports_explicit_copy_exceptions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            path = Path(tmp_name) / "overrides.tsv"
+            path.write_text(
+                "sample.dict.yaml\t免服兵役\twfbyu\tCOPY\n",
+                "utf-8",
+            )
+            self.assertEqual(
+                load_overrides(path),
+                {("sample.dict.yaml", "免服兵役", "wfbyu"): []},
+            )
+
+    def test_override_file_supports_direct_code_exceptions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            path = Path(tmp_name) / "overrides.tsv"
+            path.write_text(
+                "sample.dict.yaml\tB超\tbjz\tCODE:bwz\n",
+                "utf-8",
+            )
+            self.assertEqual(
+                load_overrides(path),
+                {("sample.dict.yaml", "B超", "bjz"): "bwz"},
             )
 
 
@@ -270,13 +305,69 @@ class DictionaryTransformTests(unittest.TestCase):
             tmp = Path(tmp_name)
             source = tmp / "sample.dict.yaml"
             output = tmp / "output.dict.yaml"
-            source.write_text("超\tbk\n", "utf-8")
+            source.write_text("车\tjx\n", "utf-8")
 
             with self.assertRaises(UnresolvedEntriesError) as raised:
                 convert_dictionary(source, output, DictionaryKind.STANDARD)
 
-            self.assertIn("超", str(raised.exception))
+            self.assertIn("车", str(raised.exception))
             self.assertFalse(output.exists())
+
+    def test_phrase_heteronyms_are_selected_by_the_original_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text("标识\tbcfk\n", "utf-8")
+
+            convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertEqual(output.read_text("utf-8"), "标识\tbcqk\n")
+
+    def test_non_han_separators_do_not_shift_phrase_sound_slots(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text("十有**\tekyduv\n", "utf-8")
+
+            convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertEqual(output.read_text("utf-8"), "十有**\tekyduv\n")
+
+    def test_direct_code_override_handles_nonstandard_mixed_text_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "sample.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text("B超\tbjz\nB超\tbwz\n", "utf-8")
+
+            stats = convert_dictionary(
+                source,
+                output,
+                DictionaryKind.STANDARD,
+                {
+                    ("sample.dict.yaml", "B超", "bjz"): "bwz",
+                    ("sample.dict.yaml", "B超", "bwz"): "bwz",
+                },
+            )
+
+            self.assertEqual(output.read_text("utf-8"), "B超\tbwz\n")
+            self.assertEqual(stats.collapsed, 1)
+
+    def test_cx_o_prefix_preserves_the_prefix_and_converts_the_sound_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            source = tmp / "xmjd6.cx.dict.yaml"
+            output = tmp / "output.dict.yaml"
+            source.write_text("超\tojzviv\t0 # 〔chāo〕\n", "utf-8")
+
+            convert_dictionary(source, output, DictionaryKind.STANDARD)
+
+            self.assertEqual(
+                output.read_text("utf-8"),
+                "超\towzviv\t0 # 〔chāo〕\n",
+            )
 
 
 class BundleManifestTests(unittest.TestCase):
@@ -417,6 +508,47 @@ class WindowsArtifactTests(unittest.TestCase):
             self.assertNotRegex(verifier.lower(), r"\b(copy|xcopy|robocopy|move|del|rm|cp)\b")
             self.assertNotIn("/Users/", verifier)
             self.assertNotIn("/tmp/", verifier)
+
+
+class CompileCheckTests(unittest.TestCase):
+    def test_compile_check_uses_an_isolated_copy_and_requires_main_artifacts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_name:
+            tmp = Path(tmp_name)
+            root = tmp / "source"
+            output = tmp / "xmjd6-nofly"
+            shared = tmp / "shared"
+            root.mkdir()
+            shared.mkdir()
+            make_bundle_fixture(root)
+            build_bundle(root, output)
+            before = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+
+            deployer = tmp / "fake_rime_deployer.py"
+            deployer.write_text(
+                f"#!{sys.executable}\n"
+                "import pathlib, sys\n"
+                "staging = pathlib.Path(sys.argv[-1])\n"
+                "staging.mkdir(parents=True, exist_ok=True)\n"
+                "for name in ('xmjd6.schema.yaml', 'xmjd6.table.bin', "
+                "'xmjd6.prism.bin', 'xmjd6.reverse.bin'):\n"
+                "    (staging / name).write_bytes(b'compiled')\n",
+                "utf-8",
+            )
+            deployer.chmod(0o755)
+
+            artifacts = compile_bundle(output, deployer=deployer, shared_data=shared)
+
+            self.assertEqual(
+                set(artifacts),
+                {
+                    "xmjd6.schema.yaml",
+                    "xmjd6.table.bin",
+                    "xmjd6.prism.bin",
+                    "xmjd6.reverse.bin",
+                },
+            )
+            after = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+            self.assertEqual(after, before)
 
 
 if __name__ == "__main__":

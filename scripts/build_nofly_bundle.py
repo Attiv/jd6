@@ -6,9 +6,12 @@ from __future__ import annotations
 import dataclasses
 import enum
 import argparse
+import functools
 import re
 import shutil
+import subprocess
 import sys
+import tempfile
 import unicodedata
 from collections.abc import Sequence
 from pathlib import Path
@@ -50,7 +53,7 @@ FINAL_KEYS: dict[str, tuple[str, ...]] = {
     "iu": ("q",),
     "ua": ("q",),
     "ei": ("w",),
-    "un": ("w",),
+    "un": ("j", "w"),
     "e": ("e",),
     "eng": ("r",),
     "uan": ("t",),
@@ -72,7 +75,7 @@ FINAL_KEYS: dict[str, tuple[str, ...]] = {
     "i": ("k",),
     "o": ("l",),
     "uo": ("l",),
-    "v": ("l",),
+    "v": ("j", "l"),
     "ao": ("z",),
     "iang": ("x",),
     "uang": ("m", "x"),
@@ -86,6 +89,8 @@ FINAL_KEYS: dict[str, tuple[str, ...]] = {
 
 INITIALS = ("zh", "ch", "sh", "b", "p", "m", "f", "d", "t", "n", "l", "g", "k", "h", "j", "q", "x", "r", "z", "c", "s", "y", "w")
 PINYIN_COMMENT_RE = re.compile(r"〔([^〕]+)〕")
+SENTENCE_PUNCTUATION = frozenset("，。！？；：、,.!?;:\n\r")
+OverrideValue = list[Reading] | str
 
 
 def _rewrite_initial(initial: str) -> str | None:
@@ -135,19 +140,38 @@ def contextual_readings(text: str) -> list[Reading]:
     return result
 
 
+def _han_text(text: str) -> str:
+    digit_names = "零一二三四五六七八九"
+    result: list[str] = []
+    for char in text:
+        if char.isascii() and char.isdigit():
+            result.append(digit_names[int(char)])
+        elif char == "〇" or unicodedata.name(char, "").startswith(
+            ("CJK UNIFIED IDEOGRAPH", "CJK COMPATIBILITY IDEOGRAPH")
+        ):
+            result.append(char)
+    return "".join(result)
+
+
+@functools.lru_cache(maxsize=None)
+def _possible_character_readings(char: str) -> frozenset[Reading]:
+    values = pinyin(
+        char,
+        style=Style.NORMAL,
+        heteronym=True,
+        strict=False,
+        errors=lambda value: list(value),
+    )
+    if not values:
+        return frozenset()
+    return frozenset(split_pinyin(value) for value in values[0])
+
+
 def _initial_keys(reading: Reading) -> tuple[str, ...]:
     if reading.initial == "ch":
-        if reading.final in {"ao", "e"}:
-            return ("j", "w")
-        if reading.final in {"ai", "an", "ang", "en", "eng", "u", "un"}:
-            return ("j",)
-        return ("w",)
+        return ("j", "w")
     if reading.initial == "zh":
-        if reading.final in {"ai", "ao", "e"}:
-            return ("f", "q")
-        if reading.final in {"an", "ang", "ei", "en", "eng", "u", "un"}:
-            return ("q",)
-        return ("f",)
+        return ("f", "q")
     if reading.initial == "sh":
         return ("e",)
     if not reading.initial:
@@ -170,8 +194,8 @@ def choose_reading(sound_prefix: str, readings: Sequence[Reading]) -> Reading | 
     return None
 
 
-def load_overrides(path: Path) -> dict[tuple[str, str, str], list[Reading]]:
-    result: dict[tuple[str, str, str], list[Reading]] = {}
+def load_overrides(path: Path) -> dict[tuple[str, str, str], OverrideValue]:
+    result: dict[tuple[str, str, str], OverrideValue] = {}
     if not path.exists():
         return result
     for line_no, raw in enumerate(path.read_text("utf-8-sig").splitlines(), 1):
@@ -181,6 +205,15 @@ def load_overrides(path: Path) -> dict[tuple[str, str, str], list[Reading]]:
         if len(parts) != 4 or not all(parts):
             raise ValueError(f"{path}:{line_no}: expected four tab-separated fields")
         dictionary, text, code, reading_text = parts
+        if reading_text == "COPY":
+            result[(dictionary, text, code)] = []
+            continue
+        if reading_text.startswith("CODE:"):
+            replacement = reading_text.removeprefix("CODE:")
+            if not re.fullmatch(r"[a-z;]+", replacement):
+                raise ValueError(f"{path}:{line_no}: invalid replacement code")
+            result[(dictionary, text, code)] = replacement
+            continue
         readings: list[Reading] = []
         for item in reading_text.split(","):
             pair = item.split(":", 1)
@@ -188,6 +221,24 @@ def load_overrides(path: Path) -> dict[tuple[str, str, str], list[Reading]]:
                 raise ValueError(f"{path}:{line_no}: invalid reading {item!r}")
             readings.append(Reading(pair[0], pair[1]))
         result[(dictionary, text, code)] = readings
+    return result
+
+
+def load_pronunciation_index(path: Path) -> dict[str, set[Reading]]:
+    """Index source pinyin comments so rare characters do not depend on pypinyin."""
+
+    result: dict[str, set[Reading]] = {}
+    if not path.is_file():
+        return result
+    for raw in path.read_text("utf-8-sig", errors="replace").splitlines():
+        if "\t" not in raw:
+            continue
+        text = raw.split("\t", 1)[0]
+        if len(text) != 1:
+            continue
+        readings = parse_pinyin_comment(raw)
+        if readings:
+            result.setdefault(text, set()).update(readings)
     return result
 
 
@@ -206,19 +257,118 @@ def _slot_matches(reading: Reading, code: str, initial_index: int, final_index: 
     return True
 
 
+def _reading_slots(count: int, kind: DictionaryKind) -> list[tuple[int, int, int | None]]:
+    if count <= 0 or kind is DictionaryKind.COPY:
+        return []
+    if kind is DictionaryKind.SSB:
+        return [(0, 0, None)]
+    if count == 1:
+        return [(0, 0, 1)]
+    if count == 2:
+        return [(0, 0, 1), (1, 2, 3)]
+    if count == 3:
+        return [(index, index, None) for index in range(3)]
+    return [(0, 0, None), (1, 1, None), (2, 2, None), (count - 1, 3, None)]
+
+
 def _readings_match_code(code: str, kind: DictionaryKind, readings: Sequence[Reading]) -> bool:
     if kind is DictionaryKind.COPY or not readings:
         return kind is DictionaryKind.COPY
-    if kind is DictionaryKind.SSB:
-        return _slot_matches(readings[0], code, 0, None)
-    if len(readings) == 1:
-        return _slot_matches(readings[0], code, 0, 1)
-    if len(readings) == 2:
-        return _slot_matches(readings[0], code, 0, 1) and _slot_matches(readings[1], code, 2, 3)
-    if len(readings) == 3:
-        return all(_slot_matches(reading, code, index, None) for index, reading in enumerate(readings))
-    selected = (readings[0], readings[1], readings[2], readings[-1])
-    return all(_slot_matches(reading, code, index, None) for index, reading in enumerate(selected))
+    return all(
+        _slot_matches(readings[reading_index], code, initial_index, final_index)
+        for reading_index, initial_index, final_index in _reading_slots(len(readings), kind)
+    )
+
+
+def _slot_effect(reading: Reading, final_index: int | None) -> tuple[str | None, str | None]:
+    return (
+        _rewrite_initial(reading.initial),
+        "x" if final_index is not None and reading.final == "uang" else None,
+    )
+
+
+def _choose_same_effect(
+    candidates: set[Reading], final_index: int | None
+) -> Reading | None:
+    if not candidates:
+        return None
+    if len({_slot_effect(candidate, final_index) for candidate in candidates}) != 1:
+        return None
+    return sorted(candidates, key=lambda item: (item.initial, item.final))[0]
+
+
+def _code_may_need_conversion(code: str, initial_index: int, final_index: int | None) -> bool:
+    initial_is_fly = initial_index < len(code) and code[initial_index] in {"f", "j", "q", "w"}
+    final_is_fly = (
+        final_index is not None
+        and final_index < len(code)
+        and code[final_index] in {"m", "x"}
+    )
+    return initial_is_fly or final_is_fly
+
+
+def _resolve_slot_reading(
+    current: Reading,
+    available: set[Reading],
+    code: str,
+    initial_index: int,
+    final_index: int | None,
+) -> Reading | None:
+    if _slot_matches(current, code, initial_index, final_index):
+        return current
+
+    full_matches = {
+        candidate
+        for candidate in available
+        if _slot_matches(candidate, code, initial_index, final_index)
+    }
+    chosen = _choose_same_effect(full_matches, final_index)
+    if chosen is not None:
+        return chosen
+
+    initial_matches = {
+        candidate
+        for candidate in available
+        if initial_index >= len(code) or code[initial_index] in _initial_keys(candidate)
+    }
+    chosen = _choose_same_effect(initial_matches, final_index)
+    if chosen is not None:
+        return chosen
+
+    fallback = _choose_same_effect(available, final_index)
+    if fallback is not None and _code_may_need_conversion(
+        code, initial_index, final_index
+    ):
+        return fallback
+    if not _code_may_need_conversion(code, initial_index, final_index):
+        return current
+    return None
+
+
+def _readings_from_code(
+    text: str,
+    code: str,
+    kind: DictionaryKind,
+    pronunciations: dict[str, set[Reading]],
+) -> list[Reading] | None:
+    readings = contextual_readings(text)
+    if len(readings) != len(text):
+        return None
+    for reading_index, initial_index, final_index in _reading_slots(len(readings), kind):
+        available = _possible_character_readings(text[reading_index]) | pronunciations.get(
+            text[reading_index], set()
+        )
+        chosen = _resolve_slot_reading(
+            readings[reading_index],
+            available,
+            code,
+            initial_index,
+            final_index,
+        )
+        if chosen is None:
+            return None
+        readings[reading_index] = chosen
+    return readings
 
 
 def _entry_readings(
@@ -227,22 +377,39 @@ def _entry_readings(
     code: str,
     line: str,
     kind: DictionaryKind,
-    overrides: dict[tuple[str, str, str], list[Reading]],
+    overrides: dict[tuple[str, str, str], OverrideValue],
+    pronunciations: dict[str, set[Reading]],
+    override_code: str | None = None,
 ) -> list[Reading] | None:
-    override = overrides.get((dictionary, text, code))
+    override = overrides.get((dictionary, text, override_code or code))
     if override is not None:
+        if isinstance(override, str):
+            raise TypeError("direct code overrides are handled by convert_dictionary")
+        if not override:
+            return []
         return override if _readings_match_code(code, kind, override) else None
 
-    if len(text) == 1:
-        candidates = parse_pinyin_comment(line)
+    if any(char in SENTENCE_PUNCTUATION for char in text):
+        return []
+
+    phonetic_text = _han_text(text)
+    if not phonetic_text:
+        return []
+    if len(phonetic_text) == 1:
+        candidates = (
+            parse_pinyin_comment(line)
+            or pronunciations.get(phonetic_text, set())
+            or _possible_character_readings(phonetic_text)
+        )
         if candidates:
-            reading = choose_reading(code[:2], tuple(candidates))
+            contextual = contextual_readings(phonetic_text)
+            current = contextual[0] if contextual else sorted(
+                candidates, key=lambda item: (item.initial, item.final)
+            )[0]
+            reading = _resolve_slot_reading(current, candidates, code, 0, 1)
             return [reading] if reading is not None else None
 
-    readings = contextual_readings(text)
-    if len(readings) != len(text) or not _readings_match_code(code, kind, readings):
-        return None
-    return readings
+    return _readings_from_code(phonetic_text, code, kind, pronunciations)
 
 
 def convert_code(
@@ -306,6 +473,7 @@ COPY_DICTIONARIES = {
     "xmjd6.user",
     "xmjd6.yingwen",
     "xkjd6.yingwen",
+    "xkjd6.yinyang",
     "xkjd6.wanne",
 }
 SCHEMA_FILES = (
@@ -368,7 +536,8 @@ def convert_dictionary(
     source: Path,
     output: Path,
     kind: DictionaryKind,
-    overrides: dict[tuple[str, str, str], list[Reading]] | None = None,
+    overrides: dict[tuple[str, str, str], OverrideValue] | None = None,
+    pronunciations: dict[str, set[Reading]] | None = None,
 ) -> DictionaryStats:
     """Convert one Rime dictionary without altering non-code fields."""
 
@@ -383,6 +552,7 @@ def convert_dictionary(
         return stats
 
     override_map = overrides or {}
+    pronunciation_map = pronunciations or {}
     payload = source.read_bytes()
     has_bom = payload.startswith(b"\xef\xbb\xbf")
     text_data = payload.decode("utf-8-sig")
@@ -410,13 +580,31 @@ def convert_dictionary(
 
         code, code_suffix = match.groups()
         stats.entries += 1
-        readings = _entry_readings(source.name, text, code, body, kind, override_map)
-        if readings is None:
-            stats.unresolved.append(f"line {line_no}: {text}\t{code}")
-            result_lines.append(raw)
-            continue
-
-        converted = convert_code(text, code, kind, readings)
+        override = override_map.get((source.name, text, code))
+        if isinstance(override, str):
+            converted = override
+        else:
+            code_prefix = (
+                "o"
+                if source.name == "xmjd6.cx.dict.yaml" and code.startswith("o")
+                else ""
+            )
+            sound_code = code[len(code_prefix) :]
+            readings = _entry_readings(
+                source.name,
+                text,
+                sound_code,
+                body,
+                kind,
+                override_map,
+                pronunciation_map,
+                code,
+            )
+            if readings is None:
+                stats.unresolved.append(f"line {line_no}: {text}\t{code}")
+                result_lines.append(raw)
+                continue
+            converted = code_prefix + convert_code(text, sound_code, kind, readings)
         if converted != code:
             stats.converted += 1
         key = (text, converted)
@@ -663,6 +851,7 @@ def build_bundle(root: Path, output: Path, clean: bool = True) -> list[Dictionar
             _copy_tree(root / "Fonts", stage / "Fonts")
 
         overrides = load_overrides(root / "scripts/nofly_overrides.tsv")
+        pronunciations = load_pronunciation_index(root / "xmjd6.cx.dict.yaml")
         stats: list[DictionaryStats] = []
         transformed_names = set(imports)
         if (root / "xmjd6.cx.dict.yaml").is_file():
@@ -677,6 +866,7 @@ def build_bundle(root: Path, output: Path, clean: bool = True) -> list[Dictionar
                     stage / source.name,
                     dictionary_kind(name),
                     overrides,
+                    pronunciations,
                 )
             )
 
@@ -698,12 +888,109 @@ def build_bundle(root: Path, output: Path, clean: bool = True) -> list[Dictionar
         raise
 
 
+def _find_rime_deployer() -> Path:
+    discovered = shutil.which("rime_deployer")
+    candidates = [
+        Path(discovered) if discovered else None,
+        Path("/Library/Input Methods/Squirrel.app/Contents/MacOS/rime_deployer"),
+    ]
+    for candidate in candidates:
+        if candidate is not None and candidate.is_file():
+            return candidate
+    raise FileNotFoundError(
+        "rime_deployer was not found; set --rime-deployer to its executable path"
+    )
+
+
+def _default_shared_data(deployer: Path) -> Path:
+    squirrel_shared = deployer.parent.parent / "SharedSupport"
+    return squirrel_shared if squirrel_shared.is_dir() else deployer.parent
+
+
+def compile_bundle(
+    bundle: Path,
+    deployer: Path | None = None,
+    shared_data: Path | None = None,
+) -> list[str]:
+    """Compile the main schema in temporary directories without touching the bundle."""
+
+    bundle = bundle.resolve()
+    errors = validate_bundle(bundle)
+    if errors:
+        raise RuntimeError("bundle validation failed:\n" + "\n".join(errors))
+    deployer_path = (deployer or _find_rime_deployer()).resolve()
+    shared_path = (shared_data or _default_shared_data(deployer_path)).resolve()
+
+    with tempfile.TemporaryDirectory(prefix="xmjd6-nofly-compile-") as tmp_name:
+        tmp = Path(tmp_name)
+        user_data = tmp / "user"
+        staging = tmp / "staging"
+        shutil.copytree(bundle, user_data)
+        staging.mkdir()
+        command = [
+            str(deployer_path),
+            "--compile",
+            str(user_data / "xmjd6.schema.yaml"),
+            str(user_data),
+            str(shared_path),
+            str(staging),
+        ]
+        completed = subprocess.run(
+            command,
+            cwd=user_data,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        if completed.returncode != 0:
+            details = "\n".join(
+                part.strip() for part in (completed.stdout, completed.stderr) if part.strip()
+            )
+            raise RuntimeError(
+                f"rime_deployer failed with exit code {completed.returncode}"
+                + (f":\n{details}" if details else "")
+            )
+
+        artifacts: list[str] = []
+        for base, prefix in ((staging, ""), (user_data / "build", "build/")):
+            if not base.is_dir():
+                continue
+            artifacts.extend(
+                prefix + path.relative_to(base).as_posix()
+                for path in base.rglob("*")
+                if path.is_file() and path.stat().st_size > 0
+            )
+        artifacts.sort()
+        required_suffixes = (
+            "xmjd6.schema.yaml",
+            ".table.bin",
+            ".prism.bin",
+            ".reverse.bin",
+        )
+        missing = [
+            suffix
+            for suffix in required_suffixes
+            if not any(name.endswith(suffix) for name in artifacts)
+        ]
+        if missing:
+            raise RuntimeError(
+                "compile completed without required artifacts: "
+                + ", ".join(missing)
+                + "\nobserved artifacts:\n"
+                + "\n".join(artifacts)
+            )
+        return artifacts
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     project_root = Path(__file__).resolve().parents[1]
     parser.add_argument("--root", type=Path, default=project_root)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--compile-check", action="store_true")
+    parser.add_argument("--rime-deployer", type=Path)
+    parser.add_argument("--shared-data", type=Path)
     args = parser.parse_args(argv)
     output = args.output or args.root / "xmjd6-nofly"
 
@@ -713,6 +1000,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             print("\n".join(errors), file=sys.stderr)
             return 1
         print(f"Bundle OK: {output}")
+        return 0
+
+    if args.compile_check:
+        artifacts = compile_bundle(
+            output,
+            deployer=args.rime_deployer,
+            shared_data=args.shared_data,
+        )
+        print(f"Compile OK: {len(artifacts)} generated artifacts")
         return 0
 
     stats = build_bundle(args.root, output)
