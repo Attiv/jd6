@@ -1,0 +1,28 @@
+patch:
+  ascii_composer/good_old_caps_lock: true
+
+  schema_list:
+    - schema: xmjd6
+    - schema: english
+
+
+  menu:
+    page_size: 6
+  ascii_composer/switch_key:
+    Caps_Lock: clear
+    Control_L: noop
+    Control_R: noop
+    Shift_L: commit_code
+    Shift_R: null
+  "switcher/hotkeys":  # 這個列表裏每項定義一個快捷鍵，使哪個都中
+    - F4
+  
+  "switcher/save_options/+":
+    - full_shape
+    - jffh
+    - tofu
+    - embeded_cands
+    - emoji_cn
+    - ascii_punct
+    - wxw_hint
+    - completion
