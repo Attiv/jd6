@@ -1564,13 +1564,17 @@ local function translator(input, seg)
 
         -- 时间
     elseif (input == "ej") then
+        -- GetLunarSichen 返回"申时(哺时)"，括号内是别名，注释里只取"申时"
+        local sichen = GetLunarSichen(os.date("%H"), 1) or ""
+        sichen = sichen:match("^[^(]+") or sichen
+
         time = string.gsub(os.date("%H:%M:%S"), "^0+", "")
-        candidate = Candidate("time", seg.start, seg._end, time, "")
+        candidate = Candidate("time", seg.start, seg._end, time, sichen)
         yield(candidate)
 
         date = os.date("%Y-%m-%d")
         time = string.gsub(os.date("%H:%M:%S"), "^0+", "")
-        candidate = Candidate("date", seg.start, seg._end, date .. " " .. time, "")
+        candidate = Candidate("date", seg.start, seg._end, date .. " " .. time, sichen)
         yield(candidate)
 
 		local timestamp = os.time()
