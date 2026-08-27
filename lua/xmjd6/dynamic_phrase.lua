@@ -22,8 +22,8 @@ local function get_store_path(env)
     return core.store_path(file or core.default_filename)
 end
 
-local function make_candidate(seg, text, comment, quality)
-    local cand = Candidate("dynamic_phrase", seg.start, seg._end, text, comment or "")
+local function make_candidate(seg, text, comment, quality, cand_type)
+    local cand = Candidate(cand_type or "dynamic_phrase", seg.start, seg._end, text, comment or "")
     cand.quality = quality or 200000
     return cand
 end
@@ -42,8 +42,63 @@ local function command_candidate(input, seg)
     return nil
 end
 
+local function management_query(input)
+    if type(input) ~= "string" then return nil end
+    return input:match("^=del/([^/;]*)$")
+end
+
+local function yield_management_candidates(input, seg, env)
+    local query = management_query(input)
+    if query == nil then return false end
+
+    local state = _G.__dynamic_phrase_state or {}
+    local pending = state.pending_delete
+    if pending and pending.input == input then
+        yield(make_candidate(
+            seg,
+            "确认删除：" .. pending.text,
+            pending.code .. "〔再按0确认，其他键取消〕",
+            400000,
+            "dynamic_phrase_delete_confirm"
+        ))
+        return true
+    end
+
+    local entries = core.search_entries(query, get_store_path(env))
+    if #entries == 0 then
+        if query == "" then
+            yield(make_candidate(
+                seg,
+                "暂无自造词",
+                "dynamic_phrases.txt 为空",
+                400000,
+                "dynamic_phrase_manager_empty"
+            ))
+        else
+            local cmd_cand = command_candidate(input, seg)
+            if cmd_cand then yield(cmd_cand) end
+        end
+        return true
+    end
+
+    for i, entry in ipairs(entries) do
+        yield(make_candidate(
+            seg,
+            entry.text,
+            entry.code .. "〔自造·按0删除〕",
+            400000 - i,
+            "dynamic_phrase_manager"
+        ))
+    end
+    return true
+end
+
 local function translator(input, seg, env)
     if type(input) ~= "string" or input == "" then
+        return
+    end
+
+    if yield_management_candidates(input, seg, env) then
         return
     end
 
