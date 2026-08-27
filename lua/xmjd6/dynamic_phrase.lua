@@ -64,6 +64,17 @@ local function yield_management_candidates(input, seg, env)
         return true
     end
 
+    local notice = state.manager_notice
+    if notice and notice.input == input and notice.message and notice.message ~= "" then
+        yield(make_candidate(
+            seg,
+            notice.message,
+            notice.ok and "〔自造词管理〕" or "〔删除失败〕",
+            500000,
+            "dynamic_phrase_manager_notice"
+        ))
+    end
+
     local entries = core.search_entries(query, get_store_path(env))
     if #entries == 0 then
         if query == "" then
