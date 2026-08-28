@@ -104,7 +104,7 @@ local function selected_manager_record(context, store_file)
     if not line_no then return nil end
     local rec = core.record_at_line(tonumber(line_no), store_file)
     if not rec then return nil end
-    local expected_text = rec.target_code .. "：" .. rec.promoted .. "置顶"
+    local expected_text = rec.target_code .. "：" .. rec.promoted
     if cand.text ~= expected_text then return nil end
     return rec
 end

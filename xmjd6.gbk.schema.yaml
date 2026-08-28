@@ -3,12 +3,14 @@
 
 schema:
   schema_id: xmjd6.gbk
-  name: 星猫键道6GBK字集辅助方案·勿选
+  name: 星猫键道6五笔画辅助方案·勿选
   version: "0.1"
   author:
     - ProudCat
-  description: 
-    GBK字集辅助方案
+  description: |
+    五笔画辅助方案。v/i/u/o/a 代表横、竖、撇、捺、折，并保留原 ow 表情码。
+  dependencies:
+    - xmjd6.stroke
 
 switches:
   - name: ascii_mode
@@ -40,16 +42,27 @@ engine:
   translators:
     - punct_translator
     - table_translator
+    - table_translator@stroke_ext
   filters:
     - simplifier
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba
+  alphabet: "abcdefghijklmnopqrstuvwxyz0123456789"
   delimiter: " ;'"
 
 translator:
-  dictionary: xmjd6.gbk
+  dictionary: xmjd6.o
+  enable_sentence: false
+  enable_completion: true
+  enable_user_dict: false
+
+stroke_ext:
+  dictionary: xmjd6.stroke
+  enable_sentence: false
+  enable_completion: true
+  enable_user_dict: false
+  initial_quality: -1
 
 
 punctuator:

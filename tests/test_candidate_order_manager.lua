@@ -188,17 +188,17 @@ local function test_translator_lists_and_filters_tuning_records()
   local all = run_translator("=tp")
   assert_equal(#all, 3, "tuning management candidate count")
   assert_equal(all[1].type, "candidate_order_manager", "tuning manager type")
-  assert_equal(all[1].text, "pklz：皮佬置顶", "tuning manager text")
+  assert_equal(all[1].text, "pklz：皮佬", "tuning manager text")
   assert_equal(
     all[1].comment,
-    "原码pklz；疲劳→pklzo〔调频·第3行·按0撤销〕",
+    "置顶 · 原码pklz；疲劳→pklzo〔调频·第3行·按0撤销〕",
     "tuning manager details"
   )
-  assert_equal(all[3].text, "ai：AI置顶", "tuning manager file order")
+  assert_equal(all[3].text, "ai：AI", "tuning manager file order")
 
   local filtered = run_translator("=tp疲痨")
   assert_equal(#filtered, 1, "tuning manager filtered count")
-  assert_equal(filtered[1].text, "pklzo：疲劳置顶", "tuning manager filtered result")
+  assert_equal(filtered[1].text, "pklzo：疲劳", "tuning manager filtered result")
 end
 
 local function test_translator_shows_confirmation_notice_and_empty_states()
@@ -253,8 +253,8 @@ end
 local function selected_manager(line_no, target_code, promoted)
   return {
     type = "candidate_order_manager",
-    text = target_code .. "：" .. promoted .. "置顶",
-    comment = "原码x；y下移〔调频·第" .. tostring(line_no) .. "行·按0撤销〕",
+    text = target_code .. "：" .. promoted,
+    comment = "置顶 · 原码x；y下移〔调频·第" .. tostring(line_no) .. "行·按0撤销〕",
   }
 end
 

@@ -25,7 +25,7 @@ end
 local function management_comment(rec)
     local moved = "下移"
     if rec.new_code and rec.new_code ~= "" then moved = "→" .. rec.new_code end
-    return "原码" .. rec.old_code .. "；" .. rec.displaced .. moved
+    return "置顶 · 原码" .. rec.old_code .. "；" .. rec.displaced .. moved
         .. "〔调频·第" .. tostring(rec.line_no) .. "行·按0撤销〕"
 end
 
@@ -73,7 +73,7 @@ local function yield_management_candidates(input, seg, env)
     for i, rec in ipairs(records) do
         yield(make_candidate(
             seg,
-            rec.target_code .. "：" .. rec.promoted .. "置顶",
+            rec.target_code .. "：" .. rec.promoted,
             management_comment(rec),
             500000 - i,
             "candidate_order_manager"
