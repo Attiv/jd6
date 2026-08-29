@@ -29,7 +29,7 @@ EXCLUDES = {
     "pinyin_simp.dict.yaml",
     "liangfen.dict.yaml",
     "xmjd6.en.dict.yaml",
-    "xmjd6.gbk.dict.yaml",
+    "xmjd6.ostroke_common.dict.yaml",
 }
 
 

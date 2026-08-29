@@ -5,7 +5,7 @@ import glob
 yaml_files = glob.glob('./*.dict.yaml')
 
 # 排除的文件列表
-exclude_files = ['xmjd6.gbk.dict.yaml', 'xmjd6cx.dict.yaml',
+exclude_files = ['xmjd6.ostroke_common.dict.yaml', 'xmjd6cx.dict.yaml',
                  'xkjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml']
 
 # 从所有的*.dict.yaml文件中移除排除的文件

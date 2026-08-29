@@ -57,7 +57,7 @@ python3 shrink_empty_codes.py \
   --exclude 'pinyin_simp.dict.yaml' \
   --exclude 'liangfen.dict.yaml' \
   --exclude 'xmjd6.en.dict.yaml' \
-  --exclude 'xmjd6.gbk.dict.yaml'
+  --exclude 'xmjd6.ostroke_common.dict.yaml'
 ```
 
 生成报告：
@@ -77,7 +77,7 @@ python3 shrink_empty_codes.py \
   --exclude 'pinyin_simp.dict.yaml' \
   --exclude 'liangfen.dict.yaml' \
   --exclude 'xmjd6.en.dict.yaml' \
-  --exclude 'xmjd6.gbk.dict.yaml' \
+  --exclude 'xmjd6.ostroke_common.dict.yaml' \
   --apply
 ```
 
@@ -106,7 +106,7 @@ python3 shrink_empty_codes.py \
   --exclude 'pinyin_simp.dict.yaml' \
   --exclude 'liangfen.dict.yaml' \
   --exclude 'xmjd6.en.dict.yaml' \
-  --exclude 'xmjd6.gbk.dict.yaml'
+  --exclude 'xmjd6.ostroke_common.dict.yaml'
 ```
 
 看报告头部：
@@ -138,7 +138,7 @@ python3 shrink_empty_codes.py \
   --exclude 'pinyin_simp.dict.yaml' \
   --exclude 'liangfen.dict.yaml' \
   --exclude 'xmjd6.en.dict.yaml' \
-  --exclude 'xmjd6.gbk.dict.yaml' \
+  --exclude 'xmjd6.ostroke_common.dict.yaml' \
   --apply \
   --repeat
 ```

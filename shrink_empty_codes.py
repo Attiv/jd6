@@ -33,7 +33,7 @@ MAIN_DICT_EXCLUDES = [
     "pinyin_simp.dict.yaml",
     "liangfen.dict.yaml",
     "xmjd6.en.dict.yaml",
-    "xmjd6.gbk.dict.yaml",
+    "xmjd6.ostroke_common.dict.yaml",
 ]
 
 # Deliberately conservative so English definitions / reverse-lookup annotations
@@ -85,7 +85,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Use the recommended main-dictionary scope by excluding English, "
-            "Pinyin, Liangfen, xmjd6.en, and xmjd6.gbk dictionaries."
+            "Pinyin, Liangfen, xmjd6.en, and O-stroke dictionaries."
         ),
     )
     parser.add_argument(

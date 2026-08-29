@@ -44,7 +44,7 @@ local DICT_FILES = {
     -- "xmjd6.extended.dict.yaml",   -- 扩展 (126 行)
     "xmjd6.fjcy.dict.yaml",       -- 附加词语 (294k 行 ★大)
     -- "xmjd6.fuhao.dict.yaml",      -- 符号 (180 行)
-    -- "xmjd6.gbk.dict.yaml",        -- GBK (24k 行)
+    -- "xmjd6.ostroke_common.dict.yaml", -- O 键常用笔画 (20k 行)
     "xmjd6.lianjie.dict.yaml",    -- 链接 (17 行)
     "xmjd6.user.dict.yaml",       -- 用户 (763 行)
     -- "xmjd6.wxw.dict.yaml",        -- 525声笔笔词组 (636 行)

@@ -50,7 +50,7 @@ def check_duplicate_codes():
 
     # 获取当前目录下的所有 *.dict.yaml 文件
     for file in os.listdir('.'):
-        if file.endswith('.dict.yaml') and file not in ['xmjd6.gbk.dict.yaml', 'xmjd6cx.dict.yaml', 'xmjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml', 'liangfen.dict.yaml', 'xkjd6.yixue.dict.yaml']:
+        if file.endswith('.dict.yaml') and file not in ['xmjd6.ostroke_common.dict.yaml', 'xmjd6cx.dict.yaml', 'xmjd6dz.dict.yaml', 'pinyin_simp.dict.yaml', 'xmjd6.en.dict.yaml', 'liangfen.dict.yaml', 'xkjd6.yixue.dict.yaml']:
             files.append(file)
 
     # 检查编码是否完全重复

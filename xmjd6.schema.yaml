@@ -6,7 +6,7 @@
 # 方案git： https://github.com/hugh7007/xmjd6-rere
 # 本方案特色：
 #  增加百万词语，优化打字体验。
-#  O键五笔画全字集，输入 o+viuoa 直接按笔画查字；原 ow 表情码继续保留。
+#  O键五笔画查常用字，输入 o+viuoa 直接按笔画查字；原 ow 表情码继续保留。
 #  V键开启二分反查功能<拼音拆分文字可打全字集>。遇到不会读的字也可以随时随地打出全字集。
 #  U键开启全拼反查功能拼音查全码，新增笔画提示>
 #  i键开启英文单词联想输入模式。
@@ -21,8 +21,6 @@ schema:
     - pinyin_simp
     - liangfen
     - xmjd6.en
-    - xmjd6.gbk
-    - xmjd6.stroke
 
 
 # Layout config
@@ -150,8 +148,7 @@ engine:
     - history_translator@repeat_history2
     - script_translator@quanpinerfen
     - script_translator@pinyin_simp
-    - table_translator@xmjd6gbk       # O 常用笔画 + 原 ow 表情
-    - table_translator@xmjd6stroke_ext # O 全字集生僻字兜底
+    - table_translator@xmjd6gbk       # O 五笔画查常用字 + 原 ow 表情
   filters:
     - lua_filter@*xmjd6/xmjd6_single_char # 单字优先功能（默认关闭；开启后只重排前20个）
     # - lua_filter@*xmjd6/xmjd6_filter
@@ -290,15 +287,6 @@ xmjd6gbk:
   prefix: "o"
   # 五笔画：v=横、i=竖、u=撇、o=捺、a=折
 
-# 全字集扩展层降低优先级，避免生僻同码字挤掉“共”等常用提示。
-xmjd6stroke_ext:
-  tag: xmjd6gbk
-  dictionary: xmjd6.stroke
-  enable_sentence: false
-  enable_completion: true
-  enable_user_dict: false
-  prefix: "o"
-  initial_quality: -1
 
 pinyin_simp_lookup:
   tags: [pinyin_simp]
