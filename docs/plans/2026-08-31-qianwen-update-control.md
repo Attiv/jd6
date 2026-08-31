@@ -38,7 +38,7 @@
 - Modify: `scripts/rollback_qianwen.sh`
 
 1. Implement versioned snapshots, manifests, SHA-256 verification, and an atomic default-restore pointer.
-2. Add `--skip-user-backup` to the existing rollback installer.
+2. Add `--skip-user-backup` and an explicit manifest-verified modified-source mode to the existing rollback installer.
 3. Implement restore as checksum verification followed by the existing atomic App install with `--skip-user-backup`.
 4. Run `bash tests/test_qianwen_update_scripts.sh` and confirm all cases pass.
 

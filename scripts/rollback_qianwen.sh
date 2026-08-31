@@ -31,6 +31,8 @@ PYTHON3="${PYTHON3:-$(command -v python3 || true)}"
 
 UPDATER_REL="Contents/Helpers/QianwenIMEUpdater"
 DISABLE_UPDATER=1
+SKIP_USER_BACKUP=0
+ALLOW_MODIFIED_SOURCE=0
 NO_RELOAD=0
 STAGE_ROOT=""
 
@@ -46,7 +48,7 @@ die() {
 usage() {
   cat <<'EOF'
 用法：
-  rollback_qianwen.sh install [<App 路径>] [--keep-updater] [--no-reload]
+  rollback_qianwen.sh install [<App 路径>] [--keep-updater] [--skip-user-backup] [--allow-modified-source] [--no-reload]
   rollback_qianwen.sh status
 
 命令：
@@ -55,6 +57,10 @@ usage() {
 
 选项：
   --keep-updater   保留 QianwenIMEUpdater（默认禁用，避免被自动升级覆盖）
+  --skip-user-backup
+                   不备份或改动 Qime 用户数据；用于只恢复 App 的固定快照
+  --allow-modified-source
+                   允许安装已由外部校验过的修改版 App 快照（默认要求厂商签名有效）
   --no-reload      替换后不重启千问
 
 替换前会自动把当前版本整包克隆到 Backups/，随时可以用 install 装回去。
@@ -225,7 +231,9 @@ run_install() {
   [[ -d "$source" ]] || die "找不到要安装的 App：$source"
   [[ -f "$source/Contents/Info.plist" ]] || die "不是有效的 App 包：$source"
 
-  if command -v codesign >/dev/null 2>&1; then
+  if [[ "$ALLOW_MODIFIED_SOURCE" -eq 1 ]]; then
+    log "允许恢复已通过外部清单校验的修改版 App"
+  elif command -v codesign >/dev/null 2>&1; then
     codesign --verify --strict "$source" 2>/dev/null \
       || die "待安装 App 签名校验失败，已停止：$source"
   fi
@@ -240,7 +248,11 @@ run_install() {
   fi
 
   backup_current_app
-  backup_user_dir
+  if [[ "$SKIP_USER_BACKUP" -eq 0 ]]; then
+    backup_user_dir
+  else
+    log "已按要求跳过 Qime 用户数据备份"
+  fi
 
   mkdir -p "$STATE_DIR"
   STAGE_ROOT="$(mktemp -d "$STATE_DIR/Rollback-$(date '+%Y%m%d-%H%M%S').XXXXXX")"
@@ -296,6 +308,8 @@ case "$COMMAND" in
     while [[ $# -gt 0 ]]; do
       case "$1" in
         --keep-updater) DISABLE_UPDATER=0 ;;
+        --skip-user-backup) SKIP_USER_BACKUP=1 ;;
+        --allow-modified-source) ALLOW_MODIFIED_SOURCE=1 ;;
         --no-reload) NO_RELOAD=1 ;;
         -h|--help) usage; exit 0 ;;
         -*) die "未知参数：$1" ;;

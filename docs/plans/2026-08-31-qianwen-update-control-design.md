@@ -20,6 +20,7 @@ The existing vendor-signed `QianwenIMEAtomicSwap` path remains the single implem
 - Refuse incomplete or invalid App bundles.
 - Never overwrite an existing snapshot.
 - Verify snapshot metadata and hashes before recording it as restorable.
+- Permit the existing rollback helper to accept a modified App only through an explicit flag after the restore wrapper has verified the snapshot manifest; ordinary stock-App restores still require a valid vendor signature.
 - Restore only the App. Qime user data is an explicit invariant and remains untouched.
 - Preserve the current updater state inside the snapshot so restoration returns to the exact pre-update App state.
 
