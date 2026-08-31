@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# 将 ~/Library/Rime 中的星猫键道部署并覆盖到千问输入法的预部署 Rime 包。
+# 将 ~/Library/Rime 中的星猫键道部署并覆盖千问双拼（保留千问全拼）。
 # 默认不覆盖千问自己的 candidate_order.txt / dynamic_phrases.txt。
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -150,7 +150,7 @@ validate_source_inputs() {
     || die "缺少 $RIME_DIR/xmjd6.schema.yaml"
   [[ -x "$RIME_DEPLOYER" ]] || die "找不到可执行的 rime_deployer：$RIME_DEPLOYER"
   [[ -f "$COMPAT_FILE" ]] || die "缺少千问兼容层：$COMPAT_FILE"
-  [[ -n "$PYTHON3" && -x "$PYTHON3" ]] || die "需要 python3 来安全生成 qw.schema.yaml"
+  [[ -n "$PYTHON3" && -x "$PYTHON3" ]] || die "需要 python3 来安全生成 qw_double.schema.yaml"
 }
 
 validate_sync_inputs() {
@@ -265,7 +265,7 @@ deploy_to_staging() {
   /bin/cp -p "$deploy_log" "$STATE_DIR/logs/rime-deployer-latest.log"
 }
 
-make_qw_schema() {
+make_qw_double_schema() {
   local source="$1"
   local target="$2"
   local temporary="$WORK_DIR/$(basename "$target").$RANDOM"
@@ -281,21 +281,21 @@ text = source.read_bytes().decode("utf-8-sig")
 
 text, schema_count = re.subn(
     r"^(\s*schema_id:\s*)xmjd6(\s*(?:#.*)?)$",
-    r"\1qw\2",
+    r"\1qw_double\2",
     text,
     count=1,
     flags=re.MULTILINE,
 )
-if schema_count != 1 and not re.search(r"^\s*schema_id:\s*qw\s*$", text, re.MULTILINE):
+if schema_count != 1 and not re.search(r"^\s*schema_id:\s*qw_double\s*$", text, re.MULTILINE):
     raise SystemExit("cannot locate schema_id: xmjd6")
 
 text = re.sub(
     r"^(\s*dictionary:\s*)xmjd6\.extended(\s*(?:#.*)?)$",
-    r"\1qw\2",
+    r"\1qw_double\2",
     text,
     flags=re.MULTILINE,
 )
-if len(re.findall(r"^\s*dictionary:\s*qw(?:\s*(?:#.*)?)?$", text, re.MULTILINE)) < 2:
+if len(re.findall(r"^\s*dictionary:\s*qw_double(?:\s*(?:#.*)?)?$", text, re.MULTILINE)) < 2:
     raise SystemExit("expected translator and sentence_mode dictionaries")
 
 compat = "    - lua_processor@*xmjd6/qime_trigger_compat"
@@ -498,16 +498,18 @@ copy_source_overlay() {
 
   if [[ -d "$RIME_DIR/lua/xmjd6" ]]; then
     mkdir -p "$QW_SCHEMAS/lua/xmjd6"
-    /usr/bin/rsync -a --delete --exclude='.DS_Store' \
+    # App Management may allow file writes while denying directory mode/time
+    # changes. Copy content only; -a would fail on those protected directories.
+    /usr/bin/rsync -r --delete --exclude='.DS_Store' \
       "$RIME_DIR/lua/xmjd6/" "$QW_SCHEMAS/lua/xmjd6/"
   fi
   if [[ -d "$RIME_DIR/lua/eng" ]]; then
     mkdir -p "$QW_SCHEMAS/lua/eng"
-    /usr/bin/rsync -a --delete --exclude='.DS_Store' \
+    /usr/bin/rsync -r --delete --exclude='.DS_Store' \
       "$RIME_DIR/lua/eng/" "$QW_SCHEMAS/lua/eng/"
   fi
   if [[ -d "$RIME_DIR/opencc" ]]; then
-    /usr/bin/rsync -a --exclude='.DS_Store' \
+    /usr/bin/rsync -r --exclude='.DS_Store' \
       "$RIME_DIR/opencc/" "$QW_SCHEMAS/opencc/"
   fi
 
@@ -536,7 +538,7 @@ copy_build_overlay() {
   for base in prism.bin reverse.bin table.bin; do
     copy_file_atomic \
       "$WORK_DIR/build/xmjd6.extended.$base" \
-      "$QW_BUILD/qw.$base"
+      "$QW_BUILD/qw_double.$base"
   done
   shopt -u nullglob
 }
@@ -580,7 +582,7 @@ write_state() {
 run_status() {
   validate_common
   current_app_metadata
-  local old_version old_build old_identity schema="$QW_SCHEMAS/qw.schema.yaml"
+  local old_version old_build old_identity schema="$QW_SCHEMAS/qw_double.schema.yaml"
   old_version="$(state_value app_version)"
   old_build="$(state_value app_build)"
   old_identity="$(state_value app_identity)"
@@ -598,7 +600,7 @@ run_status() {
   fi
 
   if [[ ! -f "$schema" ]] \
-      || ! grep -Fq 'schema_id: qw' "$schema" \
+      || ! grep -Fq 'schema_id: qw_double' "$schema" \
       || ! grep -Fq 'lua_processor@*xmjd6/qime_trigger_compat' "$schema" \
       || [[ ! -f "$QW_SCHEMAS/lua/xmjd6/qime_trigger_compat.lua" ]] \
       || ! grep -Fq 'utf8.char(0x200B)' \
@@ -812,9 +814,9 @@ run_sync() {
   copy_source_overlay
   copy_build_overlay
 
-  # Qianwen 固定加载 schema_id=qw，因此源 schema 和部署 schema 都要生成 qw 别名。
-  make_qw_schema "$RIME_DIR/xmjd6.schema.yaml" "$QW_SCHEMAS/qw.schema.yaml"
-  make_qw_schema "$WORK_DIR/build/xmjd6.schema.yaml" "$QW_BUILD/qw.schema.yaml"
+  # 只覆盖千问双拼；千问全拼的 qw schema 和编译产物保持厂商原样。
+  make_qw_double_schema "$RIME_DIR/xmjd6.schema.yaml" "$QW_SCHEMAS/qw_double.schema.yaml"
+  make_qw_double_schema "$WORK_DIR/build/xmjd6.schema.yaml" "$QW_BUILD/qw_double.schema.yaml"
   copy_qime_support_files
   install_engine_compat
 
