@@ -332,18 +332,19 @@ assert_not_contains "$SCHEMAS/lua/xmjd6/example.lua" "abi=true"
 [[ -z "$(find "$BACKUPS" -maxdepth 1 -type d -name 'qime-pre-sync-1.2.3-459-*')" ]] \
   || fail "strict abort must happen before any backup or app modification"
 
-# 默认降级：跳过 libqime 替换，但星猫键道数据照常同步完成。
+# 双拼入口依赖千问把原始字母逐键交给 Rime；兼容引擎不可用时必须在
+# 备份和修改文件前中止，不能部署一个完全无法输入的 qw_double。
+set +e
 run_sync sync >"$TMP_ROOT/degraded.log" 2>&1
-assert_contains "$TMP_ROOT/degraded.log" "ABI 符号"
-assert_contains "$TMP_ROOT/degraded.log" "同步完成"
+DEGRADED_RC=$?
+set -e
+[[ "$DEGRADED_RC" -ne 0 ]] || fail "double-pinyin overlay must abort without key-event compatibility"
+assert_contains "$TMP_ROOT/degraded.log" "双拼覆盖需要逐键兼容引擎"
 assert_contains "$APP/Contents/Frameworks/libqime.dylib" "new-engine-459"
-assert_contains "$SCHEMAS/lua/xmjd6/example.lua" "abi=true"
-assert_contains "$STATE/last-sync.env" "engine_compat_status=skipped"
-assert_contains "$STATE/last-sync.env" "app_build=459"
-
-run_sync status >"$TMP_ROOT/status-degraded.log"
-assert_contains "$TMP_ROOT/status-degraded.log" "已同步"
-assert_contains "$TMP_ROOT/status-degraded.log" "未启用"
+assert_not_contains "$SCHEMAS/lua/xmjd6/example.lua" "abi=true"
+[[ -z "$(find "$BACKUPS" -maxdepth 1 -type d -name 'qime-pre-sync-1.2.3-459-*')" ]] \
+  || fail "unsupported double-pinyin overlay must abort before backup"
+assert_contains "$STATE/last-sync.env" "app_build=458"
 
 unset NM_MISSING_ABI
 

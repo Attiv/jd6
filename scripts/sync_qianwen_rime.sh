@@ -795,6 +795,13 @@ run_sync() {
   # libqime 的写权限而整包暂存。
   decide_engine_compat
 
+  # 千问 1.2.x 的双拼层会先接管字母，再通过 InputText 整串送入 Rime。
+  # 没有逐键兼容引擎时，键道拿不到原始编码，覆盖 qw_double 会导致无候选。
+  # 必须在备份或修改 App 之前中止，避免再次把输入法部署成不可输入状态。
+  if [[ "$ENGINE_COMPAT_DECISION" != "install" ]]; then
+    die "双拼覆盖需要逐键兼容引擎；当前千问版本不兼容，已停止且未修改 App"
+  fi
+
   if [[ "$QW_IN_ATOMIC_STAGE" -ne 1 ]] \
       && { [[ "$QW_FORCE_ATOMIC_STAGE" -eq 1 ]] \
            || ! app_can_be_modified_directly; }; then
