@@ -1,3 +1,2 @@
 # xmjd6 dynamic phrases
 # text<TAB>code; edited by =add/=del commands
-鱼你在一起	ynzqu
