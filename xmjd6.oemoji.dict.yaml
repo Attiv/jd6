@@ -42,7 +42,6 @@ use_preset_vocabulary: false
 [憨笑]	whx
 [悠闲]	wyx
 [奋斗]	wfd
-[咒骂]	wfm
 [疑问]	wyw
 [嘘]	wxl
 [晕]	wyw
@@ -94,6 +93,7 @@ use_preset_vocabulary: false
 [奸笑]	wjx
 [机智]	wjf
 [皱眉]	wfm
+[咒骂]	wfm
 [耶]	wye
 [吃瓜]	wwg
 [加油]	wjy
