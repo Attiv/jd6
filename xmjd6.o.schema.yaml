@@ -1,0 +1,52 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: xmjd6.o
+  name: 星猫键道6 O 模式辅助方案·勿选
+  version: "1.0"
+  author:
+    - ProudCat
+  description: |
+    为主方案编译 O 模式词典。v/i/u/o/a 代表横、竖、撇、捺、折，
+    同时保留 ow 开头的微信表情别名。
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz0123456789"
+
+translator:
+  dictionary: xmjd6.o
+  enable_sentence: false
+  enable_completion: true
+  enable_user_dict: false
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default

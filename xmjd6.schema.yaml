@@ -21,6 +21,7 @@ schema:
     - pinyin_simp
     - liangfen
     - xmjd6.en
+    - xmjd6.o
 
 
 # Layout config
