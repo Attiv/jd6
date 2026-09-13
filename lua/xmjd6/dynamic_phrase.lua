@@ -125,10 +125,38 @@ local function translator(input, seg, env)
         return
     end
 
-    local matches = core.lookup(input, get_store_path(env))
+    local store = get_store_path(env)
+
+    -- 精确命中优先，保证完整编码的候选顺序与行为不变。
+    local matches = core.lookup(input, store)
     for i, entry in ipairs(matches) do
         local cand = make_candidate(seg, entry.text, entry.code .. "〔自造〕", 250000 - i)
         yield(cand)
+    end
+
+    -- 前缀补全：让 wzfr / wzfru 这类不完整编码也能看到 wzfruu 的自造词。
+    -- 仅在精确未命中时才补充。
+    -- 排序规则：必须排在表译器正常精确候选（translator.initial_quality 为 0）
+    -- 之下，否则码长的自造词会压到该前缀上真正的短码词前面，
+    -- 例如 wzfr 上「嘲讽」应始终在「朝凤(wzfruu)」之上。
+    -- 这里沿用 candidate_order.lua 对前缀补全的既定约定：quality = -10 - i。
+    -- 门槛：少于 2 码不查前缀。键道6 最短有效码为 2 码，且 lookup_prefix
+    -- 对单字符会退化为全表扫描，自造词变多后会拖慢每次按键。
+    if #matches == 0 and #input >= 2 then
+        local prefix_hits = core.lookup_prefix(input, store, 20)
+        local shown = 0
+        for _, entry in ipairs(prefix_hits) do
+            if entry.code ~= input then
+                shown = shown + 1
+                local cand = make_candidate(
+                    seg,
+                    entry.text,
+                    "~" .. entry.code:sub(#input + 1) .. "〔自造〕",
+                    -10 - shown
+                )
+                yield(cand)
+            end
+        end
     end
 end
 
