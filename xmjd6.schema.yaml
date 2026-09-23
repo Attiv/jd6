@@ -131,7 +131,7 @@ engine:
     - lua_translator@*xmjd6/quick_symbol_translator # 快捷符号唯一候选提示
     - lua_translator@*xmjd6/text_transform_translator # =wrap / =join/N 文本加工
     - lua_translator@*xmjd6/xmjd6_tools      # = 工具集：=uuid / =pw密码 / =mem内存 / =时间戳
-    - lua_translator@*xmjd6/typing_stats_translator  # =stats 打字统计：字数/码长/退格/连打占比
+    - lua_translator@*xmjd6/typing_stats_translator  # =stats 打字统计：字数/码长/退格/均速/峰速
     - lua_translator@*xmjd6/number_tools     # 金额、进制、单位转换
     - lua_translator@*xmjd6/xmjd6_jisuanqi
     - lua_translator@*xmjd6/xmjd6_shijian
