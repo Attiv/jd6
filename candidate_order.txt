@@ -2,3 +2,7 @@
 # promoted<TAB>old_code<TAB>displaced<TAB>target_code
 AI	ai	阝	ai
 避雷	bklwa	壁垒	bklw
+
+进错	jbclvi	颈部错构瘤	jbcl	gbclao
+
+红头发	htfa	合同法	htf	gtfiia
