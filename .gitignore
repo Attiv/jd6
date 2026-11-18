@@ -52,7 +52,11 @@ docs/
 .kiro
 .trellis
 build
-tests
+# Test sources are versioned; runtime recovery data is local.
+runtime_undo.tsv
+runtime_tools.transaction
+*.replace-old
+*.tmp.*
 typing_stats.txt
 *.bak
 trash/

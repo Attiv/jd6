@@ -31,7 +31,7 @@ end
 local function command_candidate(input, seg)
     local preview, comment = core.command_preview(input, get_commit_history())
     if preview then
-        return make_candidate(seg, preview, (comment or "") .. "  末尾加 ; 执行；空格/回车也可", 300000)
+        return make_candidate(seg, preview, (comment or "") .. "  Tab预览码位；末尾 ; 执行（空格/回车也可）", 300000)
     end
 
     if core.is_dynamic_command(input) then

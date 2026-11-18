@@ -1,6 +1,7 @@
 -- typing_stats.lua
 -- 打字统计：按天聚合记录汉字数、击键数、上屏次数、退格数、会话均速与 10 秒峰速。
--- =stats 查看今日 / 近7天 / 累计的字数、码长、退格、均速与峰速。
+-- =stats 查看今日 / 近7天 / 累计的汉字上屏量、总击键/汉字、退格、均速与峰速。
+-- 总量沿用旧口径：中文模式可见ASCII键（含工具）/所有汉字上屏量，并非精确中文编码码长。
 --
 -- 均速：两次输入活动间隔不超过 5 秒视为同一会话；会话至少 1 秒、2 个汉字才
 -- 进入统计，全部有效会话累计不足 15 秒时不显示。时间优先使用毫秒时钟。
@@ -14,6 +15,8 @@
 -- iOS 键盘收起时经 mem_cleaner 结算当前会话、落盘并释放历史缓存。
 
 local mem_cleaner = require("xmjd6.mem_cleaner")
+local store = require("xmjd6.runtime_store")
+local calendar = require("xmjd6.date_tools")
 
 local M = {}
 
@@ -112,66 +115,69 @@ local function split_tabs(line)
     return fields
 end
 
+local function parse_row(line)
+    local fields=split_tabs(line)
+    local day=fields[1]
+    if not day or not day:match("^%d%d%d%d%-%d%d%-%d%d$") or not calendar.parse(day:gsub("%-","")) then return nil end
+    if #fields<6 or (#fields>8 and #fields<11) then return nil end
+    local values={}
+    for i=2,math.min(#fields,11) do
+        local n=tonumber(fields[i])
+        if not n or n<0 or n>9007199254740991 or n%1~=0 then return nil end
+        values[i]=n
+    end
+    local timed=values[8]
+    local secs=timed and (values[7] or 0) or 0
+    return {
+        day=day,chars=values[2],keys=values[3],commits=values[4],backspaces=values[5],sent_chars=values[6],
+        active_secs=secs,timed_chars=timed or 0,
+        average_chars=values[9] or timed or 0,average_ms=values[10] or secs*1000,peak_speed=values[11] or 0,
+    }
+end
 local function load(st)
-    if st.loaded then return end
-    st.history = {}
-    st.today = nil
-    local today = today_str()
-    local f = io.open(stats_path(), "r")
+    if st.loaded then return true end
+    st.history={}; st.today=nil; st.invalid_rows=0
+    local today=today_str()
+    local f,err,code=store.open(stats_path(),"r")
+    if not f and code~=2 then st.last_error=err; return false end
+    local by_day={}
     if f then
         for line in f:lines() do
-            local fields = split_tabs(line)
-            local day = fields[1]
-            if day and day:match("^%d%d%d%d%-%d%d%-%d%d$") then
-                -- 旧 6 列文件无时长列；7 列过渡格式只有时长没有配对计速字数，
-                -- 用它算速度会虚高，故从 8 列格式起才承认旧速度数据。
-                local timed = tonumber(fields[8])
-                local secs = timed and (tonumber(fields[7]) or 0) or 0
-                local row = {
-                    day = day,
-                    chars = tonumber(fields[2]) or 0,
-                    keys = tonumber(fields[3]) or 0,
-                    commits = tonumber(fields[4]) or 0,
-                    backspaces = tonumber(fields[5]) or 0,
-                    sent_chars = tonumber(fields[6]) or 0,
-                    active_secs = secs,
-                    timed_chars = timed or 0,
-                    -- 旧 8 列数据只能还原原先的估算均速；无法还原 10 秒峰值。
-                    average_chars = tonumber(fields[9]) or timed or 0,
-                    average_ms = tonumber(fields[10]) or secs * 1000,
-                    peak_speed = tonumber(fields[11]) or 0,
-                }
-                if day == today then
-                    st.today = row
-                else
-                    st.history[#st.history + 1] = row
-                end
-            end
+            local row=parse_row(line)
+            if row then by_day[row.day]=row
+            elseif line~="" and not line:match("^%s*#") then st.invalid_rows=st.invalid_rows+1 end
         end
         f:close()
     end
-    st.today = st.today or new_row(today)
-    st.loaded = true
+    local days={}; for day in pairs(by_day) do days[#days+1]=day end; table.sort(days)
+    for _,day in ipairs(days) do
+        if day==today then st.today=by_day[day] else st.history[#st.history+1]=by_day[day] end
+    end
+    st.today=st.today or new_row(today); st.loaded=true
+    return true
 end
 
+local snapshot_today
+
 local function flush(st)
-    if not st.loaded then return end
+    if not st.loaded then return true end
     while #st.history >= MAX_DAYS do
         table.remove(st.history, 1)
     end
-    local f = io.open(stats_path(), "w")
-    if not f then return end
+    local rows = {}
     local function write_row(r)
-        f:write(r.day, "\t", r.chars, "\t", r.keys, "\t", r.commits, "\t",
-            r.backspaces, "\t", r.sent_chars or 0, "\t", r.active_secs or 0, "\t",
-            r.timed_chars or 0, "\t", r.average_chars or 0, "\t",
-            r.average_ms or 0, "\t", r.peak_speed or 0, "\n")
+        rows[#rows+1] = table.concat({r.day, r.chars, r.keys, r.commits,
+            r.backspaces, r.sent_chars or 0, r.active_secs or 0, r.timed_chars or 0,
+            r.average_chars or 0, r.average_ms or 0, r.peak_speed or 0}, "\t") .. "\n"
     end
     for _, row in ipairs(st.history) do write_row(row) end
-    write_row(st.today)
-    f:close()
+    write_row(snapshot_today(st))
+    local ok,err = store.write(stats_path(), table.concat(rows))
+    if not ok then st.last_error=err; return false end
+    st.last_error=nil
     st.dirty = 0
     st.last_flush = os.time()
+    return true
 end
 
 local function monotonic_ms()
@@ -322,10 +328,12 @@ function M.processor(key, env)
     if not is_backspace and not (code >= 0x20 and code < 0x7f) then return kNoop end
 
     local st = state()
-    load(st)
+    if not load(st) then return kNoop end
     roll_day(st)
 
     local context = env and env.engine and env.engine.context
+    if (context and (context.input or ""):sub(1,1)=="=")
+        or (context and context.input=="" and code==string.byte("=")) then finish_samples(st) end
     if is_speed_activity(code, context) then
         observe_input_activity(st, monotonic_ms())
     end
@@ -337,6 +345,22 @@ function M.processor(key, env)
         st.today.keys = st.today.keys + 1
     end
     return kNoop
+end
+
+local GENERATED_TYPES={
+    date=true,time=true,xiqy=true,jwql=true,nl=true,["sjx/"]=true,number=true,unicode=true,
+    tools=true,tools_help=true,tools_help_empty=true,stats=true,stats_error=true,
+    date_tools=true,date_tools_error=true,code_preview=true,text_transform=true,repeat_history=true,history=true,
+}
+local function generated_commit(ctx)
+    if type(ctx.get_selected_candidate)~="function" then return false end
+    local ok,c=pcall(function() return ctx:get_selected_candidate() end)
+    if not ok or not c then return false end
+    if type(c.get_genuine)=="function" then
+        local valid,g=pcall(function() return c:get_genuine() end)
+        if valid and g then c=g end
+    end
+    return GENERATED_TYPES[c.type] or false
 end
 
 function M.on_commit(ctx)
@@ -353,7 +377,9 @@ function M.on_commit(ctx)
     st.today.chars = st.today.chars + han
 
     local raw_input = ctx.input or ""
-    if raw_input:sub(1, 1) ~= "=" and han > 0 then
+    if raw_input:sub(1, 1) == "=" or generated_commit(ctx) then
+        finish_samples(st) -- 工具/复用输出仍计入上屏总量，但不视为手打速度样本。
+    elseif han > 0 then
         if han <= MAX_SPEED_COMMIT_LENGTH then
             commit_to_speed(st, monotonic_ms(), han)
         else
@@ -378,7 +404,7 @@ function M.init_processor(env)
     mem_cleaner.register(function()
         local st = state()
         if st.loaded then finish_samples(st) end
-        flush(st)
+        if not flush(st) then return end
         st.loaded = false
         st.history = nil
         st.today = nil
@@ -404,7 +430,7 @@ local function copy_row(row)
 end
 
 -- 报表读取进行中的有效样本，但不结束会话，避免查看 =stats 改变后续计速边界。
-local function snapshot_today(st)
+snapshot_today = function(st)
     local row = copy_row(st.today)
     local characters, milliseconds = sample_values(
         st.average_sample, MINIMUM_AVERAGE_SESSION_MS)
@@ -420,10 +446,10 @@ local function snapshot_today(st)
     return row
 end
 
-local function sum_rows(rows, from_day)
+local function sum_rows(rows, from_day, to_day)
     local acc = new_row("")
     for _, row in ipairs(rows) do
-        if not from_day or row.day >= from_day then
+        if (not from_day or row.day >= from_day) and (not to_day or row.day <= to_day) then
             acc.chars = acc.chars + row.chars
             acc.keys = acc.keys + row.keys
             acc.commits = acc.commits + row.commits
@@ -459,7 +485,10 @@ end
 function M.translator(input, seg, env)
     if input ~= "=stats" then return end
     local st = state()
-    load(st)
+    if not load(st) then
+        yield(Candidate("stats_error",seg.start,seg._end,"无法读取打字统计",tostring(st.last_error)))
+        return
+    end
     roll_day(st)
 
     local today = snapshot_today(st)
@@ -467,20 +496,22 @@ function M.translator(input, seg, env)
     for _, row in ipairs(st.history) do all[#all + 1] = row end
     all[#all + 1] = today
 
-    local week_from = os.date("%Y-%m-%d", os.time() - 6 * 86400)
+    local week_from = calendar.add(today_str():gsub("%-",""), -6)
     local rows = {
         { "今日", today },
-        { "近7天", sum_rows(all, week_from) },
+        { "近7天", sum_rows(all, week_from, today_str()) },
         { "累计", sum_rows(all, nil) },
     }
     local first_day = st.history[1] and st.history[1].day or st.today.day
     for i, item in ipairs(rows) do
         local label, row = item[1], item[2]
-        local text = string.format("%s %d 字 · 码长 %s", label, row.chars, code_len(row))
+        local text = string.format("%s %d 字 · 键/汉字 %s", label, row.chars, code_len(row))
         local comment = string.format(
             "击键 %d · 上屏 %d · 退格 %d · 均速 %s · 峰速 %s",
             row.keys, row.commits, row.backspaces,
             average_speed_str(row), peak_speed_str(row))
+        if label == "今日" and (st.invalid_rows or 0)>0 then comment=comment.." · 已忽略"..st.invalid_rows.."行无效数据" end
+        if label == "今日" and st.last_error then comment=comment.." · 保存失败，数据仍保留在内存" end
         if label == "累计" then
             comment = comment .. " · 自 " .. first_day
         end

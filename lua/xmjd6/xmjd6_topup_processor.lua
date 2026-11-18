@@ -34,7 +34,17 @@ local function topup(env)
     end
 end
 
+local function should_topup(input,key,env,danzi)
+    local previous=input:sub(-1)
+    local minimum=danzi and env.topup_min_danzi or env.topup_min
+    local length=utf8.len(input) or 0
+    return (env.topup_set[previous] and not env.topup_set[key])
+        or (not env.topup_set[previous] and not env.topup_set[key] and length>=minimum)
+        or length>=env.topup_max
+end
+
 local function processor(key_event, env)
+    if env.enabled == false then return 2 end
     if key_event:release() or key_event:ctrl() or key_event:alt() then
         return 2
     end
@@ -94,11 +104,7 @@ local function processor(key_event, env)
     debug_log(env, string.format("  len=%d min=%d max=%d prev=%q is_topup=%s is_prev_topup=%s",
         input_len, min_len, env.topup_max, prev, tostring(is_topup), tostring(is_prev_topup)))
 
-    if is_prev_topup and not is_topup then
-        topup(env)
-    elseif not is_prev_topup and not is_topup and input_len >= min_len then
-        topup(env)
-    elseif input_len >= env.topup_max then
+    if should_topup(input,key,env,context:get_option('danzi_mode')) then
         topup(env)
     else
         debug_log(env, "  no topup condition met")
@@ -109,6 +115,7 @@ end
 
 local function init(env)
     local config = env.engine.schema.config
+    env.enabled = config:get_bool("topup/enabled") ~= false
     env.topup_set = string2set(config:get_string("topup/topup_with") or "")
     env.alphabet = string2set(config:get_string("speller/alphabet") or "abcdefghijklmnopqrstuvwxyz")
     env.topup_min = math.max(1, config:get_int("topup/min_length") or 4)
@@ -136,4 +143,4 @@ local function fini(env)
     env.debug_log = nil
 end
 
-return { init = init, func = processor, fini = fini }
+return { init = init, func = processor, fini = fini, should_topup = should_topup }

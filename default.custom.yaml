@@ -7,10 +7,10 @@ patch:
   menu:
     page_size: 6
   ascii_composer/switch_key:
-    Caps_Lock: null
+    Caps_Lock: commit_code
     Control_L: noop
     Control_R: noop
-    Shift_L: null
+    Shift_L: commit_code
     Shift_R: null
   "switcher/hotkeys":  # 這個列表裏每項定義一個快捷鍵，使哪個都中
     - "Control+grave"

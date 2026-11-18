@@ -94,6 +94,70 @@ function M.to_constant(text)
     return string.upper(M.to_snake(text))
 end
 
+local function unicode_map(text,fn)
+    text=tostring(text or "")
+    local out={}
+    local ok=pcall(function()
+        for _,cp in utf8.codes(text) do out[#out+1]=utf8.char(fn(cp)) end
+    end)
+    if not ok then return nil,"输入包含无效UTF-8" end
+    return table.concat(out)
+end
+local function whitespace(cp)
+    return (cp>=9 and cp<=13) or cp==32 or cp==0x85 or cp==0xa0
+        or cp==0x1680 or (cp>=0x2000 and cp<=0x200a)
+        or cp==0x2028 or cp==0x2029 or cp==0x202f or cp==0x205f or cp==0x3000
+end
+function M.trim(text)
+    text=tostring(text or "")
+    local first,last
+    local ok=pcall(function()
+        for pos,cp in utf8.codes(text) do
+            if not whitespace(cp) then first=first or pos; last=pos+#utf8.char(cp)-1 end
+        end
+    end)
+    if not ok then return nil,"输入包含无效UTF-8" end
+    return first and text:sub(first,last) or ""
+end
+function M.single_line(text)
+    text=tostring(text or "")
+    local out,space={},false
+    local ok=pcall(function()
+        for _,cp in utf8.codes(text) do
+            if whitespace(cp) then space=#out>0
+            else
+                if space then out[#out+1]=" " end
+                out[#out+1]=utf8.char(cp); space=false
+            end
+        end
+    end)
+    if not ok then return nil,"输入包含无效UTF-8" end
+    return table.concat(out)
+end
+function M.to_fullwidth(text)
+    return unicode_map(text,function(cp)
+        if cp==32 then return 0x3000 end
+        return cp>=0x21 and cp<=0x7e and cp+0xfee0 or cp
+    end)
+end
+function M.to_halfwidth(text)
+    return unicode_map(text,function(cp)
+        if cp==0x3000 then return 32 end
+        return cp>=0xff01 and cp<=0xff5e and cp-0xfee0 or cp
+    end)
+end
+function M.json_escape(text)
+    text=tostring(text or "")
+    if not utf8.len(text) then return nil,"输入包含无效UTF-8" end
+    local escapes={['"']='\\"', ['\\']='\\\\', ['\b']='\\b', ['\f']='\\f', ['\n']='\\n', ['\r']='\\r', ['\t']='\\t'}
+    return (text:gsub('[%z\1-\31"\\]',function(c)
+        return escapes[c] or string.format('\\u%04x',c:byte())
+    end))
+end
+function M.url_encode(text)
+    return (tostring(text or ""):gsub('([^A-Za-z0-9%-%._~])',function(c) return string.format('%%%02X',c:byte()) end))
+end
+
 function M.join(items, separator)
     items = items or {}
     local last_index = 0
@@ -300,10 +364,12 @@ end
 local function yield_unique(seg, values, comment, preedit)
     local seen = {}
     local quality = 100000
-    for _, text in ipairs(values) do
+    for _, value in ipairs(values) do
+        local text=type(value)=="table" and value.text or value
+        local label=type(value)=="table" and (value.label.." · "..comment) or comment
         if type(text) == "string" and text ~= "" and not seen[text] then
             seen[text] = true
-            yield(make_candidate(seg, text, comment, quality, preedit))
+            yield(make_candidate(seg, text, label, quality, preedit))
             quality = quality - 1
         end
     end
@@ -322,6 +388,14 @@ local function transform_values(source)
         values[#values + 1] = M.to_camel(source)
         values[#values + 1] = M.to_pascal(source)
         values[#values + 1] = M.to_constant(source)
+    end
+    for _,operation in ipairs({
+        {M.trim,"去首尾空白"}, {M.single_line,"合并单行"},
+        {M.to_fullwidth,"ASCII转全角"}, {M.to_halfwidth,"ASCII转半角"},
+        {M.json_escape,"JSON内容转义（不含外围引号）"}, {M.url_encode,"URL组件编码"},
+    }) do
+        local text=operation[1](source)
+        if text and text~=source then values[#values+1]={text=text,label=operation[2]} end
     end
     return values
 end

@@ -14,9 +14,14 @@ math.randomseed(os.time())
 local unpack_fn = table.unpack or unpack
 
 local HELP_ITEMS = {
-    { "=?", "功能帮助：列出需要输入码触发的功能" },
+    { "=?", "功能帮助：可输入 =?stats / =?date 筛选" },
+    { "=undo", "恢复最近20次本机自造词删除 / 调频变更，双按0确认" },
     { "=??", "快符速查表：列出 ; 引导的快捷符号" },
-    { "=stats", "打字统计：字数 / 码长 / 退格 / 均速 / 峰速" },
+    { "=stats", "打字统计：汉字上屏量 / 键每汉字 / 退格 / 均速 / 峰速" },
+    { "=add/编码 + Tab", "只读码位预览：占用 / 顶功风险 / 可用补码；不自动添加" },
+    { "=20261022+7d", "公历加减：d=天，w=7天；也可用 =today+7d" },
+    { "=diff/20261022/20261101", "公历日期相差天数：后者减前者" },
+    { "=week", "本周日期范围：周一至周日" },
     { "rq", "日期：横线式 / 中文式 / 大写式 / 农历节气" },
     { "ej", "时间、日期时间、Unix 时间戳" },
     { "xq", "星期、周数、英文星期" },
@@ -62,6 +67,22 @@ local HELP_ITEMS = {
     { "ow + 表情码", "保留原微信表情别名，如 owkk" },
 }
 
+local HELP_ALIASES = {
+    ["=add/编码 + Tab"]="code preview mawei zaoci",
+    ["=20261022+7d"]="date riqi calendar", ["=week"]="date week riqi zhou",
+    ["=diff/20261022/20261101"]="date diff riqi tianshu",
+    rq="date riqi", ej="time shijian", xq="week xingqi", nl="lunar nongli",
+    jq="solar jieqi", ["sjx/"]="date countdown daojishi",
+    ["=stats"]="stats statistics speed tongji sudu",
+    ["=undo"]="undo restore recovery huifu chexiao",
+    ["=add/上几次输入/编码;"]="phrase add zaoci", ["=del/"]="phrase delete shanci",
+    ["=tp"]="tuning pin tiaopin", ["=wrap"]="wrap transform jiagong",
+}
+
+local function help_query(input)
+    return input:match("^=%?([^?]*)$")
+end
+
 local function uuid4()
     local b = {}
     for i = 1, 16 do b[i] = math.random(0, 255) end
@@ -95,9 +116,19 @@ local function day_start(t)
 end
 
 local function tools(input, seg, env)
-    if input == "=?" then
+    local query=help_query(input)
+    if query then
+        query=query:lower()
+        local count=0
         for _, item in ipairs(HELP_ITEMS) do
-            yield(Candidate("tools", seg.start, seg._end, item[1], item[2]))
+            local searchable=(item[1].." "..item[2].." "..(HELP_ALIASES[item[1]] or "")):lower()
+            if query=="" or (item[1]~="=?" and searchable:find(query,1,true)) then
+                yield(Candidate("tools_help", seg.start, seg._end, item[1], item[2]))
+                count=count+1
+            end
+        end
+        if count==0 then
+            yield(Candidate("tools_help_empty",seg.start,seg._end,"没有匹配的功能","试试 =?date / =?stats / =?undo"))
         end
         return
     end

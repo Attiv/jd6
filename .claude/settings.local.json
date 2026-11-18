@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(while:*)",
+      "Bash(do echo:*)",
+      "Bash(done)",
+      "Bash(xargs -I {} sh -c 'wc -l \"{}\" | awk \"{print \\\\$1}\" | tr -d \"\\\\n\"; echo \" {}\"')",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(lua5.4 -e \"print\\(os.time\\(\\), os.clock\\(\\)\\)\")",
+      "Bash(lua -e \"print\\(os.time\\(\\), os.clock\\(\\)\\)\")",
+      "Bash(lua *)",
+      "Skill(git-commit)",
+      "Bash(shnote --what \"Find logging API used in lua\" --why \"Match project convention\" run grep -rn 'rime_api.log\\\\|Log\\\\.info\\\\|Log\\\\.error\\\\|log\\\\.info' /Users/mac/Library/Rime/lua/xmjd6)",
+      "Bash(shnote --what \"Search any logging pattern in lua\" --why \"Find log API convention\" run grep -rn 'log\\\\b\\\\|Log\\\\b\\\\|print\\(' /Users/mac/Library/Rime/lua/xmjd6)",
+      "Bash(shnote *)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

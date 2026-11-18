@@ -3,6 +3,7 @@
 -- Store format: one UTF-8 entry per line: text<TAB>code
 
 local M = {}
+local store = require("xmjd6.runtime_store")
 
 -- Cache for indexed entries
 local cache = {
@@ -93,19 +94,8 @@ function M.store_path(filename)
 end
 
 local function get_file_mtime(path)
-    local lfs_ok, lfs = pcall(require, "lfs")
-    if lfs_ok and lfs.attributes then
-        local ok, attr = pcall(lfs.attributes, path, "modification")
-        if ok and attr then
-            return attr
-        end
-    end
-    -- Fallback: use file size + existence as a simple cache key
-    local f = io.open(path, "r")
-    if not f then return 0 end
-    local size = f:seek("end")
-    f:close()
-    return size or 0
+    -- Compare contents: same-size/same-second edits must invalidate the cache, even without lfs.
+    return store.read(path)
 end
 
 local function append_index(index, key, entry)
@@ -259,7 +249,7 @@ end
 function M.load_entries_uncached(path)
     path = path or M.store_path()
     local entries = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if not f then
         return entries
     end
@@ -311,7 +301,7 @@ end
 
 function M.save_entries(entries, path)
     path = path or M.store_path()
-    local f, err = io.open(path, "w")
+    local f, err = store.open(path, "w")
     if not f then
         return false, err or "无法写入动态词库"
     end
@@ -324,7 +314,7 @@ function M.save_entries(entries, path)
         end
     end
     local ok, close_err = f:close()
-    if ok == false then
+    if not ok then
         return false, close_err or "保存动态词库失败"
     end
 
@@ -388,7 +378,7 @@ function M.add_phrase(text, code, path)
     if text == "" then return false, "词不能为空" end
     if code == "" then return false, "编码不能为空" end
 
-    local entries = M.load_entries(path)
+    local entries = M.load_entries_uncached(path)
     local new_entry = { text = text, code = code }
     local exists = false
     for _, entry in ipairs(entries) do
@@ -648,6 +638,26 @@ end
 -- Public API to manually clear cache (useful for debugging or external updates)
 function M.clear_cache()
     clear_cache()
+end
+
+-- Group phrase deletion and dependent tuning cleanup into one local undo operation.
+local unpack_values = table.unpack or unpack
+for _, name in ipairs({"add_phrase", "delete_phrase", "delete_by_code"}) do
+    local original, operation = M[name], name
+    M[name] = function(...)
+        local args={n=select("#",...),...}
+        local path_index = operation=="delete_by_code" and 2 or 3
+        local path=args[path_index] or M.store_path()
+        local co_path=args[path_index+1] or M.store_path("candidate_order.txt")
+        local specs={{path=path,kind="phrases"}}
+        if operation~="add_phrase" then specs[#specs+1]={path=co_path,kind="orders"} end
+        clear_cache()
+        local ok,message,count=store.perform(
+            (operation=="add_phrase" and "添加自造词：" or "删除自造词：") .. tostring(args[1] or ""),
+            specs, function() return original(unpack_values(args,1,args.n)) end, operation~="add_phrase")
+        clear_cache()
+        return ok,message,count
+    end
 end
 
 return M

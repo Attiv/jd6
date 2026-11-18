@@ -5,6 +5,7 @@
 -- Optional fifth field stores displaced_new_code, generated when pressing hotkey.
 
 local M = {}
+local store = require("xmjd6.runtime_store")
 
 M.default_filename = "candidate_order.txt"
 M.dynamic_phrase_filename = "dynamic_phrases.txt"
@@ -110,16 +111,7 @@ function M.is_enabled(env)
 end
 
 local function file_mtime(path)
-    local lfs_ok, lfs = pcall(require, "lfs")
-    if lfs_ok and lfs.attributes then
-        local ok, attr = pcall(lfs.attributes, path, "modification")
-        if ok and attr then return attr end
-    end
-    local f = io.open(path, "r")
-    if not f then return 0 end
-    local size = f:seek("end") or 0
-    f:close()
-    return size
+    return store.read(path)
 end
 
 local function split_tab(line)
@@ -410,11 +402,11 @@ local function merge_occupied_map(into, extra)
     end
 end
 
-local function load_dynamic_occupied(base_dir, target_codes, exclude_pairs)
+local function load_dynamic_occupied(base_dir, target_codes, exclude_pairs, filename)
     local ok, dynamic_core = pcall(require, "xmjd6.dynamic_phrase_core")
     if ok and dynamic_core and dynamic_core.load_occupied_for_codes then
         return dynamic_core.load_occupied_for_codes(
-            join_path(base_dir, M.dynamic_phrase_filename),
+            join_path(base_dir, filename or M.dynamic_phrase_filename),
             target_codes,
             exclude_pairs
         )
@@ -422,7 +414,7 @@ local function load_dynamic_occupied(base_dir, target_codes, exclude_pairs)
 
     local occupied = {}
     load_occupied_from_table(
-        join_path(base_dir, M.dynamic_phrase_filename),
+        join_path(base_dir, filename or M.dynamic_phrase_filename),
         occupied,
         exclude_pairs,
         target_codes
@@ -430,13 +422,13 @@ local function load_dynamic_occupied(base_dir, target_codes, exclude_pairs)
     return occupied
 end
 
-function M.load_occupied_codes_for_candidates(base_dir, candidate_codes, exclude_pairs)
+function M.load_occupied_codes_for_candidates(base_dir, candidate_codes, exclude_pairs, dynamic_file)
     local target_codes = normalize_target_codes(candidate_codes)
     local occupied = {}
     for _, name in ipairs(M.occupied_dict_files) do
         load_occupied_from_table(join_path(base_dir, name), occupied, exclude_pairs, target_codes)
     end
-    merge_occupied_map(occupied, load_dynamic_occupied(base_dir, target_codes, exclude_pairs))
+    merge_occupied_map(occupied, load_dynamic_occupied(base_dir, target_codes, exclude_pairs, dynamic_file))
     return occupied
 end
 
@@ -489,7 +481,7 @@ end
 local function load_orders_uncached(path)
     local records = {}
     local errors = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if not f then
         return records, errors
     end
@@ -923,7 +915,7 @@ function M.append_order(rec, path)
 
     local lines = {}
     local existing_records = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if f then
         for line in f:lines() do
             lines[#lines + 1] = line
@@ -1038,7 +1030,7 @@ function M.append_order(rec, path)
     end
 
     if removed_inverse or upgraded_existing or removed_stale_target then
-        local wf = io.open(path, "w")
+        local wf = store.open(path, "w")
         if not wf then return false end
         if #kept_lines > 0 then
             wf:write(table.concat(kept_lines, "\n"), "\n")
@@ -1061,7 +1053,7 @@ function M.append_order(rec, path)
 
     if exists then return true end
 
-    local wf = io.open(path, "a")
+    local wf = store.open(path, "a")
     if not wf then return false end
     if #lines > 0 then
         local last = lines[#lines] or ""
@@ -1093,7 +1085,7 @@ function M.promote_prefix_fallback(prefix_rec, current_code, displaced_text, pat
 
     path = path or M.store_path(M.default_filename)
     local lines = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if f then
         for line in f:lines() do
             lines[#lines + 1] = line
@@ -1156,7 +1148,7 @@ function M.promote_prefix_fallback(prefix_rec, current_code, displaced_text, pat
         kept_lines[#kept_lines + 1] = swap_line
     end
 
-    local wf = io.open(path, "w")
+    local wf = store.open(path, "w")
     if not wf then return false end
     if #kept_lines > 0 then
         wf:write(table.concat(kept_lines, "\n"), "\n")
@@ -1248,7 +1240,7 @@ function M.remove_record_and_dependents(record, path)
 
     local lines = {}
     local parsed_by_index = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if not f then return true, 0 end
     for line in f:lines() do
         lines[#lines + 1] = line
@@ -1297,11 +1289,11 @@ function M.remove_record_and_dependents(record, path)
         if not remove[i] then kept[#kept + 1] = line end
     end
 
-    local wf = io.open(path, "w")
+    local wf = store.open(path, "w")
     if not wf then return false, 0 end
     if #kept > 0 then wf:write(table.concat(kept, "\n"), "\n") end
     local ok = wf:close()
-    if ok == false then return false, 0 end
+    if not ok then return false, 0 end
 
     clear_cache()
     return true, #removed_records
@@ -1315,7 +1307,7 @@ function M.remove_records_for_texts(texts, path, codes)
     path = path or M.store_path(M.default_filename)
     local lines = {}
     local parsed_by_index = {}
-    local f = io.open(path, "r")
+    local f = store.open(path, "r")
     if not f then return true, 0 end
     for line in f:lines() do
         lines[#lines + 1] = line
@@ -1369,7 +1361,7 @@ function M.remove_records_for_texts(texts, path, codes)
         end
     end
 
-    local wf = io.open(path, "w")
+    local wf = store.open(path, "w")
     if not wf then return false, 0 end
     if #kept > 0 then
         wf:write(table.concat(kept, "\n"), "\n")
@@ -1382,6 +1374,48 @@ end
 function M.clear_cache()
     clear_cache()
     collectgarbage("collect")
+end
+
+-- Read-only helpers shared by the explicit phrase-code preview.
+function M.full_code_for_phrase(text, target_code, base_dir)
+    local wanted={}
+    for _,ch in ipairs(split_chars(text)) do wanted[ch]=true end
+    return M.phrase_full_code(text,target_code,load_char_codes_uncached(base_dir or M.user_data_dir(),wanted))
+end
+function M.preview_occupancy(base_dir,codes,order_path,opts)
+    opts=opts or {}
+    local occupied=M.load_occupied_codes_for_candidates(base_dir,codes,nil,opts.dynamic_file)
+    if opts.order_enabled==false then return occupied,{} end
+    local records,errors=load_orders_uncached(order_path or join_path(base_dir,M.default_filename))
+    for _,rec in ipairs(records) do
+        if rec.promoted~=rec.displaced and not rec.new_code then errors[#errors+1]="存在尚未推导补码的旧式调频记录" end
+    end
+    local data=build_data(records,errors)
+    for code,texts in pairs(occupied) do
+        for text in pairs(texts) do if M.should_hide_loaded(data,code,text,"table") then texts[text]=nil end end
+    end
+    for _,rec in ipairs(records) do
+        if codes[rec.target_code] then add_occupied(occupied,rec.promoted,rec.target_code) end
+        if rec.new_code and codes[rec.new_code] then add_occupied(occupied,rec.displaced,rec.new_code) end
+    end
+    return occupied,errors
+end
+
+local unpack_values = table.unpack or unpack
+for _, name in ipairs({"append_order", "promote_prefix_fallback", "remove_record_and_dependents", "remove_records_for_texts"}) do
+    local original,operation=M[name],name
+    M[name]=function(...)
+        local args={n=select("#",...),...}
+        local path_index=operation=="promote_prefix_fallback" and 4 or 2
+        local path=args[path_index] or M.store_path(M.default_filename)
+        local item=args[1]
+        local label=type(item)=="table" and ((item.target_code or "").." / "..(item.promoted or "")) or tostring(item or "")
+        clear_cache()
+        local ok,value=store.perform("调频变更："..label,{{path=path,kind="orders"}},
+            function() return original(unpack_values(args,1,args.n)) end,true)
+        clear_cache()
+        return ok,value
+    end
 end
 
 return M

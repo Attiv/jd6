@@ -41,8 +41,7 @@ patch:
     - xmjd6.zidingyi
 
   # ===== 流式输入（默认关闭） =====
-  # 使用流式输入时，取消下面四行注释。
-  # engine/processors/@13: null       # xmjd6_smart_2
-  # engine/processors/@14: null       # xmjd6_topup_processor
+  # 使用流式输入时，取消下面三行注释；按名称控制顶功，不依赖处理器序号。
+  # topup/enabled: false
   # translator/enable_sentence: true
   # translator/enable_user_dict: true
